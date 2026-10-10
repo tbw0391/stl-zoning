@@ -1,0 +1,93 @@
+[
+  {
+    "jurisdiction_id":"stcharles_county","code_section":"UDO §405.535",
+    "who_may_apply":"Owner, attorney, agent, representative or contract purchaser",
+    "application_items":["Legal description","Current recorded deed","Application fee (Ch. 425)"],
+    "pz_hearing_timing":"Set for hearing no later than the 2nd regular monthly P&Z meeting after filing",
+    "mailed_notice_radius_ft":1000,"mailed_notice_days":15,
+    "special_notes":"Mailed radius jumps to 2,000 ft when the parcel is in an Agricultural district and >75% of its boundary adjoins Ag zoning. Notice also posted at the Administration Building and county website 15 days ahead. One continuance by 3 commissioners; P&Z reports to Council within 45 days of closing the hearing. Council may only amend to reduce area or intensity.",
+    "governing_body_action":"County Council approves, denies, or amends",
+    "protest_rule":"30% of owners within 1,000 ft, or a resolution by a zoned city within 1.5 miles, requires 5 of 7 Council votes",
+    "resubmittal_wait":"12 months unless a different district is requested",
+    "steps":["File application with Division of Planning & Zoning","Staff inspection and recommendation","Notice: posted + mailed (1,000/2,000 ft), 15 days","P&Z public hearing and vote","P&Z report to Council within 45 days","County Council action by ordinance"],
+    "source_url":"https://ecode360.com/27758355","verified_on":"2026-10-09"
+  },
+  {
+    "jurisdiction_id":"stcharles_city","code_section":"§§400.1010-400.1050",
+    "who_may_apply":"Property owner (or Council / P&Z motion)",
+    "newspaper_notice_days":15,"mailed_notice_radius_ft":300,"mailed_notice_days":15,
+    "sign_posting":"City posts sign on property at least 15 days before hearing",
+    "pz_hearing_timing":"P&Z failure to act within 90 days of submission is deemed approval",
+    "governing_body_action":"Public hearing before City Council; application may be modified during Council hearing but not after it closes",
+    "protest_rule":"30% of land within the change or within 185 ft requires 2/3 of all Council members",
+    "protest_deadline":"5:00 PM the Wednesday before the Council meeting where it is decided",
+    "resubmittal_wait":"1 year after Council vote",
+    "special_notes":"If tabled, developer must re-notify owners within 300 ft 15 days before the item comes off the table. Requests to table an advertised item need 4 working days' written notice.",
+    "steps":["Application to Dept. of Community Development (completeness review)","Newspaper ad, sign, mailed notice (300 ft), 15 days","P&Z public hearing and report","City Council public hearing","Council ordinance vote"],
+    "source_url":"https://www.zoneomics.com/code/saint-charles-MO/chapter_12","verified_on":"2026-10-09"
+  },
+  {
+    "jurisdiction_id":"stpeters","code_section":"§405.775",
+    "who_may_apply":"Owners of the property",
+    "application_items":["Legal description (plus Word-format electronic copy)","Acreage and scaled map","Names/addresses/phones of applicants, owners, agents + recorded deeds","Present and proposed zoning","Existing and proposed uses","Authority docs if owner is a trust or entity","Fee per Title IV Appendix A"],
+    "pz_hearing_timing":"Hearing within 60 days of a complete petition",
+    "newspaper_notice_days":15,"mailed_notice_radius_ft":1000,"mailed_notice_days":15,
+    "sign_posting":"Sign on property 15 days ahead, plus signs at entrances of all adjacent subdivisions",
+    "special_notes":"City makes a good-faith effort to mail THREE letters to owners within 1,000 ft, the first at least 15 days before the P&Z hearing.",
+    "governing_body_action":"Board of Aldermen acts only after written P&Z recommendation",
+    "protest_rule":"30% of land within the change or within 185 ft requires 2/3 of all Aldermen",
+    "resubmittal_wait":"90 days after denial (short compared with neighbors)",
+    "steps":["Petition to Administrative Officer","Notice: newspaper, 3 mailings (1,000 ft), property and subdivision-entrance signs","P&Z public hearing within 60 days","Written P&Z recommendation","Board of Aldermen ordinance"],
+    "source_url":"https://www.zoneomics.com/code/st-peters-MO/chapter_10","verified_on":"2026-10-09"
+  },
+  {
+    "jurisdiction_id":"ofallon","code_section":"§§400.665-400.685",
+    "who_may_apply":"Owner(s) or authorized representative",
+    "application_items":["Legal description","Scaled map correlated with legal","Petitioner name/address and interest in property","Owner name/address if different","Signatures of petitioner and owner","Present and proposed zoning","Fees per Appendix B"],
+    "newspaper_notice_days":15,"mailed_notice_radius_ft":300,"mailed_notice_days":15,
+    "sign_posting":"City posts 6 sq ft sign(s), one per street frontage, within 7 days of the filing deadline. Missed signs postpone the hearing at applicant's cost.",
+    "governing_body_action":"Council Public Hearing No. 2 at the next regular Council meeting after P&Z; 1st reading, then vote at the 2nd regular meeting",
+    "protest_rule":"30% of land within the change or within 185 ft requires 2/3 of all Council members",
+    "protest_deadline":"4:00 PM on the 7th day after the advertised P&Z hearing start",
+    "resubmittal_wait":"12 months unless new evidence accepted by the Director",
+    "steps":["Submit application electronically by noon on deadline","Sign posted within 7 days; ad + 300 ft mailing 15 days out","P&Z Public Hearing No. 1 and recommendation","Council Public Hearing No. 2 and 1st reading","Council 2nd reading and vote"],
+    "source_url":"https://www.zoneomics.com/code/ofallon-MO/chapter_15","verified_on":"2026-10-09"
+  },
+  {
+    "jurisdiction_id":"wentzville","code_section":"Zoning Regulations Art. X (per brochure)",
+    "who_may_apply":"Owner, agent, representative or attorney (owner info required); contract purchaser with contract",
+    "preapp_required":true,"preapp_notes":"Pre-application meeting with Community Development staff is step 1",
+    "application_items":["Legal description","Recent title certificate or deed","Narrative development plan or preliminary site plan","Paid tax receipt (no delinquent city/county taxes)","Filing fee"],
+    "fee_notes":"$500 (<5 ac), $600 (5-19.99), $700 (20-49.99), $800 (50-74.99), $900 (75-99.99), $1,000 (100+ ac); plus legal ad cost and $0.62 per mailed notice",
+    "mailed_notice_radius_ft":300,
+    "pz_hearing_timing":"Next available P&Z after deadline (~4-5 weeks)",
+    "governing_body_action":"Two readings before the Board of Aldermen (BOA meets 2nd and 4th Wednesday)",
+    "resubmittal_wait":"1 calendar year for same request",
+    "special_notes":"Property outside city limits must annex first (must touch city boundary). Site plan/prelim plat filed with a rezoning goes to BOA only after the rezoning passes.",
+    "steps":["Pre-application meeting","Annexation petition if outside city","Application by the 1st-of-month deadline","P&Z public hearing and same-night recommendation","BOA 1st reading","BOA 2nd reading and ordinance"],
+    "source_url":"https://www.wentzvillemo.gov/wp-content/uploads/2024/01/Rezoning-Process-Brochure.pdf","verified_on":"2026-10-09"
+  },
+  {
+    "jurisdiction_id":"lake_st_louis","code_section":"§405.100",
+    "who_may_apply":"Persons in §405.040(A), or P&Z, Board, or Community Development Director",
+    "preapp_required":true,"preapp_notes":"BOTH a preapplication staff meeting and a preapplication NEIGHBORHOOD meeting are required (§405.030)",
+    "governing_body_action":"Board of Aldermen approves by ordinance or denies",
+    "protest_rule":"30% of land within the change or within 185 ft requires 2/3 of all Aldermen",
+    "protest_deadline":"Filed with Community Development Director at least 1 week before final Board decision",
+    "special_notes":"Rezoning must be filed CONCURRENTLY with a preliminary plat, site plan, or Master Plan. Notice details in §405.060 (not yet pulled). Approved rezonings do not expire.",
+    "steps":["Preapplication staff meeting","Preapplication neighborhood meeting","Submit rezoning + concurrent plat/site plan/master plan","Staff report","P&Z hearing and recommendation","Board of Aldermen hearing and ordinance"],
+    "source_url":"https://ecode360.com/37149830","verified_on":"2026-10-09"
+  },
+  {
+    "jurisdiction_id":"cottleville",
+    "fee_notes":"$800 application fee",
+    "special_notes":"Applicant must appear before P&Z. Application asks for max residential units or non-residential square footage. Schedule notes items needing public notice may need extra lead time beyond the deadline. Full code procedure not yet pulled.",
+    "steps":["Application to Dept. of Development & Engineering Services by noon on deadline","P&Z public hearing","Board of Aldermen public hearing and ordinance"],
+    "source_url":"https://www.cityofcottleville.com/wp-content/uploads/2023/01/Rezoning.pdf","verified_on":"2026-10-09"
+  },
+  {
+    "jurisdiction_id":"dardenne_prairie","code_section":"§§405.855-405.871",
+    "special_notes":"Hearings before both P&Z and Board. Applicant (not city) makes good-faith effort to mail notice to listed nearby owners. Full section text not yet pulled.",
+    "source_url":"https://www.zoneomics.com/code/dardenne-prairie-MO/chapter_15","verified_on":"2026-10-09"
+  }
+]
