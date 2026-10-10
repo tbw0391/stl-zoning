@@ -15,6 +15,7 @@ Built for a small team (3-5 users, one shared role).
 | `supabase/migrations/` | Schema as applied to the live Supabase project `stl-zoning` |
 | `data/` | Seed data (JSON + CSV) and `upcoming_dates.ics` for Outlook / Google Calendar |
 | `scripts/build_meetings.py` | Rebuilds meeting seed data and the .ics from published schedules |
+| `web/` | Next.js front end (deployed on Vercel): calendar, jurisdictions, directory. Sign-in by emailed link, invited users only |
 | `docs/HANDOFF.md` | Current status and next objectives |
 
 Every fact row carries `source_url` and `verified_on`, so nothing unverified is presented as fact.
@@ -33,7 +34,7 @@ Every fact row carries `source_url` and `verified_on`, so nothing unverified is 
 | Weldon Spring | Not yet | Pattern only |
 | 9 small towns/villages | Not yet | Not yet |
 
-People directory, zoning districts, parcel lookup, the weekly checker, and the front end are not built yet.
+People directory: Wentzville done (22 people). Zoning districts, parcel lookup and the weekly checker are not built yet.
 
 ## Security
 Row-level security lets any signed-in user read and write. **Public sign-ups must be disabled** in Supabase

@@ -6,7 +6,7 @@ Needs: rezoning process per jurisdiction, P&Z / council / submittal calendar wit
 
 ## Backend
 Supabase project **stl-zoning** (id `zjveevfcsqkdgenrrrcv`, us-east-2). Security advisor: clean.
-Tables: jurisdictions (18), rezoning_processes (8), meetings (75; 25 deadlines linked via linked_meeting), people (0), zoning_districts (0), parcels (0), source_checks (0).
+Tables: jurisdictions (18), rezoning_processes (8), meetings (75; 25 deadlines linked via linked_meeting), people (22, Wentzville), zoning_districts (0), parcels (0), source_checks (0).
 RLS: any authenticated user has full access. **To do:** disable public sign-ups and invite users.
 Every fact row carries source_url + verified_on.
 
@@ -15,12 +15,12 @@ Every fact row carries source_url + verified_on.
 - 2026 schedules loaded: Wentzville (through Feb 2027), Cottleville (through Dec 2026).
 
 ## Next up
-1. People directory (P&Z, council, administrator, engineer) for each jurisdiction.
+1. People directory (P&Z, council, administrator, engineer): Wentzville done Oct 9 (P&Z roster from Jul 6, 2026 minutes, since the city's P&Z page no longer lists members). Remaining jurisdictions to do.
 2. Remaining schedules: County, St. Charles, St. Peters, O'Fallon, Lake Saint Louis, Dardenne Prairie, Weldon Spring.
 3. Nine small towns/villages (some need phone calls).
 4. Zoning district tables, then parcel lookup (Lake Saint Louis has a ZoningHub map; county has ArcGIS parcels).
 5. Weekly scheduled task to re-check schedule URLs and log to source_checks.
-6. Front end (Vercel available).
+6. Front end: `web/` (Next.js + Supabase magic-link auth) deployed on Vercel. Next: parcel lookup page, editing forms.
 
 ## Key sources
 - County UDO §405.535: https://ecode360.com/27758355
