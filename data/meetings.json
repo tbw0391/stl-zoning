@@ -12,6 +12,18 @@
   "note": "Feeds P&Z 2026-01-12. If weekend/holiday, Friday before or Monday after."
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2025-12-05",
+  "event_time": "12:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "projected",
+  "source_url": "https://web.archive.org/web/20240627035239/https://drive.google.com/file/d/1MTJgjQ8XAMqMc-tjYuibT2Mfc0ZGXoWd/view",
+  "verified_on": "2026-10-10",
+  "note": "Feeds P&Z 2026-01-08. Projected from the 2024 schedule rule (Friday 34 days before); 2026 schedule not posted. Confirm with recording secretary Tracy Coffman, tcoffman@ofallonmo.gov, 636-379-5544."
+ },
+ {
   "jurisdiction_id": "cottleville",
   "body": "planning_zoning",
   "event_type": "submittal_deadline",
@@ -34,6 +46,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Feeds P&Z 2026-02-09. If weekend/holiday, Friday before or Monday after."
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-01-02",
+  "event_time": "12:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "projected",
+  "source_url": "https://web.archive.org/web/20240627035239/https://drive.google.com/file/d/1MTJgjQ8XAMqMc-tjYuibT2Mfc0ZGXoWd/view",
+  "verified_on": "2026-10-10",
+  "note": "Feeds P&Z 2026-02-05. Projected from the 2024 schedule rule (Friday 34 days before); 2026 schedule not posted. Confirm with recording secretary Tracy Coffman, tcoffman@ofallonmo.gov, 636-379-5544."
  },
  {
   "jurisdiction_id": "cottleville",
@@ -60,6 +84,18 @@
   "note": "Feeds P&Z 2026-02-02. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-01-08",
+  "event_time": "19:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "Pre-meeting 6:30 PM."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -72,6 +108,30 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-01-15",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-01-22",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -82,6 +142,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-01-30",
+  "event_time": "12:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "projected",
+  "source_url": "https://web.archive.org/web/20240627035239/https://drive.google.com/file/d/1MTJgjQ8XAMqMc-tjYuibT2Mfc0ZGXoWd/view",
+  "verified_on": "2026-10-10",
+  "note": "Feeds P&Z 2026-03-05. Projected from the 2024 schedule rule (Friday 34 days before); 2026 schedule not posted. Confirm with recording secretary Tracy Coffman, tcoffman@ofallonmo.gov, 636-379-5544."
  },
  {
   "jurisdiction_id": "wentzville",
@@ -120,6 +192,18 @@
   "note": "Feeds P&Z 2026-03-02. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-02-05",
+  "event_time": "19:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "Pre-meeting 6:30 PM."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -144,6 +228,18 @@
   "note": "Board of Aldermen (rezoning readings)"
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-02-12",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -154,6 +250,30 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-02-26",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-02-27",
+  "event_time": "12:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "projected",
+  "source_url": "https://web.archive.org/web/20240627035239/https://drive.google.com/file/d/1MTJgjQ8XAMqMc-tjYuibT2Mfc0ZGXoWd/view",
+  "verified_on": "2026-10-10",
+  "note": "Feeds P&Z 2026-04-02. Projected from the 2024 schedule rule (Friday 34 days before); 2026 schedule not posted. Confirm with recording secretary Tracy Coffman, tcoffman@ofallonmo.gov, 636-379-5544."
  },
  {
   "jurisdiction_id": "wentzville",
@@ -178,6 +298,18 @@
   "source_url": "https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf",
   "verified_on": "2026-10-09",
   "note": ""
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-03-05",
+  "event_time": "19:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "Pre-meeting 6:30 PM."
  },
  {
   "jurisdiction_id": "cottleville",
@@ -216,6 +348,18 @@
   "note": "Board of Aldermen (rezoning readings)"
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-03-12",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -228,6 +372,18 @@
   "note": "Board of Aldermen (rezoning readings)"
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-03-26",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "submittal_deadline",
@@ -238,6 +394,30 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Feeds P&Z 2026-05-11. If weekend/holiday, Friday before or Monday after."
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-04-02",
+  "event_time": "19:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "Pre-meeting 6:30 PM."
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-04-03",
+  "event_time": "12:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "projected",
+  "source_url": "https://web.archive.org/web/20240627035239/https://drive.google.com/file/d/1MTJgjQ8XAMqMc-tjYuibT2Mfc0ZGXoWd/view",
+  "verified_on": "2026-10-10",
+  "note": "Feeds P&Z 2026-05-07. Projected from the 2024 schedule rule (Friday 34 days before); 2026 schedule not posted. Confirm with recording secretary Tracy Coffman, tcoffman@ofallonmo.gov, 636-379-5544."
  },
  {
   "jurisdiction_id": "cottleville",
@@ -276,6 +456,18 @@
   "note": "Board of Aldermen (rezoning readings)"
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-04-09",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -298,6 +490,30 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-04-23",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-05-01",
+  "event_time": "12:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "projected",
+  "source_url": "https://web.archive.org/web/20240627035239/https://drive.google.com/file/d/1MTJgjQ8XAMqMc-tjYuibT2Mfc0ZGXoWd/view",
+  "verified_on": "2026-10-10",
+  "note": "Feeds P&Z 2026-06-04. Projected from the 2024 schedule rule (Friday 34 days before); 2026 schedule not posted. Confirm with recording secretary Tracy Coffman, tcoffman@ofallonmo.gov, 636-379-5544."
  },
  {
   "jurisdiction_id": "wentzville",
@@ -336,6 +552,18 @@
   "note": "Feeds P&Z 2026-06-01. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-05-07",
+  "event_time": "19:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "Pre-meeting 6:30 PM."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -360,6 +588,18 @@
   "note": "Board of Aldermen (rezoning readings)"
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-05-14",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -370,6 +610,30 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-05-28",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-05-29",
+  "event_time": "12:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "projected",
+  "source_url": "https://web.archive.org/web/20240627035239/https://drive.google.com/file/d/1MTJgjQ8XAMqMc-tjYuibT2Mfc0ZGXoWd/view",
+  "verified_on": "2026-10-10",
+  "note": "Feeds P&Z 2026-07-02. Projected from the 2024 schedule rule (Friday 34 days before); 2026 schedule not posted. Confirm with recording secretary Tracy Coffman, tcoffman@ofallonmo.gov, 636-379-5544."
  },
  {
   "jurisdiction_id": "cottleville",
@@ -396,6 +660,18 @@
   "note": "Feeds P&Z 2026-07-06. If weekend/holiday, Friday before or Monday after."
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-06-04",
+  "event_time": "19:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "Pre-meeting 6:30 PM."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -418,6 +694,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-06-11",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting"
  },
  {
   "jurisdiction_id": "cottleville",
@@ -444,6 +732,18 @@
   "note": "Board of Aldermen (rezoning readings)"
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-06-25",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "submittal_deadline",
@@ -454,6 +754,30 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Feeds P&Z 2026-08-10. If weekend/holiday, Friday before or Monday after."
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-07-02",
+  "event_time": "19:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "Pre-meeting 6:30 PM."
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-07-03",
+  "event_time": "12:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "projected",
+  "source_url": "https://web.archive.org/web/20240627035239/https://drive.google.com/file/d/1MTJgjQ8XAMqMc-tjYuibT2Mfc0ZGXoWd/view",
+  "verified_on": "2026-10-10",
+  "note": "Feeds P&Z 2026-08-06. Projected from the 2024 schedule rule (Friday 34 days before); 2026 schedule not posted. Confirm with recording secretary Tracy Coffman, tcoffman@ofallonmo.gov, 636-379-5544."
  },
  {
   "jurisdiction_id": "cottleville",
@@ -492,6 +816,18 @@
   "note": "Board of Aldermen (rezoning readings)"
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-07-09",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting"
+ },
+ {
   "jurisdiction_id": "cottleville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -514,6 +850,30 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-07-23",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-07-31",
+  "event_time": "12:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "projected",
+  "source_url": "https://web.archive.org/web/20240627035239/https://drive.google.com/file/d/1MTJgjQ8XAMqMc-tjYuibT2Mfc0ZGXoWd/view",
+  "verified_on": "2026-10-10",
+  "note": "Feeds P&Z 2026-09-03. Projected from the 2024 schedule rule (Friday 34 days before); 2026 schedule not posted. Confirm with recording secretary Tracy Coffman, tcoffman@ofallonmo.gov, 636-379-5544."
  },
  {
   "jurisdiction_id": "wentzville",
@@ -540,6 +900,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-08-06",
+  "event_time": "19:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "Pre-meeting 6:30 PM."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -562,6 +934,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-08-13",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting"
  },
  {
   "jurisdiction_id": "cottleville",
@@ -588,6 +972,30 @@
   "note": "Board of Aldermen (rezoning readings)"
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-08-27",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-08-28",
+  "event_time": "12:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "projected",
+  "source_url": "https://web.archive.org/web/20240627035239/https://drive.google.com/file/d/1MTJgjQ8XAMqMc-tjYuibT2Mfc0ZGXoWd/view",
+  "verified_on": "2026-10-10",
+  "note": "Feeds P&Z 2026-10-01. Projected from the 2024 schedule rule (Friday 34 days before); 2026 schedule not posted. Confirm with recording secretary Tracy Coffman, tcoffman@ofallonmo.gov, 636-379-5544."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "submittal_deadline",
@@ -598,6 +1006,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Feeds P&Z 2026-10-05. If weekend/holiday, Friday before or Monday after."
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-09-03",
+  "event_time": "19:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "Pre-meeting 6:30 PM."
  },
  {
   "jurisdiction_id": "cottleville",
@@ -622,6 +1042,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-09-10",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting"
  },
  {
   "jurisdiction_id": "cottleville",
@@ -660,6 +1092,30 @@
   "note": "Board of Aldermen (rezoning readings)"
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-09-24",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-10-01",
+  "event_time": "19:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "Pre-meeting 6:30 PM."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "submittal_deadline",
@@ -670,6 +1126,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Feeds P&Z 2026-11-09. If weekend/holiday, Friday before or Monday after."
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-10-02",
+  "event_time": "12:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "projected",
+  "source_url": "https://web.archive.org/web/20240627035239/https://drive.google.com/file/d/1MTJgjQ8XAMqMc-tjYuibT2Mfc0ZGXoWd/view",
+  "verified_on": "2026-10-10",
+  "note": "Feeds P&Z 2026-11-05. Projected from the 2024 schedule rule (Friday 34 days before); 2026 schedule not posted. Confirm with recording secretary Tracy Coffman, tcoffman@ofallonmo.gov, 636-379-5544."
  },
  {
   "jurisdiction_id": "cottleville",
@@ -708,6 +1176,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-10-08",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -720,6 +1200,18 @@
   "note": "Board of Aldermen (rezoning readings)"
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-10-22",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "projected",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting (projected: 2nd & 4th Thursday, Nov/Dec 3rd Thursday only, per 2024-2025)"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -730,6 +1222,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-10-30",
+  "event_time": "12:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "projected",
+  "source_url": "https://web.archive.org/web/20240627035239/https://drive.google.com/file/d/1MTJgjQ8XAMqMc-tjYuibT2Mfc0ZGXoWd/view",
+  "verified_on": "2026-10-10",
+  "note": "Feeds P&Z 2026-12-03. Projected from the 2024 schedule rule (Friday 34 days before); 2026 schedule not posted. Confirm with recording secretary Tracy Coffman, tcoffman@ofallonmo.gov, 636-379-5544."
  },
  {
   "jurisdiction_id": "wentzville",
@@ -768,6 +1272,18 @@
   "note": "Board of Aldermen (rezoning readings)"
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-11-05",
+  "event_time": "19:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "published",
+  "source_url": "https://drive.google.com/file/d/14OrNswUM9fNnRWphp8tWNO1Hexgn_uP6/view",
+  "verified_on": "2026-10-10",
+  "note": "Pre-meeting 6:30 PM."
+ },
+ {
   "jurisdiction_id": "cottleville",
   "body": "planning_zoning",
   "event_type": "submittal_deadline",
@@ -804,6 +1320,18 @@
   "note": "Board of Aldermen (rezoning readings)"
  },
  {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-11-19",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "projected",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting (projected: 2nd & 4th Thursday, Nov/Dec 3rd Thursday only, per 2024-2025)"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "submittal_deadline",
@@ -814,6 +1342,30 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Feeds P&Z 2027-01-11. If weekend/holiday, Friday before or Monday after."
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-12-03",
+  "event_time": "19:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "projected",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "Pre-meeting 6:30 PM. Projected (first Thursday)."
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-12-04",
+  "event_time": "12:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "projected",
+  "source_url": "https://web.archive.org/web/20240627035239/https://drive.google.com/file/d/1MTJgjQ8XAMqMc-tjYuibT2Mfc0ZGXoWd/view",
+  "verified_on": "2026-10-10",
+  "note": "Feeds P&Z 2027-01-07. Projected from the 2024 schedule rule (Friday 34 days before); 2026 schedule not posted. Confirm with recording secretary Tracy Coffman, tcoffman@ofallonmo.gov, 636-379-5544."
  },
  {
   "jurisdiction_id": "cottleville",
@@ -850,6 +1402,30 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-12-17",
+  "event_time": "19:30",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "projected",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "City Council regular meeting (projected: 2nd & 4th Thursday, Nov/Dec 3rd Thursday only, per 2024-2025)"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2027-01-07",
+  "event_time": "19:00",
+  "location": "O'Fallon Municipal Centre, Council Chambers, 100 N Main St",
+  "status": "projected",
+  "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
+  "verified_on": "2026-10-10",
+  "note": "Pre-meeting 6:30 PM. Projected (first Thursday)."
  },
  {
   "jurisdiction_id": "wentzville",

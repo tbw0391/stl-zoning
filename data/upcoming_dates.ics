@@ -5,23 +5,39 @@ X-WR-CALNAME:St. Charles Co. Entitlement Dates
 X-WR-TIMEZONE:America/Chicago
 BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2026-10-14@entitlement-tracker
-DTSTAMP:20261009T000000Z
+DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261014
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
 DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:ofallon-meeting-governing_body-2026-10-22@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261022
+SUMMARY:O'Fallon - City Council [projected] (19:30)
+LOCATION:O'Fallon Municipal Centre\, Council Chambers\, 100 N Main St
+DESCRIPTION:City Council regular meeting (projected: 2nd & 4th Thursday\, Nov/Dec 3rd Thursday only\, per 2024-2025) Source: https://public.destinyhosted.com/agenda_publish.cfm?id=63255
+END:VEVENT
+BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2026-10-28@entitlement-tracker
-DTSTAMP:20261009T000000Z
+DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261028
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
 DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:ofallon-submittal_deadline-planning_zoning-2026-10-30@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261030
+SUMMARY:O'Fallon - P&Z SUBMITTAL DUE [projected] (12:00)
+LOCATION:O'Fallon Municipal Centre\, Council Chambers\, 100 N Main St
+DESCRIPTION:Feeds P&Z 2026-12-03. Projected from the 2024 schedule rule (Friday 34 days before); 2026 schedule not posted. Confirm with recording secretary Tracy Coffman\, tcoffman@ofallonmo.gov\, 636-379-5544. Source: https://web.archive.org/web/20240627035239/https://drive.google.com/file/d/1MTJgjQ8XAMqMc-tjYuibT2Mfc0ZGXoWd/view
+END:VEVENT
+BEGIN:VEVENT
 UID:wentzville-submittal_deadline-planning_zoning-2026-11-01@entitlement-tracker
-DTSTAMP:20261009T000000Z
+DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261101
 SUMMARY:Wentzville - P&Z SUBMITTAL DUE (17:00)
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
@@ -29,7 +45,7 @@ DESCRIPTION:Feeds P&Z 2026-12-07. If weekend/holiday\, Friday before or Monday a
 END:VEVENT
 BEGIN:VEVENT
 UID:cottleville-meeting-planning_zoning-2026-11-02@entitlement-tracker
-DTSTAMP:20261009T000000Z
+DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261102
 SUMMARY:Cottleville - P&Z Meeting (19:00)
 LOCATION:Cottleville City Hall Board Room\, 5490 Fifth St
@@ -37,15 +53,23 @@ DESCRIPTION:Source: https://www.cityofcottleville.com/wp-content/uploads/2025/12
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2026-11-04@entitlement-tracker
-DTSTAMP:20261009T000000Z
+DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261104
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
 DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:ofallon-meeting-planning_zoning-2026-11-05@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261105
+SUMMARY:O'Fallon - P&Z Meeting (19:00)
+LOCATION:O'Fallon Municipal Centre\, Council Chambers\, 100 N Main St
+DESCRIPTION:Pre-meeting 6:30 PM. Source: https://drive.google.com/file/d/14OrNswUM9fNnRWphp8tWNO1Hexgn_uP6/view
+END:VEVENT
+BEGIN:VEVENT
 UID:cottleville-submittal_deadline-planning_zoning-2026-11-09@entitlement-tracker
-DTSTAMP:20261009T000000Z
+DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261109
 SUMMARY:Cottleville - P&Z SUBMITTAL DUE (12:00)
 LOCATION:Cottleville City Hall Board Room\, 5490 Fifth St
@@ -53,7 +77,7 @@ DESCRIPTION:Feeds P&Z 2026-12-07. Public-notice items may need more lead time. S
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-planning_zoning-2026-11-09@entitlement-tracker
-DTSTAMP:20261009T000000Z
+DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261109
 SUMMARY:Wentzville - P&Z Meeting (18:00)
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
@@ -61,23 +85,47 @@ DESCRIPTION:Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2026-11-18@entitlement-tracker
-DTSTAMP:20261009T000000Z
+DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261118
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
 DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:ofallon-meeting-governing_body-2026-11-19@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261119
+SUMMARY:O'Fallon - City Council [projected] (19:30)
+LOCATION:O'Fallon Municipal Centre\, Council Chambers\, 100 N Main St
+DESCRIPTION:City Council regular meeting (projected: 2nd & 4th Thursday\, Nov/Dec 3rd Thursday only\, per 2024-2025) Source: https://public.destinyhosted.com/agenda_publish.cfm?id=63255
+END:VEVENT
+BEGIN:VEVENT
 UID:wentzville-submittal_deadline-planning_zoning-2026-12-01@entitlement-tracker
-DTSTAMP:20261009T000000Z
+DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261201
 SUMMARY:Wentzville - P&Z SUBMITTAL DUE (17:00)
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
 DESCRIPTION:Feeds P&Z 2027-01-11. If weekend/holiday\, Friday before or Monday after. Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:ofallon-meeting-planning_zoning-2026-12-03@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261203
+SUMMARY:O'Fallon - P&Z Meeting [projected] (19:00)
+LOCATION:O'Fallon Municipal Centre\, Council Chambers\, 100 N Main St
+DESCRIPTION:Pre-meeting 6:30 PM. Projected (first Thursday). Source: https://public.destinyhosted.com/agenda_publish.cfm?id=63255
+END:VEVENT
+BEGIN:VEVENT
+UID:ofallon-submittal_deadline-planning_zoning-2026-12-04@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261204
+SUMMARY:O'Fallon - P&Z SUBMITTAL DUE [projected] (12:00)
+LOCATION:O'Fallon Municipal Centre\, Council Chambers\, 100 N Main St
+DESCRIPTION:Feeds P&Z 2027-01-07. Projected from the 2024 schedule rule (Friday 34 days before); 2026 schedule not posted. Confirm with recording secretary Tracy Coffman\, tcoffman@ofallonmo.gov\, 636-379-5544. Source: https://web.archive.org/web/20240627035239/https://drive.google.com/file/d/1MTJgjQ8XAMqMc-tjYuibT2Mfc0ZGXoWd/view
+END:VEVENT
+BEGIN:VEVENT
 UID:cottleville-meeting-planning_zoning-2026-12-07@entitlement-tracker
-DTSTAMP:20261009T000000Z
+DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261207
 SUMMARY:Cottleville - P&Z Meeting (19:00)
 LOCATION:Cottleville City Hall Board Room\, 5490 Fifth St
@@ -85,7 +133,7 @@ DESCRIPTION:Source: https://www.cityofcottleville.com/wp-content/uploads/2025/12
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-planning_zoning-2026-12-07@entitlement-tracker
-DTSTAMP:20261009T000000Z
+DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261207
 SUMMARY:Wentzville - P&Z Meeting (18:00)
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
@@ -93,15 +141,31 @@ DESCRIPTION:Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2026-12-09@entitlement-tracker
-DTSTAMP:20261009T000000Z
+DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261209
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
 DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:ofallon-meeting-governing_body-2026-12-17@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261217
+SUMMARY:O'Fallon - City Council [projected] (19:30)
+LOCATION:O'Fallon Municipal Centre\, Council Chambers\, 100 N Main St
+DESCRIPTION:City Council regular meeting (projected: 2nd & 4th Thursday\, Nov/Dec 3rd Thursday only\, per 2024-2025) Source: https://public.destinyhosted.com/agenda_publish.cfm?id=63255
+END:VEVENT
+BEGIN:VEVENT
+UID:ofallon-meeting-planning_zoning-2027-01-07@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20270107
+SUMMARY:O'Fallon - P&Z Meeting [projected] (19:00)
+LOCATION:O'Fallon Municipal Centre\, Council Chambers\, 100 N Main St
+DESCRIPTION:Pre-meeting 6:30 PM. Projected (first Thursday). Source: https://public.destinyhosted.com/agenda_publish.cfm?id=63255
+END:VEVENT
+BEGIN:VEVENT
 UID:wentzville-meeting-planning_zoning-2027-01-11@entitlement-tracker
-DTSTAMP:20261009T000000Z
+DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20270111
 SUMMARY:Wentzville - P&Z Meeting (18:00)
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
@@ -109,7 +173,7 @@ DESCRIPTION:Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2027-01-13@entitlement-tracker
-DTSTAMP:20261009T000000Z
+DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20270113
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
@@ -117,7 +181,7 @@ DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzville
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2027-01-27@entitlement-tracker
-DTSTAMP:20261009T000000Z
+DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20270127
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
@@ -125,7 +189,7 @@ DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzville
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2027-02-10@entitlement-tracker
-DTSTAMP:20261009T000000Z
+DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20270210
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
