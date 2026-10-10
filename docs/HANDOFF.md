@@ -7,20 +7,21 @@ Needs: rezoning process per jurisdiction, P&Z / council / submittal calendar wit
 ## Backend
 Supabase project **stl-zoning** (id `zjveevfcsqkdgenrrrcv`, us-east-2). Security advisor: clean.
 Tables: jurisdictions (18), rezoning_processes (8), meetings (75; 25 deadlines linked via linked_meeting), people (22, Wentzville), zoning_districts (0), parcels (0), source_checks (0).
-RLS: any authenticated user has full access. **To do:** disable public sign-ups and invite users.
+Access: login was removed (commit 97a5e6a). The site is open to anyone with the URL; anon can read all tables and insert/update todos. Revisit if project data is sensitive.
 Every fact row carries source_url + verified_on.
 
 ## Done
 - Rezoning procedures: County, St. Charles, St. Peters, O'Fallon, Wentzville, Lake Saint Louis. Partial: Cottleville, Dardenne Prairie.
 - 2026 schedules loaded: Wentzville (through Feb 2027), Cottleville (through Dec 2026).
+- Front end: projects (with checklist), tasks, todo/suggestions, and meetings pages with YouTube-caption summaries (meetings.video_url, summary, summary_items, summarized_on).
 
 ## Next up
-1. People directory (P&Z, council, administrator, engineer): Wentzville done Oct 9 (P&Z roster from Jul 6, 2026 minutes, since the city's P&Z page no longer lists members). Remaining jurisdictions to do.
-2. Remaining schedules: County, St. Charles, St. Peters, O'Fallon, Lake Saint Louis, Dardenne Prairie, Weldon Spring.
+1. **Start here:** remaining 2026 schedules, in order O'Fallon, St. Peters, St. Charles, County, Lake Saint Louis, then Dardenne Prairie, Weldon Spring. Link deadlines to meetings, rebuild data/upcoming_dates.ics. O'Fallon and County post meeting videos (OFallonTV, SCCMOTV) for summaries.
+2. People directory (P&Z, council, administrator, engineer) for the same jurisdictions. Wentzville done Oct 9 (P&Z roster from Jul 6, 2026 minutes, since the city's P&Z page no longer lists members).
 3. Nine small towns/villages (some need phone calls).
 4. Zoning district tables, then parcel lookup (Lake Saint Louis has a ZoningHub map; county has ArcGIS parcels).
 5. Weekly scheduled task to re-check schedule URLs and log to source_checks.
-6. Front end: `web/` (Next.js + Supabase magic-link auth) deployed on Vercel. Next: parcel lookup page, editing forms.
+6. Front end: `web/` (Next.js + Supabase, no login) deployed on Vercel. Next: parcel lookup page, editing forms.
 
 ## Key sources
 - County UDO §405.535: https://ecode360.com/27758355
