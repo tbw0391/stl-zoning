@@ -10,6 +10,28 @@ C = "https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-20
 O = "https://public.destinyhosted.com/agenda_publish.cfm?id=63255"
 O24 = "https://web.archive.org/web/20240627035239/https://drive.google.com/file/d/1MTJgjQ8XAMqMc-tjYuibT2Mfc0ZGXoWd/view"
 O_PREVIEW = "https://drive.google.com/file/d/14OrNswUM9fNnRWphp8tWNO1Hexgn_uP6/view"
+# St. Peters: Development Guide (rev. 5-29-26), P&Z submittal schedule p.4, Land Use Review p.5.
+# Columns used: initial plan submittal, rezoning/SUP applications due, P&Z meeting (first Wednesday).
+S = "https://www.stpetersmo.net/DocumentCenter/View/444/Development-Guide-and-Planning--Zoning-SubmittalMeeting-Schedule-PDF"
+S_AG = "https://www.stpetersmo.net/AgendaCenter"
+S_CAL = "https://www.stpetersmo.net/627/City-Meetings-Calendar"
+stp = """12/05/2025 12/12/2025 01/07/2026
+01/02/2026 01/09/2026 02/04/2026
+01/30/2026 02/06/2026 03/04/2026
+02/27/2026 03/06/2026 04/01/2026
+04/03/2026 04/10/2026 05/06/2026
+05/01/2026 05/08/2026 06/03/2026
+05/29/2026 06/05/2026 07/01/2026
+07/03/2026 07/10/2026 08/05/2026
+07/31/2026 08/07/2026 09/02/2026
+09/04/2026 09/11/2026 10/07/2026
+10/02/2026 10/09/2026 11/04/2026
+10/30/2026 11/06/2026 12/02/2026
+12/04/2026 12/11/2026 01/06/2027"""
+# Board of Aldermen regular meetings (2nd & 4th Thursday; one in Jun, Jul, Nov, Dec). Past from Agenda Center, future from city calendar.
+stp_boa = ["2026-01-08","2026-01-22","2026-02-12","2026-02-26","2026-03-12","2026-03-26","2026-04-09","2026-04-23",
+           "2026-05-14","2026-05-28","2026-06-25","2026-07-23","2026-08-13","2026-08-27","2026-09-10","2026-09-24",
+           "2026-10-08","2026-10-22","2026-11-12","2026-12-17"]
 # P&Z (first Thursday): date, status, source
 ofal_pz = [("2026-01-08","published",O),("2026-02-05","published",O),("2026-03-05","published",O),
            ("2026-04-02","published",O),("2026-05-07","published",O),("2026-06-04","published",O),
@@ -87,6 +109,18 @@ for d, st in ofal_cc:
     add("ofallon","governing_body","meeting",date.fromisoformat(d),"19:30",OLOC,O,
         "City Council regular meeting" + ("" if st=="published" else " (projected: 2nd & 4th Thursday, Nov/Dec 3rd Thursday only, per 2024-2025)"),st,"2026-10-10")
 
+SLOC = "St. Peters Justice Center, 1020 Grand Teton Dr"
+for line in stp.splitlines():
+    init, rez, pz = [d1(x) for x in line.split()]
+    add("stpeters","planning_zoning","submittal_deadline",init,None,SLOC,S,
+        f"Initial plan submittal for P&Z {pz.isoformat()} (Citizenserve portal). Land Use Review Committee applications are due about the same day; rezoning, PUD and SUP need that pre-submittal review.",verified="2026-10-12")
+    add("stpeters","planning_zoning","submittal_deadline",rez,None,SLOC,S,
+        f"Rezoning and Special Use applications due. Feeds P&Z {pz.isoformat()}.",verified="2026-10-12")
+    add("stpeters","planning_zoning","meeting",pz,"18:30",SLOC,S,"Applicant or representative must attend.",verified="2026-10-12")
+for d in stp_boa:
+    add("stpeters","governing_body","meeting",date.fromisoformat(d),"18:30",SLOC,S_AG if d <= "2026-10-08" else S_CAL,
+        "Board of Aldermen regular meeting (work session 5:00 PM)",verified="2026-10-12")
+
 rows.sort(key=lambda r:(r["event_date"], r["jurisdiction_id"]))
 json.dump(rows, open(f"{out}/meetings.json","w"), indent=1)
 with open(f"{out}/meetings.csv","w",newline="") as f:
@@ -94,7 +128,7 @@ with open(f"{out}/meetings.csv","w",newline="") as f:
 
 # ICS, upcoming only (today forward)
 today = date.today()
-names = {"wentzville":"Wentzville","cottleville":"Cottleville","ofallon":"O'Fallon"}
+names = {"wentzville":"Wentzville","cottleville":"Cottleville","ofallon":"O'Fallon","stpeters":"St. Peters"}
 lab = {("planning_zoning","meeting"):"P&Z Meeting",("planning_zoning","submittal_deadline"):"P&Z SUBMITTAL DUE",("governing_body","meeting"):"Board of Aldermen"}
 L = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Entitlement Tracker//STC//EN","X-WR-CALNAME:St. Charles Co. Entitlement Dates","X-WR-TIMEZONE:America/Chicago"]
 n=0
