@@ -4,6 +4,14 @@ PRODID:-//Entitlement Tracker//STC//EN
 X-WR-CALNAME:St. Charles Co. Entitlement Dates
 X-WR-TIMEZONE:America/Chicago
 BEGIN:VEVENT
+UID:stcharles_county-meeting-governing_body-2026-10-13@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261013
+SUMMARY:St. Charles County - County Council (19:00)
+LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
+DESCRIPTION:County Council regular meeting Source: https://www.sccmo.org/AgendaCenter
+END:VEVENT
+BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2026-10-14@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261014
@@ -36,6 +44,14 @@ LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
 DESCRIPTION:City Council regular session Source: https://www.stcharlescitymo.gov/Calendar.aspx
 END:VEVENT
 BEGIN:VEVENT
+UID:stcharles_county-meeting-planning_zoning-2026-10-21@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261021
+SUMMARY:St. Charles County - P&Z Meeting (19:00)
+LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
+DESCRIPTION:Source: https://www.sccmo.org/AgendaCenter
+END:VEVENT
+BEGIN:VEVENT
 UID:ofallon-meeting-governing_body-2026-10-22@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261022
@@ -50,6 +66,22 @@ DTSTART;VALUE=DATE:20261022
 SUMMARY:St. Peters - Board of Aldermen (18:30)
 LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
 DESCRIPTION:Board of Aldermen regular meeting (work session 5:00 PM) Source: https://www.stpetersmo.net/627/City-Meetings-Calendar
+END:VEVENT
+BEGIN:VEVENT
+UID:stcharles_county-submittal_deadline-planning_zoning-2026-10-23@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261023
+SUMMARY:St. Charles County - P&Z SUBMITTAL DUE [projected]
+LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
+DESCRIPTION:Rezoning\, conditional use and preliminary plat applications. Feeds P&Z 2026-11-18. Projected from the 2025 schedule rule (Friday 26 days before); 2026 schedule not posted. Source: https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates
+END:VEVENT
+BEGIN:VEVENT
+UID:stcharles_county-meeting-governing_body-2026-10-26@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261026
+SUMMARY:St. Charles County - County Council (19:00)
+LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
+DESCRIPTION:County Council regular meeting Source: https://www.sccmo.org/Calendar.aspx
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2026-10-28@entitlement-tracker
@@ -156,6 +188,14 @@ LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
 DESCRIPTION:Feeds P&Z 2026-12-14. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review. Source: https://www.stcharlescitymo.gov/DocumentCenter/View/14267
 END:VEVENT
 BEGIN:VEVENT
+UID:stcharles_county-meeting-governing_body-2026-11-09@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261109
+SUMMARY:St. Charles County - County Council (19:00)
+LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
+DESCRIPTION:County Council regular meeting Source: https://www.sccmo.org/Calendar.aspx
+END:VEVENT
+BEGIN:VEVENT
 UID:wentzville-meeting-planning_zoning-2026-11-09@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261109
@@ -180,6 +220,14 @@ LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
 DESCRIPTION:City Council regular session Source: https://www.stcharlescitymo.gov/Calendar.aspx
 END:VEVENT
 BEGIN:VEVENT
+UID:stcharles_county-meeting-planning_zoning-2026-11-18@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261118
+SUMMARY:St. Charles County - P&Z Meeting [projected] (19:00)
+LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
+DESCRIPTION:Projected (third Wednesday). Source: https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates
+END:VEVENT
+BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2026-11-18@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261118
@@ -194,6 +242,22 @@ DTSTART;VALUE=DATE:20261119
 SUMMARY:O'Fallon - City Council [projected] (19:30)
 LOCATION:O'Fallon Municipal Centre\, Council Chambers\, 100 N Main St
 DESCRIPTION:City Council regular meeting (projected: 2nd & 4th Thursday\, Nov/Dec 3rd Thursday only\, per 2024-2025) Source: https://public.destinyhosted.com/agenda_publish.cfm?id=63255
+END:VEVENT
+BEGIN:VEVENT
+UID:stcharles_county-submittal_deadline-planning_zoning-2026-11-20@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261120
+SUMMARY:St. Charles County - P&Z SUBMITTAL DUE [projected]
+LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
+DESCRIPTION:Rezoning\, conditional use and preliminary plat applications. Feeds P&Z 2026-12-16. Projected from the 2025 schedule rule (Friday 26 days before); 2026 schedule not posted. Source: https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates
+END:VEVENT
+BEGIN:VEVENT
+UID:stcharles_county-meeting-governing_body-2026-11-23@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261123
+SUMMARY:St. Charles County - County Council (19:00)
+LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
+DESCRIPTION:County Council regular meeting Source: https://www.sccmo.org/Calendar.aspx
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_city-meeting-governing_body-2026-12-01@entitlement-tracker
@@ -252,6 +316,14 @@ LOCATION:Cottleville City Hall Board Room\, 5490 Fifth St
 DESCRIPTION:Source: https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:stcharles_county-meeting-governing_body-2026-12-07@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261207
+SUMMARY:St. Charles County - County Council (19:00)
+LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
+DESCRIPTION:County Council regular meeting Source: https://www.sccmo.org/Calendar.aspx
+END:VEVENT
+BEGIN:VEVENT
 UID:wentzville-meeting-planning_zoning-2026-12-07@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261207
@@ -292,6 +364,14 @@ LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
 DESCRIPTION:City Council regular session Source: https://www.stcharlescitymo.gov/Calendar.aspx
 END:VEVENT
 BEGIN:VEVENT
+UID:stcharles_county-meeting-planning_zoning-2026-12-16@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261216
+SUMMARY:St. Charles County - P&Z Meeting [projected] (19:00)
+LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
+DESCRIPTION:Projected (third Wednesday). Source: https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates
+END:VEVENT
+BEGIN:VEVENT
 UID:ofallon-meeting-governing_body-2026-12-17@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261217
@@ -306,6 +386,14 @@ DTSTART;VALUE=DATE:20261217
 SUMMARY:St. Peters - Board of Aldermen (18:30)
 LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
 DESCRIPTION:Board of Aldermen regular meeting (work session 5:00 PM) Source: https://www.stpetersmo.net/627/City-Meetings-Calendar
+END:VEVENT
+BEGIN:VEVENT
+UID:stcharles_county-meeting-governing_body-2026-12-21@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261221
+SUMMARY:St. Charles County - County Council (19:00)
+LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
+DESCRIPTION:County Council regular meeting Source: https://www.sccmo.org/Calendar.aspx
 END:VEVENT
 BEGIN:VEVENT
 UID:stpeters-meeting-planning_zoning-2027-01-06@entitlement-tracker

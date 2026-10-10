@@ -100,7 +100,8 @@ export default async function JurisdictionPage({ params }: { params: Promise<{ i
                   <td>{fmtDate(m.event_date)}</td>
                   <td>{m.event_type === "submittal_deadline" ? <span className="tag due">SUBMITTAL DUE</span>
                     : m.body === "planning_zoning" ? <span className="tag pz">P&amp;Z</span>
-                    : <span className="tag gov">{(j.governing_body ?? "Council").replace(/\s*\(.*\)$/, "").toUpperCase()}</span>}</td>
+                    : <span className="tag gov">{(j.governing_body ?? "Council").replace(/\s*\(.*\)$/, "").toUpperCase()}</span>}
+                    {m.status !== "published" && <> <span className="tag tentative">{m.status}</span></>}</td>
                   <td>{fmtTime(m.event_time) || <span className="muted">—</span>}</td>
                   <td className="small">{m.note}</td>
                 </tr>

@@ -52,6 +52,19 @@ stc = """01/12/2026 12/08/2025
 stc_cc = ["2026-01-06","2026-01-20","2026-02-03","2026-02-24","2026-03-03","2026-03-17","2026-04-07","2026-04-21",
           "2026-05-05","2026-05-19","2026-06-02","2026-06-23","2026-07-07","2026-07-21","2026-08-04","2026-08-18",
           "2026-09-01","2026-09-15","2026-10-06","2026-10-20","2026-11-03","2026-11-17","2026-12-01","2026-12-15"]
+# St. Charles County (unincorporated): no 2026 schedule posted (P&Z page links the 2025 one).
+# Held/cancelled meetings from the Agenda Center; deadlines projected from the 2025 rule
+# (Friday 26 days before the third-Wednesday meeting), except Jan 21, which the 2025 schedule lists.
+CO25 = "https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates"
+CO_AG = "https://www.sccmo.org/AgendaCenter"
+CO_CAL = "https://www.sccmo.org/Calendar.aspx"
+co_pz = [("2026-01-21","published"),("2026-02-18","published"),("2026-03-18","published"),("2026-04-15","cancelled"),
+         ("2026-05-20","published"),("2026-06-17","published"),("2026-07-15","published"),("2026-08-19","cancelled"),
+         ("2026-09-16","cancelled"),("2026-10-21","published"),("2026-11-18","projected"),("2026-12-16","projected")]
+# County Council (2nd & last Monday 7 PM; Dec 1st & 3rd). Past from Agenda Center, future from county calendar.
+co_cc = ["2026-01-12","2026-01-26","2026-02-09","2026-02-23","2026-03-09","2026-03-30","2026-04-13","2026-04-28",
+         "2026-05-11","2026-05-26","2026-06-08","2026-06-29","2026-07-13","2026-07-27","2026-08-10","2026-08-31",
+         "2026-09-14","2026-09-28","2026-10-13","2026-10-26","2026-11-09","2026-11-23","2026-12-07","2026-12-21"]
 # P&Z (first Thursday): date, status, source
 ofal_pz = [("2026-01-08","published",O),("2026-02-05","published",O),("2026-03-05","published",O),
            ("2026-04-02","published",O),("2026-05-07","published",O),("2026-06-04","published",O),
@@ -151,6 +164,22 @@ for d in stc_cc:
     add("stcharles_city","governing_body","meeting",date.fromisoformat(d),"19:00",SCLOC,SC_AG if d <= "2026-10-06" else SC_CAL,
         "City Council regular session",verified="2026-10-12")
 
+COLOC = "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles"
+for d, st in co_pz:
+    m = date.fromisoformat(d)
+    if d == "2026-01-21":
+        add("stcharles_county","planning_zoning","submittal_deadline",date(2025,12,19),None,COLOC,CO25,
+            f"Rezoning, conditional use and preliminary plat applications. Feeds P&Z {d} (holiday schedule).",verified="2026-10-12")
+    else:
+        add("stcharles_county","planning_zoning","submittal_deadline",m - timedelta(days=26),None,COLOC,CO25,
+            f"Rezoning, conditional use and preliminary plat applications. Feeds P&Z {d}. Projected from the 2025 schedule rule (Friday 26 days before); 2026 schedule not posted.",
+            "projected","2026-10-12")
+    add("stcharles_county","planning_zoning","meeting",m,"19:00",COLOC,CO_AG if st != "projected" else CO25,
+        {"published":"","cancelled":"Cancelled.","projected":"Projected (third Wednesday)."}[st],st,"2026-10-12")
+for d in co_cc:
+    add("stcharles_county","governing_body","meeting",date.fromisoformat(d),"19:00",COLOC,CO_AG if d <= "2026-10-13" else CO_CAL,
+        "County Council regular meeting" + (" (postponed from Apr 27, weather)" if d == "2026-04-28" else ""),verified="2026-10-12")
+
 rows.sort(key=lambda r:(r["event_date"], r["jurisdiction_id"]))
 json.dump(rows, open(f"{out}/meetings.json","w"), indent=1)
 with open(f"{out}/meetings.csv","w",newline="") as f:
@@ -158,7 +187,7 @@ with open(f"{out}/meetings.csv","w",newline="") as f:
 
 # ICS, upcoming only (today forward)
 today = date.today()
-names = {"wentzville":"Wentzville","cottleville":"Cottleville","ofallon":"O'Fallon","stpeters":"St. Peters","stcharles_city":"St. Charles"}
+names = {"wentzville":"Wentzville","cottleville":"Cottleville","ofallon":"O'Fallon","stpeters":"St. Peters","stcharles_city":"St. Charles","stcharles_county":"St. Charles County"}
 lab = {("planning_zoning","meeting"):"P&Z Meeting",("planning_zoning","submittal_deadline"):"P&Z SUBMITTAL DUE",("governing_body","meeting"):"Board of Aldermen"}
 L = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Entitlement Tracker//STC//EN","X-WR-CALNAME:St. Charles Co. Entitlement Dates","X-WR-TIMEZONE:America/Chicago"]
 n=0
@@ -168,7 +197,7 @@ for i,r in enumerate(rows):
     n+=1
     L += ["BEGIN:VEVENT", f"UID:{r['jurisdiction_id']}-{r['event_type']}-{r['body']}-{r['event_date']}@entitlement-tracker",
           f"DTSTAMP:{today:%Y%m%d}T000000Z", f"DTSTART;VALUE=DATE:{dt:%Y%m%d}",
-          f"SUMMARY:{names[r['jurisdiction_id']]} - {'City Council' if r['jurisdiction_id'] in ('ofallon','stcharles_city') and r['body']=='governing_body' else lab[(r['body'],r['event_type'])]}" + (" [projected]" if r['status']=='projected' else "") + (f" ({r['event_time']})" if r['event_time'] else ""),
+          f"SUMMARY:{names[r['jurisdiction_id']]} - {'City Council' if r['jurisdiction_id'] in ('ofallon','stcharles_city') and r['body']=='governing_body' else 'County Council' if r['jurisdiction_id']=='stcharles_county' and r['body']=='governing_body' else lab[(r['body'],r['event_type'])]}" + (" [projected]" if r['status']=='projected' else " [CANCELLED]" if r['status']=='cancelled' else "") + (f" ({r['event_time']})" if r['event_time'] else ""),
           f"LOCATION:{r['location'].replace(',', chr(92)+',')}",
           f"DESCRIPTION:{(r['note']+' ') if r['note'] else ''}Source: {r['source_url']}".replace(",", "\\,"),
           "END:VEVENT"]

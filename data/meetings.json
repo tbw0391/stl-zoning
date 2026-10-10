@@ -72,6 +72,18 @@
   "note": "Rezoning and Special Use applications due. Feeds P&Z 2026-01-07."
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2025-12-19",
+  "event_time": null,
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates",
+  "verified_on": "2026-10-12",
+  "note": "Rezoning, conditional use and preliminary plat applications. Feeds P&Z 2026-01-21 (holiday schedule)."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "submittal_deadline",
@@ -216,6 +228,18 @@
   "note": "Feeds P&Z 2026-02-09. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-01-12",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -252,6 +276,18 @@
   "note": "City Council regular session"
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-01-21",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": ""
+ },
+ {
   "jurisdiction_id": "ofallon",
   "body": "governing_body",
   "event_type": "meeting",
@@ -274,6 +310,30 @@
   "source_url": "https://www.stpetersmo.net/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-01-23",
+  "event_time": null,
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "projected",
+  "source_url": "https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates",
+  "verified_on": "2026-10-12",
+  "note": "Rezoning, conditional use and preliminary plat applications. Feeds P&Z 2026-02-18. Projected from the 2025 schedule rule (Friday 26 days before); 2026 schedule not posted."
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-01-26",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
  },
  {
   "jurisdiction_id": "wentzville",
@@ -420,6 +480,18 @@
   "note": "Feeds P&Z 2026-03-09. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-02-09",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -466,6 +538,42 @@
   "source_url": "https://www.stpetersmo.net/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-02-18",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": ""
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-02-20",
+  "event_time": null,
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "projected",
+  "source_url": "https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates",
+  "verified_on": "2026-10-12",
+  "note": "Rezoning, conditional use and preliminary plat applications. Feeds P&Z 2026-03-18. Projected from the 2025 schedule rule (Friday 26 days before); 2026 schedule not posted."
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-02-23",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
  },
  {
   "jurisdiction_id": "stcharles_city",
@@ -648,6 +756,18 @@
   "note": "Feeds P&Z 2026-04-13. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-03-09",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -708,6 +828,30 @@
   "note": "City Council regular session"
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-03-18",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": ""
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-03-20",
+  "event_time": null,
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "projected",
+  "source_url": "https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates",
+  "verified_on": "2026-10-12",
+  "note": "Rezoning, conditional use and preliminary plat applications. Feeds P&Z 2026-04-15. Projected from the 2025 schedule rule (Friday 26 days before); 2026 schedule not posted."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -742,6 +886,18 @@
   "source_url": "https://www.stpetersmo.net/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-03-30",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
  },
  {
   "jurisdiction_id": "stpeters",
@@ -912,6 +1068,18 @@
   "note": "Feeds P&Z 2026-05-11. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-04-13",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -922,6 +1090,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": ""
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-04-15",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "cancelled",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Cancelled."
  },
  {
   "jurisdiction_id": "stcharles_city",
@@ -970,6 +1150,30 @@
   "source_url": "https://www.stpetersmo.net/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-04-24",
+  "event_time": null,
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "projected",
+  "source_url": "https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates",
+  "verified_on": "2026-10-12",
+  "note": "Rezoning, conditional use and preliminary plat applications. Feeds P&Z 2026-05-20. Projected from the 2025 schedule rule (Friday 26 days before); 2026 schedule not posted."
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-04-28",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting (postponed from Apr 27, weather)"
  },
  {
   "jurisdiction_id": "ofallon",
@@ -1104,6 +1308,18 @@
   "note": "Feeds P&Z 2026-06-08. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-05-11",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -1162,6 +1378,42 @@
   "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
   "verified_on": "2026-10-12",
   "note": "City Council regular session"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-05-20",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": ""
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-05-22",
+  "event_time": null,
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "projected",
+  "source_url": "https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates",
+  "verified_on": "2026-10-12",
+  "note": "Rezoning, conditional use and preliminary plat applications. Feeds P&Z 2026-06-17. Projected from the 2025 schedule rule (Friday 26 days before); 2026 schedule not posted."
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-05-26",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
  },
  {
   "jurisdiction_id": "wentzville",
@@ -1320,6 +1572,18 @@
   "note": "Feeds P&Z 2026-07-13. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-06-08",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -1368,6 +1632,30 @@
   "note": "Feeds P&Z 2026-07-13. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-06-17",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": ""
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-06-19",
+  "event_time": null,
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "projected",
+  "source_url": "https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates",
+  "verified_on": "2026-10-12",
+  "note": "Rezoning, conditional use and preliminary plat applications. Feeds P&Z 2026-07-15. Projected from the 2025 schedule rule (Friday 26 days before); 2026 schedule not posted."
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -1414,6 +1702,18 @@
   "source_url": "https://www.stpetersmo.net/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-06-29",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
  },
  {
   "jurisdiction_id": "stpeters",
@@ -1584,6 +1884,30 @@
   "note": "Feeds P&Z 2026-08-10. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-07-13",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-07-15",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": ""
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -1630,6 +1954,30 @@
   "source_url": "https://www.stpetersmo.net/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-07-24",
+  "event_time": null,
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "projected",
+  "source_url": "https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates",
+  "verified_on": "2026-10-12",
+  "note": "Rezoning, conditional use and preliminary plat applications. Feeds P&Z 2026-08-19. Projected from the 2025 schedule rule (Friday 26 days before); 2026 schedule not posted."
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-07-27",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
  },
  {
   "jurisdiction_id": "ofallon",
@@ -1752,6 +2100,18 @@
   "note": "Feeds P&Z 2026-09-21. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-08-10",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -1824,6 +2184,30 @@
   "note": "City Council regular session"
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-08-19",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "cancelled",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Cancelled."
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-08-21",
+  "event_time": null,
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "projected",
+  "source_url": "https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates",
+  "verified_on": "2026-10-12",
+  "note": "Rezoning, conditional use and preliminary plat applications. Feeds P&Z 2026-09-16. Projected from the 2025 schedule rule (Friday 26 days before); 2026 schedule not posted."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -1870,6 +2254,18 @@
   "source_url": "https://web.archive.org/web/20240627035239/https://drive.google.com/file/d/1MTJgjQ8XAMqMc-tjYuibT2Mfc0ZGXoWd/view",
   "verified_on": "2026-10-10",
   "note": "Feeds P&Z 2026-10-01. Projected from the 2024 schedule rule (Friday 34 days before); 2026 schedule not posted. Confirm with recording secretary Tracy Coffman, tcoffman@ofallonmo.gov, 636-379-5544."
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-08-31",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
  },
  {
   "jurisdiction_id": "stcharles_city",
@@ -2004,6 +2400,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-09-14",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -2026,6 +2434,18 @@
   "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
   "verified_on": "2026-10-12",
   "note": "City Council regular session"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-09-16",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "cancelled",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Cancelled."
  },
  {
   "jurisdiction_id": "stcharles_city",
@@ -2086,6 +2506,30 @@
   "source_url": "https://www.stpetersmo.net/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-09-25",
+  "event_time": null,
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "projected",
+  "source_url": "https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates",
+  "verified_on": "2026-10-12",
+  "note": "Rezoning, conditional use and preliminary plat applications. Feeds P&Z 2026-10-21. Projected from the 2025 schedule rule (Friday 26 days before); 2026 schedule not posted."
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-09-28",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
  },
  {
   "jurisdiction_id": "ofallon",
@@ -2232,6 +2676,18 @@
   "note": "Rezoning and Special Use applications due. Feeds P&Z 2026-11-04."
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-10-13",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -2280,6 +2736,18 @@
   "note": "City Council regular session"
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-10-21",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": ""
+ },
+ {
   "jurisdiction_id": "ofallon",
   "body": "governing_body",
   "event_type": "meeting",
@@ -2302,6 +2770,30 @@
   "source_url": "https://www.stpetersmo.net/627/City-Meetings-Calendar",
   "verified_on": "2026-10-12",
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-10-23",
+  "event_time": null,
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "projected",
+  "source_url": "https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates",
+  "verified_on": "2026-10-12",
+  "note": "Rezoning, conditional use and preliminary plat applications. Feeds P&Z 2026-11-18. Projected from the 2025 schedule rule (Friday 26 days before); 2026 schedule not posted."
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-10-26",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/Calendar.aspx",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
  },
  {
   "jurisdiction_id": "wentzville",
@@ -2460,6 +2952,18 @@
   "note": "Feeds P&Z 2026-12-14. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-11-09",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/Calendar.aspx",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -2496,6 +3000,18 @@
   "note": "City Council regular session"
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-11-18",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "projected",
+  "source_url": "https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates",
+  "verified_on": "2026-10-12",
+  "note": "Projected (third Wednesday)."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -2518,6 +3034,30 @@
   "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
   "verified_on": "2026-10-10",
   "note": "City Council regular meeting (projected: 2nd & 4th Thursday, Nov/Dec 3rd Thursday only, per 2024-2025)"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-11-20",
+  "event_time": null,
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "projected",
+  "source_url": "https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates",
+  "verified_on": "2026-10-12",
+  "note": "Rezoning, conditional use and preliminary plat applications. Feeds P&Z 2026-12-16. Projected from the 2025 schedule rule (Friday 26 days before); 2026 schedule not posted."
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-11-23",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/Calendar.aspx",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
  },
  {
   "jurisdiction_id": "stcharles_city",
@@ -2604,6 +3144,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-12-07",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/Calendar.aspx",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -2664,6 +3216,18 @@
   "note": "City Council regular session"
  },
  {
+  "jurisdiction_id": "stcharles_county",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-12-16",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "projected",
+  "source_url": "https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates",
+  "verified_on": "2026-10-12",
+  "note": "Projected (third Wednesday)."
+ },
+ {
   "jurisdiction_id": "ofallon",
   "body": "governing_body",
   "event_type": "meeting",
@@ -2686,6 +3250,18 @@
   "source_url": "https://www.stpetersmo.net/627/City-Meetings-Calendar",
   "verified_on": "2026-10-12",
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-12-21",
+  "event_time": "19:00",
+  "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
+  "status": "published",
+  "source_url": "https://www.sccmo.org/Calendar.aspx",
+  "verified_on": "2026-10-12",
+  "note": "County Council regular meeting"
  },
  {
   "jurisdiction_id": "stpeters",
