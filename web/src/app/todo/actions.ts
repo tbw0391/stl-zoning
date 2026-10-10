@@ -9,8 +9,7 @@ export async function addTodo(formData: FormData) {
   const page = String(formData.get("page") ?? "") || null;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return;
-  const { error } = await supabase.from("todos").insert({ body, page, created_by_email: user.email });
+  const { error } = await supabase.from("todos").insert({ body, page, created_by_email: user?.email ?? null });
   if (error) throw new Error(error.message);
   revalidatePath("/todo");
 }
