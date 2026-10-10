@@ -32,6 +32,26 @@ stp = """12/05/2025 12/12/2025 01/07/2026
 stp_boa = ["2026-01-08","2026-01-22","2026-02-12","2026-02-26","2026-03-12","2026-03-26","2026-04-09","2026-04-23",
            "2026-05-14","2026-05-28","2026-06-25","2026-07-23","2026-08-13","2026-08-27","2026-09-10","2026-09-24",
            "2026-10-08","2026-10-22","2026-11-12","2026-12-17"]
+# City of St. Charles: P&Z 2026 meeting dates and deadlines (deadline = prior meeting date, 5 PM).
+SC = "https://www.stcharlescitymo.gov/DocumentCenter/View/14267"
+SC_AG = "https://www.stcharlescitymo.gov/1402/Agendas"
+SC_CAL = "https://www.stcharlescitymo.gov/Calendar.aspx"
+stc = """01/12/2026 12/08/2025
+02/09/2026 01/12/2026
+03/09/2026 02/09/2026
+04/13/2026 03/09/2026
+05/11/2026 04/13/2026
+06/08/2026 05/11/2026
+07/13/2026 06/08/2026
+08/10/2026 07/13/2026
+09/21/2026 08/10/2026
+10/19/2026 09/21/2026
+11/09/2026 10/19/2026
+12/14/2026 11/09/2026"""
+# City Council regular sessions (1st & 3rd Tuesday 7 PM, some shifted). Past from Agenda Center, future from city calendar.
+stc_cc = ["2026-01-06","2026-01-20","2026-02-03","2026-02-24","2026-03-03","2026-03-17","2026-04-07","2026-04-21",
+          "2026-05-05","2026-05-19","2026-06-02","2026-06-23","2026-07-07","2026-07-21","2026-08-04","2026-08-18",
+          "2026-09-01","2026-09-15","2026-10-06","2026-10-20","2026-11-03","2026-11-17","2026-12-01","2026-12-15"]
 # P&Z (first Thursday): date, status, source
 ofal_pz = [("2026-01-08","published",O),("2026-02-05","published",O),("2026-03-05","published",O),
            ("2026-04-02","published",O),("2026-05-07","published",O),("2026-06-04","published",O),
@@ -121,6 +141,16 @@ for d in stp_boa:
     add("stpeters","governing_body","meeting",date.fromisoformat(d),"18:30",SLOC,S_AG if d <= "2026-10-08" else S_CAL,
         "Board of Aldermen regular meeting (work session 5:00 PM)",verified="2026-10-12")
 
+SCLOC = "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St"
+for line in stc.splitlines():
+    m, d = [d1(x) for x in line.split()]
+    add("stcharles_city","planning_zoning","submittal_deadline",d,"17:00",SCLOC,SC,
+        f"Feeds P&Z {m.isoformat()}. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review.",verified="2026-10-12")
+    add("stcharles_city","planning_zoning","meeting",m,"18:00",SCLOC,SC,"Applicants must attend public hearings.",verified="2026-10-12")
+for d in stc_cc:
+    add("stcharles_city","governing_body","meeting",date.fromisoformat(d),"19:00",SCLOC,SC_AG if d <= "2026-10-06" else SC_CAL,
+        "City Council regular session",verified="2026-10-12")
+
 rows.sort(key=lambda r:(r["event_date"], r["jurisdiction_id"]))
 json.dump(rows, open(f"{out}/meetings.json","w"), indent=1)
 with open(f"{out}/meetings.csv","w",newline="") as f:
@@ -128,7 +158,7 @@ with open(f"{out}/meetings.csv","w",newline="") as f:
 
 # ICS, upcoming only (today forward)
 today = date.today()
-names = {"wentzville":"Wentzville","cottleville":"Cottleville","ofallon":"O'Fallon","stpeters":"St. Peters"}
+names = {"wentzville":"Wentzville","cottleville":"Cottleville","ofallon":"O'Fallon","stpeters":"St. Peters","stcharles_city":"St. Charles"}
 lab = {("planning_zoning","meeting"):"P&Z Meeting",("planning_zoning","submittal_deadline"):"P&Z SUBMITTAL DUE",("governing_body","meeting"):"Board of Aldermen"}
 L = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Entitlement Tracker//STC//EN","X-WR-CALNAME:St. Charles Co. Entitlement Dates","X-WR-TIMEZONE:America/Chicago"]
 n=0
@@ -138,7 +168,7 @@ for i,r in enumerate(rows):
     n+=1
     L += ["BEGIN:VEVENT", f"UID:{r['jurisdiction_id']}-{r['event_type']}-{r['body']}-{r['event_date']}@entitlement-tracker",
           f"DTSTAMP:{today:%Y%m%d}T000000Z", f"DTSTART;VALUE=DATE:{dt:%Y%m%d}",
-          f"SUMMARY:{names[r['jurisdiction_id']]} - {'City Council' if r['jurisdiction_id']=='ofallon' and r['body']=='governing_body' else lab[(r['body'],r['event_type'])]}" + (" [projected]" if r['status']=='projected' else "") + (f" ({r['event_time']})" if r['event_time'] else ""),
+          f"SUMMARY:{names[r['jurisdiction_id']]} - {'City Council' if r['jurisdiction_id'] in ('ofallon','stcharles_city') and r['body']=='governing_body' else lab[(r['body'],r['event_type'])]}" + (" [projected]" if r['status']=='projected' else "") + (f" ({r['event_time']})" if r['event_time'] else ""),
           f"LOCATION:{r['location'].replace(',', chr(92)+',')}",
           f"DESCRIPTION:{(r['note']+' ') if r['note'] else ''}Source: {r['source_url']}".replace(",", "\\,"),
           "END:VEVENT"]

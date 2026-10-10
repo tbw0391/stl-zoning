@@ -12,6 +12,30 @@ LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
 DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:stcharles_city-meeting-planning_zoning-2026-10-19@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261019
+SUMMARY:St. Charles - P&Z Meeting (18:00)
+LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
+DESCRIPTION:Applicants must attend public hearings. Source: https://www.stcharlescitymo.gov/DocumentCenter/View/14267
+END:VEVENT
+BEGIN:VEVENT
+UID:stcharles_city-submittal_deadline-planning_zoning-2026-10-19@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261019
+SUMMARY:St. Charles - P&Z SUBMITTAL DUE (17:00)
+LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
+DESCRIPTION:Feeds P&Z 2026-11-09. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review. Source: https://www.stcharlescitymo.gov/DocumentCenter/View/14267
+END:VEVENT
+BEGIN:VEVENT
+UID:stcharles_city-meeting-governing_body-2026-10-20@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261020
+SUMMARY:St. Charles - City Council (19:00)
+LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
+DESCRIPTION:City Council regular session Source: https://www.stcharlescitymo.gov/Calendar.aspx
+END:VEVENT
+BEGIN:VEVENT
 UID:ofallon-meeting-governing_body-2026-10-22@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261022
@@ -68,6 +92,14 @@ LOCATION:Cottleville City Hall Board Room\, 5490 Fifth St
 DESCRIPTION:Source: https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:stcharles_city-meeting-governing_body-2026-11-03@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261103
+SUMMARY:St. Charles - City Council (19:00)
+LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
+DESCRIPTION:City Council regular session Source: https://www.stcharlescitymo.gov/Calendar.aspx
+END:VEVENT
+BEGIN:VEVENT
 UID:stpeters-meeting-planning_zoning-2026-11-04@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261104
@@ -108,6 +140,22 @@ LOCATION:Cottleville City Hall Board Room\, 5490 Fifth St
 DESCRIPTION:Feeds P&Z 2026-12-07. Public-notice items may need more lead time. Source: https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:stcharles_city-meeting-planning_zoning-2026-11-09@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261109
+SUMMARY:St. Charles - P&Z Meeting (18:00)
+LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
+DESCRIPTION:Applicants must attend public hearings. Source: https://www.stcharlescitymo.gov/DocumentCenter/View/14267
+END:VEVENT
+BEGIN:VEVENT
+UID:stcharles_city-submittal_deadline-planning_zoning-2026-11-09@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261109
+SUMMARY:St. Charles - P&Z SUBMITTAL DUE (17:00)
+LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
+DESCRIPTION:Feeds P&Z 2026-12-14. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review. Source: https://www.stcharlescitymo.gov/DocumentCenter/View/14267
+END:VEVENT
+BEGIN:VEVENT
 UID:wentzville-meeting-planning_zoning-2026-11-09@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261109
@@ -124,6 +172,14 @@ LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
 DESCRIPTION:Board of Aldermen regular meeting (work session 5:00 PM) Source: https://www.stpetersmo.net/627/City-Meetings-Calendar
 END:VEVENT
 BEGIN:VEVENT
+UID:stcharles_city-meeting-governing_body-2026-11-17@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261117
+SUMMARY:St. Charles - City Council (19:00)
+LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
+DESCRIPTION:City Council regular session Source: https://www.stcharlescitymo.gov/Calendar.aspx
+END:VEVENT
+BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2026-11-18@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261118
@@ -138,6 +194,14 @@ DTSTART;VALUE=DATE:20261119
 SUMMARY:O'Fallon - City Council [projected] (19:30)
 LOCATION:O'Fallon Municipal Centre\, Council Chambers\, 100 N Main St
 DESCRIPTION:City Council regular meeting (projected: 2nd & 4th Thursday\, Nov/Dec 3rd Thursday only\, per 2024-2025) Source: https://public.destinyhosted.com/agenda_publish.cfm?id=63255
+END:VEVENT
+BEGIN:VEVENT
+UID:stcharles_city-meeting-governing_body-2026-12-01@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261201
+SUMMARY:St. Charles - City Council (19:00)
+LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
+DESCRIPTION:City Council regular session Source: https://www.stcharlescitymo.gov/Calendar.aspx
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-submittal_deadline-planning_zoning-2026-12-01@entitlement-tracker
@@ -210,6 +274,22 @@ DTSTART;VALUE=DATE:20261211
 SUMMARY:St. Peters - P&Z SUBMITTAL DUE
 LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
 DESCRIPTION:Rezoning and Special Use applications due. Feeds P&Z 2027-01-06. Source: https://www.stpetersmo.net/DocumentCenter/View/444/Development-Guide-and-Planning--Zoning-SubmittalMeeting-Schedule-PDF
+END:VEVENT
+BEGIN:VEVENT
+UID:stcharles_city-meeting-planning_zoning-2026-12-14@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261214
+SUMMARY:St. Charles - P&Z Meeting (18:00)
+LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
+DESCRIPTION:Applicants must attend public hearings. Source: https://www.stcharlescitymo.gov/DocumentCenter/View/14267
+END:VEVENT
+BEGIN:VEVENT
+UID:stcharles_city-meeting-governing_body-2026-12-15@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261215
+SUMMARY:St. Charles - City Council (19:00)
+LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
+DESCRIPTION:City Council regular session Source: https://www.stcharlescitymo.gov/Calendar.aspx
 END:VEVENT
 BEGIN:VEVENT
 UID:ofallon-meeting-governing_body-2026-12-17@entitlement-tracker

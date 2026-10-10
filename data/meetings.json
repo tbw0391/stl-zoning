@@ -48,6 +48,18 @@
   "note": "Feeds P&Z 2026-01-05. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2025-12-08",
+  "event_time": "17:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-01-12. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
+ },
+ {
   "jurisdiction_id": "stpeters",
   "body": "planning_zoning",
   "event_type": "submittal_deadline",
@@ -120,6 +132,18 @@
   "note": "Feeds P&Z 2026-02-02. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-01-06",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
+ },
+ {
   "jurisdiction_id": "stpeters",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -168,6 +192,30 @@
   "note": "Rezoning and Special Use applications due. Feeds P&Z 2026-02-04."
  },
  {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-01-12",
+  "event_time": "18:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Applicants must attend public hearings."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-01-12",
+  "event_time": "17:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-02-09. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -190,6 +238,18 @@
   "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
   "verified_on": "2026-10-10",
   "note": "City Council regular meeting"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-01-20",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
  },
  {
   "jurisdiction_id": "ofallon",
@@ -288,6 +348,18 @@
   "note": "Feeds P&Z 2026-03-02. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-02-03",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
+ },
+ {
   "jurisdiction_id": "stpeters",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -322,6 +394,30 @@
   "source_url": "https://www.stpetersmo.net/DocumentCenter/View/444/Development-Guide-and-Planning--Zoning-SubmittalMeeting-Schedule-PDF",
   "verified_on": "2026-10-12",
   "note": "Rezoning and Special Use applications due. Feeds P&Z 2026-03-04."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-02-09",
+  "event_time": "18:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Applicants must attend public hearings."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-02-09",
+  "event_time": "17:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-03-09. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
  },
  {
   "jurisdiction_id": "wentzville",
@@ -370,6 +466,18 @@
   "source_url": "https://www.stpetersmo.net/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-02-24",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
  },
  {
   "jurisdiction_id": "wentzville",
@@ -456,6 +564,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-03-03",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
+ },
+ {
   "jurisdiction_id": "stpeters",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -504,6 +624,30 @@
   "note": "Feeds P&Z 2026-04-06. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-03-09",
+  "event_time": "18:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Applicants must attend public hearings."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-03-09",
+  "event_time": "17:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-04-13. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -550,6 +694,18 @@
   "source_url": "https://www.stpetersmo.net/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-03-17",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
  },
  {
   "jurisdiction_id": "wentzville",
@@ -672,6 +828,18 @@
   "note": "Feeds P&Z 2026-05-04. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-04-07",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -720,6 +888,30 @@
   "note": "Rezoning and Special Use applications due. Feeds P&Z 2026-05-06."
  },
  {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-04-13",
+  "event_time": "18:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Applicants must attend public hearings."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-04-13",
+  "event_time": "17:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-05-11. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -730,6 +922,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": ""
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-04-21",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
  },
  {
   "jurisdiction_id": "wentzville",
@@ -828,6 +1032,18 @@
   "note": "Feeds P&Z 2026-06-01. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-05-05",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
+ },
+ {
   "jurisdiction_id": "stpeters",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -862,6 +1078,30 @@
   "source_url": "https://www.stpetersmo.net/DocumentCenter/View/444/Development-Guide-and-Planning--Zoning-SubmittalMeeting-Schedule-PDF",
   "verified_on": "2026-10-12",
   "note": "Rezoning and Special Use applications due. Feeds P&Z 2026-06-03."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-05-11",
+  "event_time": "18:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Applicants must attend public hearings."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-05-11",
+  "event_time": "17:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-06-08. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
  },
  {
   "jurisdiction_id": "wentzville",
@@ -910,6 +1150,18 @@
   "source_url": "https://www.stpetersmo.net/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-05-19",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
  },
  {
   "jurisdiction_id": "wentzville",
@@ -996,6 +1248,18 @@
   "note": "Feeds P&Z 2026-07-06. If weekend/holiday, Friday before or Monday after."
  },
  {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-06-02",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
+ },
+ {
   "jurisdiction_id": "stpeters",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -1030,6 +1294,30 @@
   "source_url": "https://www.stpetersmo.net/DocumentCenter/View/444/Development-Guide-and-Planning--Zoning-SubmittalMeeting-Schedule-PDF",
   "verified_on": "2026-10-12",
   "note": "Rezoning and Special Use applications due. Feeds P&Z 2026-07-01."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-06-08",
+  "event_time": "18:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Applicants must attend public hearings."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-06-08",
+  "event_time": "17:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-07-13. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
  },
  {
   "jurisdiction_id": "wentzville",
@@ -1078,6 +1366,18 @@
   "source_url": "https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf",
   "verified_on": "2026-10-09",
   "note": "Feeds P&Z 2026-07-13. Public-notice items may need more lead time."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-06-23",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
  },
  {
   "jurisdiction_id": "wentzville",
@@ -1200,6 +1500,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-07-07",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -1246,6 +1558,42 @@
   "source_url": "https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf",
   "verified_on": "2026-10-09",
   "note": ""
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-07-13",
+  "event_time": "18:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Applicants must attend public hearings."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-07-13",
+  "event_time": "17:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-08-10. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-07-21",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
  },
  {
   "jurisdiction_id": "wentzville",
@@ -1332,6 +1680,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-08-04",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
+ },
+ {
   "jurisdiction_id": "stpeters",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -1366,6 +1726,30 @@
   "source_url": "https://www.stpetersmo.net/DocumentCenter/View/444/Development-Guide-and-Planning--Zoning-SubmittalMeeting-Schedule-PDF",
   "verified_on": "2026-10-12",
   "note": "Rezoning and Special Use applications due. Feeds P&Z 2026-09-02."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-08-10",
+  "event_time": "18:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Applicants must attend public hearings."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-08-10",
+  "event_time": "17:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-09-21. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
  },
  {
   "jurisdiction_id": "wentzville",
@@ -1428,6 +1812,18 @@
   "note": "Feeds P&Z 2026-09-14. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-08-18",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -1474,6 +1870,18 @@
   "source_url": "https://web.archive.org/web/20240627035239/https://drive.google.com/file/d/1MTJgjQ8XAMqMc-tjYuibT2Mfc0ZGXoWd/view",
   "verified_on": "2026-10-10",
   "note": "Feeds P&Z 2026-10-01. Projected from the 2024 schedule rule (Friday 34 days before); 2026 schedule not posted. Confirm with recording secretary Tracy Coffman, tcoffman@ofallonmo.gov, 636-379-5544."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-09-01",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
  },
  {
   "jurisdiction_id": "wentzville",
@@ -1608,6 +2016,42 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-09-15",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-09-21",
+  "event_time": "18:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Applicants must attend public hearings."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-09-21",
+  "event_time": "17:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-10-19. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -1728,6 +2172,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-10-06",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
+ },
+ {
   "jurisdiction_id": "stpeters",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -1786,6 +2242,42 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-10-19",
+  "event_time": "18:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Applicants must attend public hearings."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-10-19",
+  "event_time": "17:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-11-09. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-10-20",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/Calendar.aspx",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
  },
  {
   "jurisdiction_id": "ofallon",
@@ -1872,6 +2364,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-11-03",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/Calendar.aspx",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
+ },
+ {
   "jurisdiction_id": "stpeters",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -1932,6 +2436,30 @@
   "note": "Feeds P&Z 2026-12-07. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-11-09",
+  "event_time": "18:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Applicants must attend public hearings."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-11-09",
+  "event_time": "17:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-12-14. Minimum deadline; email PZ@stcharlescitymo.gov. Staff confirms the actual meeting date after review."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -1956,6 +2484,18 @@
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
  },
  {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-11-17",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/Calendar.aspx",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -1978,6 +2518,18 @@
   "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
   "verified_on": "2026-10-10",
   "note": "City Council regular meeting (projected: 2nd & 4th Thursday, Nov/Dec 3rd Thursday only, per 2024-2025)"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-12-01",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/Calendar.aspx",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
  },
  {
   "jurisdiction_id": "wentzville",
@@ -2086,6 +2638,30 @@
   "source_url": "https://www.stpetersmo.net/DocumentCenter/View/444/Development-Guide-and-Planning--Zoning-SubmittalMeeting-Schedule-PDF",
   "verified_on": "2026-10-12",
   "note": "Rezoning and Special Use applications due. Feeds P&Z 2027-01-06."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-12-14",
+  "event_time": "18:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/DocumentCenter/View/14267",
+  "verified_on": "2026-10-12",
+  "note": "Applicants must attend public hearings."
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-12-15",
+  "event_time": "19:00",
+  "location": "St. Charles City Hall, Council Chambers (4th floor), 200 N Second St",
+  "status": "published",
+  "source_url": "https://www.stcharlescitymo.gov/Calendar.aspx",
+  "verified_on": "2026-10-12",
+  "note": "City Council regular session"
  },
  {
   "jurisdiction_id": "ofallon",

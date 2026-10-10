@@ -24,7 +24,7 @@ Every fact row carries `source_url` and `verified_on`, so nothing unverified is 
 | Jurisdiction | Rezoning process | 2026 schedule |
 |---|---|---|
 | St. Charles County (uninc.) | Done | Not found yet |
-| City of St. Charles | Done | Not found yet |
+| City of St. Charles | Done | Loaded through Dec 2026 |
 | St. Peters | Done | Loaded through Jan 2027 |
 | O'Fallon | Done | Meetings loaded through Jan 2027; deadlines projected (2026 schedule not posted) |
 | Wentzville | Done | Loaded through Feb 2027 |
