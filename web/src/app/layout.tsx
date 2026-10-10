@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import SuggestButton from "@/components/SuggestButton";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,7 +23,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               <Link href="/">Calendar</Link>
               <Link href="/jurisdictions">Jurisdictions</Link>
               <Link href="/directory">Directory</Link>
+              <Link href="/todo">To-do</Link>
             </nav>
+            <SuggestButton />
             <form action="/auth/signout" method="post" className="signout">
               <span className="muted small">{user.email}</span>
               <button type="submit" className="link">Sign out</button>
