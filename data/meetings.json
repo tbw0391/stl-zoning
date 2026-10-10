@@ -12,6 +12,18 @@
   "note": "Feeds P&Z 2026-01-12. If weekend/holiday, Friday before or Monday after."
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2025-12-04",
+  "event_time": null,
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-01-08. Deadline is 35 days before the meeting."
+ },
+ {
   "jurisdiction_id": "ofallon",
   "body": "planning_zoning",
   "event_type": "submittal_deadline",
@@ -96,6 +108,18 @@
   "note": "Feeds P&Z 2026-02-09. If weekend/holiday, Friday before or Monday after."
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-01-02",
+  "event_time": null,
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-02-05. Deadline is 35 days before the meeting."
+ },
+ {
   "jurisdiction_id": "ofallon",
   "body": "planning_zoning",
   "event_type": "submittal_deadline",
@@ -144,6 +168,18 @@
   "note": "Feeds P&Z 2026-02-02. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-01-05",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -166,6 +202,18 @@
   "source_url": "https://www.stpetersmo.net/DocumentCenter/View/444/Development-Guide-and-Planning--Zoning-SubmittalMeeting-Schedule-PDF",
   "verified_on": "2026-10-12",
   "note": "Applicant or representative must attend."
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-01-08",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "cancelled",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Cancelled."
  },
  {
   "jurisdiction_id": "ofallon",
@@ -264,6 +312,18 @@
   "note": "City Council regular meeting"
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-01-20",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -348,6 +408,18 @@
   "note": "Board of Aldermen (rezoning readings)"
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-01-29",
+  "event_time": null,
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-03-05. Deadline is 35 days before the meeting."
+ },
+ {
   "jurisdiction_id": "ofallon",
   "body": "planning_zoning",
   "event_type": "submittal_deadline",
@@ -408,6 +480,18 @@
   "note": "Feeds P&Z 2026-03-02. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-02-02",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -430,6 +514,18 @@
   "source_url": "https://www.stpetersmo.net/DocumentCenter/View/444/Development-Guide-and-Planning--Zoning-SubmittalMeeting-Schedule-PDF",
   "verified_on": "2026-10-12",
   "note": "Applicant or representative must attend."
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-02-05",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "cancelled",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Cancelled."
  },
  {
   "jurisdiction_id": "ofallon",
@@ -540,6 +636,18 @@
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-02-17",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
   "jurisdiction_id": "stcharles_county",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -598,6 +706,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-02-26",
+  "event_time": null,
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-04-02. Deadline is 35 days before the meeting."
  },
  {
   "jurisdiction_id": "ofallon",
@@ -672,6 +792,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-03-02",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -694,6 +826,18 @@
   "source_url": "https://www.stpetersmo.net/DocumentCenter/View/444/Development-Guide-and-Planning--Zoning-SubmittalMeeting-Schedule-PDF",
   "verified_on": "2026-10-12",
   "note": "Applicant or representative must attend."
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-03-05",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "cancelled",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Cancelled."
  },
  {
   "jurisdiction_id": "ofallon",
@@ -816,6 +960,18 @@
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-03-16",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -924,6 +1080,30 @@
   "note": "Feeds P&Z 2026-05-11. If weekend/holiday, Friday before or Monday after."
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-04-02",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Items go to the Board of Aldermen on the third Monday of the same month."
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-04-02",
+  "event_time": null,
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-05-07. Deadline is 35 days before the meeting."
+ },
+ {
   "jurisdiction_id": "ofallon",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -982,6 +1162,18 @@
   "source_url": "https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf",
   "verified_on": "2026-10-09",
   "note": "Feeds P&Z 2026-05-04. Public-notice items may need more lead time."
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-04-06",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
  },
  {
   "jurisdiction_id": "stcharles_city",
@@ -1104,6 +1296,18 @@
   "note": "Cancelled."
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-04-20",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -1176,6 +1380,18 @@
   "note": "County Council regular meeting (postponed from Apr 27, weather)"
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-04-30",
+  "event_time": null,
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-06-04. Deadline is 35 days before the meeting."
+ },
+ {
   "jurisdiction_id": "ofallon",
   "body": "planning_zoning",
   "event_type": "submittal_deadline",
@@ -1236,6 +1452,18 @@
   "note": "Feeds P&Z 2026-06-01. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-05-04",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -1258,6 +1486,18 @@
   "source_url": "https://www.stpetersmo.net/DocumentCenter/View/444/Development-Guide-and-Planning--Zoning-SubmittalMeeting-Schedule-PDF",
   "verified_on": "2026-10-12",
   "note": "Applicant or representative must attend."
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-05-07",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Items go to the Board of Aldermen on the third Monday of the same month."
  },
  {
   "jurisdiction_id": "ofallon",
@@ -1366,6 +1606,18 @@
   "source_url": "https://www.stpetersmo.net/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-05-18",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
  },
  {
   "jurisdiction_id": "stcharles_city",
@@ -1488,6 +1740,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-06-01",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "submittal_deadline",
@@ -1522,6 +1786,30 @@
   "source_url": "https://www.stpetersmo.net/DocumentCenter/View/444/Development-Guide-and-Planning--Zoning-SubmittalMeeting-Schedule-PDF",
   "verified_on": "2026-10-12",
   "note": "Applicant or representative must attend."
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-06-04",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "cancelled",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Cancelled."
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-06-04",
+  "event_time": null,
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-07-09. Deadline is 35 days before the meeting."
  },
  {
   "jurisdiction_id": "ofallon",
@@ -1632,6 +1920,18 @@
   "note": "Feeds P&Z 2026-07-13. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-06-15",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
   "jurisdiction_id": "stcharles_county",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -1740,6 +2040,18 @@
   "note": "Feeds P&Z 2026-08-10. If weekend/holiday, Friday before or Monday after."
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-07-02",
+  "event_time": null,
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-08-06. Deadline is 35 days before the meeting."
+ },
+ {
   "jurisdiction_id": "ofallon",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -1788,6 +2100,18 @@
   "note": "Feeds P&Z 2026-08-03. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-07-06",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -1822,6 +2146,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-07-09",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Items go to the Board of Aldermen on the third Monday of the same month."
  },
  {
   "jurisdiction_id": "ofallon",
@@ -1908,6 +2244,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-07-20",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -1980,6 +2328,18 @@
   "note": "County Council regular meeting"
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-07-30",
+  "event_time": null,
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-09-03. Deadline is 35 days before the meeting."
+ },
+ {
   "jurisdiction_id": "ofallon",
   "body": "planning_zoning",
   "event_type": "submittal_deadline",
@@ -2028,6 +2388,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-08-03",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -2050,6 +2422,18 @@
   "source_url": "https://www.stpetersmo.net/DocumentCenter/View/444/Development-Guide-and-Planning--Zoning-SubmittalMeeting-Schedule-PDF",
   "verified_on": "2026-10-12",
   "note": "Applicant or representative must attend."
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-08-06",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Items go to the Board of Aldermen on the third Monday of the same month."
  },
  {
   "jurisdiction_id": "ofallon",
@@ -2172,6 +2556,18 @@
   "note": "Feeds P&Z 2026-09-14. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-08-17",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -2218,6 +2614,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-08-27",
+  "event_time": null,
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-10-08. Deadline is 35 days before the meeting."
  },
  {
   "jurisdiction_id": "ofallon",
@@ -2304,6 +2712,18 @@
   "note": "Applicant or representative must attend."
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-09-03",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "cancelled",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Cancelled."
+ },
+ {
   "jurisdiction_id": "ofallon",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -2338,6 +2758,18 @@
   "source_url": "https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf",
   "verified_on": "2026-10-09",
   "note": "Feeds P&Z 2026-10-05. Public-notice items may need more lead time."
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-09-08",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
  },
  {
   "jurisdiction_id": "wentzville",
@@ -2448,6 +2880,18 @@
   "note": "Cancelled."
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-09-21",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -2532,6 +2976,18 @@
   "note": "County Council regular meeting"
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-10-01",
+  "event_time": null,
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-11-05. Deadline is 35 days before the meeting."
+ },
+ {
   "jurisdiction_id": "ofallon",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -2604,6 +3060,18 @@
   "note": "Feeds P&Z 2026-11-02. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-10-05",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -2638,6 +3106,18 @@
   "source_url": "https://www.stpetersmo.net/DocumentCenter/View/444/Development-Guide-and-Planning--Zoning-SubmittalMeeting-Schedule-PDF",
   "verified_on": "2026-10-12",
   "note": "Applicant or representative must attend."
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-10-08",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Items go to the Board of Aldermen on the third Monday of the same month."
  },
  {
   "jurisdiction_id": "ofallon",
@@ -2698,6 +3178,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-10-19",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/Calendar.aspx",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
  },
  {
   "jurisdiction_id": "stcharles_city",
@@ -2808,6 +3300,18 @@
   "note": "Board of Aldermen (rezoning readings)"
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-10-29",
+  "event_time": null,
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2026-12-03. Deadline is 35 days before the meeting."
+ },
+ {
   "jurisdiction_id": "ofallon",
   "body": "planning_zoning",
   "event_type": "submittal_deadline",
@@ -2856,6 +3360,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-11-02",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/Calendar.aspx",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -2890,6 +3406,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-11-05",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Items go to the Board of Aldermen on the third Monday of the same month."
  },
  {
   "jurisdiction_id": "ofallon",
@@ -2986,6 +3514,18 @@
   "source_url": "https://www.stpetersmo.net/627/City-Meetings-Calendar",
   "verified_on": "2026-10-12",
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-11-16",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/Calendar.aspx",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
  },
  {
   "jurisdiction_id": "stcharles_city",
@@ -3096,6 +3636,30 @@
   "note": "Applicant or representative must attend."
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-12-03",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Items go to the Board of Aldermen on the third Monday of the same month."
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-12-03",
+  "event_time": null,
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Feeds P&Z 2027-01-07. Deadline is 35 days before the meeting."
+ },
+ {
   "jurisdiction_id": "ofallon",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -3142,6 +3706,18 @@
   "source_url": "https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf",
   "verified_on": "2026-10-09",
   "note": ""
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-12-07",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/Calendar.aspx",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
  },
  {
   "jurisdiction_id": "stcharles_county",
@@ -3252,6 +3828,18 @@
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
  },
  {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-12-21",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/Calendar.aspx",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
   "jurisdiction_id": "stcharles_county",
   "body": "governing_body",
   "event_type": "meeting",
@@ -3274,6 +3862,18 @@
   "source_url": "https://www.stpetersmo.net/DocumentCenter/View/444/Development-Guide-and-Planning--Zoning-SubmittalMeeting-Schedule-PDF",
   "verified_on": "2026-10-12",
   "note": "Applicant or representative must attend."
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2027-01-07",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Items go to the Board of Aldermen on the third Monday of the same month."
  },
  {
   "jurisdiction_id": "ofallon",
@@ -3310,6 +3910,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2027-01-19",
+  "event_time": "18:00",
+  "location": "Lake Saint Louis City Hall, 200 Civic Center Dr",
+  "status": "published",
+  "source_url": "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
  },
  {
   "jurisdiction_id": "wentzville",

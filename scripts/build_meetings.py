@@ -65,6 +65,28 @@ co_pz = [("2026-01-21","published"),("2026-02-18","published"),("2026-03-18","pu
 co_cc = ["2026-01-12","2026-01-26","2026-02-09","2026-02-23","2026-03-09","2026-03-30","2026-04-13","2026-04-28",
          "2026-05-11","2026-05-26","2026-06-08","2026-06-29","2026-07-13","2026-07-27","2026-08-10","2026-08-31",
          "2026-09-14","2026-09-28","2026-10-13","2026-10-26","2026-11-09","2026-11-23","2026-12-07","2026-12-21"]
+# Lake Saint Louis: P&Z page table (deadline 35 days before, P&Z first Thursday 6 PM, Board of Aldermen hearing).
+L = "https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission"
+L_AG = "https://www.lakesaintlouis.com/AgendaCenter"
+L_CAL = "https://www.lakesaintlouis.com/Calendar.aspx"
+lsl = """12/04/2025 01/08/2026
+01/02/2026 02/05/2026
+01/29/2026 03/05/2026
+02/26/2026 04/02/2026
+04/02/2026 05/07/2026
+04/30/2026 06/04/2026
+06/04/2026 07/09/2026
+07/02/2026 08/06/2026
+07/30/2026 09/03/2026
+08/27/2026 10/08/2026
+10/01/2026 11/05/2026
+10/29/2026 12/03/2026
+12/03/2026 01/07/2027"""
+lsl_cancelled = {"2026-01-08","2026-02-05","2026-03-05","2026-06-04","2026-09-03"}  # Agenda Center cancellation notices
+# Board of Aldermen regular (1st & 3rd Monday 6 PM, Tuesday after a Monday holiday). 3rd-Monday ones hear P&Z items.
+lsl_boa = ["2026-01-05","2026-01-20","2026-02-02","2026-02-17","2026-03-02","2026-03-16","2026-04-06","2026-04-20",
+           "2026-05-04","2026-05-18","2026-06-01","2026-06-15","2026-07-06","2026-07-20","2026-08-03","2026-08-17",
+           "2026-09-08","2026-09-21","2026-10-05","2026-10-19","2026-11-02","2026-11-16","2026-12-07","2026-12-21","2027-01-19"]
 # P&Z (first Thursday): date, status, source
 ofal_pz = [("2026-01-08","published",O),("2026-02-05","published",O),("2026-03-05","published",O),
            ("2026-04-02","published",O),("2026-05-07","published",O),("2026-06-04","published",O),
@@ -180,6 +202,17 @@ for d in co_cc:
     add("stcharles_county","governing_body","meeting",date.fromisoformat(d),"19:00",COLOC,CO_AG if d <= "2026-10-13" else CO_CAL,
         "County Council regular meeting" + (" (postponed from Apr 27, weather)" if d == "2026-04-28" else ""),verified="2026-10-12")
 
+LLOC = "Lake Saint Louis City Hall, 200 Civic Center Dr"
+for line in lsl.splitlines():
+    d, m = [d1(x) for x in line.split()]
+    add("lake_st_louis","planning_zoning","submittal_deadline",d,None,LLOC,L,f"Feeds P&Z {m.isoformat()}. Deadline is 35 days before the meeting.",verified="2026-10-12")
+    st = "cancelled" if m.isoformat() in lsl_cancelled else "published"
+    add("lake_st_louis","planning_zoning","meeting",m,"18:00",LLOC,L_AG if st == "cancelled" else L,
+        "Cancelled." if st == "cancelled" else "Items go to the Board of Aldermen on the third Monday of the same month.",st,"2026-10-12")
+for d in lsl_boa:
+    add("lake_st_louis","governing_body","meeting",date.fromisoformat(d),"18:00",LLOC,L_AG if d <= "2026-10-05" else (L if d == "2027-01-19" else L_CAL),
+        "Board of Aldermen regular meeting (work session 5:30 PM)",verified="2026-10-12")
+
 rows.sort(key=lambda r:(r["event_date"], r["jurisdiction_id"]))
 json.dump(rows, open(f"{out}/meetings.json","w"), indent=1)
 with open(f"{out}/meetings.csv","w",newline="") as f:
@@ -187,7 +220,7 @@ with open(f"{out}/meetings.csv","w",newline="") as f:
 
 # ICS, upcoming only (today forward)
 today = date.today()
-names = {"wentzville":"Wentzville","cottleville":"Cottleville","ofallon":"O'Fallon","stpeters":"St. Peters","stcharles_city":"St. Charles","stcharles_county":"St. Charles County"}
+names = {"wentzville":"Wentzville","cottleville":"Cottleville","ofallon":"O'Fallon","stpeters":"St. Peters","stcharles_city":"St. Charles","stcharles_county":"St. Charles County","lake_st_louis":"Lake Saint Louis"}
 lab = {("planning_zoning","meeting"):"P&Z Meeting",("planning_zoning","submittal_deadline"):"P&Z SUBMITTAL DUE",("governing_body","meeting"):"Board of Aldermen"}
 L = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Entitlement Tracker//STC//EN","X-WR-CALNAME:St. Charles Co. Entitlement Dates","X-WR-TIMEZONE:America/Chicago"]
 n=0

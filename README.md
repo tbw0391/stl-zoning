@@ -28,7 +28,7 @@ Every fact row carries `source_url` and `verified_on`, so nothing unverified is 
 | St. Peters | Done | Loaded through Jan 2027 |
 | O'Fallon | Done | Meetings loaded through Jan 2027; deadlines projected (2026 schedule not posted) |
 | Wentzville | Done | Loaded through Feb 2027 |
-| Lake Saint Louis | Done | Not found yet |
+| Lake Saint Louis | Done | Loaded through Jan 2027 |
 | Cottleville | Partial | Loaded through Dec 2026 |
 | Dardenne Prairie | Partial | Pattern only |
 | Weldon Spring | Not yet | Pattern only |

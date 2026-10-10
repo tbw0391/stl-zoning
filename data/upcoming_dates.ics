@@ -20,6 +20,14 @@ LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
 DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:lake_st_louis-meeting-governing_body-2026-10-19@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261019
+SUMMARY:Lake Saint Louis - Board of Aldermen (18:00)
+LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
+DESCRIPTION:Board of Aldermen regular meeting (work session 5:30 PM) Source: https://www.lakesaintlouis.com/Calendar.aspx
+END:VEVENT
+BEGIN:VEVENT
 UID:stcharles_city-meeting-planning_zoning-2026-10-19@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261019
@@ -92,6 +100,14 @@ LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
 DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:lake_st_louis-submittal_deadline-planning_zoning-2026-10-29@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261029
+SUMMARY:Lake Saint Louis - P&Z SUBMITTAL DUE
+LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
+DESCRIPTION:Feeds P&Z 2026-12-03. Deadline is 35 days before the meeting. Source: https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission
+END:VEVENT
+BEGIN:VEVENT
 UID:ofallon-submittal_deadline-planning_zoning-2026-10-30@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261030
@@ -124,6 +140,14 @@ LOCATION:Cottleville City Hall Board Room\, 5490 Fifth St
 DESCRIPTION:Source: https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:lake_st_louis-meeting-governing_body-2026-11-02@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261102
+SUMMARY:Lake Saint Louis - Board of Aldermen (18:00)
+LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
+DESCRIPTION:Board of Aldermen regular meeting (work session 5:30 PM) Source: https://www.lakesaintlouis.com/Calendar.aspx
+END:VEVENT
+BEGIN:VEVENT
 UID:stcharles_city-meeting-governing_body-2026-11-03@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261103
@@ -146,6 +170,14 @@ DTSTART;VALUE=DATE:20261104
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
 DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
+END:VEVENT
+BEGIN:VEVENT
+UID:lake_st_louis-meeting-planning_zoning-2026-11-05@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261105
+SUMMARY:Lake Saint Louis - P&Z Meeting (18:00)
+LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
+DESCRIPTION:Items go to the Board of Aldermen on the third Monday of the same month. Source: https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission
 END:VEVENT
 BEGIN:VEVENT
 UID:ofallon-meeting-planning_zoning-2026-11-05@entitlement-tracker
@@ -210,6 +242,14 @@ DTSTART;VALUE=DATE:20261112
 SUMMARY:St. Peters - Board of Aldermen (18:30)
 LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
 DESCRIPTION:Board of Aldermen regular meeting (work session 5:00 PM) Source: https://www.stpetersmo.net/627/City-Meetings-Calendar
+END:VEVENT
+BEGIN:VEVENT
+UID:lake_st_louis-meeting-governing_body-2026-11-16@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261116
+SUMMARY:Lake Saint Louis - Board of Aldermen (18:00)
+LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
+DESCRIPTION:Board of Aldermen regular meeting (work session 5:30 PM) Source: https://www.lakesaintlouis.com/Calendar.aspx
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_city-meeting-governing_body-2026-11-17@entitlement-tracker
@@ -284,6 +324,22 @@ LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
 DESCRIPTION:Applicant or representative must attend. Source: https://www.stpetersmo.net/DocumentCenter/View/444/Development-Guide-and-Planning--Zoning-SubmittalMeeting-Schedule-PDF
 END:VEVENT
 BEGIN:VEVENT
+UID:lake_st_louis-meeting-planning_zoning-2026-12-03@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261203
+SUMMARY:Lake Saint Louis - P&Z Meeting (18:00)
+LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
+DESCRIPTION:Items go to the Board of Aldermen on the third Monday of the same month. Source: https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission
+END:VEVENT
+BEGIN:VEVENT
+UID:lake_st_louis-submittal_deadline-planning_zoning-2026-12-03@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261203
+SUMMARY:Lake Saint Louis - P&Z SUBMITTAL DUE
+LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
+DESCRIPTION:Feeds P&Z 2027-01-07. Deadline is 35 days before the meeting. Source: https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission
+END:VEVENT
+BEGIN:VEVENT
 UID:ofallon-meeting-planning_zoning-2026-12-03@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261203
@@ -314,6 +370,14 @@ DTSTART;VALUE=DATE:20261207
 SUMMARY:Cottleville - P&Z Meeting (19:00)
 LOCATION:Cottleville City Hall Board Room\, 5490 Fifth St
 DESCRIPTION:Source: https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf
+END:VEVENT
+BEGIN:VEVENT
+UID:lake_st_louis-meeting-governing_body-2026-12-07@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261207
+SUMMARY:Lake Saint Louis - Board of Aldermen (18:00)
+LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
+DESCRIPTION:Board of Aldermen regular meeting (work session 5:30 PM) Source: https://www.lakesaintlouis.com/Calendar.aspx
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_county-meeting-governing_body-2026-12-07@entitlement-tracker
@@ -388,6 +452,14 @@ LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
 DESCRIPTION:Board of Aldermen regular meeting (work session 5:00 PM) Source: https://www.stpetersmo.net/627/City-Meetings-Calendar
 END:VEVENT
 BEGIN:VEVENT
+UID:lake_st_louis-meeting-governing_body-2026-12-21@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261221
+SUMMARY:Lake Saint Louis - Board of Aldermen (18:00)
+LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
+DESCRIPTION:Board of Aldermen regular meeting (work session 5:30 PM) Source: https://www.lakesaintlouis.com/Calendar.aspx
+END:VEVENT
+BEGIN:VEVENT
 UID:stcharles_county-meeting-governing_body-2026-12-21@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261221
@@ -402,6 +474,14 @@ DTSTART;VALUE=DATE:20270106
 SUMMARY:St. Peters - P&Z Meeting (18:30)
 LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
 DESCRIPTION:Applicant or representative must attend. Source: https://www.stpetersmo.net/DocumentCenter/View/444/Development-Guide-and-Planning--Zoning-SubmittalMeeting-Schedule-PDF
+END:VEVENT
+BEGIN:VEVENT
+UID:lake_st_louis-meeting-planning_zoning-2027-01-07@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20270107
+SUMMARY:Lake Saint Louis - P&Z Meeting (18:00)
+LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
+DESCRIPTION:Items go to the Board of Aldermen on the third Monday of the same month. Source: https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission
 END:VEVENT
 BEGIN:VEVENT
 UID:ofallon-meeting-planning_zoning-2027-01-07@entitlement-tracker
@@ -426,6 +506,14 @@ DTSTART;VALUE=DATE:20270113
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
 DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
+END:VEVENT
+BEGIN:VEVENT
+UID:lake_st_louis-meeting-governing_body-2027-01-19@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20270119
+SUMMARY:Lake Saint Louis - Board of Aldermen (18:00)
+LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
+DESCRIPTION:Board of Aldermen regular meeting (work session 5:30 PM) Source: https://www.lakesaintlouis.com/1291/Planning-Zoning-Commission
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2027-01-27@entitlement-tracker
