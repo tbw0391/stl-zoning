@@ -7,7 +7,7 @@ Needs: rezoning process per jurisdiction, P&Z / council / submittal calendar wit
 ## Backend
 Supabase project **stl-zoning** (id `zjveevfcsqkdgenrrrcv`, us-east-2). Security advisor: clean.
 Tables: jurisdictions (19, incl. St. Louis County placeholder), jurisdiction_progress (76), rezoning_processes (8), meetings (373; 101 deadlines linked via linked_meeting), people (185 across the 9 main jurisdictions), zoning_districts (0), parcels (0), source_checks (0).
-Access: login was removed (commit 97a5e6a). The site is open to anyone with the URL; anon can read all tables and insert/update todos. Revisit if project data is sensitive.
+Access: login was removed (commit 97a5e6a). The site is open to anyone with the URL; anon can read all tables, insert/update todos and people ("Remove" sets active=false), and update jurisdiction_progress (migration 20261013090000). Revisit if project data is sensitive.
 Every fact row carries source_url + verified_on.
 
 ## Progress tracker
@@ -27,7 +27,7 @@ St. Louis County is a single placeholder row (`stlouis_county`); add its municip
 3. Nine small towns/villages (some need phone calls).
 4. Zoning district tables, then parcel lookup (Lake Saint Louis has a ZoningHub map; county has ArcGIS parcels).
 5. Weekly scheduled task to re-check schedule URLs and log to source_checks.
-6. Front end: `web/` (Next.js + Supabase, no login) deployed on Vercel. Next: open (no-password) edit forms for people, then meetings and progress; parcel lookup page.
+6. Front end: `web/` (Next.js + Supabase, no login) deployed on Vercel. Edit forms live for people (/directory → Edit, /directory/new) and progress (/progress → Edit in each cell). Next: meeting edit forms, parcel lookup page.
 
 ## Key sources
 - County UDO §405.535: https://ecode360.com/27758355

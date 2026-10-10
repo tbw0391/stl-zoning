@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { fmtDate } from "@/lib/format";
+import { updateProgress } from "./actions";
 
 export const dynamic = "force-dynamic";
 
@@ -45,6 +46,7 @@ export default async function ProgressPage() {
       <h1>Progress</h1>
       <p className="muted">
         Research status for every jurisdiction, by county. A jurisdiction is complete when all four tasks are done.
+        Use Edit in any cell to change its status or note.
         {lastUpdate && <> Last updated {fmtDate(lastUpdate)}.</>}
       </p>
 
@@ -86,6 +88,18 @@ export default async function ProgressPage() {
                           <td key={t.id}>
                             <span className={`tag progress-${status}`}>{PROGRESS_LABEL[status]}</span>
                             {r?.note && <div className="muted" style={{ fontSize: ".8rem", marginTop: 4 }}>{r.note}</div>}
+                            {r && (
+                              <details className="cell-edit">
+                                <summary>Edit</summary>
+                                <form action={updateProgress.bind(null, j.id, t.id)} className="stack-form">
+                                  <select name="status" defaultValue={status} aria-label="Status">
+                                    {Object.entries(PROGRESS_LABEL).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
+                                  </select>
+                                  <textarea name="note" rows={3} defaultValue={r.note ?? ""} aria-label="Note" placeholder="Note" />
+                                  <div><button type="submit">Save</button></div>
+                                </form>
+                              </details>
+                            )}
                           </td>
                         );
                       })}

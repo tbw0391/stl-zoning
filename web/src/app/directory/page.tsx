@@ -21,7 +21,8 @@ export default async function DirectoryPage({ searchParams }: { searchParams: Pr
   return (
     <>
       <h1>Directory</h1>
-      <p className="muted">P&amp;Z commissioners, elected officials and key staff. Coverage grows as each jurisdiction is researched.</p>
+      <p className="muted">P&amp;Z commissioners, elected officials and key staff. Coverage grows as each jurisdiction is researched. Anyone can fix a row with Edit.</p>
+      <p><Link href={sp.j ? `/directory/new?j=${sp.j}` : "/directory/new"}>+ Add person</Link></p>
 
       <form className="filters" method="get">
         <label>Search
@@ -47,7 +48,7 @@ export default async function DirectoryPage({ searchParams }: { searchParams: Pr
       ) : (
         <div className="table-wrap">
           <table>
-            <thead><tr><th>Name</th><th>Title</th><th>Jurisdiction</th><th>Group</th><th>Email</th><th>Phone</th></tr></thead>
+            <thead><tr><th>Name</th><th>Title</th><th>Jurisdiction</th><th>Group</th><th>Email</th><th>Phone</th><th></th></tr></thead>
             <tbody>
               {people.map((x) => (
                 <tr key={x.id}>
@@ -57,6 +58,7 @@ export default async function DirectoryPage({ searchParams }: { searchParams: Pr
                   <td className="small">{ROLE_LABEL[x.role_group]}</td>
                   <td>{x.email ? <a href={`mailto:${x.email}`}>{x.email}</a> : <span className="muted">—</span>}</td>
                   <td>{x.phone ?? <span className="muted">—</span>}</td>
+                  <td className="small"><Link href={`/directory/${x.id}`}>Edit</Link></td>
                 </tr>
               ))}
             </tbody>
