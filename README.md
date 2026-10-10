@@ -30,7 +30,7 @@ Every fact row carries `source_url` and `verified_on`, so nothing unverified is 
 | Wentzville | Done | Loaded through Feb 2027 |
 | Lake Saint Louis | Done | Loaded through Jan 2027 |
 | Cottleville | Partial | Loaded through Dec 2026 |
-| Dardenne Prairie | Partial | Pattern only |
+| Dardenne Prairie | Partial | Meetings loaded through Dec 2026; no deadlines published |
 | Weldon Spring | Not yet | Pattern only |
 | 9 small towns/villages | Not yet | Not yet |
 
