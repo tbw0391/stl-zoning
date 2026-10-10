@@ -12,6 +12,14 @@ LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St
 DESCRIPTION:County Council regular meeting Source: https://www.sccmo.org/AgendaCenter
 END:VEVENT
 BEGIN:VEVENT
+UID:dardenne_prairie-meeting-planning_zoning-2026-10-14@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261014
+SUMMARY:Dardenne Prairie - P&Z Meeting (19:00)
+LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
+DESCRIPTION:Work session 6 PM. Source: https://www.dardenneprairie.gov/government/boards_commissions/planning_zoning_commission.php
+END:VEVENT
+BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2026-10-14@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261014
@@ -50,6 +58,14 @@ DTSTART;VALUE=DATE:20261020
 SUMMARY:St. Charles - City Council (19:00)
 LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
 DESCRIPTION:City Council regular session Source: https://www.stcharlescitymo.gov/Calendar.aspx
+END:VEVENT
+BEGIN:VEVENT
+UID:dardenne_prairie-meeting-governing_body-2026-10-21@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261021
+SUMMARY:Dardenne Prairie - Board of Aldermen [projected] (19:00)
+LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
+DESCRIPTION:Projected (1st & 3rd Wednesday). Source: https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_county-meeting-planning_zoning-2026-10-21@entitlement-tracker
@@ -156,6 +172,14 @@ LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
 DESCRIPTION:City Council regular session Source: https://www.stcharlescitymo.gov/Calendar.aspx
 END:VEVENT
 BEGIN:VEVENT
+UID:dardenne_prairie-meeting-governing_body-2026-11-04@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261104
+SUMMARY:Dardenne Prairie - Board of Aldermen [projected] (19:00)
+LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
+DESCRIPTION:Projected (1st & 3rd Wednesday). Source: https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php
+END:VEVENT
+BEGIN:VEVENT
 UID:stpeters-meeting-planning_zoning-2026-11-04@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261104
@@ -236,6 +260,14 @@ LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
 DESCRIPTION:Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:dardenne_prairie-meeting-planning_zoning-2026-11-11@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261111
+SUMMARY:Dardenne Prairie - P&Z Meeting [projected] (19:00)
+LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
+DESCRIPTION:Work session 6 PM. Projected (second Wednesday). Source: https://www.dardenneprairie.gov/government/boards_commissions/planning_zoning_commission.php
+END:VEVENT
+BEGIN:VEVENT
 UID:stpeters-meeting-governing_body-2026-11-12@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261112
@@ -258,6 +290,14 @@ DTSTART;VALUE=DATE:20261117
 SUMMARY:St. Charles - City Council (19:00)
 LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
 DESCRIPTION:City Council regular session Source: https://www.stcharlescitymo.gov/Calendar.aspx
+END:VEVENT
+BEGIN:VEVENT
+UID:dardenne_prairie-meeting-governing_body-2026-11-18@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261118
+SUMMARY:Dardenne Prairie - Board of Aldermen [projected] (19:00)
+LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
+DESCRIPTION:Projected (1st & 3rd Wednesday). Source: https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_county-meeting-planning_zoning-2026-11-18@entitlement-tracker
@@ -314,6 +354,14 @@ DTSTART;VALUE=DATE:20261201
 SUMMARY:Wentzville - P&Z SUBMITTAL DUE (17:00)
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
 DESCRIPTION:Feeds P&Z 2027-01-11. If weekend/holiday\, Friday before or Monday after. Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
+END:VEVENT
+BEGIN:VEVENT
+UID:dardenne_prairie-meeting-governing_body-2026-12-02@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261202
+SUMMARY:Dardenne Prairie - Board of Aldermen [projected] (19:00)
+LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
+DESCRIPTION:Projected (1st & 3rd Wednesday). Source: https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php
 END:VEVENT
 BEGIN:VEVENT
 UID:stpeters-meeting-planning_zoning-2026-12-02@entitlement-tracker
@@ -396,6 +444,14 @@ LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
 DESCRIPTION:Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:dardenne_prairie-meeting-planning_zoning-2026-12-09@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261209
+SUMMARY:Dardenne Prairie - P&Z Meeting [projected] (19:00)
+LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
+DESCRIPTION:Work session 6 PM. Projected (second Wednesday). Source: https://www.dardenneprairie.gov/government/boards_commissions/planning_zoning_commission.php
+END:VEVENT
+BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2026-12-09@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261209
@@ -426,6 +482,14 @@ DTSTART;VALUE=DATE:20261215
 SUMMARY:St. Charles - City Council (19:00)
 LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
 DESCRIPTION:City Council regular session Source: https://www.stcharlescitymo.gov/Calendar.aspx
+END:VEVENT
+BEGIN:VEVENT
+UID:dardenne_prairie-meeting-governing_body-2026-12-16@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261216
+SUMMARY:Dardenne Prairie - Board of Aldermen [projected] (19:00)
+LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
+DESCRIPTION:Projected (1st & 3rd Wednesday). Source: https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_county-meeting-planning_zoning-2026-12-16@entitlement-tracker

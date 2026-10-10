@@ -87,6 +87,20 @@ lsl_cancelled = {"2026-01-08","2026-02-05","2026-03-05","2026-06-04","2026-09-03
 lsl_boa = ["2026-01-05","2026-01-20","2026-02-02","2026-02-17","2026-03-02","2026-03-16","2026-04-06","2026-04-20",
            "2026-05-04","2026-05-18","2026-06-01","2026-06-15","2026-07-06","2026-07-20","2026-08-03","2026-08-17",
            "2026-09-08","2026-09-21","2026-10-05","2026-10-19","2026-11-02","2026-11-16","2026-12-07","2026-12-21","2027-01-19"]
+# Dardenne Prairie: no deadline schedule published. Meetings from the agenda pages; Nov/Dec projected.
+DP_PZ = "https://www.dardenneprairie.gov/government/boards_commissions/planning_zoning_commission.php"
+DP_BOA = "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php"
+dp_pz = [("2026-01-14","published",""),("2026-02-11","published","Only a work session agenda was posted."),
+         ("2026-03-11","published",""),("2026-04-08","published",""),("2026-05-13","published",""),
+         ("2026-06-17","cancelled","Cancelled."),("2026-07-08","cancelled","Cancelled."),("2026-08-12","cancelled","Cancelled."),
+         ("2026-09-09","published",""),("2026-10-14","published",""),
+         ("2026-11-11","projected","Projected (second Wednesday)."),("2026-12-09","projected","Projected (second Wednesday).")]
+dp_boa = [("2026-01-07","published"),("2026-01-21","published"),("2026-02-04","published"),("2026-02-18","published"),
+          ("2026-03-04","published"),("2026-03-18","published"),("2026-04-22","published"),("2026-05-06","published"),
+          ("2026-05-20","published"),("2026-06-03","published"),("2026-06-17","published"),("2026-07-01","published"),
+          ("2026-07-15","published"),("2026-08-05","published"),("2026-08-19","cancelled"),("2026-09-02","published"),
+          ("2026-09-16","published"),("2026-10-07","published"),("2026-10-21","projected"),("2026-11-04","projected"),
+          ("2026-11-18","projected"),("2026-12-02","projected"),("2026-12-16","projected")]
 # P&Z (first Thursday): date, status, source
 ofal_pz = [("2026-01-08","published",O),("2026-02-05","published",O),("2026-03-05","published",O),
            ("2026-04-02","published",O),("2026-05-07","published",O),("2026-06-04","published",O),
@@ -213,6 +227,14 @@ for d in lsl_boa:
     add("lake_st_louis","governing_body","meeting",date.fromisoformat(d),"18:00",LLOC,L_AG if d <= "2026-10-05" else (L if d == "2027-01-19" else L_CAL),
         "Board of Aldermen regular meeting (work session 5:30 PM)",verified="2026-10-12")
 
+DLOC = "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd"
+for d, st, note in dp_pz:
+    add("dardenne_prairie","planning_zoning","meeting",date.fromisoformat(d),"19:00",DLOC,DP_PZ,
+        ("Work session 6 PM. " + note).strip(),st,"2026-10-12")
+for d, st in dp_boa:
+    add("dardenne_prairie","governing_body","meeting",date.fromisoformat(d),"19:00",DLOC,DP_BOA,
+        {"published":"Board of Aldermen regular meeting","cancelled":"Cancelled.","projected":"Projected (1st & 3rd Wednesday)."}[st],st,"2026-10-12")
+
 rows.sort(key=lambda r:(r["event_date"], r["jurisdiction_id"]))
 json.dump(rows, open(f"{out}/meetings.json","w"), indent=1)
 with open(f"{out}/meetings.csv","w",newline="") as f:
@@ -220,7 +242,7 @@ with open(f"{out}/meetings.csv","w",newline="") as f:
 
 # ICS, upcoming only (today forward)
 today = date.today()
-names = {"wentzville":"Wentzville","cottleville":"Cottleville","ofallon":"O'Fallon","stpeters":"St. Peters","stcharles_city":"St. Charles","stcharles_county":"St. Charles County","lake_st_louis":"Lake Saint Louis"}
+names = {"wentzville":"Wentzville","cottleville":"Cottleville","ofallon":"O'Fallon","stpeters":"St. Peters","stcharles_city":"St. Charles","stcharles_county":"St. Charles County","lake_st_louis":"Lake Saint Louis","dardenne_prairie":"Dardenne Prairie"}
 lab = {("planning_zoning","meeting"):"P&Z Meeting",("planning_zoning","submittal_deadline"):"P&Z SUBMITTAL DUE",("governing_body","meeting"):"Board of Aldermen"}
 L = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Entitlement Tracker//STC//EN","X-WR-CALNAME:St. Charles Co. Entitlement Dates","X-WR-TIMEZONE:America/Chicago"]
 n=0

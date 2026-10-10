@@ -192,6 +192,18 @@
   "note": "City Council regular session"
  },
  {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-01-07",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
+ },
+ {
   "jurisdiction_id": "stpeters",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -300,6 +312,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-01-14",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/boards_commissions/planning_zoning_commission.php",
+  "verified_on": "2026-10-12",
+  "note": "Work session 6 PM."
+ },
+ {
   "jurisdiction_id": "ofallon",
   "body": "governing_body",
   "event_type": "meeting",
@@ -334,6 +358,18 @@
   "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
   "verified_on": "2026-10-12",
   "note": "City Council regular session"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-01-21",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
  },
  {
   "jurisdiction_id": "stcharles_county",
@@ -504,6 +540,18 @@
   "note": "City Council regular session"
  },
  {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-02-04",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
+ },
+ {
   "jurisdiction_id": "stpeters",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -600,6 +648,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-02-11",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/boards_commissions/planning_zoning_commission.php",
+  "verified_on": "2026-10-12",
+  "note": "Work session 6 PM. Only a work session agenda was posted."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -646,6 +706,18 @@
   "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-02-18",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
  },
  {
   "jurisdiction_id": "stcharles_county",
@@ -816,6 +888,18 @@
   "note": "City Council regular session"
  },
  {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-03-04",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
+ },
+ {
   "jurisdiction_id": "stpeters",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -924,6 +1008,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-03-11",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/boards_commissions/planning_zoning_commission.php",
+  "verified_on": "2026-10-12",
+  "note": "Work session 6 PM."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -982,6 +1078,18 @@
   "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
   "verified_on": "2026-10-12",
   "note": "City Council regular session"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-03-18",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
  },
  {
   "jurisdiction_id": "stcharles_county",
@@ -1188,6 +1296,18 @@
   "note": "City Council regular session"
  },
  {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-04-08",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/boards_commissions/planning_zoning_commission.php",
+  "verified_on": "2026-10-12",
+  "note": "Work session 6 PM."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -1318,6 +1438,18 @@
   "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
   "verified_on": "2026-10-12",
   "note": "City Council regular session"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-04-22",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
  },
  {
   "jurisdiction_id": "wentzville",
@@ -1476,6 +1608,18 @@
   "note": "City Council regular session"
  },
  {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-05-06",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
+ },
+ {
   "jurisdiction_id": "stpeters",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -1572,6 +1716,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-05-13",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/boards_commissions/planning_zoning_commission.php",
+  "verified_on": "2026-10-12",
+  "note": "Work session 6 PM."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -1630,6 +1786,18 @@
   "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
   "verified_on": "2026-10-12",
   "note": "City Council regular session"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-05-20",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
  },
  {
   "jurisdiction_id": "stcharles_county",
@@ -1774,6 +1942,18 @@
   "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
   "verified_on": "2026-10-12",
   "note": "City Council regular session"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-06-03",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
  },
  {
   "jurisdiction_id": "stpeters",
@@ -1932,6 +2112,30 @@
   "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
  },
  {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-06-17",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "cancelled",
+  "source_url": "https://www.dardenneprairie.gov/government/boards_commissions/planning_zoning_commission.php",
+  "verified_on": "2026-10-12",
+  "note": "Work session 6 PM. Cancelled."
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-06-17",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
+ },
+ {
   "jurisdiction_id": "stcharles_county",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -2014,6 +2218,18 @@
   "source_url": "https://www.sccmo.org/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "County Council regular meeting"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-07-01",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
  },
  {
   "jurisdiction_id": "stpeters",
@@ -2136,6 +2352,18 @@
   "note": "City Council regular session"
  },
  {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-07-08",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "cancelled",
+  "source_url": "https://www.dardenneprairie.gov/government/boards_commissions/planning_zoning_commission.php",
+  "verified_on": "2026-10-12",
+  "note": "Work session 6 PM. Cancelled."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -2230,6 +2458,18 @@
   "source_url": "https://www.sccmo.org/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "County Council regular meeting"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-07-15",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
  },
  {
   "jurisdiction_id": "stcharles_county",
@@ -2412,6 +2652,18 @@
   "note": "City Council regular session"
  },
  {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-08-05",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
+ },
+ {
   "jurisdiction_id": "stpeters",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -2508,6 +2760,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-08-12",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "cancelled",
+  "source_url": "https://www.dardenneprairie.gov/government/boards_commissions/planning_zoning_commission.php",
+  "verified_on": "2026-10-12",
+  "note": "Work session 6 PM. Cancelled."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -2578,6 +2842,18 @@
   "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
   "verified_on": "2026-10-12",
   "note": "City Council regular session"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-08-19",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "cancelled",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Cancelled."
  },
  {
   "jurisdiction_id": "stcharles_county",
@@ -2700,6 +2976,18 @@
   "note": "Feeds P&Z 2026-10-05. If weekend/holiday, Friday before or Monday after."
  },
  {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-09-02",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
+ },
+ {
   "jurisdiction_id": "stpeters",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -2770,6 +3058,18 @@
   "source_url": "https://www.lakesaintlouis.com/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-09-09",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/boards_commissions/planning_zoning_commission.php",
+  "verified_on": "2026-10-12",
+  "note": "Work session 6 PM."
  },
  {
   "jurisdiction_id": "wentzville",
@@ -2866,6 +3166,18 @@
   "source_url": "https://www.stcharlescitymo.gov/1402/Agendas",
   "verified_on": "2026-10-12",
   "note": "City Council regular session"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-09-16",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
  },
  {
   "jurisdiction_id": "stcharles_county",
@@ -3096,6 +3408,18 @@
   "note": "City Council regular session"
  },
  {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-10-07",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
+ },
+ {
   "jurisdiction_id": "stpeters",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -3168,6 +3492,18 @@
   "note": "County Council regular meeting"
  },
  {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-10-14",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "published",
+  "source_url": "https://www.dardenneprairie.gov/government/boards_commissions/planning_zoning_commission.php",
+  "verified_on": "2026-10-12",
+  "note": "Work session 6 PM."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -3226,6 +3562,18 @@
   "source_url": "https://www.stcharlescitymo.gov/Calendar.aspx",
   "verified_on": "2026-10-12",
   "note": "City Council regular session"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-10-21",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "projected",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Projected (1st & 3rd Wednesday)."
  },
  {
   "jurisdiction_id": "stcharles_county",
@@ -3384,6 +3732,18 @@
   "note": "City Council regular session"
  },
  {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-11-04",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "projected",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Projected (1st & 3rd Wednesday)."
+ },
+ {
   "jurisdiction_id": "stpeters",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -3504,6 +3864,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-11-11",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "projected",
+  "source_url": "https://www.dardenneprairie.gov/government/boards_commissions/planning_zoning_commission.php",
+  "verified_on": "2026-10-12",
+  "note": "Work session 6 PM. Projected (second Wednesday)."
+ },
+ {
   "jurisdiction_id": "stpeters",
   "body": "governing_body",
   "event_type": "meeting",
@@ -3538,6 +3910,18 @@
   "source_url": "https://www.stcharlescitymo.gov/Calendar.aspx",
   "verified_on": "2026-10-12",
   "note": "City Council regular session"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-11-18",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "projected",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Projected (1st & 3rd Wednesday)."
  },
  {
   "jurisdiction_id": "stcharles_county",
@@ -3622,6 +4006,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Feeds P&Z 2027-01-11. If weekend/holiday, Friday before or Monday after."
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-12-02",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "projected",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Projected (1st & 3rd Wednesday)."
  },
  {
   "jurisdiction_id": "stpeters",
@@ -3744,6 +4140,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-12-09",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "projected",
+  "source_url": "https://www.dardenneprairie.gov/government/boards_commissions/planning_zoning_commission.php",
+  "verified_on": "2026-10-12",
+  "note": "Work session 6 PM. Projected (second Wednesday)."
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "governing_body",
   "event_type": "meeting",
@@ -3790,6 +4198,18 @@
   "source_url": "https://www.stcharlescitymo.gov/Calendar.aspx",
   "verified_on": "2026-10-12",
   "note": "City Council regular session"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-12-16",
+  "event_time": "19:00",
+  "location": "Dardenne Prairie City Hall Board Room, 2032 Hanley Rd",
+  "status": "projected",
+  "source_url": "https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php",
+  "verified_on": "2026-10-12",
+  "note": "Projected (1st & 3rd Wednesday)."
  },
  {
   "jurisdiction_id": "stcharles_county",
