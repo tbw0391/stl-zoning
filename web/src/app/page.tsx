@@ -18,6 +18,9 @@ type Meeting = {
   source_url: string | null;
 };
 
+type CalTask = { id: number; title: string; assigned_to: string | null; due_date: string; project_id: number | null; projects: { name: string } | null };
+type Item = { kind: "meeting"; date: string; meeting: Meeting } | { kind: "task"; date: string; task: CalTask };
+
 const RANGES: Record<string, number> = { "90": 90, "180": 180, "365": 365 };
 
 export default async function CalendarPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
@@ -26,7 +29,9 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
   const today = todayCentral();
   const supabase = await createClient();
 
-  const [{ data: jurisdictions }, { data: meetings }] = await Promise.all([
+  const showTasks = !sp.j && (!sp.type || sp.type === "tasks");
+  const showMeetings = sp.type !== "tasks";
+  const [{ data: jurisdictions }, { data: meetings }, { data: tasks }] = await Promise.all([
     supabase.from("jurisdictions").select("id, name, governing_body").order("name"),
     (() => {
       let q = supabase.from("meetings").select("*").gte("event_date", today).lte("event_date", addDays(today, days)).order("event_date").order("event_time");
@@ -34,8 +39,14 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
       if (sp.type === "deadlines") q = q.eq("event_type", "submittal_deadline");
       if (sp.type === "pz") q = q.eq("body", "planning_zoning").eq("event_type", "meeting");
       if (sp.type === "gov") q = q.eq("body", "governing_body");
+      if (!showMeetings) q = q.limit(0);
       return q;
     })(),
+    // Open tasks with a follow-up date; overdue ones show under today.
+    showTasks
+      ? supabase.from("tasks").select("id, title, assigned_to, due_date, project_id, projects(name)").is("done_at", null)
+          .not("due_date", "is", null).lte("due_date", addDays(today, days)).order("due_date")
+      : Promise.resolve({ data: [] }),
   ]);
 
   const jmap = new Map((jurisdictions ?? []).map((j) => [j.id, j]));
@@ -51,13 +62,19 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
   const { data: covered } = await supabase.from("meetings").select("jurisdiction_id").gte("event_date", today);
   const coveredIds = [...new Set((covered ?? []).map((c) => c.jurisdiction_id))];
 
-  const byMonth = new Map<string, Map<string, Meeting[]>>();
-  for (const m of rows) {
-    const month = m.event_date.slice(0, 7);
+  const taskRows = (tasks ?? []) as unknown as CalTask[];
+  const items: Item[] = [
+    ...taskRows.map((t): Item => ({ kind: "task", date: t.due_date < today ? today : t.due_date, task: t })),
+    ...rows.map((m): Item => ({ kind: "meeting", date: m.event_date, meeting: m })),
+  ].sort((a, b) => a.date.localeCompare(b.date));
+
+  const byMonth = new Map<string, Map<string, Item[]>>();
+  for (const it of items) {
+    const month = it.date.slice(0, 7);
     if (!byMonth.has(month)) byMonth.set(month, new Map());
     const dayMap = byMonth.get(month)!;
-    if (!dayMap.has(m.event_date)) dayMap.set(m.event_date, []);
-    dayMap.get(m.event_date)!.push(m);
+    if (!dayMap.has(it.date)) dayMap.set(it.date, []);
+    dayMap.get(it.date)!.push(it);
   }
 
   function label(m: Meeting) {
@@ -90,6 +107,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
             <option value="deadlines">Submittal deadlines</option>
             <option value="pz">P&amp;Z meetings</option>
             <option value="gov">Council / Aldermen</option>
+            <option value="tasks">Tasks only</option>
           </select>
         </label>
         <label>Range
@@ -102,7 +120,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
         <button type="submit">Apply</button>
       </form>
 
-      {rows.length === 0 && <div className="card empty">No dates in this range.</div>}
+      {items.length === 0 && <div className="card empty">No dates in this range.</div>}
 
       {[...byMonth.entries()].map(([month, dayMap]) => (
         <section className="month" key={month}>
@@ -111,7 +129,20 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
             <div className="day" key={date}>
               <div className="day-date">{fmtDate(date)}</div>
               <div className="events">
-                {events.map((m) => {
+                {events.map((it) => {
+                  if (it.kind === "task") {
+                    const t = it.task;
+                    return (
+                      <div className="event" key={`t${t.id}`}>
+                        <span className={t.due_date < today ? "tag due" : "tag task"}>{t.due_date < today ? "OVERDUE TASK" : "TASK"}</span>
+                        <Link href="/tasks"><strong>{t.title}</strong></Link>
+                        <span className="where">{t.assigned_to ?? "Unassigned"}</span>
+                        {t.project_id && <Link href={`/projects/${t.project_id}`} className="small">{t.projects?.name ?? "Project"}</Link>}
+                        {t.due_date < today && <span className="where">was due {fmtDate(t.due_date)}</span>}
+                      </div>
+                    );
+                  }
+                  const m = it.meeting;
                   const j = jmap.get(m.jurisdiction_id);
                   const feeds = m.linked_meeting ? linkedDate.get(m.linked_meeting) : null;
                   return (

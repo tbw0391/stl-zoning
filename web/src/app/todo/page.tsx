@@ -27,8 +27,8 @@ export default async function TodoPage() {
 
   return (
     <>
-      <h1>To-do</h1>
-      <p className="muted">Suggestions from the team. Use the Suggest button in the header on any page to add one.</p>
+      <h1>Suggestions</h1>
+      <p className="muted">Ideas and fixes for this site. Use the Suggest button in the header on any page to add one.</p>
       {open.length === 0 ? <div className="card empty">Nothing open.</div> : <ul className="todos card">{open.map(row)}</ul>}
       {done.length > 0 && (
         <>

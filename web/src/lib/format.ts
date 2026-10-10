@@ -36,3 +36,20 @@ export const ROLE_LABEL: Record<string, string> = {
   governing_body: "Elected officials",
   staff: "Staff",
 };
+
+export const STAGE_LABEL: Record<string, string> = {
+  prospect: "Prospect",
+  due_diligence: "Due diligence",
+  pre_application: "Pre-application",
+  submitted: "Submitted",
+  pz_hearing: "P&Z hearing",
+  governing_body: "Council / Aldermen",
+  approved: "Approved",
+  denied: "Denied",
+  withdrawn: "Withdrawn",
+  on_hold: "On hold",
+  closed: "Closed",
+};
+
+// Stages that count as finished for the projects summary.
+export const CLOSED_STAGES = ["approved", "denied", "withdrawn", "closed"];

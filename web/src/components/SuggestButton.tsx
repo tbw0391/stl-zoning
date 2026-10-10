@@ -26,7 +26,7 @@ export default function SuggestButton() {
       </button>
       {open && (
         <form ref={formRef} action={submit} className="suggest-pop card">
-          <label htmlFor="suggest-body">Add a suggestion to the to-do list</label>
+          <label htmlFor="suggest-body">Suggest a change to this site</label>
           <textarea id="suggest-body" name="body" rows={3} required autoFocus placeholder="What should be added or fixed?" />
           <input type="hidden" name="page" value={pathname} />
           <div className="suggest-actions">

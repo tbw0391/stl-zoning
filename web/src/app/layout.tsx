@@ -16,9 +16,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Link href="/" className="brand">Entitlement Tracker</Link>
           <nav>
             <Link href="/">Calendar</Link>
+            <Link href="/projects">Projects</Link>
+            <Link href="/tasks">Tasks</Link>
             <Link href="/jurisdictions">Jurisdictions</Link>
             <Link href="/directory">Directory</Link>
-            <Link href="/todo">To-do</Link>
+            <Link href="/todo">Suggestions</Link>
           </nav>
           <SuggestButton />
         </header>
