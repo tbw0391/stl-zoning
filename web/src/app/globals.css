@@ -83,6 +83,10 @@ button:disabled { opacity: .6; }
 .tag.complete { background: var(--ok-soft); color: var(--ok); }
 .tag.partial, .tag.needs_phone_call { background: var(--warn-soft); color: var(--warn); }
 .tag.not_started { background: var(--border); color: var(--muted); }
+.tag.progress-done { background: var(--ok-soft); color: var(--ok); }
+.tag.progress-in_progress { background: var(--accent-soft); color: var(--accent); }
+.tag.progress-blocked { background: var(--warn-soft); color: var(--warn); }
+.tag.progress-not_started { background: var(--border); color: var(--muted); }
 .tag.tentative { background: var(--warn-soft); color: var(--warn); }
 
 table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }

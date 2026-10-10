@@ -6,9 +6,14 @@ Needs: rezoning process per jurisdiction, P&Z / council / submittal calendar wit
 
 ## Backend
 Supabase project **stl-zoning** (id `zjveevfcsqkdgenrrrcv`, us-east-2). Security advisor: clean.
-Tables: jurisdictions (18), rezoning_processes (8), meetings (123; 38 deadlines linked via linked_meeting), people (22, Wentzville), zoning_districts (0), parcels (0), source_checks (0).
+Tables: jurisdictions (19, incl. St. Louis County placeholder), jurisdiction_progress (76), rezoning_processes (8), meetings (123; 38 deadlines linked via linked_meeting), people (22, Wentzville), zoning_districts (0), parcels (0), source_checks (0).
 Access: login was removed (commit 97a5e6a). The site is open to anyone with the URL; anon can read all tables and insert/update todos. Revisit if project data is sensitive.
 Every fact row carries source_url + verified_on.
+
+## Progress tracker
+`jurisdiction_progress` (one row per jurisdiction × task: rezoning, schedule, people, districts; status not_started / in_progress / done / blocked) drives the /progress page, grouped by county. **When a task finishes, update its row in the same session**, e.g.
+`update jurisdiction_progress set status='done', note='Through Dec 2026', updated_on=current_date where jurisdiction_id='stpeters' and task='schedule';`
+St. Louis County is a single placeholder row (`stlouis_county`); add its municipalities to `jurisdictions` and `jurisdiction_progress` when that work starts.
 
 ## Done
 - Rezoning procedures: County, St. Charles, St. Peters, O'Fallon, Wentzville, Lake Saint Louis. Partial: Cottleville, Dardenne Prairie.

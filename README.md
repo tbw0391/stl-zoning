@@ -15,7 +15,7 @@ Built for a small team (3-5 users, one shared role).
 | `supabase/migrations/` | Schema as applied to the live Supabase project `stl-zoning` |
 | `data/` | Seed data (JSON + CSV) and `upcoming_dates.ics` for Outlook / Google Calendar |
 | `scripts/build_meetings.py` | Rebuilds meeting seed data and the .ics from published schedules |
-| `web/` | Next.js front end (deployed on Vercel): calendar, jurisdictions, directory, projects, tasks, meetings. No login: open to anyone with the URL |
+| `web/` | Next.js front end (deployed on Vercel): calendar, jurisdictions, progress, directory, projects, tasks, meetings. No login: open to anyone with the URL |
 | `docs/HANDOFF.md` | Current status and next objectives |
 
 Every fact row carries `source_url` and `verified_on`, so nothing unverified is presented as fact.

@@ -20,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/tasks">Tasks</Link>
             <Link href="/meetings">Summaries</Link>
             <Link href="/jurisdictions">Jurisdictions</Link>
+            <Link href="/progress">Progress</Link>
             <Link href="/directory">Directory</Link>
             <Link href="/todo">Suggestions</Link>
           </nav>
