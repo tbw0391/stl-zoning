@@ -101,6 +101,12 @@ dp_boa = [("2026-01-07","published"),("2026-01-21","published"),("2026-02-04","p
           ("2026-07-15","published"),("2026-08-05","published"),("2026-08-19","cancelled"),("2026-09-02","published"),
           ("2026-09-16","published"),("2026-10-07","published"),("2026-10-21","projected"),("2026-11-04","projected"),
           ("2026-11-18","projected"),("2026-12-02","projected"),("2026-12-16","projected")]
+# Weldon Spring: city calendar only (agenda archive keeps just the current agenda; no deadlines published).
+# Loaded from Oct 2026 forward. Nov 26 and Dec 24 fall on holidays, so they are marked projected.
+WS_CAL = "https://www.weldonspring.gov/calendar"
+ws_pz = ["2026-10-05","2026-11-02","2026-12-07"]
+ws_boa = [("2026-10-08","published"),("2026-10-22","published"),("2026-11-12","published"),("2026-11-26","projected"),
+          ("2026-12-10","published"),("2026-12-24","projected")]
 # P&Z (first Thursday): date, status, source
 ofal_pz = [("2026-01-08","published",O),("2026-02-05","published",O),("2026-03-05","published",O),
            ("2026-04-02","published",O),("2026-05-07","published",O),("2026-06-04","published",O),
@@ -235,6 +241,13 @@ for d, st in dp_boa:
     add("dardenne_prairie","governing_body","meeting",date.fromisoformat(d),"19:00",DLOC,DP_BOA,
         {"published":"Board of Aldermen regular meeting","cancelled":"Cancelled.","projected":"Projected (1st & 3rd Wednesday)."}[st],st,"2026-10-12")
 
+WLOC2 = "Weldon Spring City Hall, 5401 Independence Rd"
+for d in ws_pz:
+    add("weldon_spring","planning_zoning","meeting",date.fromisoformat(d),"19:30",WLOC2,WS_CAL,"",verified="2026-10-12")
+for d, st in ws_boa:
+    add("weldon_spring","governing_body","meeting",date.fromisoformat(d),"19:30",WLOC2,WS_CAL,
+        "Board of Aldermen meeting" + ("" if st == "published" else ". On the city calendar but falls on a holiday; confirm."),st,"2026-10-12")
+
 rows.sort(key=lambda r:(r["event_date"], r["jurisdiction_id"]))
 json.dump(rows, open(f"{out}/meetings.json","w"), indent=1)
 with open(f"{out}/meetings.csv","w",newline="") as f:
@@ -242,7 +255,7 @@ with open(f"{out}/meetings.csv","w",newline="") as f:
 
 # ICS, upcoming only (today forward)
 today = date.today()
-names = {"wentzville":"Wentzville","cottleville":"Cottleville","ofallon":"O'Fallon","stpeters":"St. Peters","stcharles_city":"St. Charles","stcharles_county":"St. Charles County","lake_st_louis":"Lake Saint Louis","dardenne_prairie":"Dardenne Prairie"}
+names = {"wentzville":"Wentzville","cottleville":"Cottleville","ofallon":"O'Fallon","stpeters":"St. Peters","stcharles_city":"St. Charles","stcharles_county":"St. Charles County","lake_st_louis":"Lake Saint Louis","dardenne_prairie":"Dardenne Prairie","weldon_spring":"Weldon Spring"}
 lab = {("planning_zoning","meeting"):"P&Z Meeting",("planning_zoning","submittal_deadline"):"P&Z SUBMITTAL DUE",("governing_body","meeting"):"Board of Aldermen"}
 L = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Entitlement Tracker//STC//EN","X-WR-CALNAME:St. Charles Co. Entitlement Dates","X-WR-TIMEZONE:America/Chicago"]
 n=0

@@ -31,7 +31,7 @@ Every fact row carries `source_url` and `verified_on`, so nothing unverified is 
 | Lake Saint Louis | Done | Loaded through Jan 2027 |
 | Cottleville | Partial | Loaded through Dec 2026 |
 | Dardenne Prairie | Partial | Meetings loaded through Dec 2026; no deadlines published |
-| Weldon Spring | Not yet | Pattern only |
+| Weldon Spring | Not yet | Oct-Dec 2026 meetings; no deadlines published |
 | 9 small towns/villages | Not yet | Not yet |
 
 People directory: Wentzville done (22 people). Zoning districts, parcel lookup and the weekly checker are not built yet.

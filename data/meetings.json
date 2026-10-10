@@ -3384,6 +3384,18 @@
   "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
  },
  {
+  "jurisdiction_id": "weldon_spring",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-10-05",
+  "event_time": "19:30",
+  "location": "Weldon Spring City Hall, 5401 Independence Rd",
+  "status": "published",
+  "source_url": "https://www.weldonspring.gov/calendar",
+  "verified_on": "2026-10-12",
+  "note": ""
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -3466,6 +3478,18 @@
   "source_url": "https://www.stpetersmo.net/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
+ },
+ {
+  "jurisdiction_id": "weldon_spring",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-10-08",
+  "event_time": "19:30",
+  "location": "Weldon Spring City Hall, 5401 Independence Rd",
+  "status": "published",
+  "source_url": "https://www.weldonspring.gov/calendar",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen meeting"
  },
  {
   "jurisdiction_id": "stpeters",
@@ -3612,6 +3636,18 @@
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
  },
  {
+  "jurisdiction_id": "weldon_spring",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-10-22",
+  "event_time": "19:30",
+  "location": "Weldon Spring City Hall, 5401 Independence Rd",
+  "status": "published",
+  "source_url": "https://www.weldonspring.gov/calendar",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen meeting"
+ },
+ {
   "jurisdiction_id": "stcharles_county",
   "body": "planning_zoning",
   "event_type": "submittal_deadline",
@@ -3718,6 +3754,18 @@
   "source_url": "https://www.lakesaintlouis.com/Calendar.aspx",
   "verified_on": "2026-10-12",
   "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
+ },
+ {
+  "jurisdiction_id": "weldon_spring",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-11-02",
+  "event_time": "19:30",
+  "location": "Weldon Spring City Hall, 5401 Independence Rd",
+  "status": "published",
+  "source_url": "https://www.weldonspring.gov/calendar",
+  "verified_on": "2026-10-12",
+  "note": ""
  },
  {
   "jurisdiction_id": "stcharles_city",
@@ -3888,6 +3936,18 @@
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
  },
  {
+  "jurisdiction_id": "weldon_spring",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-11-12",
+  "event_time": "19:30",
+  "location": "Weldon Spring City Hall, 5401 Independence Rd",
+  "status": "published",
+  "source_url": "https://www.weldonspring.gov/calendar",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen meeting"
+ },
+ {
   "jurisdiction_id": "lake_st_louis",
   "body": "governing_body",
   "event_type": "meeting",
@@ -3982,6 +4042,18 @@
   "source_url": "https://www.sccmo.org/Calendar.aspx",
   "verified_on": "2026-10-12",
   "note": "County Council regular meeting"
+ },
+ {
+  "jurisdiction_id": "weldon_spring",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-11-26",
+  "event_time": "19:30",
+  "location": "Weldon Spring City Hall, 5401 Independence Rd",
+  "status": "projected",
+  "source_url": "https://www.weldonspring.gov/calendar",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen meeting. On the city calendar but falls on a holiday; confirm."
  },
  {
   "jurisdiction_id": "stcharles_city",
@@ -4128,6 +4200,18 @@
   "note": "County Council regular meeting"
  },
  {
+  "jurisdiction_id": "weldon_spring",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-12-07",
+  "event_time": "19:30",
+  "location": "Weldon Spring City Hall, 5401 Independence Rd",
+  "status": "published",
+  "source_url": "https://www.weldonspring.gov/calendar",
+  "verified_on": "2026-10-12",
+  "note": ""
+ },
+ {
   "jurisdiction_id": "wentzville",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -4162,6 +4246,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "weldon_spring",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-12-10",
+  "event_time": "19:30",
+  "location": "Weldon Spring City Hall, 5401 Independence Rd",
+  "status": "published",
+  "source_url": "https://www.weldonspring.gov/calendar",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen meeting"
  },
  {
   "jurisdiction_id": "stpeters",
@@ -4270,6 +4366,18 @@
   "source_url": "https://www.sccmo.org/Calendar.aspx",
   "verified_on": "2026-10-12",
   "note": "County Council regular meeting"
+ },
+ {
+  "jurisdiction_id": "weldon_spring",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-12-24",
+  "event_time": "19:30",
+  "location": "Weldon Spring City Hall, 5401 Independence Rd",
+  "status": "projected",
+  "source_url": "https://www.weldonspring.gov/calendar",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen meeting. On the city calendar but falls on a holiday; confirm."
  },
  {
   "jurisdiction_id": "stpeters",

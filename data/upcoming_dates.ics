@@ -92,6 +92,14 @@ LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
 DESCRIPTION:Board of Aldermen regular meeting (work session 5:00 PM) Source: https://www.stpetersmo.net/627/City-Meetings-Calendar
 END:VEVENT
 BEGIN:VEVENT
+UID:weldon_spring-meeting-governing_body-2026-10-22@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261022
+SUMMARY:Weldon Spring - Board of Aldermen (19:30)
+LOCATION:Weldon Spring City Hall\, 5401 Independence Rd
+DESCRIPTION:Board of Aldermen meeting Source: https://www.weldonspring.gov/calendar
+END:VEVENT
+BEGIN:VEVENT
 UID:stcharles_county-submittal_deadline-planning_zoning-2026-10-23@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261023
@@ -162,6 +170,14 @@ DTSTART;VALUE=DATE:20261102
 SUMMARY:Lake Saint Louis - Board of Aldermen (18:00)
 LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
 DESCRIPTION:Board of Aldermen regular meeting (work session 5:30 PM) Source: https://www.lakesaintlouis.com/Calendar.aspx
+END:VEVENT
+BEGIN:VEVENT
+UID:weldon_spring-meeting-planning_zoning-2026-11-02@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261102
+SUMMARY:Weldon Spring - P&Z Meeting (19:30)
+LOCATION:Weldon Spring City Hall\, 5401 Independence Rd
+DESCRIPTION:Source: https://www.weldonspring.gov/calendar
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_city-meeting-governing_body-2026-11-03@entitlement-tracker
@@ -276,6 +292,14 @@ LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
 DESCRIPTION:Board of Aldermen regular meeting (work session 5:00 PM) Source: https://www.stpetersmo.net/627/City-Meetings-Calendar
 END:VEVENT
 BEGIN:VEVENT
+UID:weldon_spring-meeting-governing_body-2026-11-12@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261112
+SUMMARY:Weldon Spring - Board of Aldermen (19:30)
+LOCATION:Weldon Spring City Hall\, 5401 Independence Rd
+DESCRIPTION:Board of Aldermen meeting Source: https://www.weldonspring.gov/calendar
+END:VEVENT
+BEGIN:VEVENT
 UID:lake_st_louis-meeting-governing_body-2026-11-16@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261116
@@ -338,6 +362,14 @@ DTSTART;VALUE=DATE:20261123
 SUMMARY:St. Charles County - County Council (19:00)
 LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
 DESCRIPTION:County Council regular meeting Source: https://www.sccmo.org/Calendar.aspx
+END:VEVENT
+BEGIN:VEVENT
+UID:weldon_spring-meeting-governing_body-2026-11-26@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261126
+SUMMARY:Weldon Spring - Board of Aldermen [projected] (19:30)
+LOCATION:Weldon Spring City Hall\, 5401 Independence Rd
+DESCRIPTION:Board of Aldermen meeting. On the city calendar but falls on a holiday; confirm. Source: https://www.weldonspring.gov/calendar
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_city-meeting-governing_body-2026-12-01@entitlement-tracker
@@ -436,6 +468,14 @@ LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St
 DESCRIPTION:County Council regular meeting Source: https://www.sccmo.org/Calendar.aspx
 END:VEVENT
 BEGIN:VEVENT
+UID:weldon_spring-meeting-planning_zoning-2026-12-07@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261207
+SUMMARY:Weldon Spring - P&Z Meeting (19:30)
+LOCATION:Weldon Spring City Hall\, 5401 Independence Rd
+DESCRIPTION:Source: https://www.weldonspring.gov/calendar
+END:VEVENT
+BEGIN:VEVENT
 UID:wentzville-meeting-planning_zoning-2026-12-07@entitlement-tracker
 DTSTAMP:20261010T000000Z
 DTSTART;VALUE=DATE:20261207
@@ -458,6 +498,14 @@ DTSTART;VALUE=DATE:20261209
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
 DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
+END:VEVENT
+BEGIN:VEVENT
+UID:weldon_spring-meeting-governing_body-2026-12-10@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261210
+SUMMARY:Weldon Spring - Board of Aldermen (19:30)
+LOCATION:Weldon Spring City Hall\, 5401 Independence Rd
+DESCRIPTION:Board of Aldermen meeting Source: https://www.weldonspring.gov/calendar
 END:VEVENT
 BEGIN:VEVENT
 UID:stpeters-submittal_deadline-planning_zoning-2026-12-11@entitlement-tracker
@@ -530,6 +578,14 @@ DTSTART;VALUE=DATE:20261221
 SUMMARY:St. Charles County - County Council (19:00)
 LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
 DESCRIPTION:County Council regular meeting Source: https://www.sccmo.org/Calendar.aspx
+END:VEVENT
+BEGIN:VEVENT
+UID:weldon_spring-meeting-governing_body-2026-12-24@entitlement-tracker
+DTSTAMP:20261010T000000Z
+DTSTART;VALUE=DATE:20261224
+SUMMARY:Weldon Spring - Board of Aldermen [projected] (19:30)
+LOCATION:Weldon Spring City Hall\, 5401 Independence Rd
+DESCRIPTION:Board of Aldermen meeting. On the city calendar but falls on a holiday; confirm. Source: https://www.weldonspring.gov/calendar
 END:VEVENT
 BEGIN:VEVENT
 UID:stpeters-meeting-planning_zoning-2027-01-06@entitlement-tracker
