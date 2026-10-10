@@ -166,3 +166,9 @@ ul.plain { list-style: none; margin: 0; padding: 0; display: flex; flex-directio
 @media (max-width: 860px) {
   .project-grid { grid-template-columns: 1fr; }
 }
+
+.meeting-list { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+.summary h3:first-child { margin-top: 0; }
+.summary ul { margin: 0 0 .5rem; padding-left: 1.2rem; }
+.summary li { margin: 4px 0; }
+.summary p { margin: .5rem 0; }

@@ -27,9 +27,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
   ]);
   if (!p) notFound();
 
-  const { data: meetings } = p.jurisdiction_id
-    ? await supabase.from("meetings").select("*").eq("jurisdiction_id", p.jurisdiction_id).gte("event_date", today).order("event_date").limit(6)
-    : { data: [] };
+  const [{ data: meetings }, { data: recorded }] = p.jurisdiction_id
+    ? await Promise.all([
+        supabase.from("meetings").select("*").eq("jurisdiction_id", p.jurisdiction_id).gte("event_date", today).order("event_date").limit(6),
+        supabase.from("meetings").select("id, body, event_date").eq("jurisdiction_id", p.jurisdiction_id)
+          .not("summary", "is", null).order("event_date", { ascending: false }).limit(4),
+      ])
+    : [{ data: [] }, { data: [] }];
 
   const items = checklist ?? [];
   const done = items.filter((c) => c.done_at).length;
@@ -142,6 +146,20 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
                   </ul>
                 )}
               </div>
+              {(recorded ?? []).length > 0 && (
+                <>
+                  <h2>Recent meeting summaries</h2>
+                  <div className="card">
+                    <ul className="plain">
+                      {recorded!.map((m) => (
+                        <li key={m.id}>
+                          <Link href={`/meetings/${m.id}`}><strong>{fmtDate(m.event_date)}</strong> {m.body === "planning_zoning" ? "P&Z" : "Council / Aldermen"}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </>
+              )}
             </>
           )}
         </aside>

@@ -30,11 +30,13 @@ export default async function JurisdictionPage({ params }: { params: Promise<{ i
   const supabase = await createClient();
   const today = todayCentral();
 
-  const [{ data: j }, { data: proc }, { data: meetings }, { data: people }] = await Promise.all([
+  const [{ data: j }, { data: proc }, { data: meetings }, { data: people }, { data: recorded }] = await Promise.all([
     supabase.from("jurisdictions").select("*").eq("id", id).maybeSingle(),
     supabase.from("rezoning_processes").select("*").eq("jurisdiction_id", id).maybeSingle(),
     supabase.from("meetings").select("*").eq("jurisdiction_id", id).gte("event_date", today).order("event_date").limit(12),
     supabase.from("people").select("*").eq("jurisdiction_id", id).eq("active", true).order("role_group").order("id"),
+    supabase.from("meetings").select("id, body, event_date, video_url, summary").eq("jurisdiction_id", id)
+      .not("video_url", "is", null).order("event_date", { ascending: false }).limit(8),
   ]);
   if (!j) notFound();
   const p = proc as Process | null;
@@ -108,6 +110,22 @@ export default async function JurisdictionPage({ params }: { params: Promise<{ i
         </div>
       ) : (
         <div className="card empty">No schedule loaded yet.</div>
+      )}
+
+      {recorded && recorded.length > 0 && (
+        <>
+          <h2>Recorded meetings</h2>
+          <ul className="plain card">
+            {recorded.map((m) => (
+              <li key={m.id}>
+                <strong>{fmtDate(m.event_date)}</strong> {m.body === "planning_zoning" ? "P&Z" : "Council / Aldermen"}
+                {" · "}{m.summary ? <Link href={`/meetings/${m.id}`}>Summary</Link> : <span className="muted">No summary yet</span>}
+                {" · "}<a href={m.video_url!} target="_blank" rel="noreferrer">Video ↗</a>
+              </li>
+            ))}
+          </ul>
+          <p className="small"><Link href={`/meetings?j=${id}`}>All recorded meetings →</Link></p>
+        </>
       )}
 
       <h2>People</h2>
