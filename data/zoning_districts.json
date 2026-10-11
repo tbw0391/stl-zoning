@@ -2075,12 +2075,12 @@
   "min_lot_width_ft": null,
   "max_density_du_ac": null,
   "front_setback_ft": null,
-  "side_setback_ft": null,
-  "rear_setback_ft": null,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 10,
   "max_height_ft": null,
   "other_requirements": {
    "code_section": "\u00a7405.310",
-   "note": "3 stories max. Lot width and yards are in a table in the section (not captured); check the section."
+   "note": "3 stories, built to the street. No minimum lot width, coverage or yards, except 10 ft side/rear next to residential (director may waive with buffering)."
   },
   "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.310HIDOCODI"
  },
@@ -2093,12 +2093,12 @@
   "min_lot_width_ft": null,
   "max_density_du_ac": null,
   "front_setback_ft": null,
-  "side_setback_ft": null,
-  "rear_setback_ft": null,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 10,
   "max_height_ft": null,
   "other_requirements": {
    "code_section": "\u00a7405.320",
-   "note": "3 stories max. Lot width and yards are in a table in the section (not captured); check the section."
+   "note": "3 stories, built to the street. No minimum lot width, coverage or yards, except 10 ft side/rear next to residential (director may waive with buffering)."
   },
   "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.320HIDOCODI"
  },
@@ -2111,12 +2111,12 @@
   "min_lot_width_ft": null,
   "max_density_du_ac": null,
   "front_setback_ft": null,
-  "side_setback_ft": null,
-  "rear_setback_ft": null,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 10,
   "max_height_ft": null,
   "other_requirements": {
    "code_section": "\u00a7405.330",
-   "note": "3 stories max. Lot width and yards are in a table in the section (not captured); check the section."
+   "note": "3 stories, built to the street. No minimum lot width, coverage or yards, except 10 ft side/rear next to residential (director may waive with buffering)."
   },
   "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.330HIDOLIINLODI"
  }

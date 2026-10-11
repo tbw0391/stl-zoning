@@ -224,9 +224,9 @@ rows += [
  w(J,"PD","Planned Development","planned",("§405.270","S405.270PDPLDEDI"), note="Underlying district standards apply unless modified by the PD ordinance."),
  w(J,"HF","Highway Frontages (overlay)","overlay",("§405.290","S405.290HFHIFROVDI"), note="Design overlay along highway frontage."),
  w(J,"WP","Wentzville Parkway (overlay)","overlay",("§405.300","S405.300WPWEPAOVDI"), note="Design overlay along Wentzville Parkway."),
- w(J,"HD-1","Historic Downtown Core","mixed_use",("§405.310","S405.310HIDOCODI"), note="3 stories max. Lot width and yards are in a table in the section (not captured); check the section."),
- w(J,"HD-2","Historic Downtown Corridor","mixed_use",("§405.320","S405.320HIDOCODI"), note="3 stories max. Lot width and yards are in a table in the section (not captured); check the section."),
- w(J,"HD-3","Historic Downtown Light Industrial/Loft","mixed_use",("§405.330","S405.330HIDOLIINLODI"), note="3 stories max. Lot width and yards are in a table in the section (not captured); check the section."),
+ w(J,"HD-1","Historic Downtown Core","mixed_use",("§405.310","S405.310HIDOCODI"), side=10,rear=10, note="3 stories, built to the street. No minimum lot width, coverage or yards, except 10 ft side/rear next to residential (director may waive with buffering)."),
+ w(J,"HD-2","Historic Downtown Corridor","mixed_use",("§405.320","S405.320HIDOCODI"), side=10,rear=10, note="3 stories, built to the street. No minimum lot width, coverage or yards, except 10 ft side/rear next to residential (director may waive with buffering)."),
+ w(J,"HD-3","Historic Downtown Light Industrial/Loft","mixed_use",("§405.330","S405.330HIDOLIINLODI"), side=10,rear=10, note="3 stories, built to the street. No minimum lot width, coverage or yards, except 10 ft side/rear next to residential (director may waive with buffering)."),
 ]
 
 json.dump(rows, open(sys.argv[1] + "/zoning_districts.json", "w"), indent=1)
