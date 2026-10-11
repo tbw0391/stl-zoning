@@ -1,0 +1,233 @@
+import json, sys
+
+# Zoning district dimensional standards, one list per jurisdiction. Usage: python3 scripts/build_districts.py data
+# Conditional yards (e.g. 0 ft next to like zoning) store the larger value; the rule goes in note.
+E = "https://ecode360.com/"
+
+def d(J, code, name, cat, sec, lot=None, width=None, dens=None, front=None, side=None, rear=None, height=None, **other):
+    return {"jurisdiction_id": J, "code": code, "name": name, "category": cat,
+            "min_lot_sf": lot, "min_lot_width_ft": width, "max_density_du_ac": dens,
+            "front_setback_ft": front, "side_setback_ft": side, "rear_setback_ft": rear,
+            "max_height_ft": height, "other_requirements": {"code_section": sec[0], **other},
+            "source_url": E + str(sec[1])}
+R1 = ("§405.090", 27756377)
+CL = "Cluster development (5+ acres, 5+ lots) allows smaller lots at the same density, §405.090(I)"
+# St. Charles County UDO Ch. 405, Part 2 (ecode360).
+J = "stcharles_county"
+rows = [
+ d(J, "A","Agricultural","agricultural",("§405.080",27756247),lot=217800,width=150,front=50,side=40,rear=50,height=40,
+   min_dwelling_sf=800, note="Pre-existing lots of record under 1 acre: 25 ft front, 7 ft side, 25 ft rear. A home existing before Feb 13, 2006 may be split onto a 3-acre tract."),
+ d(J, "AT","Agricultural Tourism","agricultural",("§405.085",27756336),lot=1742400,width=150,front=50,side=40,rear=50,height=40),
+ d(J, "RR","Single-Family Residential (3 ac)","residential",R1,lot=130680,width=150,dens=0.33,front=50,side=40,rear=50,height=40,min_dwelling_sf=1000,cluster_max_lot_sf=43560,note=CL),
+ d(J, "R1A","Single-Family Residential (1 ac)","residential",R1,lot=43560,width=125,dens=1,front=35,side=20,rear=35,height=40,min_dwelling_sf=1000,cluster_max_lot_sf=14500,note=CL),
+ d(J, "R1B","Single-Family Residential (20,000 sf)","residential",R1,lot=20000,width=100,dens=2.1,front=25,side=10,rear=25,height=40,min_dwelling_sf=1000,cluster_max_lot_sf=9000,note=CL),
+ d(J, "R1C","Single-Family Residential (15,000 sf)","residential",R1,lot=15000,width=80,dens=2.9,front=25,side=10,rear=25,height=40,min_dwelling_sf=1000,cluster_max_lot_sf=6700,note=CL+"; up to 10% of platted lots may be two-family."),
+ d(J, "R1D","Single-Family Residential (10,000 sf)","residential",R1,lot=10000,width=80,dens=4.3,front=20,side=7,rear=25,height=40,min_dwelling_sf=1000,cluster_max_lot_sf=5500,note=CL+"; up to 10% of platted lots may be two-family."),
+ d(J, "R1E","Single-Family Residential (7,000 sf)","residential",R1,lot=7000,width=70,dens=6.2,front=20,side=7,rear=25,height=40,min_dwelling_sf=1000,cluster_max_lot_sf=4200,note=CL+"; up to 10% of platted lots may be two-family. Conditional use: 6,000 sf lots, 60 ft wide, 6 ft sides, 800 sf homes."),
+ d(J, "R2","Two-Family Residential","residential",("§405.095",27756533),lot=7000,width=70,front=25,side=7,rear=25,height=40,
+   min_lot_sf_per_unit=3500, min_lot_width_per_unit_ft=35, min_dwelling_sf=1000, min_dwelling_sf_two_family=700, note="Zero side yard allowed at a common party wall."),
+ d(J, "R3A","Medium Density Residential","residential",("§405.100",27756579),lot=4000,dens=10,front=20,side=10,rear=25,height=45,
+   note="Setbacks apply to the outer limits of the development site; internal yards per the preliminary plat or site plan. 4,000 sf minimum is for detached single-family.", min_dwelling_sf_multifamily={"2br":500,"1br":400,"efficiency":300}),
+ d(J, "R3B","Multi-Family Residential","residential",("§405.105",27756625),lot=4000,dens=20,front=20,side=10,rear=25,height=45,
+   note="Setbacks apply to the outer limits of the development site; internal yards per the preliminary plat or site plan. 4,000 sf minimum is for detached single-family.", min_dwelling_sf_multifamily={"2br":500,"1br":400,"efficiency":300}),
+ d(J, "RM","Manufactured/Mobile Home Residential","residential",("§405.110",27756675),lot=6000,width=60,front=20,side=10,rear=10,height=35,
+   note="One home per lot. 20 ft from street right-of-way (25 ft for additions and carports). Park needs a 25-50 ft landscaped perimeter buffer and 500 sf of recreation area per lot."),
+ d(J, "PR","Park Recreational","recreational",("§405.115",27756716),lot=43560,front=25,side=10,rear=25,height=45),
+ d(J, "RF","Riverfront","special",("§405.120",27756752),width=200,front=30,side=30,rear=30,height=50,
+   min_river_frontage_ft=300, max_height_conditional_ft=75, note="30 ft setbacks from all lines except river frontage. No minimum site area (riverboat gaming vessels need 25 acres). Conditional uses need an approved riverfront development plan."),
+ d(J, "CO","Office","office",("§405.125",27756814),front=25,side=10,rear=15,height=35,
+   note="Side yard 0 ft unless it adjoins A or R zoning (then 10 ft). Rear yard 0 ft next to C zoning, else 15 ft. No minimum lot area except 7,000 sf for a dwelling."),
+ d(J, "C1","Neighborhood Commercial","commercial",("§405.130",27756867),front=25,side=10,rear=15,height=45,
+   note="Side and rear yards are 0 ft next to C zoning; otherwise 10 ft side, 15 ft rear. No minimum lot area except 7,000 sf for residential."),
+ d(J, "C2","General Commercial","commercial",("§405.135",27756929),front=25,side=10,rear=15,height=60,
+   note="Side yard 10 ft next to A or R zoning, else 0 ft. Rear yard 0 ft next to C zoning, else 15 ft. No minimum lot area except 7,000 sf for residential."),
+ d(J, "HTCD","High Technology Corridor","industrial",("§405.165",27757040),width=100,front=30,side=20,rear=30,height=60,
+   max_lot_coverage_pct=70, note="Lot width 200 ft for lots of 5+ acres; corner side yard 30 ft. No minimum lot area. 15 ft landscape strip on side and rear lines. Site development plan, elevations and preliminary plat required."),
+ d(J, "I1","Light Industrial","industrial",("§405.170",27757102),front=35,side=10,rear=15,height=60,
+   note="Side and rear yards are 0 ft next to I zoning; otherwise 10 ft side, 15 ft rear. No minimum lot area except 7,000 sf for residential."),
+ d(J, "I2","Heavy Industrial","industrial",("§405.175",27757157),front=35,side=10,rear=15,height=60,
+   note="Side and rear yards are 0 ft next to I zoning; otherwise 10 ft side, 15 ft rear. No minimum lot area."),
+ d(J, "SWD","Solid Waste Disposal","special",("§405.180",27757227),
+   note="No standard lot or setback table. Standards come from the site development plan and solid-waste facility conditions."),
+ d(J, "PUD","Planned Unit Development (overlay)","overlay",("§405.185-405.240",27757266),
+   note="Overlay on a base district. Density per §405.205; standards set by the approved development plan."),
+ d(J, "FW","Floodway (overlay)","overlay",("Part 2, Art. XI",27756190), note="Flood overlay; see Article XI."),
+ d(J, "FF","Floodway Fringe (overlay)","overlay",("Part 2, Art. XI",27756190), note="Flood overlay; see Article XI."),
+ d(J, "DF","Density Floodway (overlay)","overlay",("Part 2, Art. XI",27756190), note="Flood overlay; see Article XI."),
+ d(J, "WH","Wellhead Protection (overlay)","overlay",("Part 2, Art. XII",27757569), note="Overlay; see Article XII."),
+]
+# City of St. Charles Ch. 400, Art. II "Design Standards" subsections (ecode360). Heights are "X stories or Y ft".
+# Many commercial/industrial districts have Green Point Rating System (GPRS) bonuses for height and setbacks.
+J = "stcharles_city"
+GP = "GPRS (Green Point Rating System) bonuses allow more height and smaller setbacks, §400.920-950."
+R1C = ("§400.150", 27713583)
+rows += [
+ d(J,"A","Agricultural","agricultural",("§400.140",27713509),lot=130680,width=150,front=50,side=20,rear=50,height=35,
+   min_lot_depth_ft=200, note="Code text reads 'five (50) feet' for the rear yard. Floors 1 ft above the 100-year flood elevation."),
+ d(J,"R-1C","Single-Family Residential","residential",R1C,lot=12500,width=100,front=30,side=10,rear=25,height=35,
+   min_lot_depth_ft=125, max_lot_coverage_pct=40, min_dwelling_sf=1000),
+ d(J,"R-1D","Single-Family Residential","residential",R1C,lot=9000,width=75,front=25,side=7,rear=25,height=35,
+   min_lot_depth_ft=100, max_lot_coverage_pct=40, min_dwelling_sf=1000),
+ d(J,"R-1E","Single-Family Residential","residential",R1C,lot=7000,width=60,front=25,side=7,rear=25,height=35,
+   min_lot_depth_ft=100, max_lot_coverage_pct=40, min_dwelling_sf=1000),
+ d(J,"R-2","Two-Family Residential","residential",("§400.160",27713654),lot=9000,width=75,front=25,side=7,rear=25,height=35,
+   min_lot_depth_ft=120, max_lot_coverage_pct=40, min_dwelling_sf=700),
+ d(J,"R-3A","Multiple-Family Residential","residential",("§400.170",27713681),lot=10000,width=75,dens=18,front=25,side=7,rear=25,height=45,
+   min_lot_depth_ft=125, max_lot_coverage_pct=40, note="30 ft between buildings on the same lot."),
+ d(J,"R-M","Manufactured/Modular Residential","residential",("§400.180",27713717),lot=5000,width=45,front=30,side=6,rear=25,
+   min_lot_depth_ft=110, max_lot_coverage_pct=50, note="Park: 8 acres, 200 ft wide and deep. Front yard 10 ft on an interior drive. 10 ft between homes."),
+ d(J,"O-I","Office Institution","office",("§400.190",27713776),lot=7500,front=25,side=15,rear=25,height=35,
+   max_lot_coverage_pct=40, note="Side yard 0 ft unless next to residential (15 ft). College campuses may go to 10 stories / 140 ft with added setbacks. "+GP),
+ d(J,"HCD","Historic Commercial","commercial",("§400.200",27713846),lot=7500,front=10,side=10,rear=30,height=35,
+   max_floor_area_sf=5000, note="Side yard only when next to residential. 5,000 sf max per establishment."),
+ d(J,"C-1","Neighborhood Business","commercial",("§400.210",27713921),lot=7500,front=25,side=15,rear=25,height=35,
+   max_floor_area_sf=3000, note="Side yard 0 ft unless next to residential (15 ft). 3,000 sf max per establishment. "+GP),
+ d(J,"C-2","General Business","commercial",("§400.220",27714013),lot=10000,front=25,side=20,rear=20,height=45,
+   note="Side and rear yards 0 ft unless next to residential (20 ft). "+GP),
+ d(J,"C-3","Highway Business","commercial",("§400.230",27714096),lot=10000,front=25,side=25,rear=25,height=45,
+   note="Side and rear yards 0 ft unless next to residential (25 ft). "+GP),
+ d(J,"I-1","Light Industrial","industrial",("§400.240",27714144),lot=43560,width=150,front=35,side=50,rear=50,height=45,
+   min_lot_depth_ft=200, note="Side and rear 0 ft unless next to residential (50 ft). Buildings 100 ft from any residential district boundary; front 50 ft across from residential. "+GP),
+ d(J,"I-2","Heavy Industrial","industrial",("§400.250",27714216),lot=43560,width=150,front=35,side=50,rear=50,height=45,
+   min_lot_depth_ft=200, note="Side 0 ft (10 ft next to commercial, 50 ft next to residential); rear 0 ft (30 ft next to commercial, 50 ft next to residential). Buildings 100 ft from any residential district boundary. "+GP),
+ d(J,"CBD","Central Business","commercial",("§400.270",27714315),front=15,side=15,rear=15,height=45,
+   max_lot_coverage_pct=80, note="No yards unless across from or next to residential (15 ft), plus a 15 ft landscaped greenbelt there. Height may be varied by P&Z and Council. No minimum lot."),
+ d(J,"CRD","Central Residential (CRD-I, CRD-II)","residential",("§400.280",27714349),lot=5000,front=20,side=5,rear=10,height=45,
+   max_lot_coverage_pct=70, note="Height 45 ft / 3 stories in CRD-I, 35 ft / 2.5 stories in CRD-II. CRD-II: one principal building per lot, 700 sf per unit."),
+ d(J,"FD","Frenchtown","mixed_use",("§400.290",27714371),front=0,side=10,rear=20,height=60,
+   max_front_setback_ft=10, note="Build-to: front 0-10 ft. Side and rear only when abutting residential (10 / 20 ft). No minimum lot."),
+ d(J,"WHP","Wellhead Protection (overlay)","overlay",("§400.320",27714510), note="Underlying district standards apply, plus paved storage/parking and stormwater pretreatment."),
+ d(J,"SMPD","South Main Preservation (overlay)","overlay",("§400.330",27714556), note="Historic preservation overlay; design review."),
+ d(J,"EHP","Extended Historic Preservation (overlay)","overlay",("§400.340",27714574), note="Historic preservation overlay; design review."),
+ d(J,"HDD","Historic Downtown (overlay)","overlay",("§400.350",27714579), note="Historic preservation overlay; design review."),
+ d(J,"FPD","Frenchtown Preservation (overlay)","overlay",("§400.360",27714586), note="Historic preservation overlay; design review."),
+ d(J,"CPD","Commons Preservation (overlay)","overlay",("§400.370",27714631), note="Historic preservation overlay; design review."),
+ d(J,"LMPD","Landmark Preservation (overlay)","overlay",("§400.380",27714644), note="Historic preservation overlay; design review."),
+ d(J,"FSC/HD","Fifth Street Corridor/Hospital (overlay)","overlay",("§400.390",27714654), note="Superimposed district; see section."),
+ d(J,"PD","Planned Development (PD-R, PD-C, PD-I, PD-RF, PD-MU)","planned",("§400.800-910",27717372),
+   note="5-acre minimum site. Standards set by the ordinance creating each PD, §400.850."),
+]
+
+# O'Fallon Ch. 400 (Ord. 7042, 2023), Art. IV "Regulations And Performance Standards" subsections (ecode360).
+J = "ofallon"
+H6 = "P&Z may allow up to 6 stories (microwave-path and fire-access findings)."
+rows += [
+ d(J,"R-1","Single-Family Residential","residential",("§400.080",43318553),lot=10000,width=80,front=25,side=6,rear=25,height=35,
+   min_lot_depth_ft=100, max_lot_coverage_pct=35),
+ d(J,"R-1A","Single-Family Suburban Residential","residential",("§400.085",43318573),lot=22000,width=110,front=40,side=12,rear=40,height=35,
+   min_lot_depth_ft=180, max_lot_coverage_pct=25),
+ d(J,"R-2","Two-Family Residential","residential",("§400.095",43318593),lot=10000,width=80,front=25,side=6,rear=25,height=35,
+   note="R-1 standards apply. Two-family on one lot: 45% coverage, 15 ft rear. Side-by-side on two lots: 5,000 sf and 40 ft wide per lot, 50% coverage, 15 ft rear, no side yard at the party wall."),
+ d(J,"R-3","Medium Density Residential","residential",("§400.100",43318622),lot=7500,width=70,dens=10,front=30,side=20,rear=35,height=45,
+   min_site_acres=1, max_lot_coverage_pct=40, note="Yards shown are for multi-family; single-family uses R-1 yards. 1-acre minimum site unless next to multi-family zoning. 2.5 stories."),
+ d(J,"R-4","Apartment Building","residential",("§400.105",43318679),lot=7500,width=70,dens=14,front=35,side=15,rear=30,height=50,
+   min_site_acres=1, max_lot_coverage_pct=40, note="Yards shown are for multi-family; single-family is 25/6/15 ft. 1-acre minimum site unless next to multi-family zoning. 4 stories."),
+ d(J,"R-5","Mobile/Manufactured Home Park","residential",("§400.110",43318732),lot=4200,width=80,side=6,rear=6,
+   max_lot_coverage_pct=50, note="Per home space. Homes 30 ft from the park boundary, 50 ft from an outside public street, 15 ft from interior right-of-way. 600 sf minimum home."),
+ d(J,"TGD","Transitional Growth (St. Paul)","residential",("§400.112",43318809),lot=10000,width=80,front=25,side=6,rear=25,height=35,
+   note="Three tiers. Primary: 1 ac, 150 ft wide, 40/20/40 ft. Secondary: 22,000 sf, 110 ft, 40/12/40 ft. Tertiary (shown): 10,000 sf, 80 ft, 25/6/25 ft."),
+ d(J,"C-O","Office","office",("§400.115",43318854),width=75,front=25,side=10,rear=35,height=35,
+   min_site_acres=1, max_lot_coverage_pct=25, note="Corner street-side yard 25 ft. 1-acre minimum site unless next to commercial or industrial zoning."),
+ d(J,"C-1","Restricted Business","commercial",("§400.120",43318875),width=70,front=25,rear=25,height=35,
+   min_site_acres=1, max_lot_coverage_pct=30, note="No side yard unless next to residential or office (then that district's side yard); corner 25 ft. 5,000 sf max per business; no outdoor storage."),
+ d(J,"C-2","General Business","commercial",("§400.125",43318899),width=25,front=25,height=50,
+   min_site_acres=5, note="No side or rear yard unless next to residential or office (side matches that district; rear 10 ft); corner 25 ft. No coverage limit. 3 stories; "+H6),
+ d(J,"C-3","Highway Commercial","commercial",("§400.130",43318918),width=25,front=30,side=20,rear=25,height=50,
+   min_site_acres=5, max_lot_coverage_pct=50, note="Corner street-side yard 30 ft. 3 stories; "+H6),
+ d(J,"I-1","Light Industrial","industrial",("§400.140",43318939),width=75,front=30,side=20,rear=35,height=50,
+   min_site_acres=5, max_lot_coverage_pct=50, note="Corner street-side yard 30 ft. 5-acre minimum site unless next to industrial zoning."),
+ d(J,"I-2","Heavy Industrial","industrial",("§400.145",43318960),width=75,front=30,side=25,rear=50,height=50,
+   min_site_acres=5, max_lot_coverage_pct=50, note="Corner street-side yard 30 ft."),
+ d(J,"HTCD","High Tech Corridor","industrial",("§400.150",43318981),width=100,front=30,side=20,rear=35,height=50,
+   min_site_acres=5, max_lot_coverage_pct=50, note="All operations inside enclosed buildings. Corner side yard 30 ft. Preliminary development plan and plat filed with rezoning. 3 stories; "+H6),
+ d(J,"AG","Agricultural","agricultural",("§400.155",43319121),lot=87120,width=150,front=50,side=30,rear=50,
+   max_lot_coverage_pct=10, note="10 acres to keep livestock; livestock structures 100 ft from lot lines. Dwellings 2.5 stories; farm buildings 50 ft. Corner street side 50 ft."),
+ d(J,"P-R","Park-Recreation","recreational",("§400.160",43319139),front=60,side=30,rear=50,height=25,
+   max_lot_coverage_pct=10, note="2 stories. Corner street-side yard 60 ft."),
+ d(J,"MUTDD","Mixed-Use Traditional Development","mixed_use",("§400.161",43319153),
+   min_site_acres=5, note="Area plan and final plan approved by Council. At least 20% residential and 20% non-residential land area."),
+ d(J,"SCO","Senior Community (overlay)","overlay",("§400.162",43319270), note="Overlay with its own density and site standards."),
+ d(J,"DO","Downtown (overlay)","overlay",("§400.163",43319320),
+   note="No minimum lot area; 20% green space. Setbacks follow the underlying district and may be reduced by P&Z."),
+ d(J,"STO","Sports Tourism (overlay)","overlay",("§400.164",45964491),height=60,
+   min_site_acres=20, note="Yards per C-2. 30 ft bufferyard and 6 ft fence next to residential."),
+ d(J,"PD/PUD","Planned Development / Planned Unit Development","planned",("Art. V",43319555),
+   note="Standards set by the approved development plan."),
+]
+
+# St. Peters Ch. 405, Art. V (ecode360). Side yards in R-1/R-1(A)/R-2 are 10% of lot width, so side is left blank.
+J = "stpeters"
+PZH = "P&Z may approve more height."
+rows += [
+ d(J,"A-1","Agricultural","agricultural",("§405.110",28264925), note="Height, lot area, coverage and yards: not applicable."),
+ d(J,"P-1","Public Park Ground","recreational",("§405.120",28264945),front=10,side=10,rear=10,height=35, note="Principal building 10 ft from any property line. 2.5 stories; "+PZH),
+ d(J,"R-1","Single-Family Residential","residential",("§405.130",28264963),lot=12000,width=65,dens=5.8,front=20,rear=25,height=35,
+   max_lot_coverage_pct=50, note="12,000 sf for plats approved after Jan 1, 2001 (7,000 sf before; density cap 1 unit per 7,500 sf net). Side yards 10% of lot width (6 ft max on older plats and cul-de-sacs). Corner rear 15 ft. Coverage includes paving."),
+ d(J,"R-1(A)","Single-Family Residential","residential",("§405.140",28265016),lot=10000,width=90,dens=3.6,front=30,rear=30,height=35,
+   max_lot_coverage_pct=50, note="Density cap 1 unit per 12,000 sf net; a 10,000 sf lot must abut a 12,000 sf lot. Side yards 10% of lot width. Corner rear 20 ft."),
+ d(J,"R-2","Two-Family Residential","residential",("§405.150",28265071),lot=10000,width=80,front=20,side=6,rear=25,height=35,
+   max_lot_coverage_pct=50, note="10,000 sf per two-family lot on post-2001 plats (9,000 before). Side yard 10% of width, max 6 ft; 0 ft at the common wall. 1,000 sf units (10% may be 800 sf)."),
+ d(J,"R-3(A)","Multiple-Family Residential (14/ac)","residential",("§405.160",28265118),width=100,dens=14,front=20,side=15,rear=20,height=28,
+   note="2 stories. Churches 50 ft from residential side and rear lines."),
+ d(J,"R-3(B)","Multiple-Family Residential (10/ac)","residential",("§405.160",28265118),width=100,dens=10,front=20,side=15,rear=20,height=28,
+   note="2 stories. Churches 50 ft from residential side and rear lines."),
+ d(J,"R-M","Mobile/Modular Home Residential","residential",("§405.170",28265170),lot=3750,width=40,front=20,side=13,rear=20,height=35,
+   note="Lot area rises with home size (3,750 sf for 560 sf up to 5,900 sf for 1,960 sf); 60 ft wide for homes over 980 sf. 26 ft between homes; 30 ft from park boundary."),
+ d(J,"S-D","Special Old Town (overlay)","overlay",("§405.180",28265201),height=35, note="No minimum lot. Yards set case by case by P&Z to match existing Old Town layouts."),
+ d(J,"C-1","Neighborhood Commercial","commercial",("§405.190",28265219),front=30,side=10,rear=15,height=20,
+   note="1 story / 20 ft unless P&Z approves more. Side and rear 20 ft next to residential. No minimum lot."),
+ d(J,"C-2","Community Commercial","commercial",("§405.200",28265252),front=30,side=10,rear=15,height=35,
+   note="Side 20 ft and rear 25 ft next to residential. No minimum lot. "+PZH),
+ d(J,"C-3","General Commercial","commercial",("§405.210",28265305),front=30,side=15,rear=25,
+   note="6 stories unless P&Z approves more. Side 20 ft and rear 30 ft next to residential. No minimum lot."),
+ d(J,"C-4","Regional Shopping Center","commercial",("§405.220",28265369),lot=2613600,front=45,side=50,rear=50,
+   note="60-acre minimum parcel. Side yard 50 ft next to residential. 6 stories unless P&Z approves more."),
+ d(J,"CPD","Commercial Planned","planned",("§405.225",28265407), note="Height and setbacks set by each CPD ordinance. 10 ft landscaped green belt next to residential."),
+ d(J,"I-1","Light Industrial","industrial",("§405.230",28265430),front=30,side=10,rear=15,height=45,
+   note="40 ft side/rear next to residential. Open storage up to 40% of lot. No minimum lot. "+PZH),
+ d(J,"I-2","Heavy Industrial","industrial",("§405.240",28265478),front=30,side=10,rear=15,height=45,
+   note="70 ft side/rear next to residential. Open storage up to 60% of lot. "+PZH),
+ d(J,"PUD","Planned Urban Development","planned",("§405.250",28265530), note="Design standards and project-area densities in §405.250(C) and (E)."),
+ d(J,"SPC","St. Peters Centre Special District","special",("§405.260",28265574), note="Subdistricts with their own lot, setback and bulk rules, §405.260(D)-(F)."),
+ d(J,"L370","Lakeside 370 Special District","special",("§405.265",28265651), note="Own lot, setback and bulk rules, §405.265(C)-(E)."),
+]
+
+# Wentzville Ch. 405, Art. II "(d) Regulations and performance standards" (Municode; sec[1] is the Municode nodeId).
+J = "wentzville"
+WM = "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_"
+def w(*a, **k):
+    r = d(*a, **k); r["source_url"] = WM + r["source_url"].replace(E, ""); return r
+WR1 = ("§405.170", "S405.170SIMIREDI")
+DW = "Min dwelling 1,200 sf main floor or 1,800 sf total."
+rows += [
+ w(J,"A","Agricultural","agricultural",("§405.160","S405.160AGDI"),lot=130680,width=150,front=50,side=30,rear=50,height=35,
+   max_lot_coverage_pct=35, note="Corner street side 50 ft. Farm buildings to 50 ft. "+DW),
+ w(J,"R-1A","Single-Family Residential (1 ac)","residential",WR1,lot=43560,width=100,front=35,side=20,rear=35,height=35,max_lot_coverage_pct=35,note=DW),
+ w(J,"R-1B","Single-Family Residential (20,000 sf)","residential",WR1,lot=20000,width=100,front=35,side=10,rear=35,height=35,max_lot_coverage_pct=35,note=DW),
+ w(J,"R-1C","Single-Family Residential (12,000 sf)","residential",WR1,lot=12000,width=80,front=25,side=7,rear=25,height=35,max_lot_coverage_pct=35,note=DW),
+ w(J,"R-1D","Single-Family Residential (9,000 sf)","residential",WR1,lot=9000,width=75,front=25,side=7,rear=25,height=35,max_lot_coverage_pct=35,note=DW),
+ w(J,"R-1E","Single-Family Residential (8,300 sf)","residential",WR1,lot=8300,width=70,front=25,side=7,rear=25,height=35,max_lot_coverage_pct=35,note=DW),
+ w(J,"R-2","Two-Family Residential","residential",("§405.180","S405.180TMIREDI"),lot=10000,width=80,front=25,side=7,rear=30,height=35,
+   max_lot_coverage_pct=35, note="Zero side yard at a common party wall. "+DW),
+ w(J,"R-3B","Multi-Family Residential","residential",("§405.190","S405.190MUMIREDI"),lot=10000,width=80,dens=8,front=25,side=10,rear=30,height=50,
+   max_lot_coverage_pct=45, note="4 stories. Spacing between buildings 20-60 ft by orientation. Detached and two-family use R-2 yards."),
+ w(J,"MHD","Mobile Home Development","residential",("§405.200","S405.200MHMOHODEDI"),lot=10000,width=100,front=30,side=15,rear=25,height=35,
+   note="One home per lot; additions and carports 30 ft from street right-of-way."),
+ w(J,"C-O","Office","office",("§405.210","S405.210OFDI"),lot=43560,width=150,front=30,side=10,rear=30,height=45,max_lot_coverage_pct=35,note="4 stories."),
+ w(J,"C-1","Neighborhood Commercial","commercial",("§405.220","S405.220NECODI"),lot=8300,width=60,front=30,side=12,rear=30,height=35,max_lot_coverage_pct=35),
+ w(J,"C-2","General Commercial","commercial",("§405.230","S405.230GECODI"),lot=8300,width=60,front=30,side=10,rear=25,height=50,
+   note="Rear 15 ft unless next to residential (25 ft). 3 stories. Coverage set by yards, landscaping and parking."),
+ w(J,"C-3","Highway Commercial","commercial",("§405.240","S405.240HICODI"),lot=10000,width=60,front=30,side=10,rear=30,height=50,
+   note="3 stories. Coverage set by yards, landscaping and parking."),
+ w(J,"I-1","Light Industrial","industrial",("§405.250","S405.250LIINDI"),lot=87120,width=150,front=30,side=20,rear=30,height=50,max_lot_coverage_pct=50,note="3 stories."),
+ w(J,"I-2","Heavy Industrial","industrial",("§405.260","S405.260HEINDI"),lot=130680,width=150,front=50,side=50,rear=50,height=60,max_lot_coverage_pct=50,note="3 stories."),
+ w(J,"PD","Planned Development","planned",("§405.270","S405.270PDPLDEDI"), note="Underlying district standards apply unless modified by the PD ordinance."),
+ w(J,"HF","Highway Frontages (overlay)","overlay",("§405.290","S405.290HFHIFROVDI"), note="Design overlay along highway frontage."),
+ w(J,"WP","Wentzville Parkway (overlay)","overlay",("§405.300","S405.300WPWEPAOVDI"), note="Design overlay along Wentzville Parkway."),
+ w(J,"HD-1","Historic Downtown Core","mixed_use",("§405.310","S405.310HIDOCODI"), note="3 stories max. Lot width and yards are in a table in the section (not captured); check the section."),
+ w(J,"HD-2","Historic Downtown Corridor","mixed_use",("§405.320","S405.320HIDOCODI"), note="3 stories max. Lot width and yards are in a table in the section (not captured); check the section."),
+ w(J,"HD-3","Historic Downtown Light Industrial/Loft","mixed_use",("§405.330","S405.330HIDOLIINLODI"), note="3 stories max. Lot width and yards are in a table in the section (not captured); check the section."),
+]
+
+json.dump(rows, open(sys.argv[1] + "/zoning_districts.json", "w"), indent=1)
+print(len(rows))

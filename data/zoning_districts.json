@@ -1,0 +1,2123 @@
+[
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "A",
+  "name": "Agricultural",
+  "category": "agricultural",
+  "min_lot_sf": 217800,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": null,
+  "front_setback_ft": 50,
+  "side_setback_ft": 40,
+  "rear_setback_ft": 50,
+  "max_height_ft": 40,
+  "other_requirements": {
+   "code_section": "\u00a7405.080",
+   "min_dwelling_sf": 800,
+   "note": "Pre-existing lots of record under 1 acre: 25 ft front, 7 ft side, 25 ft rear. A home existing before Feb 13, 2006 may be split onto a 3-acre tract."
+  },
+  "source_url": "https://ecode360.com/27756247"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "AT",
+  "name": "Agricultural Tourism",
+  "category": "agricultural",
+  "min_lot_sf": 1742400,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": null,
+  "front_setback_ft": 50,
+  "side_setback_ft": 40,
+  "rear_setback_ft": 50,
+  "max_height_ft": 40,
+  "other_requirements": {
+   "code_section": "\u00a7405.085"
+  },
+  "source_url": "https://ecode360.com/27756336"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "RR",
+  "name": "Single-Family Residential (3 ac)",
+  "category": "residential",
+  "min_lot_sf": 130680,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": 0.33,
+  "front_setback_ft": 50,
+  "side_setback_ft": 40,
+  "rear_setback_ft": 50,
+  "max_height_ft": 40,
+  "other_requirements": {
+   "code_section": "\u00a7405.090",
+   "min_dwelling_sf": 1000,
+   "cluster_max_lot_sf": 43560,
+   "note": "Cluster development (5+ acres, 5+ lots) allows smaller lots at the same density, \u00a7405.090(I)"
+  },
+  "source_url": "https://ecode360.com/27756377"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "R1A",
+  "name": "Single-Family Residential (1 ac)",
+  "category": "residential",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 125,
+  "max_density_du_ac": 1,
+  "front_setback_ft": 35,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 35,
+  "max_height_ft": 40,
+  "other_requirements": {
+   "code_section": "\u00a7405.090",
+   "min_dwelling_sf": 1000,
+   "cluster_max_lot_sf": 14500,
+   "note": "Cluster development (5+ acres, 5+ lots) allows smaller lots at the same density, \u00a7405.090(I)"
+  },
+  "source_url": "https://ecode360.com/27756377"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "R1B",
+  "name": "Single-Family Residential (20,000 sf)",
+  "category": "residential",
+  "min_lot_sf": 20000,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": 2.1,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 25,
+  "max_height_ft": 40,
+  "other_requirements": {
+   "code_section": "\u00a7405.090",
+   "min_dwelling_sf": 1000,
+   "cluster_max_lot_sf": 9000,
+   "note": "Cluster development (5+ acres, 5+ lots) allows smaller lots at the same density, \u00a7405.090(I)"
+  },
+  "source_url": "https://ecode360.com/27756377"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "R1C",
+  "name": "Single-Family Residential (15,000 sf)",
+  "category": "residential",
+  "min_lot_sf": 15000,
+  "min_lot_width_ft": 80,
+  "max_density_du_ac": 2.9,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 25,
+  "max_height_ft": 40,
+  "other_requirements": {
+   "code_section": "\u00a7405.090",
+   "min_dwelling_sf": 1000,
+   "cluster_max_lot_sf": 6700,
+   "note": "Cluster development (5+ acres, 5+ lots) allows smaller lots at the same density, \u00a7405.090(I); up to 10% of platted lots may be two-family."
+  },
+  "source_url": "https://ecode360.com/27756377"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "R1D",
+  "name": "Single-Family Residential (10,000 sf)",
+  "category": "residential",
+  "min_lot_sf": 10000,
+  "min_lot_width_ft": 80,
+  "max_density_du_ac": 4.3,
+  "front_setback_ft": 20,
+  "side_setback_ft": 7,
+  "rear_setback_ft": 25,
+  "max_height_ft": 40,
+  "other_requirements": {
+   "code_section": "\u00a7405.090",
+   "min_dwelling_sf": 1000,
+   "cluster_max_lot_sf": 5500,
+   "note": "Cluster development (5+ acres, 5+ lots) allows smaller lots at the same density, \u00a7405.090(I); up to 10% of platted lots may be two-family."
+  },
+  "source_url": "https://ecode360.com/27756377"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "R1E",
+  "name": "Single-Family Residential (7,000 sf)",
+  "category": "residential",
+  "min_lot_sf": 7000,
+  "min_lot_width_ft": 70,
+  "max_density_du_ac": 6.2,
+  "front_setback_ft": 20,
+  "side_setback_ft": 7,
+  "rear_setback_ft": 25,
+  "max_height_ft": 40,
+  "other_requirements": {
+   "code_section": "\u00a7405.090",
+   "min_dwelling_sf": 1000,
+   "cluster_max_lot_sf": 4200,
+   "note": "Cluster development (5+ acres, 5+ lots) allows smaller lots at the same density, \u00a7405.090(I); up to 10% of platted lots may be two-family. Conditional use: 6,000 sf lots, 60 ft wide, 6 ft sides, 800 sf homes."
+  },
+  "source_url": "https://ecode360.com/27756377"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "R2",
+  "name": "Two-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 7000,
+  "min_lot_width_ft": 70,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 7,
+  "rear_setback_ft": 25,
+  "max_height_ft": 40,
+  "other_requirements": {
+   "code_section": "\u00a7405.095",
+   "min_lot_sf_per_unit": 3500,
+   "min_lot_width_per_unit_ft": 35,
+   "min_dwelling_sf": 1000,
+   "min_dwelling_sf_two_family": 700,
+   "note": "Zero side yard allowed at a common party wall."
+  },
+  "source_url": "https://ecode360.com/27756533"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "R3A",
+  "name": "Medium Density Residential",
+  "category": "residential",
+  "min_lot_sf": 4000,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 10,
+  "front_setback_ft": 20,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 25,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.100",
+   "note": "Setbacks apply to the outer limits of the development site; internal yards per the preliminary plat or site plan. 4,000 sf minimum is for detached single-family.",
+   "min_dwelling_sf_multifamily": {
+    "2br": 500,
+    "1br": 400,
+    "efficiency": 300
+   }
+  },
+  "source_url": "https://ecode360.com/27756579"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "R3B",
+  "name": "Multi-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 4000,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 20,
+  "front_setback_ft": 20,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 25,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.105",
+   "note": "Setbacks apply to the outer limits of the development site; internal yards per the preliminary plat or site plan. 4,000 sf minimum is for detached single-family.",
+   "min_dwelling_sf_multifamily": {
+    "2br": 500,
+    "1br": 400,
+    "efficiency": 300
+   }
+  },
+  "source_url": "https://ecode360.com/27756625"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "RM",
+  "name": "Manufactured/Mobile Home Residential",
+  "category": "residential",
+  "min_lot_sf": 6000,
+  "min_lot_width_ft": 60,
+  "max_density_du_ac": null,
+  "front_setback_ft": 20,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 10,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.110",
+   "note": "One home per lot. 20 ft from street right-of-way (25 ft for additions and carports). Park needs a 25-50 ft landscaped perimeter buffer and 500 sf of recreation area per lot."
+  },
+  "source_url": "https://ecode360.com/27756675"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "PR",
+  "name": "Park Recreational",
+  "category": "recreational",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 25,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.115"
+  },
+  "source_url": "https://ecode360.com/27756716"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "RF",
+  "name": "Riverfront",
+  "category": "special",
+  "min_lot_sf": null,
+  "min_lot_width_ft": 200,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 30,
+  "max_height_ft": 50,
+  "other_requirements": {
+   "code_section": "\u00a7405.120",
+   "min_river_frontage_ft": 300,
+   "max_height_conditional_ft": 75,
+   "note": "30 ft setbacks from all lines except river frontage. No minimum site area (riverboat gaming vessels need 25 acres). Conditional uses need an approved riverfront development plan."
+  },
+  "source_url": "https://ecode360.com/27756752"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "CO",
+  "name": "Office",
+  "category": "office",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 15,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.125",
+   "note": "Side yard 0 ft unless it adjoins A or R zoning (then 10 ft). Rear yard 0 ft next to C zoning, else 15 ft. No minimum lot area except 7,000 sf for a dwelling."
+  },
+  "source_url": "https://ecode360.com/27756814"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "C1",
+  "name": "Neighborhood Commercial",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 15,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.130",
+   "note": "Side and rear yards are 0 ft next to C zoning; otherwise 10 ft side, 15 ft rear. No minimum lot area except 7,000 sf for residential."
+  },
+  "source_url": "https://ecode360.com/27756867"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "C2",
+  "name": "General Commercial",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 15,
+  "max_height_ft": 60,
+  "other_requirements": {
+   "code_section": "\u00a7405.135",
+   "note": "Side yard 10 ft next to A or R zoning, else 0 ft. Rear yard 0 ft next to C zoning, else 15 ft. No minimum lot area except 7,000 sf for residential."
+  },
+  "source_url": "https://ecode360.com/27756929"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "HTCD",
+  "name": "High Technology Corridor",
+  "category": "industrial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 30,
+  "max_height_ft": 60,
+  "other_requirements": {
+   "code_section": "\u00a7405.165",
+   "max_lot_coverage_pct": 70,
+   "note": "Lot width 200 ft for lots of 5+ acres; corner side yard 30 ft. No minimum lot area. 15 ft landscape strip on side and rear lines. Site development plan, elevations and preliminary plat required."
+  },
+  "source_url": "https://ecode360.com/27757040"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "I1",
+  "name": "Light Industrial",
+  "category": "industrial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 35,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 15,
+  "max_height_ft": 60,
+  "other_requirements": {
+   "code_section": "\u00a7405.170",
+   "note": "Side and rear yards are 0 ft next to I zoning; otherwise 10 ft side, 15 ft rear. No minimum lot area except 7,000 sf for residential."
+  },
+  "source_url": "https://ecode360.com/27757102"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "I2",
+  "name": "Heavy Industrial",
+  "category": "industrial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 35,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 15,
+  "max_height_ft": 60,
+  "other_requirements": {
+   "code_section": "\u00a7405.175",
+   "note": "Side and rear yards are 0 ft next to I zoning; otherwise 10 ft side, 15 ft rear. No minimum lot area."
+  },
+  "source_url": "https://ecode360.com/27757157"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "SWD",
+  "name": "Solid Waste Disposal",
+  "category": "special",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.180",
+   "note": "No standard lot or setback table. Standards come from the site development plan and solid-waste facility conditions."
+  },
+  "source_url": "https://ecode360.com/27757227"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "PUD",
+  "name": "Planned Unit Development (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.185-405.240",
+   "note": "Overlay on a base district. Density per \u00a7405.205; standards set by the approved development plan."
+  },
+  "source_url": "https://ecode360.com/27757266"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "FW",
+  "name": "Floodway (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "Part 2, Art. XI",
+   "note": "Flood overlay; see Article XI."
+  },
+  "source_url": "https://ecode360.com/27756190"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "FF",
+  "name": "Floodway Fringe (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "Part 2, Art. XI",
+   "note": "Flood overlay; see Article XI."
+  },
+  "source_url": "https://ecode360.com/27756190"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "DF",
+  "name": "Density Floodway (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "Part 2, Art. XI",
+   "note": "Flood overlay; see Article XI."
+  },
+  "source_url": "https://ecode360.com/27756190"
+ },
+ {
+  "jurisdiction_id": "stcharles_county",
+  "code": "WH",
+  "name": "Wellhead Protection (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "Part 2, Art. XII",
+   "note": "Overlay; see Article XII."
+  },
+  "source_url": "https://ecode360.com/27757569"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "A",
+  "name": "Agricultural",
+  "category": "agricultural",
+  "min_lot_sf": 130680,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": null,
+  "front_setback_ft": 50,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 50,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.140",
+   "min_lot_depth_ft": 200,
+   "note": "Code text reads 'five (50) feet' for the rear yard. Floors 1 ft above the 100-year flood elevation."
+  },
+  "source_url": "https://ecode360.com/27713509"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "R-1C",
+  "name": "Single-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 12500,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.150",
+   "min_lot_depth_ft": 125,
+   "max_lot_coverage_pct": 40,
+   "min_dwelling_sf": 1000
+  },
+  "source_url": "https://ecode360.com/27713583"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "R-1D",
+  "name": "Single-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 9000,
+  "min_lot_width_ft": 75,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 7,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.150",
+   "min_lot_depth_ft": 100,
+   "max_lot_coverage_pct": 40,
+   "min_dwelling_sf": 1000
+  },
+  "source_url": "https://ecode360.com/27713583"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "R-1E",
+  "name": "Single-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 7000,
+  "min_lot_width_ft": 60,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 7,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.150",
+   "min_lot_depth_ft": 100,
+   "max_lot_coverage_pct": 40,
+   "min_dwelling_sf": 1000
+  },
+  "source_url": "https://ecode360.com/27713583"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "R-2",
+  "name": "Two-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 9000,
+  "min_lot_width_ft": 75,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 7,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.160",
+   "min_lot_depth_ft": 120,
+   "max_lot_coverage_pct": 40,
+   "min_dwelling_sf": 700
+  },
+  "source_url": "https://ecode360.com/27713654"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "R-3A",
+  "name": "Multiple-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 10000,
+  "min_lot_width_ft": 75,
+  "max_density_du_ac": 18,
+  "front_setback_ft": 25,
+  "side_setback_ft": 7,
+  "rear_setback_ft": 25,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7400.170",
+   "min_lot_depth_ft": 125,
+   "max_lot_coverage_pct": 40,
+   "note": "30 ft between buildings on the same lot."
+  },
+  "source_url": "https://ecode360.com/27713681"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "R-M",
+  "name": "Manufactured/Modular Residential",
+  "category": "residential",
+  "min_lot_sf": 5000,
+  "min_lot_width_ft": 45,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 6,
+  "rear_setback_ft": 25,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.180",
+   "min_lot_depth_ft": 110,
+   "max_lot_coverage_pct": 50,
+   "note": "Park: 8 acres, 200 ft wide and deep. Front yard 10 ft on an interior drive. 10 ft between homes."
+  },
+  "source_url": "https://ecode360.com/27713717"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "O-I",
+  "name": "Office Institution",
+  "category": "office",
+  "min_lot_sf": 7500,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.190",
+   "max_lot_coverage_pct": 40,
+   "note": "Side yard 0 ft unless next to residential (15 ft). College campuses may go to 10 stories / 140 ft with added setbacks. GPRS (Green Point Rating System) bonuses allow more height and smaller setbacks, \u00a7400.920-950."
+  },
+  "source_url": "https://ecode360.com/27713776"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "HCD",
+  "name": "Historic Commercial",
+  "category": "commercial",
+  "min_lot_sf": 7500,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 10,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 30,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.200",
+   "max_floor_area_sf": 5000,
+   "note": "Side yard only when next to residential. 5,000 sf max per establishment."
+  },
+  "source_url": "https://ecode360.com/27713846"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "C-1",
+  "name": "Neighborhood Business",
+  "category": "commercial",
+  "min_lot_sf": 7500,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.210",
+   "max_floor_area_sf": 3000,
+   "note": "Side yard 0 ft unless next to residential (15 ft). 3,000 sf max per establishment. GPRS (Green Point Rating System) bonuses allow more height and smaller setbacks, \u00a7400.920-950."
+  },
+  "source_url": "https://ecode360.com/27713921"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "C-2",
+  "name": "General Business",
+  "category": "commercial",
+  "min_lot_sf": 10000,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 20,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7400.220",
+   "note": "Side and rear yards 0 ft unless next to residential (20 ft). GPRS (Green Point Rating System) bonuses allow more height and smaller setbacks, \u00a7400.920-950."
+  },
+  "source_url": "https://ecode360.com/27714013"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "C-3",
+  "name": "Highway Business",
+  "category": "commercial",
+  "min_lot_sf": 10000,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 25,
+  "rear_setback_ft": 25,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7400.230",
+   "note": "Side and rear yards 0 ft unless next to residential (25 ft). GPRS (Green Point Rating System) bonuses allow more height and smaller setbacks, \u00a7400.920-950."
+  },
+  "source_url": "https://ecode360.com/27714096"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "I-1",
+  "name": "Light Industrial",
+  "category": "industrial",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": null,
+  "front_setback_ft": 35,
+  "side_setback_ft": 50,
+  "rear_setback_ft": 50,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7400.240",
+   "min_lot_depth_ft": 200,
+   "note": "Side and rear 0 ft unless next to residential (50 ft). Buildings 100 ft from any residential district boundary; front 50 ft across from residential. GPRS (Green Point Rating System) bonuses allow more height and smaller setbacks, \u00a7400.920-950."
+  },
+  "source_url": "https://ecode360.com/27714144"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "I-2",
+  "name": "Heavy Industrial",
+  "category": "industrial",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": null,
+  "front_setback_ft": 35,
+  "side_setback_ft": 50,
+  "rear_setback_ft": 50,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7400.250",
+   "min_lot_depth_ft": 200,
+   "note": "Side 0 ft (10 ft next to commercial, 50 ft next to residential); rear 0 ft (30 ft next to commercial, 50 ft next to residential). Buildings 100 ft from any residential district boundary. GPRS (Green Point Rating System) bonuses allow more height and smaller setbacks, \u00a7400.920-950."
+  },
+  "source_url": "https://ecode360.com/27714216"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "CBD",
+  "name": "Central Business",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 15,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 15,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7400.270",
+   "max_lot_coverage_pct": 80,
+   "note": "No yards unless across from or next to residential (15 ft), plus a 15 ft landscaped greenbelt there. Height may be varied by P&Z and Council. No minimum lot."
+  },
+  "source_url": "https://ecode360.com/27714315"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "CRD",
+  "name": "Central Residential (CRD-I, CRD-II)",
+  "category": "residential",
+  "min_lot_sf": 5000,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 20,
+  "side_setback_ft": 5,
+  "rear_setback_ft": 10,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7400.280",
+   "max_lot_coverage_pct": 70,
+   "note": "Height 45 ft / 3 stories in CRD-I, 35 ft / 2.5 stories in CRD-II. CRD-II: one principal building per lot, 700 sf per unit."
+  },
+  "source_url": "https://ecode360.com/27714349"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "FD",
+  "name": "Frenchtown",
+  "category": "mixed_use",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 0,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 20,
+  "max_height_ft": 60,
+  "other_requirements": {
+   "code_section": "\u00a7400.290",
+   "max_front_setback_ft": 10,
+   "note": "Build-to: front 0-10 ft. Side and rear only when abutting residential (10 / 20 ft). No minimum lot."
+  },
+  "source_url": "https://ecode360.com/27714371"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "WHP",
+  "name": "Wellhead Protection (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.320",
+   "note": "Underlying district standards apply, plus paved storage/parking and stormwater pretreatment."
+  },
+  "source_url": "https://ecode360.com/27714510"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "SMPD",
+  "name": "South Main Preservation (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.330",
+   "note": "Historic preservation overlay; design review."
+  },
+  "source_url": "https://ecode360.com/27714556"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "EHP",
+  "name": "Extended Historic Preservation (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.340",
+   "note": "Historic preservation overlay; design review."
+  },
+  "source_url": "https://ecode360.com/27714574"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "HDD",
+  "name": "Historic Downtown (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.350",
+   "note": "Historic preservation overlay; design review."
+  },
+  "source_url": "https://ecode360.com/27714579"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "FPD",
+  "name": "Frenchtown Preservation (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.360",
+   "note": "Historic preservation overlay; design review."
+  },
+  "source_url": "https://ecode360.com/27714586"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "CPD",
+  "name": "Commons Preservation (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.370",
+   "note": "Historic preservation overlay; design review."
+  },
+  "source_url": "https://ecode360.com/27714631"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "LMPD",
+  "name": "Landmark Preservation (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.380",
+   "note": "Historic preservation overlay; design review."
+  },
+  "source_url": "https://ecode360.com/27714644"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "FSC/HD",
+  "name": "Fifth Street Corridor/Hospital (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.390",
+   "note": "Superimposed district; see section."
+  },
+  "source_url": "https://ecode360.com/27714654"
+ },
+ {
+  "jurisdiction_id": "stcharles_city",
+  "code": "PD",
+  "name": "Planned Development (PD-R, PD-C, PD-I, PD-RF, PD-MU)",
+  "category": "planned",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.800-910",
+   "note": "5-acre minimum site. Standards set by the ordinance creating each PD, \u00a7400.850."
+  },
+  "source_url": "https://ecode360.com/27717372"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "R-1",
+  "name": "Single-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 10000,
+  "min_lot_width_ft": 80,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 6,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.080",
+   "min_lot_depth_ft": 100,
+   "max_lot_coverage_pct": 35
+  },
+  "source_url": "https://ecode360.com/43318553"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "R-1A",
+  "name": "Single-Family Suburban Residential",
+  "category": "residential",
+  "min_lot_sf": 22000,
+  "min_lot_width_ft": 110,
+  "max_density_du_ac": null,
+  "front_setback_ft": 40,
+  "side_setback_ft": 12,
+  "rear_setback_ft": 40,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.085",
+   "min_lot_depth_ft": 180,
+   "max_lot_coverage_pct": 25
+  },
+  "source_url": "https://ecode360.com/43318573"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "R-2",
+  "name": "Two-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 10000,
+  "min_lot_width_ft": 80,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 6,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.095",
+   "note": "R-1 standards apply. Two-family on one lot: 45% coverage, 15 ft rear. Side-by-side on two lots: 5,000 sf and 40 ft wide per lot, 50% coverage, 15 ft rear, no side yard at the party wall."
+  },
+  "source_url": "https://ecode360.com/43318593"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "R-3",
+  "name": "Medium Density Residential",
+  "category": "residential",
+  "min_lot_sf": 7500,
+  "min_lot_width_ft": 70,
+  "max_density_du_ac": 10,
+  "front_setback_ft": 30,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 35,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7400.100",
+   "min_site_acres": 1,
+   "max_lot_coverage_pct": 40,
+   "note": "Yards shown are for multi-family; single-family uses R-1 yards. 1-acre minimum site unless next to multi-family zoning. 2.5 stories."
+  },
+  "source_url": "https://ecode360.com/43318622"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "R-4",
+  "name": "Apartment Building",
+  "category": "residential",
+  "min_lot_sf": 7500,
+  "min_lot_width_ft": 70,
+  "max_density_du_ac": 14,
+  "front_setback_ft": 35,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 30,
+  "max_height_ft": 50,
+  "other_requirements": {
+   "code_section": "\u00a7400.105",
+   "min_site_acres": 1,
+   "max_lot_coverage_pct": 40,
+   "note": "Yards shown are for multi-family; single-family is 25/6/15 ft. 1-acre minimum site unless next to multi-family zoning. 4 stories."
+  },
+  "source_url": "https://ecode360.com/43318679"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "R-5",
+  "name": "Mobile/Manufactured Home Park",
+  "category": "residential",
+  "min_lot_sf": 4200,
+  "min_lot_width_ft": 80,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": 6,
+  "rear_setback_ft": 6,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.110",
+   "max_lot_coverage_pct": 50,
+   "note": "Per home space. Homes 30 ft from the park boundary, 50 ft from an outside public street, 15 ft from interior right-of-way. 600 sf minimum home."
+  },
+  "source_url": "https://ecode360.com/43318732"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "TGD",
+  "name": "Transitional Growth (St. Paul)",
+  "category": "residential",
+  "min_lot_sf": 10000,
+  "min_lot_width_ft": 80,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 6,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.112",
+   "note": "Three tiers. Primary: 1 ac, 150 ft wide, 40/20/40 ft. Secondary: 22,000 sf, 110 ft, 40/12/40 ft. Tertiary (shown): 10,000 sf, 80 ft, 25/6/25 ft."
+  },
+  "source_url": "https://ecode360.com/43318809"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "C-O",
+  "name": "Office",
+  "category": "office",
+  "min_lot_sf": null,
+  "min_lot_width_ft": 75,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 35,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.115",
+   "min_site_acres": 1,
+   "max_lot_coverage_pct": 25,
+   "note": "Corner street-side yard 25 ft. 1-acre minimum site unless next to commercial or industrial zoning."
+  },
+  "source_url": "https://ecode360.com/43318854"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "C-1",
+  "name": "Restricted Business",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": 70,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": null,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.120",
+   "min_site_acres": 1,
+   "max_lot_coverage_pct": 30,
+   "note": "No side yard unless next to residential or office (then that district's side yard); corner 25 ft. 5,000 sf max per business; no outdoor storage."
+  },
+  "source_url": "https://ecode360.com/43318875"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "C-2",
+  "name": "General Business",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": 25,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": 50,
+  "other_requirements": {
+   "code_section": "\u00a7400.125",
+   "min_site_acres": 5,
+   "note": "No side or rear yard unless next to residential or office (side matches that district; rear 10 ft); corner 25 ft. No coverage limit. 3 stories; P&Z may allow up to 6 stories (microwave-path and fire-access findings)."
+  },
+  "source_url": "https://ecode360.com/43318899"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "C-3",
+  "name": "Highway Commercial",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": 25,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 25,
+  "max_height_ft": 50,
+  "other_requirements": {
+   "code_section": "\u00a7400.130",
+   "min_site_acres": 5,
+   "max_lot_coverage_pct": 50,
+   "note": "Corner street-side yard 30 ft. 3 stories; P&Z may allow up to 6 stories (microwave-path and fire-access findings)."
+  },
+  "source_url": "https://ecode360.com/43318918"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "I-1",
+  "name": "Light Industrial",
+  "category": "industrial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": 75,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 35,
+  "max_height_ft": 50,
+  "other_requirements": {
+   "code_section": "\u00a7400.140",
+   "min_site_acres": 5,
+   "max_lot_coverage_pct": 50,
+   "note": "Corner street-side yard 30 ft. 5-acre minimum site unless next to industrial zoning."
+  },
+  "source_url": "https://ecode360.com/43318939"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "I-2",
+  "name": "Heavy Industrial",
+  "category": "industrial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": 75,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 25,
+  "rear_setback_ft": 50,
+  "max_height_ft": 50,
+  "other_requirements": {
+   "code_section": "\u00a7400.145",
+   "min_site_acres": 5,
+   "max_lot_coverage_pct": 50,
+   "note": "Corner street-side yard 30 ft."
+  },
+  "source_url": "https://ecode360.com/43318960"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "HTCD",
+  "name": "High Tech Corridor",
+  "category": "industrial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 35,
+  "max_height_ft": 50,
+  "other_requirements": {
+   "code_section": "\u00a7400.150",
+   "min_site_acres": 5,
+   "max_lot_coverage_pct": 50,
+   "note": "All operations inside enclosed buildings. Corner side yard 30 ft. Preliminary development plan and plat filed with rezoning. 3 stories; P&Z may allow up to 6 stories (microwave-path and fire-access findings)."
+  },
+  "source_url": "https://ecode360.com/43318981"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "AG",
+  "name": "Agricultural",
+  "category": "agricultural",
+  "min_lot_sf": 87120,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": null,
+  "front_setback_ft": 50,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 50,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.155",
+   "max_lot_coverage_pct": 10,
+   "note": "10 acres to keep livestock; livestock structures 100 ft from lot lines. Dwellings 2.5 stories; farm buildings 50 ft. Corner street side 50 ft."
+  },
+  "source_url": "https://ecode360.com/43319121"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "P-R",
+  "name": "Park-Recreation",
+  "category": "recreational",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 60,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 50,
+  "max_height_ft": 25,
+  "other_requirements": {
+   "code_section": "\u00a7400.160",
+   "max_lot_coverage_pct": 10,
+   "note": "2 stories. Corner street-side yard 60 ft."
+  },
+  "source_url": "https://ecode360.com/43319139"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "MUTDD",
+  "name": "Mixed-Use Traditional Development",
+  "category": "mixed_use",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.161",
+   "min_site_acres": 5,
+   "note": "Area plan and final plan approved by Council. At least 20% residential and 20% non-residential land area."
+  },
+  "source_url": "https://ecode360.com/43319153"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "SCO",
+  "name": "Senior Community (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.162",
+   "note": "Overlay with its own density and site standards."
+  },
+  "source_url": "https://ecode360.com/43319270"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "DO",
+  "name": "Downtown (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.163",
+   "note": "No minimum lot area; 20% green space. Setbacks follow the underlying district and may be reduced by P&Z."
+  },
+  "source_url": "https://ecode360.com/43319320"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "STO",
+  "name": "Sports Tourism (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": 60,
+  "other_requirements": {
+   "code_section": "\u00a7400.164",
+   "min_site_acres": 20,
+   "note": "Yards per C-2. 30 ft bufferyard and 6 ft fence next to residential."
+  },
+  "source_url": "https://ecode360.com/45964491"
+ },
+ {
+  "jurisdiction_id": "ofallon",
+  "code": "PD/PUD",
+  "name": "Planned Development / Planned Unit Development",
+  "category": "planned",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "Art. V",
+   "note": "Standards set by the approved development plan."
+  },
+  "source_url": "https://ecode360.com/43319555"
+ },
+ {
+  "jurisdiction_id": "stpeters",
+  "code": "A-1",
+  "name": "Agricultural",
+  "category": "agricultural",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.110",
+   "note": "Height, lot area, coverage and yards: not applicable."
+  },
+  "source_url": "https://ecode360.com/28264925"
+ },
+ {
+  "jurisdiction_id": "stpeters",
+  "code": "P-1",
+  "name": "Public Park Ground",
+  "category": "recreational",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 10,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 10,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.120",
+   "note": "Principal building 10 ft from any property line. 2.5 stories; P&Z may approve more height."
+  },
+  "source_url": "https://ecode360.com/28264945"
+ },
+ {
+  "jurisdiction_id": "stpeters",
+  "code": "R-1",
+  "name": "Single-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 12000,
+  "min_lot_width_ft": 65,
+  "max_density_du_ac": 5.8,
+  "front_setback_ft": 20,
+  "side_setback_ft": null,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.130",
+   "max_lot_coverage_pct": 50,
+   "note": "12,000 sf for plats approved after Jan 1, 2001 (7,000 sf before; density cap 1 unit per 7,500 sf net). Side yards 10% of lot width (6 ft max on older plats and cul-de-sacs). Corner rear 15 ft. Coverage includes paving."
+  },
+  "source_url": "https://ecode360.com/28264963"
+ },
+ {
+  "jurisdiction_id": "stpeters",
+  "code": "R-1(A)",
+  "name": "Single-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 10000,
+  "min_lot_width_ft": 90,
+  "max_density_du_ac": 3.6,
+  "front_setback_ft": 30,
+  "side_setback_ft": null,
+  "rear_setback_ft": 30,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.140",
+   "max_lot_coverage_pct": 50,
+   "note": "Density cap 1 unit per 12,000 sf net; a 10,000 sf lot must abut a 12,000 sf lot. Side yards 10% of lot width. Corner rear 20 ft."
+  },
+  "source_url": "https://ecode360.com/28265016"
+ },
+ {
+  "jurisdiction_id": "stpeters",
+  "code": "R-2",
+  "name": "Two-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 10000,
+  "min_lot_width_ft": 80,
+  "max_density_du_ac": null,
+  "front_setback_ft": 20,
+  "side_setback_ft": 6,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.150",
+   "max_lot_coverage_pct": 50,
+   "note": "10,000 sf per two-family lot on post-2001 plats (9,000 before). Side yard 10% of width, max 6 ft; 0 ft at the common wall. 1,000 sf units (10% may be 800 sf)."
+  },
+  "source_url": "https://ecode360.com/28265071"
+ },
+ {
+  "jurisdiction_id": "stpeters",
+  "code": "R-3(A)",
+  "name": "Multiple-Family Residential (14/ac)",
+  "category": "residential",
+  "min_lot_sf": null,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": 14,
+  "front_setback_ft": 20,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 20,
+  "max_height_ft": 28,
+  "other_requirements": {
+   "code_section": "\u00a7405.160",
+   "note": "2 stories. Churches 50 ft from residential side and rear lines."
+  },
+  "source_url": "https://ecode360.com/28265118"
+ },
+ {
+  "jurisdiction_id": "stpeters",
+  "code": "R-3(B)",
+  "name": "Multiple-Family Residential (10/ac)",
+  "category": "residential",
+  "min_lot_sf": null,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": 10,
+  "front_setback_ft": 20,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 20,
+  "max_height_ft": 28,
+  "other_requirements": {
+   "code_section": "\u00a7405.160",
+   "note": "2 stories. Churches 50 ft from residential side and rear lines."
+  },
+  "source_url": "https://ecode360.com/28265118"
+ },
+ {
+  "jurisdiction_id": "stpeters",
+  "code": "R-M",
+  "name": "Mobile/Modular Home Residential",
+  "category": "residential",
+  "min_lot_sf": 3750,
+  "min_lot_width_ft": 40,
+  "max_density_du_ac": null,
+  "front_setback_ft": 20,
+  "side_setback_ft": 13,
+  "rear_setback_ft": 20,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.170",
+   "note": "Lot area rises with home size (3,750 sf for 560 sf up to 5,900 sf for 1,960 sf); 60 ft wide for homes over 980 sf. 26 ft between homes; 30 ft from park boundary."
+  },
+  "source_url": "https://ecode360.com/28265170"
+ },
+ {
+  "jurisdiction_id": "stpeters",
+  "code": "S-D",
+  "name": "Special Old Town (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.180",
+   "note": "No minimum lot. Yards set case by case by P&Z to match existing Old Town layouts."
+  },
+  "source_url": "https://ecode360.com/28265201"
+ },
+ {
+  "jurisdiction_id": "stpeters",
+  "code": "C-1",
+  "name": "Neighborhood Commercial",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 15,
+  "max_height_ft": 20,
+  "other_requirements": {
+   "code_section": "\u00a7405.190",
+   "note": "1 story / 20 ft unless P&Z approves more. Side and rear 20 ft next to residential. No minimum lot."
+  },
+  "source_url": "https://ecode360.com/28265219"
+ },
+ {
+  "jurisdiction_id": "stpeters",
+  "code": "C-2",
+  "name": "Community Commercial",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 15,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.200",
+   "note": "Side 20 ft and rear 25 ft next to residential. No minimum lot. P&Z may approve more height."
+  },
+  "source_url": "https://ecode360.com/28265252"
+ },
+ {
+  "jurisdiction_id": "stpeters",
+  "code": "C-3",
+  "name": "General Commercial",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 25,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.210",
+   "note": "6 stories unless P&Z approves more. Side 20 ft and rear 30 ft next to residential. No minimum lot."
+  },
+  "source_url": "https://ecode360.com/28265305"
+ },
+ {
+  "jurisdiction_id": "stpeters",
+  "code": "C-4",
+  "name": "Regional Shopping Center",
+  "category": "commercial",
+  "min_lot_sf": 2613600,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 45,
+  "side_setback_ft": 50,
+  "rear_setback_ft": 50,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.220",
+   "note": "60-acre minimum parcel. Side yard 50 ft next to residential. 6 stories unless P&Z approves more."
+  },
+  "source_url": "https://ecode360.com/28265369"
+ },
+ {
+  "jurisdiction_id": "stpeters",
+  "code": "CPD",
+  "name": "Commercial Planned",
+  "category": "planned",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.225",
+   "note": "Height and setbacks set by each CPD ordinance. 10 ft landscaped green belt next to residential."
+  },
+  "source_url": "https://ecode360.com/28265407"
+ },
+ {
+  "jurisdiction_id": "stpeters",
+  "code": "I-1",
+  "name": "Light Industrial",
+  "category": "industrial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 15,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.230",
+   "note": "40 ft side/rear next to residential. Open storage up to 40% of lot. No minimum lot. P&Z may approve more height."
+  },
+  "source_url": "https://ecode360.com/28265430"
+ },
+ {
+  "jurisdiction_id": "stpeters",
+  "code": "I-2",
+  "name": "Heavy Industrial",
+  "category": "industrial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 15,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.240",
+   "note": "70 ft side/rear next to residential. Open storage up to 60% of lot. P&Z may approve more height."
+  },
+  "source_url": "https://ecode360.com/28265478"
+ },
+ {
+  "jurisdiction_id": "stpeters",
+  "code": "PUD",
+  "name": "Planned Urban Development",
+  "category": "planned",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.250",
+   "note": "Design standards and project-area densities in \u00a7405.250(C) and (E)."
+  },
+  "source_url": "https://ecode360.com/28265530"
+ },
+ {
+  "jurisdiction_id": "stpeters",
+  "code": "SPC",
+  "name": "St. Peters Centre Special District",
+  "category": "special",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.260",
+   "note": "Subdistricts with their own lot, setback and bulk rules, \u00a7405.260(D)-(F)."
+  },
+  "source_url": "https://ecode360.com/28265574"
+ },
+ {
+  "jurisdiction_id": "stpeters",
+  "code": "L370",
+  "name": "Lakeside 370 Special District",
+  "category": "special",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.265",
+   "note": "Own lot, setback and bulk rules, \u00a7405.265(C)-(E)."
+  },
+  "source_url": "https://ecode360.com/28265651"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "A",
+  "name": "Agricultural",
+  "category": "agricultural",
+  "min_lot_sf": 130680,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": null,
+  "front_setback_ft": 50,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 50,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.160",
+   "max_lot_coverage_pct": 35,
+   "note": "Corner street side 50 ft. Farm buildings to 50 ft. Min dwelling 1,200 sf main floor or 1,800 sf total."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.160AGDI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "R-1A",
+  "name": "Single-Family Residential (1 ac)",
+  "category": "residential",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": null,
+  "front_setback_ft": 35,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 35,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.170",
+   "max_lot_coverage_pct": 35,
+   "note": "Min dwelling 1,200 sf main floor or 1,800 sf total."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.170SIMIREDI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "R-1B",
+  "name": "Single-Family Residential (20,000 sf)",
+  "category": "residential",
+  "min_lot_sf": 20000,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": null,
+  "front_setback_ft": 35,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 35,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.170",
+   "max_lot_coverage_pct": 35,
+   "note": "Min dwelling 1,200 sf main floor or 1,800 sf total."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.170SIMIREDI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "R-1C",
+  "name": "Single-Family Residential (12,000 sf)",
+  "category": "residential",
+  "min_lot_sf": 12000,
+  "min_lot_width_ft": 80,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 7,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.170",
+   "max_lot_coverage_pct": 35,
+   "note": "Min dwelling 1,200 sf main floor or 1,800 sf total."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.170SIMIREDI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "R-1D",
+  "name": "Single-Family Residential (9,000 sf)",
+  "category": "residential",
+  "min_lot_sf": 9000,
+  "min_lot_width_ft": 75,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 7,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.170",
+   "max_lot_coverage_pct": 35,
+   "note": "Min dwelling 1,200 sf main floor or 1,800 sf total."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.170SIMIREDI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "R-1E",
+  "name": "Single-Family Residential (8,300 sf)",
+  "category": "residential",
+  "min_lot_sf": 8300,
+  "min_lot_width_ft": 70,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 7,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.170",
+   "max_lot_coverage_pct": 35,
+   "note": "Min dwelling 1,200 sf main floor or 1,800 sf total."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.170SIMIREDI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "R-2",
+  "name": "Two-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 10000,
+  "min_lot_width_ft": 80,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 7,
+  "rear_setback_ft": 30,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.180",
+   "max_lot_coverage_pct": 35,
+   "note": "Zero side yard at a common party wall. Min dwelling 1,200 sf main floor or 1,800 sf total."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.180TMIREDI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "R-3B",
+  "name": "Multi-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 10000,
+  "min_lot_width_ft": 80,
+  "max_density_du_ac": 8,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 30,
+  "max_height_ft": 50,
+  "other_requirements": {
+   "code_section": "\u00a7405.190",
+   "max_lot_coverage_pct": 45,
+   "note": "4 stories. Spacing between buildings 20-60 ft by orientation. Detached and two-family use R-2 yards."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.190MUMIREDI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "MHD",
+  "name": "Mobile Home Development",
+  "category": "residential",
+  "min_lot_sf": 10000,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.200",
+   "note": "One home per lot; additions and carports 30 ft from street right-of-way."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.200MHMOHODEDI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "C-O",
+  "name": "Office",
+  "category": "office",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 30,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.210",
+   "max_lot_coverage_pct": 35,
+   "note": "4 stories."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.210OFDI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "C-1",
+  "name": "Neighborhood Commercial",
+  "category": "commercial",
+  "min_lot_sf": 8300,
+  "min_lot_width_ft": 60,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 12,
+  "rear_setback_ft": 30,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.220",
+   "max_lot_coverage_pct": 35
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.220NECODI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "C-2",
+  "name": "General Commercial",
+  "category": "commercial",
+  "min_lot_sf": 8300,
+  "min_lot_width_ft": 60,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 25,
+  "max_height_ft": 50,
+  "other_requirements": {
+   "code_section": "\u00a7405.230",
+   "note": "Rear 15 ft unless next to residential (25 ft). 3 stories. Coverage set by yards, landscaping and parking."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.230GECODI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "C-3",
+  "name": "Highway Commercial",
+  "category": "commercial",
+  "min_lot_sf": 10000,
+  "min_lot_width_ft": 60,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 30,
+  "max_height_ft": 50,
+  "other_requirements": {
+   "code_section": "\u00a7405.240",
+   "note": "3 stories. Coverage set by yards, landscaping and parking."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.240HICODI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "I-1",
+  "name": "Light Industrial",
+  "category": "industrial",
+  "min_lot_sf": 87120,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 30,
+  "max_height_ft": 50,
+  "other_requirements": {
+   "code_section": "\u00a7405.250",
+   "max_lot_coverage_pct": 50,
+   "note": "3 stories."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.250LIINDI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "I-2",
+  "name": "Heavy Industrial",
+  "category": "industrial",
+  "min_lot_sf": 130680,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": null,
+  "front_setback_ft": 50,
+  "side_setback_ft": 50,
+  "rear_setback_ft": 50,
+  "max_height_ft": 60,
+  "other_requirements": {
+   "code_section": "\u00a7405.260",
+   "max_lot_coverage_pct": 50,
+   "note": "3 stories."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.260HEINDI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "PD",
+  "name": "Planned Development",
+  "category": "planned",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.270",
+   "note": "Underlying district standards apply unless modified by the PD ordinance."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.270PDPLDEDI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "HF",
+  "name": "Highway Frontages (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.290",
+   "note": "Design overlay along highway frontage."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.290HFHIFROVDI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "WP",
+  "name": "Wentzville Parkway (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.300",
+   "note": "Design overlay along Wentzville Parkway."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.300WPWEPAOVDI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "HD-1",
+  "name": "Historic Downtown Core",
+  "category": "mixed_use",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.310",
+   "note": "3 stories max. Lot width and yards are in a table in the section (not captured); check the section."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.310HIDOCODI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "HD-2",
+  "name": "Historic Downtown Corridor",
+  "category": "mixed_use",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.320",
+   "note": "3 stories max. Lot width and yards are in a table in the section (not captured); check the section."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.320HIDOCODI"
+ },
+ {
+  "jurisdiction_id": "wentzville",
+  "code": "HD-3",
+  "name": "Historic Downtown Light Industrial/Loft",
+  "category": "mixed_use",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.330",
+   "note": "3 stories max. Lot width and yards are in a table in the section (not captured); check the section."
+  },
+  "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.330HIDOLIINLODI"
+ }
+]

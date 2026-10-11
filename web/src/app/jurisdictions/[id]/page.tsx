@@ -25,18 +25,24 @@ const FACTS: [string, string, (v: unknown) => string][] = [
   ["special_notes", "Notes", String],
 ];
 
+const dash = <span className="muted">—</span>;
+const ft = (v: number | null) => (v == null ? dash : `${v} ft`);
+const fmtLot = (sf: number | null) =>
+  sf == null ? dash : sf >= 43560 && sf % 43560 === 0 ? `${sf / 43560} ac` : `${sf.toLocaleString()} sf`;
+
 export default async function JurisdictionPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const supabase = await createClient();
   const today = todayCentral();
 
-  const [{ data: j }, { data: proc }, { data: meetings }, { data: people }, { data: recorded }] = await Promise.all([
+  const [{ data: j }, { data: proc }, { data: meetings }, { data: people }, { data: recorded }, { data: districts }] = await Promise.all([
     supabase.from("jurisdictions").select("*").eq("id", id).maybeSingle(),
     supabase.from("rezoning_processes").select("*").eq("jurisdiction_id", id).maybeSingle(),
     supabase.from("meetings").select("*").eq("jurisdiction_id", id).gte("event_date", today).order("event_date").limit(12),
     supabase.from("people").select("*").eq("jurisdiction_id", id).eq("active", true).order("role_group").order("id"),
     supabase.from("meetings").select("id, body, event_date, video_url, summary").eq("jurisdiction_id", id)
       .not("video_url", "is", null).order("event_date", { ascending: false }).limit(8),
+    supabase.from("zoning_districts").select("*").eq("jurisdiction_id", id).order("id"),
   ]);
   if (!j) notFound();
   const p = proc as Process | null;
@@ -85,6 +91,34 @@ export default async function JurisdictionPage({ params }: { params: Promise<{ i
           </dl>
           <p className="source">Source: <a href={p.source_url} target="_blank" rel="noreferrer">{p.source_url}</a> · verified {fmtDate(p.verified_on)}</p>
         </div>
+      ) : (
+        <div className="card empty">Not researched yet.</div>
+      )}
+
+      <h2>Zoning districts</h2>
+      {districts && districts.length > 0 ? (
+        <>
+          <div className="table-wrap">
+            <table>
+              <thead><tr><th>District</th><th>Min lot</th><th>Width</th><th>Front / side / rear</th><th>Height</th><th>Density</th><th>Notes</th></tr></thead>
+              <tbody>
+                {districts.map((d) => (
+                  <tr key={d.id}>
+                    <td><strong>{d.code}</strong> <a href={d.source_url} target="_blank" rel="noreferrer" className="small">{d.name}</a></td>
+                    <td>{fmtLot(d.min_lot_sf)}</td>
+                    <td>{ft(d.min_lot_width_ft)}</td>
+                    <td>{[d.front_setback_ft, d.side_setback_ft, d.rear_setback_ft].every((v) => v == null) ? dash
+                      : `${[d.front_setback_ft, d.side_setback_ft, d.rear_setback_ft].map((v) => v ?? "—").join(" / ")} ft`}</td>
+                    <td>{ft(d.max_height_ft)}</td>
+                    <td>{d.max_density_du_ac == null ? dash : `${d.max_density_du_ac} du/ac`}</td>
+                    <td className="small">{d.other_requirements?.note}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="source">Source: {j.name} zoning code (each district links to its section) · verified {fmtDate(districts[0].verified_on)}</p>
+        </>
       ) : (
         <div className="card empty">Not researched yet.</div>
       )}
