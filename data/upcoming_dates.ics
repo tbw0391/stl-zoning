@@ -36,6 +36,14 @@ LOCATION:Foristell City Hall\, 121 Mulberry St
 DESCRIPTION:Projected (third Thursday\, held as applications require). No submittal deadlines posted; call City Hall 636-463-2123. Source: https://www.cityofforistell.org/planning-zoning-commission
 END:VEVENT
 BEGIN:VEVENT
+UID:flint_hill-meeting-planning_zoning-2026-10-19@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261019
+SUMMARY:Flint Hill - P&Z Meeting [projected]
+LOCATION:Knights of Columbus Building (upper level)\, 2061 Grothe Rd\, Flint Hill
+DESCRIPTION:Projected (Monday before the Board meeting\, held as needed; time not posted). No submittal deadlines posted; rezoning hearings need 15 days' newspaper and certified-mail notice. Call City Hall 636-327-4441. Source: https://cityofflinthill.com/planning-and-zoning
+END:VEVENT
+BEGIN:VEVENT
 UID:foristell-meeting-governing_body-2026-10-19@entitlement-tracker
 DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261019
@@ -82,6 +90,14 @@ DTSTART;VALUE=DATE:20261021
 SUMMARY:Dardenne Prairie - Board of Aldermen [projected] (19:00)
 LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
 DESCRIPTION:Projected (1st & 3rd Wednesday). Source: https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php
+END:VEVENT
+BEGIN:VEVENT
+UID:flint_hill-meeting-governing_body-2026-10-21@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261021
+SUMMARY:Flint Hill - Board of Aldermen (18:00)
+LOCATION:Knights of Columbus Building (upper level)\, 2061 Grothe Rd\, Flint Hill
+DESCRIPTION:Board of Aldermen regular meeting (dates subject to change) Source: https://cityofflinthill.com/board-of-aldermen-city-of-flint-hill-mo
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_county-meeting-planning_zoning-2026-10-21@entitlement-tracker
@@ -324,6 +340,14 @@ LOCATION:Weldon Spring City Hall\, 5401 Independence Rd
 DESCRIPTION:Board of Aldermen meeting Source: https://www.weldonspring.gov/calendar
 END:VEVENT
 BEGIN:VEVENT
+UID:flint_hill-meeting-planning_zoning-2026-11-16@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261116
+SUMMARY:Flint Hill - P&Z Meeting [projected]
+LOCATION:Knights of Columbus Building (upper level)\, 2061 Grothe Rd\, Flint Hill
+DESCRIPTION:Projected (Monday before the Board meeting\, held as needed; time not posted). No submittal deadlines posted; rezoning hearings need 15 days' newspaper and certified-mail notice. Call City Hall 636-327-4441. Source: https://cityofflinthill.com/planning-and-zoning
+END:VEVENT
+BEGIN:VEVENT
 UID:foristell-meeting-governing_body-2026-11-16@entitlement-tracker
 DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261116
@@ -354,6 +378,14 @@ DTSTART;VALUE=DATE:20261118
 SUMMARY:Dardenne Prairie - Board of Aldermen [projected] (19:00)
 LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
 DESCRIPTION:Projected (1st & 3rd Wednesday). Source: https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php
+END:VEVENT
+BEGIN:VEVENT
+UID:flint_hill-meeting-governing_body-2026-11-18@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261118
+SUMMARY:Flint Hill - Board of Aldermen (18:00)
+LOCATION:Knights of Columbus Building (upper level)\, 2061 Grothe Rd\, Flint Hill
+DESCRIPTION:Board of Aldermen regular meeting (dates subject to change) Source: https://cityofflinthill.com/board-of-aldermen-city-of-flint-hill-mo
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_county-meeting-planning_zoning-2026-11-18@entitlement-tracker
@@ -564,6 +596,14 @@ LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
 DESCRIPTION:Rezoning and Special Use applications due. Feeds P&Z 2027-01-06. Source: https://www.stpetersmo.net/DocumentCenter/View/444/Development-Guide-and-Planning--Zoning-SubmittalMeeting-Schedule-PDF
 END:VEVENT
 BEGIN:VEVENT
+UID:flint_hill-meeting-planning_zoning-2026-12-14@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261214
+SUMMARY:Flint Hill - P&Z Meeting [projected]
+LOCATION:Knights of Columbus Building (upper level)\, 2061 Grothe Rd\, Flint Hill
+DESCRIPTION:Projected (Monday before the Board meeting\, held as needed; time not posted). No submittal deadlines posted; rezoning hearings need 15 days' newspaper and certified-mail notice. Call City Hall 636-327-4441. Source: https://cityofflinthill.com/planning-and-zoning
+END:VEVENT
+BEGIN:VEVENT
 UID:stcharles_city-meeting-planning_zoning-2026-12-14@entitlement-tracker
 DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261214
@@ -586,6 +626,14 @@ DTSTART;VALUE=DATE:20261216
 SUMMARY:Dardenne Prairie - Board of Aldermen [projected] (19:00)
 LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
 DESCRIPTION:Projected (1st & 3rd Wednesday). Source: https://www.dardenneprairie.gov/government/mayor_board_of_aldermen/agendas_minutes.php
+END:VEVENT
+BEGIN:VEVENT
+UID:flint_hill-meeting-governing_body-2026-12-16@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261216
+SUMMARY:Flint Hill - Board of Aldermen (18:00)
+LOCATION:Knights of Columbus Building (upper level)\, 2061 Grothe Rd\, Flint Hill
+DESCRIPTION:Board of Aldermen regular meeting (dates subject to change) Source: https://cityofflinthill.com/board-of-aldermen-city-of-flint-hill-mo
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_county-meeting-planning_zoning-2026-12-16@entitlement-tracker

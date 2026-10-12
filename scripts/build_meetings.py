@@ -120,6 +120,13 @@ fo_boa = [("2026-01-05","published"),("2026-01-20","published"),("2026-02-02","p
           ("2026-07-06","published"),("2026-07-20","published"),("2026-08-03","published"),("2026-08-17","published"),
           ("2026-09-08","published"),("2026-09-21","published"),("2026-10-05","cancelled"),("2026-10-19","projected"),
           ("2026-11-02","projected"),("2026-11-16","projected"),("2026-12-07","projected"),("2026-12-21","projected")]
+# Flint Hill: Board schedule posted on the Board page (Wednesdays 6 PM). P&Z meets "the Monday prior to the scheduled
+# Board of Aldermen meeting, as needed"; no P&Z agendas or minutes online, so only Oct-Dec are projected.
+FH_BOA = "https://cityofflinthill.com/board-of-aldermen-city-of-flint-hill-mo"
+FH_PZ = "https://cityofflinthill.com/planning-and-zoning"
+fh_boa = ["2026-01-21","2026-02-18","2026-03-18","2026-04-15","2026-05-20","2026-06-17","2026-07-15","2026-08-19",
+          "2026-09-23","2026-10-21","2026-11-18","2026-12-16"]
+fh_pz = ["2026-10-19","2026-11-16","2026-12-14"]
 # P&Z (first Thursday): date, status, source
 ofal_pz = [("2026-01-08","published",O),("2026-02-05","published",O),("2026-03-05","published",O),
            ("2026-04-02","published",O),("2026-05-07","published",O),("2026-06-04","published",O),
@@ -271,6 +278,15 @@ for d, st in fo_boa:
         {"published":"Board of Aldermen regular meeting","cancelled":"Cancelled.","projected":"Projected (1st & 3rd Monday)."}[st]
         + (". Moved to Tuesday (holiday)." if d in ("2026-01-20","2026-02-17","2026-09-08") else ""),st,"2026-10-12")
 
+FHLOC = "Knights of Columbus Building (upper level), 2061 Grothe Rd, Flint Hill"
+for d in fh_boa:
+    add("flint_hill","governing_body","meeting",date.fromisoformat(d),"18:00",FHLOC,FH_BOA,
+        "Board of Aldermen regular meeting (dates subject to change)","published","2026-10-12")
+for d in fh_pz:
+    add("flint_hill","planning_zoning","meeting",date.fromisoformat(d),None,FHLOC,FH_PZ,
+        "Projected (Monday before the Board meeting, held as needed; time not posted). No submittal deadlines posted; "
+        "rezoning hearings need 15 days' newspaper and certified-mail notice. Call City Hall 636-327-4441.","projected","2026-10-12")
+
 rows.sort(key=lambda r:(r["event_date"], r["jurisdiction_id"]))
 json.dump(rows, open(f"{out}/meetings.json","w"), indent=1)
 with open(f"{out}/meetings.csv","w",newline="") as f:
@@ -278,7 +294,7 @@ with open(f"{out}/meetings.csv","w",newline="") as f:
 
 # ICS, upcoming only (today forward)
 today = date.today()
-names = {"wentzville":"Wentzville","cottleville":"Cottleville","ofallon":"O'Fallon","stpeters":"St. Peters","stcharles_city":"St. Charles","stcharles_county":"St. Charles County","lake_st_louis":"Lake Saint Louis","dardenne_prairie":"Dardenne Prairie","weldon_spring":"Weldon Spring","foristell":"Foristell"}
+names = {"wentzville":"Wentzville","cottleville":"Cottleville","ofallon":"O'Fallon","stpeters":"St. Peters","stcharles_city":"St. Charles","stcharles_county":"St. Charles County","lake_st_louis":"Lake Saint Louis","dardenne_prairie":"Dardenne Prairie","weldon_spring":"Weldon Spring","foristell":"Foristell","flint_hill":"Flint Hill"}
 lab = {("planning_zoning","meeting"):"P&Z Meeting",("planning_zoning","submittal_deadline"):"P&Z SUBMITTAL DUE",("governing_body","meeting"):"Board of Aldermen"}
 L = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Entitlement Tracker//STC//EN","X-WR-CALNAME:St. Charles Co. Entitlement Dates","X-WR-TIMEZONE:America/Chicago"]
 n=0

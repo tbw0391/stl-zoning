@@ -3727,5 +3727,314 @@
    "note": "No minimum lot. Side yards set by review; zero lot lines allowed with a maintenance agreement. Height set by P&Z and the Board. Metal-clad buildings prohibited."
   },
   "source_url": "https://ecode360.com/29734732"
+ },
+ {
+  "jurisdiction_id": "flint_hill",
+  "code": "R-1A",
+  "name": "Single Family Residential (3 ac)",
+  "category": "residential",
+  "min_lot_sf": 130680,
+  "min_lot_width_ft": 250,
+  "max_density_du_ac": 0.33,
+  "front_setback_ft": 50,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 50,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "Art. 4, \u00a74.04",
+   "min_lot_depth_ft": 300,
+   "max_lot_coverage_pct": 30,
+   "min_dwelling_sf": 1600,
+   "note": "Min dwelling 1,600 sf ranch, 1,800 sf 1.5 story, 2,200 sf 2 story. Horses on 3+ acres, 1 per acre. Detached accessory 25 ft max."
+  },
+  "source_url": "https://assets.smartxeo.com/38/79050-zoning-ordinance-updated-09-11-2024.pdf"
+ },
+ {
+  "jurisdiction_id": "flint_hill",
+  "code": "R-1B",
+  "name": "Single Family Residential (1 ac)",
+  "category": "residential",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": 1,
+  "front_setback_ft": 50,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 50,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "Art. 5, \u00a75.04",
+   "min_lot_depth_ft": 200,
+   "max_lot_coverage_pct": 30,
+   "min_dwelling_sf": 1600,
+   "note": "Min dwelling 1,600 sf ranch, 1,800 sf 1.5 story, 2,200 sf 2 story. Public sewer required. Accessory structures 10 ft from side lines."
+  },
+  "source_url": "https://assets.smartxeo.com/38/79050-zoning-ordinance-updated-09-11-2024.pdf"
+ },
+ {
+  "jurisdiction_id": "flint_hill",
+  "code": "R-1C",
+  "name": "Single Family Residential (1/2 ac)",
+  "category": "residential",
+  "min_lot_sf": 21780,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": 2,
+  "front_setback_ft": 30,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "Art. 5-A, \u00a75-A.04",
+   "min_lot_depth_ft": 125,
+   "max_lot_coverage_pct": 25,
+   "min_dwelling_sf": 1300,
+   "note": "Min dwelling 1,300 sf ranch, 1,600 sf 1.5 story, 2,000 sf 2 story. Public sewer required."
+  },
+  "source_url": "https://assets.smartxeo.com/38/79050-zoning-ordinance-updated-09-11-2024.pdf"
+ },
+ {
+  "jurisdiction_id": "flint_hill",
+  "code": "R-2",
+  "name": "Two-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 75,
+  "max_density_du_ac": 2,
+  "front_setback_ft": 25,
+  "side_setback_ft": 25,
+  "rear_setback_ft": 25,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "Art. 6, \u00a76.04",
+   "min_lot_depth_ft": 125,
+   "max_lot_coverage_pct": 30,
+   "min_dwelling_sf": 3200,
+   "note": "One two-family building per 1-acre lot. Min building 3,200 sf ranch, 3,600 sf 1.5 story, 4,400 sf 2 story. 45 ft or 3 stories. Accessory 15 ft from side lines."
+  },
+  "source_url": "https://assets.smartxeo.com/38/79050-zoning-ordinance-updated-09-11-2024.pdf"
+ },
+ {
+  "jurisdiction_id": "flint_hill",
+  "code": "R-3",
+  "name": "Garden Apartment House",
+  "category": "residential",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 110,
+  "max_density_du_ac": 6,
+  "front_setback_ft": 50,
+  "side_setback_ft": 25,
+  "rear_setback_ft": 50,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "Art. 7, \u00a77.04",
+   "max_lot_coverage_pct": 35,
+   "min_dwelling_sf": 1000,
+   "note": "1-acre site minimum. Per unit: 1 ac single-family, 21,780 sf two-family, 7,260 sf multi-family; never over 6 du/ac. Width 100 ft (1-2 family), 110 ft multi-family. Units 1,000 sf plus 2-car attached garage. Building spacing 20-60 ft. P&Z site plan review."
+  },
+  "source_url": "https://assets.smartxeo.com/38/79050-zoning-ordinance-updated-09-11-2024.pdf"
+ },
+ {
+  "jurisdiction_id": "flint_hill",
+  "code": "R-M",
+  "name": "Manufactured (Mobile) Home/Park",
+  "category": "residential",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": 1,
+  "front_setback_ft": 50,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 50,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "Art. 8, \u00a78.05",
+   "note": "R-1B standards apply. 10-acre development minimum, 1 acre per home. Stands 30 ft from the development boundary, 50 ft from streets; 30 ft planting strip plus 20 ft yard on all boundaries. Public water and sewer required."
+  },
+  "source_url": "https://assets.smartxeo.com/38/79050-zoning-ordinance-updated-09-11-2024.pdf"
+ },
+ {
+  "jurisdiction_id": "flint_hill",
+  "code": "C-O",
+  "name": "Office",
+  "category": "office",
+  "min_lot_sf": 217800,
+  "min_lot_width_ft": 75,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 35,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "Art. 9, \u00a79.04",
+   "max_lot_coverage_pct": 25,
+   "note": "5-acre site, or 3 acres if it abuts commercial or industrial. Corner street-side yard 25 ft. Next to residential: 20 ft planting strip plus the 30 ft side / 35 ft rear yard."
+  },
+  "source_url": "https://assets.smartxeo.com/38/79050-zoning-ordinance-updated-09-11-2024.pdf"
+ },
+ {
+  "jurisdiction_id": "flint_hill",
+  "code": "C-1",
+  "name": "Restricted Business",
+  "category": "commercial",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 70,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 35,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "Art. 10, \u00a710.04",
+   "max_lot_coverage_pct": 30,
+   "note": "Side yard only where it abuts residential or office (30 ft), corner side 25 ft. 5,000 sf max per business. Flea markets prohibited. Next to residential: 20 ft planting strip plus the 30 ft side / 35 ft rear yard."
+  },
+  "source_url": "https://assets.smartxeo.com/38/79050-zoning-ordinance-updated-09-11-2024.pdf"
+ },
+ {
+  "jurisdiction_id": "flint_hill",
+  "code": "C-2",
+  "name": "General Business",
+  "category": "commercial",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 75,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 35,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "Art. 11, \u00a711.04",
+   "note": "No lot coverage limit. Side yard only where it abuts residential or office (30 ft), corner side 25 ft. Front yard includes signs, pump islands, canopies. Next to residential: 20 ft planting strip plus the 30 ft side / 35 ft rear yard."
+  },
+  "source_url": "https://assets.smartxeo.com/38/79050-zoning-ordinance-updated-09-11-2024.pdf"
+ },
+ {
+  "jurisdiction_id": "flint_hill",
+  "code": "C-3",
+  "name": "Highway Commercial",
+  "category": "commercial",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 75,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 35,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "Art. 12, \u00a712.04",
+   "max_lot_coverage_pct": 30,
+   "note": "Corner street-side yard 30 ft. Next to residential: 20 ft planting strip plus the 30 ft side / 35 ft rear yard."
+  },
+  "source_url": "https://assets.smartxeo.com/38/79050-zoning-ordinance-updated-09-11-2024.pdf"
+ },
+ {
+  "jurisdiction_id": "flint_hill",
+  "code": "DSD",
+  "name": "Downtown Special District",
+  "category": "special",
+  "min_lot_sf": 21780,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 0,
+  "side_setback_ft": 0,
+  "rear_setback_ft": 0,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "Art. 12-A, \u00a712-A.04",
+   "note": "1/2 acre minimum off Hwy P; no minimum on Hwy P. No width or coverage limit. Front build-to 0-10 ft (10-20 ft for 1-2 family homes). Side/rear 10 ft next to residential. 45 ft or 3 stories. Architectural Review Board approval required; parking reductions up to 25% shared, 15% landscaped."
+  },
+  "source_url": "https://assets.smartxeo.com/38/79050-zoning-ordinance-updated-09-11-2024.pdf"
+ },
+ {
+  "jurisdiction_id": "flint_hill",
+  "code": "I-1",
+  "name": "Light Industrial",
+  "category": "industrial",
+  "min_lot_sf": 217800,
+  "min_lot_width_ft": 75,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 25,
+  "rear_setback_ft": 50,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "Art. 13, \u00a713.04",
+   "max_lot_coverage_pct": 50,
+   "note": "5-acre site unless it abuts industrial. Corner street-side 30 ft. Operations fully enclosed; outdoor storage screened 8 ft. Next to residential: 25 ft planting strip plus the 25 ft side / 50 ft rear yard."
+  },
+  "source_url": "https://assets.smartxeo.com/38/79050-zoning-ordinance-updated-09-11-2024.pdf"
+ },
+ {
+  "jurisdiction_id": "flint_hill",
+  "code": "I-2",
+  "name": "Heavy Industrial",
+  "category": "industrial",
+  "min_lot_sf": 217800,
+  "min_lot_width_ft": 75,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 25,
+  "rear_setback_ft": 50,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "Art. 14, \u00a714.04",
+   "max_lot_coverage_pct": 50,
+   "note": "5-acre site unless it abuts industrial. Corner street-side 30 ft. Operations fully enclosed; outdoor storage screened 8 ft. Next to residential: 25 ft planting strip plus the 25 ft side / 50 ft rear yard."
+  },
+  "source_url": "https://assets.smartxeo.com/38/79050-zoning-ordinance-updated-09-11-2024.pdf"
+ },
+ {
+  "jurisdiction_id": "flint_hill",
+  "code": "AG",
+  "name": "Agricultural",
+  "category": "agricultural",
+  "min_lot_sf": 130680,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": null,
+  "front_setback_ft": 50,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 50,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "Art. 15, \u00a715.04",
+   "max_lot_coverage_pct": 10,
+   "note": "Livestock needs 10 acres (horses 3 acres, 1 per acre); livestock structures 100 ft from lines. Corner street-side 50 ft. Dwellings 2.5 stories; farm buildings 50 ft."
+  },
+  "source_url": "https://assets.smartxeo.com/38/79050-zoning-ordinance-updated-09-11-2024.pdf"
+ },
+ {
+  "jurisdiction_id": "flint_hill",
+  "code": "P-R",
+  "name": "Park Recreation",
+  "category": "recreational",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 60,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 50,
+  "max_height_ft": 25,
+  "other_requirements": {
+   "code_section": "Art. 16, \u00a716.04",
+   "max_lot_coverage_pct": 10,
+   "note": "No lot area or width minimum. Corner street-side 60 ft. 25 ft or 2 stories."
+  },
+  "source_url": "https://assets.smartxeo.com/38/79050-zoning-ordinance-updated-09-11-2024.pdf"
+ },
+ {
+  "jurisdiction_id": "flint_hill",
+  "code": "PUD",
+  "name": "Planned Unit Development (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "Art. 17",
+   "note": "Designation attached to a base district, not a separate district. 5-acre minimum (Board may waive on P&Z recommendation). Lots in DSD or residential districts never under 1/2 acre. Area plan by resolution, then final plan by ordinance."
+  },
+  "source_url": "https://assets.smartxeo.com/38/79050-zoning-ordinance-updated-09-11-2024.pdf"
  }
 ]

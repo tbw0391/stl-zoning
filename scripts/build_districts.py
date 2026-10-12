@@ -9,7 +9,7 @@ def d(J, code, name, cat, sec, lot=None, width=None, dens=None, front=None, side
             "min_lot_sf": lot, "min_lot_width_ft": width, "max_density_du_ac": dens,
             "front_setback_ft": front, "side_setback_ft": side, "rear_setback_ft": rear,
             "max_height_ft": height, "other_requirements": {"code_section": sec[0], **other},
-            "source_url": E + str(sec[1])}
+            "source_url": sec[1] if str(sec[1]).startswith("http") else E + str(sec[1])}
 R1 = ("§405.090", 27756377)
 CL = "Cluster development (5+ acres, 5+ lots) allows smaller lots at the same density, §405.090(I)"
 # St. Charles County UDO Ch. 405, Part 2 (ecode360).
@@ -432,6 +432,46 @@ rows += [
    note="5-acre minimum (except utilities). 30 ft from roadway is the only setback given. Parking dust-free."),
  d(J,"OT","Special Old Town","special",("§400.271",29734732),front=15,rear=15,
    note="No minimum lot. Side yards set by review; zero lot lines allowed with a maintenance agreement. Height set by P&Z and the Board. Metal-clad buildings prohibited."),
+]
+
+# Flint Hill Zoning Ordinance (adopted Sep 23, 2020; PDF updated Sep 11, 2024). Heights are "X stories or Y ft, whichever is less".
+# Commercial/industrial yards next to residential add a planting transition strip (in note).
+J = "flint_hill"
+FH = "https://assets.smartxeo.com/38/79050-zoning-ordinance-updated-09-11-2024.pdf"
+TS = "Next to residential: {} ft planting strip plus the {} ft side / {} ft rear yard."
+rows += [
+ d(J,"R-1A","Single Family Residential (3 ac)","residential",("Art. 4, §4.04",FH),lot=130680,width=250,dens=0.33,front=50,side=30,rear=50,height=35,
+   min_lot_depth_ft=300, max_lot_coverage_pct=30, min_dwelling_sf=1600, note="Min dwelling 1,600 sf ranch, 1,800 sf 1.5 story, 2,200 sf 2 story. Horses on 3+ acres, 1 per acre. Detached accessory 25 ft max."),
+ d(J,"R-1B","Single Family Residential (1 ac)","residential",("Art. 5, §5.04",FH),lot=43560,width=150,dens=1,front=50,side=30,rear=50,height=35,
+   min_lot_depth_ft=200, max_lot_coverage_pct=30, min_dwelling_sf=1600, note="Min dwelling 1,600 sf ranch, 1,800 sf 1.5 story, 2,200 sf 2 story. Public sewer required. Accessory structures 10 ft from side lines."),
+ d(J,"R-1C","Single Family Residential (1/2 ac)","residential",("Art. 5-A, §5-A.04",FH),lot=21780,width=100,dens=2,front=30,side=10,rear=25,height=35,
+   min_lot_depth_ft=125, max_lot_coverage_pct=25, min_dwelling_sf=1300, note="Min dwelling 1,300 sf ranch, 1,600 sf 1.5 story, 2,000 sf 2 story. Public sewer required."),
+ d(J,"R-2","Two-Family Residential","residential",("Art. 6, §6.04",FH),lot=43560,width=75,dens=2,front=25,side=25,rear=25,height=45,
+   min_lot_depth_ft=125, max_lot_coverage_pct=30, min_dwelling_sf=3200, note="One two-family building per 1-acre lot. Min building 3,200 sf ranch, 3,600 sf 1.5 story, 4,400 sf 2 story. 45 ft or 3 stories. Accessory 15 ft from side lines."),
+ d(J,"R-3","Garden Apartment House","residential",("Art. 7, §7.04",FH),lot=43560,width=110,dens=6,front=50,side=25,rear=50,height=35,
+   max_lot_coverage_pct=35, min_dwelling_sf=1000, note="1-acre site minimum. Per unit: 1 ac single-family, 21,780 sf two-family, 7,260 sf multi-family; never over 6 du/ac. Width 100 ft (1-2 family), 110 ft multi-family. Units 1,000 sf plus 2-car attached garage. Building spacing 20-60 ft. P&Z site plan review."),
+ d(J,"R-M","Manufactured (Mobile) Home/Park","residential",("Art. 8, §8.05",FH),lot=43560,width=150,dens=1,front=50,side=30,rear=50,height=35,
+   note="R-1B standards apply. 10-acre development minimum, 1 acre per home. Stands 30 ft from the development boundary, 50 ft from streets; 30 ft planting strip plus 20 ft yard on all boundaries. Public water and sewer required."),
+ d(J,"C-O","Office","office",("Art. 9, §9.04",FH),lot=217800,width=75,front=25,side=30,rear=35,height=35,
+   max_lot_coverage_pct=25, note="5-acre site, or 3 acres if it abuts commercial or industrial. Corner street-side yard 25 ft. "+TS.format(20,30,35)),
+ d(J,"C-1","Restricted Business","commercial",("Art. 10, §10.04",FH),lot=43560,width=70,front=25,side=30,rear=35,height=35,
+   max_lot_coverage_pct=30, note="Side yard only where it abuts residential or office (30 ft), corner side 25 ft. 5,000 sf max per business. Flea markets prohibited. "+TS.format(20,30,35)),
+ d(J,"C-2","General Business","commercial",("Art. 11, §11.04",FH),lot=43560,width=75,front=25,side=30,rear=35,height=35,
+   note="No lot coverage limit. Side yard only where it abuts residential or office (30 ft), corner side 25 ft. Front yard includes signs, pump islands, canopies. "+TS.format(20,30,35)),
+ d(J,"C-3","Highway Commercial","commercial",("Art. 12, §12.04",FH),lot=43560,width=75,front=30,side=20,rear=35,height=35,
+   max_lot_coverage_pct=30, note="Corner street-side yard 30 ft. "+TS.format(20,30,35)),
+ d(J,"DSD","Downtown Special District","special",("Art. 12-A, §12-A.04",FH),lot=21780,front=0,side=0,rear=0,height=45,
+   note="1/2 acre minimum off Hwy P; no minimum on Hwy P. No width or coverage limit. Front build-to 0-10 ft (10-20 ft for 1-2 family homes). Side/rear 10 ft next to residential. 45 ft or 3 stories. Architectural Review Board approval required; parking reductions up to 25% shared, 15% landscaped."),
+ d(J,"I-1","Light Industrial","industrial",("Art. 13, §13.04",FH),lot=217800,width=75,front=30,side=25,rear=50,height=35,
+   max_lot_coverage_pct=50, note="5-acre site unless it abuts industrial. Corner street-side 30 ft. Operations fully enclosed; outdoor storage screened 8 ft. "+TS.format(25,25,50)),
+ d(J,"I-2","Heavy Industrial","industrial",("Art. 14, §14.04",FH),lot=217800,width=75,front=30,side=25,rear=50,height=35,
+   max_lot_coverage_pct=50, note="5-acre site unless it abuts industrial. Corner street-side 30 ft. Operations fully enclosed; outdoor storage screened 8 ft. "+TS.format(25,25,50)),
+ d(J,"AG","Agricultural","agricultural",("Art. 15, §15.04",FH),lot=130680,width=150,front=50,side=30,rear=50,
+   max_lot_coverage_pct=10, note="Livestock needs 10 acres (horses 3 acres, 1 per acre); livestock structures 100 ft from lines. Corner street-side 50 ft. Dwellings 2.5 stories; farm buildings 50 ft."),
+ d(J,"P-R","Park Recreation","recreational",("Art. 16, §16.04",FH),front=60,side=30,rear=50,height=25,
+   max_lot_coverage_pct=10, note="No lot area or width minimum. Corner street-side 60 ft. 25 ft or 2 stories."),
+ d(J,"PUD","Planned Unit Development (overlay)","overlay",("Art. 17",FH),
+   note="Designation attached to a base district, not a separate district. 5-acre minimum (Board may waive on P&Z recommendation). Lots in DSD or residential districts never under 1/2 acre. Area plan by resolution, then final plan by ordinance."),
 ]
 
 json.dump(rows, open(sys.argv[1] + "/zoning_districts.json", "w"), indent=1)
