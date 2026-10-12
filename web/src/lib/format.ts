@@ -53,3 +53,13 @@ export const STAGE_LABEL: Record<string, string> = {
 
 // Stages that count as finished for the projects summary.
 export const CLOSED_STAGES = ["approved", "denied", "withdrawn", "closed"];
+
+// Day of week for a plain date, 0 = Sunday.
+export const weekday = (d: string) => new Date(d + "T00:00:00Z").getUTCDay();
+export const startOfWeek = (d: string) => addDays(d, -weekday(d));
+
+export function addMonths(month: string, n: number) {
+  const [y, m] = month.split("-").map(Number);
+  const x = new Date(Date.UTC(y, m - 1 + n, 1));
+  return x.toISOString().slice(0, 7);
+}

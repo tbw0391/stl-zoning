@@ -19,6 +19,11 @@ export async function middleware(request: NextRequest) {
     },
   );
   await supabase.auth.getUser();
+  // Remember the calendar view (list / month / week) someone last picked.
+  const view = request.nextUrl.searchParams.get("view");
+  if (request.nextUrl.pathname === "/" && view && ["list", "month", "week"].includes(view)) {
+    response.cookies.set("cal_view", view, { path: "/", maxAge: 60 * 60 * 24 * 365, sameSite: "lax" });
+  }
   return response;
 }
 

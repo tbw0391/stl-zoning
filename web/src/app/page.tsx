@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { cookies } from "next/headers";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft, faChevronRight, faList, faCalendarDays, faCalendarWeek, faRss } from "@fortawesome/free-solid-svg-icons";
 import { createClient } from "@/lib/supabase/server";
-import { addDays, fmtDate, fmtMonth, fmtTime, shortName, todayCentral } from "@/lib/format";
+import { addDays, addMonths, fmtDate, fmtMonth, fmtTime, shortName, startOfWeek, todayCentral } from "@/lib/format";
 import PageTitle from "@/components/PageTitle";
 
 export const dynamic = "force-dynamic";
@@ -22,21 +25,43 @@ type Meeting = {
 
 type CalTask = { id: number; title: string; assigned_to: string | null; due_date: string; project_id: number | null; projects: { name: string } | null };
 type Item = { kind: "meeting"; date: string; meeting: Meeting } | { kind: "task"; date: string; task: CalTask };
+type View = "list" | "month" | "week";
 
 const RANGES: Record<string, number> = { "90": 90, "180": 180, "365": 365 };
+const VIEWS: { id: View; label: string; icon: typeof faList }[] = [
+  { id: "list", label: "List", icon: faList },
+  { id: "month", label: "Month", icon: faCalendarDays },
+  { id: "week", label: "Week", icon: faCalendarWeek },
+];
+const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 export default async function CalendarPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const sp = await searchParams;
+  // The last view someone picked is remembered in a cookie (set by middleware).
+  const picked = sp.view ?? (await cookies()).get("cal_view")?.value;
+  const view: View = picked === "month" || picked === "week" ? picked : "list";
   const days = RANGES[sp.days ?? ""] ?? 180;
   const today = todayCentral();
-  const supabase = await createClient();
 
+  // Date window for the chosen view. Month and week grids start on Sunday.
+  const month = /^\d{4}-\d{2}$/.test(sp.m ?? "") ? sp.m! : today.slice(0, 7);
+  const weekStart = startOfWeek(/^\d{4}-\d{2}-\d{2}$/.test(sp.w ?? "") ? sp.w! : today);
+  let start = today, end = addDays(today, days);
+  if (view === "month") {
+    start = startOfWeek(month + "-01");
+    end = addDays(startOfWeek(addDays(addMonths(month, 1) + "-01", -1)), 6);
+  } else if (view === "week") {
+    start = weekStart;
+    end = addDays(weekStart, 6);
+  }
+
+  const supabase = await createClient();
   const showTasks = !sp.j && (!sp.type || sp.type === "tasks");
   const showMeetings = sp.type !== "tasks";
   const [{ data: jurisdictions }, { data: meetings }, { data: tasks }] = await Promise.all([
     supabase.from("jurisdictions").select("id, name, governing_body").order("name"),
     (() => {
-      let q = supabase.from("meetings").select("*").gte("event_date", today).lte("event_date", addDays(today, days)).order("event_date").order("event_time");
+      let q = supabase.from("meetings").select("*").gte("event_date", start).lte("event_date", end).order("event_date").order("event_time");
       if (sp.j) q = q.eq("jurisdiction_id", sp.j);
       if (sp.type === "deadlines") q = q.eq("event_type", "submittal_deadline");
       if (sp.type === "pz") q = q.eq("body", "planning_zoning").eq("event_type", "meeting");
@@ -47,7 +72,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
     // Open tasks with a follow-up date; overdue ones show under today.
     showTasks
       ? supabase.from("tasks").select("id, title, assigned_to, due_date, project_id, projects(name)").is("done_at", null)
-          .not("due_date", "is", null).lte("due_date", addDays(today, days)).order("due_date")
+          .not("due_date", "is", null).lte("due_date", end).order("due_date")
       : Promise.resolve({ data: [] }),
   ]);
 
@@ -66,25 +91,68 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
 
   const taskRows = (tasks ?? []) as unknown as CalTask[];
   const items: Item[] = [
-    ...taskRows.map((t): Item => ({ kind: "task", date: t.due_date < today ? today : t.due_date, task: t })),
+    ...taskRows
+      .map((t): Item => ({ kind: "task", date: t.due_date < today ? today : t.due_date, task: t }))
+      .filter((it) => it.date >= start),
     ...rows.map((m): Item => ({ kind: "meeting", date: m.event_date, meeting: m })),
   ].sort((a, b) => a.date.localeCompare(b.date));
 
-  const byMonth = new Map<string, Map<string, Item[]>>();
+  const byDay = new Map<string, Item[]>();
   for (const it of items) {
-    const month = it.date.slice(0, 7);
-    if (!byMonth.has(month)) byMonth.set(month, new Map());
-    const dayMap = byMonth.get(month)!;
-    if (!dayMap.has(it.date)) dayMap.set(it.date, []);
-    dayMap.get(it.date)!.push(it);
+    if (!byDay.has(it.date)) byDay.set(it.date, []);
+    byDay.get(it.date)!.push(it);
   }
+
+  // Query string for a link that keeps the current filters but changes some of them.
+  const href = (change: Record<string, string | undefined>) => {
+    const p = new URLSearchParams();
+    for (const [k, v] of Object.entries({ j: sp.j, type: sp.type, days: sp.days, view: sp.view, m: sp.m, w: sp.w, ...change })) {
+      if (v) p.set(k, v);
+    }
+    const s = p.toString();
+    return s ? `/?${s}` : "/";
+  };
 
   function label(m: Meeting) {
     if (m.event_type === "submittal_deadline") return <span className="tag due">SUBMITTAL DUE</span>;
     if (m.body === "planning_zoning") return <span className="tag pz">P&amp;Z</span>;
-    const gb = jmap.get(m.jurisdiction_id)?.governing_body?.replace(/\s*\(.*\)$/, "") ?? "Council";
-    return <span className="tag gov">{gb.toUpperCase()}</span>;
+    return <span className="tag gov">{govName(m).toUpperCase()}</span>;
   }
+  function govName(m: Meeting) {
+    return jmap.get(m.jurisdiction_id)?.governing_body?.replace(/\s*\(.*\)$/, "") ?? "Council";
+  }
+  const place = (m: Meeting) => shortName(jmap.get(m.jurisdiction_id)?.name ?? m.jurisdiction_id);
+
+  // Compact entry for the month and week grids.
+  function chip(it: Item) {
+    if (it.kind === "task") {
+      const t = it.task;
+      const overdue = t.due_date < today;
+      return (
+        <Link key={`t${t.id}`} href="/tasks" className={`chip ${overdue ? "due" : "task"}`} title={`${t.title} — ${t.assigned_to ?? "Unassigned"}`}>
+          <span className="chip-kind">{overdue ? "Overdue" : "Task"}</span> {t.title}
+        </Link>
+      );
+    }
+    const m = it.meeting;
+    const kind = m.event_type === "submittal_deadline" ? "due" : m.body === "planning_zoning" ? "pz" : "gov";
+    const what = kind === "due" ? "Submittal due" : kind === "pz" ? "P&Z" : govName(m);
+    const tentative = m.status !== "published" ? ` (${m.status})` : "";
+    return (
+      <Link key={m.id} href={`/jurisdictions/${m.jurisdiction_id}`} className={`chip ${kind}${m.status === "cancelled" ? " cancelled" : ""}`}
+        title={`${place(m)} — ${what}${m.event_time ? " " + fmtTime(m.event_time) : ""}${tentative}${m.location ? "\n" + m.location : ""}`}>
+        <span className="chip-kind">{what}</span> {place(m)}
+        {m.event_time && <span className="chip-time"> {fmtTime(m.event_time)}</span>}
+        {m.status === "projected" && <span className="chip-time"> ?</span>}
+      </Link>
+    );
+  }
+
+  const gridDays = (from: string, to: string) => {
+    const out: string[] = [];
+    for (let d = from; d <= to; d = addDays(d, 1)) out.push(d);
+    return out;
+  };
 
   return (
     <>
@@ -94,7 +162,21 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
         Other jurisdictions are still being researched.
       </p>
 
+      <div className="cal-toolbar">
+        <div className="seg" role="tablist" aria-label="Calendar view">
+          {VIEWS.map((v) => (
+            <Link key={v.id} href={href({ view: v.id })} className={view === v.id ? "on" : undefined} aria-current={view === v.id ? "page" : undefined}>
+              <FontAwesomeIcon icon={v.icon} /> {v.label}
+            </Link>
+          ))}
+        </div>
+        <Link href="/subscribe" className="subscribe-link"><FontAwesomeIcon icon={faRss} /> Subscribe in Outlook / Google / iPhone</Link>
+      </div>
+
       <form className="filters" method="get">
+        <input type="hidden" name="view" value={view} />
+        {view === "month" && sp.m && <input type="hidden" name="m" value={sp.m} />}
+        {view === "week" && sp.w && <input type="hidden" name="w" value={sp.w} />}
         <label>Jurisdiction
           <select name="j" defaultValue={sp.j ?? ""}>
             <option value="">All</option>
@@ -112,22 +194,66 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
             <option value="tasks">Tasks only</option>
           </select>
         </label>
-        <label>Range
-          <select name="days" defaultValue={String(days)}>
-            <option value="90">Next 3 months</option>
-            <option value="180">Next 6 months</option>
-            <option value="365">Next 12 months</option>
-          </select>
-        </label>
+        {view === "list" && (
+          <label>Range
+            <select name="days" defaultValue={String(days)}>
+              <option value="90">Next 3 months</option>
+              <option value="180">Next 6 months</option>
+              <option value="365">Next 12 months</option>
+            </select>
+          </label>
+        )}
         <button type="submit">Apply</button>
       </form>
 
-      {items.length === 0 && <div className="card empty">No dates in this range.</div>}
+      {view === "month" && (
+        <section className="cal">
+          <div className="cal-nav">
+            <Link href={href({ m: addMonths(month, -1) })} aria-label="Previous month"><FontAwesomeIcon icon={faChevronLeft} /></Link>
+            <h2>{fmtMonth(month + "-01")}</h2>
+            <Link href={href({ m: addMonths(month, 1) })} aria-label="Next month"><FontAwesomeIcon icon={faChevronRight} /></Link>
+            {month !== today.slice(0, 7) && <Link href={href({ m: undefined })} className="small">This month</Link>}
+          </div>
+          <div className="cal-grid">
+            {WEEKDAYS.map((d) => <div key={d} className="cal-head">{d}</div>)}
+            {gridDays(start, end).map((d) => (
+              <div key={d} className={`cal-day${d.slice(0, 7) !== month ? " outside" : ""}${d === today ? " today" : ""}${d < today ? " past" : ""}`}>
+                <div className="cal-num">{Number(d.slice(8))}</div>
+                <div className="cal-events">{(byDay.get(d) ?? []).map(chip)}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
-      {[...byMonth.entries()].map(([month, dayMap]) => (
-        <section className="month" key={month}>
-          <h2>{fmtMonth(month + "-01")}</h2>
-          {[...dayMap.entries()].map(([date, events]) => (
+      {view === "week" && (
+        <section className="cal">
+          <div className="cal-nav">
+            <Link href={href({ w: addDays(weekStart, -7) })} aria-label="Previous week"><FontAwesomeIcon icon={faChevronLeft} /></Link>
+            <h2>Week of {fmtDate(weekStart).replace(/^\w+, /, "")}</h2>
+            <Link href={href({ w: addDays(weekStart, 7) })} aria-label="Next week"><FontAwesomeIcon icon={faChevronRight} /></Link>
+            {weekStart !== startOfWeek(today) && <Link href={href({ w: undefined })} className="small">This week</Link>}
+          </div>
+          <div className="week-grid">
+            {gridDays(start, end).map((d, i) => (
+              <div key={d} className={`week-day${d === today ? " today" : ""}${d < today ? " past" : ""}`}>
+                <div className="week-head"><span>{WEEKDAYS[i]}</span> <strong>{Number(d.slice(8))}</strong></div>
+                <div className="cal-events">
+                  {(byDay.get(d) ?? []).map(chip)}
+                  {!byDay.has(d) && <span className="muted small">—</span>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {view === "list" && items.length === 0 && <div className="card empty">No dates in this range.</div>}
+
+      {view === "list" && [...new Set(items.map((it) => it.date.slice(0, 7)))].map((mo) => (
+        <section className="month" key={mo}>
+          <h2>{fmtMonth(mo + "-01")}</h2>
+          {[...byDay.entries()].filter(([date]) => date.startsWith(mo)).map(([date, events]) => (
             <div className="day" key={date}>
               <div className="day-date">{fmtDate(date)}</div>
               <div className="events">
@@ -145,12 +271,11 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
                     );
                   }
                   const m = it.meeting;
-                  const j = jmap.get(m.jurisdiction_id);
                   const feeds = m.linked_meeting ? linkedDate.get(m.linked_meeting) : null;
                   return (
                     <div className="event" key={m.id}>
                       {label(m)}
-                      <Link href={`/jurisdictions/${m.jurisdiction_id}`}><strong>{shortName(j?.name ?? m.jurisdiction_id)}</strong></Link>
+                      <Link href={`/jurisdictions/${m.jurisdiction_id}`}><strong>{place(m)}</strong></Link>
                       {m.event_time && <span>{m.event_type === "submittal_deadline" ? "by " : ""}{fmtTime(m.event_time)}</span>}
                       {feeds && <span className="where">for P&amp;Z on {fmtDate(feeds)}</span>}
                       {m.status !== "published" && <span className="tag tentative">{m.status}</span>}

@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <header className="topbar">
           <Link href="/" className="brand">
-            <Image src="/lombardo-logo.png" alt="Lombardo Homes" width={114} height={32} priority />
+            <Image src="/lombardo-logo.png" alt="Lombardo Homes" width={142} height={40} priority />
             <span className="brand-name">Entitlement Tracker</span>
           </Link>
           <Nav />
