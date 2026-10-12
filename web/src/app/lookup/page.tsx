@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { MUNICIPALITY_TO_JURISDICTION, findParcels, matchDistrict, zoningFor, type Parcel, type Zoning } from "@/lib/parcels";
+import PageTitle from "@/components/PageTitle";
 
 export const dynamic = "force-dynamic";
 
@@ -46,7 +47,7 @@ export default async function LookupPage({ searchParams }: { searchParams: Promi
 
   return (
     <>
-      <h1>Parcel lookup</h1>
+      <PageTitle href="/lookup">Parcel lookup</PageTitle>
       <p className="muted">Address or parcel ID → jurisdiction, current zoning and that district&apos;s standards. St. Charles County only for now.</p>
 
       <form className="filters" method="get">

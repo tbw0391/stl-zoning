@@ -2,6 +2,8 @@
 
 import { useRef, useState, useTransition } from "react";
 import { usePathname } from "next/navigation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { addTodo } from "@/app/todo/actions";
 
 export default function SuggestButton() {
@@ -21,8 +23,8 @@ export default function SuggestButton() {
 
   return (
     <div className="suggest">
-      <button type="button" className="link" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
-        Suggest
+      <button type="button" className="suggest-btn" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
+        <FontAwesomeIcon icon={faPenToSquare} /> Suggest
       </button>
       {open && (
         <form ref={formRef} action={submit} className="suggest-pop card">

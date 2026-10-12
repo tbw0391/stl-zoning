@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { addDays, fmtDate, fmtMonth, fmtTime, shortName, todayCentral } from "@/lib/format";
+import PageTitle from "@/components/PageTitle";
 
 export const dynamic = "force-dynamic";
 
@@ -87,7 +88,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
 
   return (
     <>
-      <h1>Upcoming dates</h1>
+      <PageTitle href="/">Upcoming dates</PageTitle>
       <p className="muted coverage">
         Schedules loaded for: {coveredIds.map((id) => shortName(jmap.get(id)?.name ?? id)).join(", ") || "none yet"}.
         Other jurisdictions are still being researched.

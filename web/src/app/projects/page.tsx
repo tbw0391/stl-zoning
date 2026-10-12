@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { CLOSED_STAGES, STAGE_LABEL, fmtDate, shortName, todayCentral } from "@/lib/format";
 import { createProject } from "./actions";
+import PageTitle from "@/components/PageTitle";
 
 export const dynamic = "force-dynamic";
 
@@ -35,7 +36,7 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Pro
 
   return (
     <>
-      <h1>Projects</h1>
+      <PageTitle href="/projects">Projects</PageTitle>
       <p className="muted">
         {rows.length} {showClosed ? "" : "active "}project{rows.length === 1 ? "" : "s"}.{" "}
         {closedCount > 0 && (showClosed ? <Link href="/projects">Hide closed</Link> : <Link href="/projects?show=all">Show {closedCount} closed</Link>)}

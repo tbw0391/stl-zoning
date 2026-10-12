@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { addDays, todayCentral } from "@/lib/format";
 import { TASK_SELECT, Task, TaskForm, TaskList, assignees } from "@/components/Tasks";
+import PageTitle from "@/components/PageTitle";
 
 export const dynamic = "force-dynamic";
 
@@ -32,7 +33,7 @@ export default async function TasksPage({ searchParams }: { searchParams: Promis
 
   return (
     <>
-      <h1>Tasks</h1>
+      <PageTitle href="/tasks">Tasks</PageTitle>
       <p className="muted">Follow-ups for the team. Tasks with a date also show on the <Link href="/">calendar</Link>.</p>
 
       <TaskForm projects={projects ?? []} people={people} />

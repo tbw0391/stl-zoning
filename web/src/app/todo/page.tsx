@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { setTodoDone } from "./actions";
+import PageTitle from "@/components/PageTitle";
 
 export const dynamic = "force-dynamic";
 
@@ -27,7 +28,7 @@ export default async function TodoPage() {
 
   return (
     <>
-      <h1>Suggestions</h1>
+      <PageTitle href="/todo">Suggestions</PageTitle>
       <p className="muted">Ideas and fixes for this site. Use the Suggest button in the header on any page to add one.</p>
       {open.length === 0 ? <div className="card empty">Nothing open.</div> : <ul className="todos card">{open.map(row)}</ul>}
       {done.length > 0 && (

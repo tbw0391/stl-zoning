@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { fmtDate, shortName } from "@/lib/format";
 import { saveTaskAnswer, setTaskDone } from "@/app/tasks/actions";
+import PageTitle from "@/components/PageTitle";
 
 export const dynamic = "force-dynamic";
 
@@ -75,7 +76,7 @@ export default async function ChadPage() {
 
   return (
     <>
-      <h1>Chad&apos;s tasks</h1>
+      <PageTitle href="/chad">Chad&apos;s tasks</PageTitle>
       <p className="muted">
         Calls and emails the website can&apos;t answer. Write down what you learn and check the box; it gets loaded into the tracker.
         These also appear on the <Link href={`/tasks?who=${WHO}`}>Tasks</Link> page.

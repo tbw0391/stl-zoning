@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { ROLE_LABEL, shortName } from "@/lib/format";
+import PageTitle from "@/components/PageTitle";
 
 export const dynamic = "force-dynamic";
 
@@ -20,7 +21,7 @@ export default async function DirectoryPage({ searchParams }: { searchParams: Pr
 
   return (
     <>
-      <h1>Directory</h1>
+      <PageTitle href="/directory">Directory</PageTitle>
       <p className="muted">P&amp;Z commissioners, elected officials and key staff. Coverage grows as each jurisdiction is researched. Anyone can fix a row with Edit.</p>
       <p><Link href={sp.j ? `/directory/new?j=${sp.j}` : "/directory/new"}>+ Add person</Link></p>
 

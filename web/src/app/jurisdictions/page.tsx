@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { STATUS_LABEL, todayCentral } from "@/lib/format";
+import PageTitle from "@/components/PageTitle";
 
 export const dynamic = "force-dynamic";
 
@@ -24,7 +25,7 @@ export default async function JurisdictionsPage() {
 
   return (
     <>
-      <h1>Jurisdictions</h1>
+      <PageTitle href="/jurisdictions">Jurisdictions</PageTitle>
       <p className="muted">St. Charles County and its municipalities, plus a St. Louis County placeholder. Click one for its rezoning process, dates and contacts.</p>
       <div className="table-wrap" style={{ marginTop: 16 }}>
         <table>

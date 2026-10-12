@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { fmtDate, shortName } from "@/lib/format";
 import { AgendaItem, BODY_LABEL, SummaryItem } from "@/components/MeetingSummary";
+import PageTitle from "@/components/PageTitle";
 
 export const dynamic = "force-dynamic";
 
@@ -20,7 +21,7 @@ export default async function MeetingsPage({ searchParams }: { searchParams: Pro
 
   return (
     <>
-      <h1>Meetings</h1>
+      <PageTitle href="/meetings">Meetings</PageTitle>
       <p className="muted">
         Posted agendas for upcoming meetings, and recorded meetings summarized from the video captions.
         {sp.j && <> <Link href="/meetings">Show all jurisdictions</Link></>}

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { fmtDate } from "@/lib/format";
 import { updateProgress } from "./actions";
+import PageTitle from "@/components/PageTitle";
 
 export const dynamic = "force-dynamic";
 
@@ -43,7 +44,7 @@ export default async function ProgressPage() {
 
   return (
     <>
-      <h1>Progress</h1>
+      <PageTitle href="/progress">Progress</PageTitle>
       <p className="muted">
         Research status for every jurisdiction, by county. A jurisdiction is complete when all four tasks are done.
         Use Edit in any cell to change its status or note.
