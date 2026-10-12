@@ -263,5 +263,136 @@ for r in rows:
         o["note"] = f"Formerly {o['old_district']}. " + o.get("note", "")
         o["note"] = o["note"].strip()
 
+# Cottleville Ch. 405 (ecode360). Art. II base districts; Art. III Old Town; Art. IV Community College Special District
+# subdistricts (setbacks §405.265, heights §405.270, open space §405.260). C districts' street-side setback in note.
+J = "cottleville"
+CR = ("§405.045", 29399665)
+CS = "Commercial greenbelt: 15 ft landscaped buffer with 6 ft screen next to residential zoning."
+SC = ("§405.265-405.270", 29400532)
+SM = " 40 ft building and parking setback from Mid Rivers Mall Dr and St. Peters-Cottleville Rd. Taller buildings allowed with Board of Aldermen site plan review and 1 ft extra setback per ft over the limit, §405.270."
+rows += [
+ d(J,"F-P","Floodplain","special",("§405.035",29399620),lot=130680,width=200,front=50,side=50,rear=50,height=35,min_dwelling_sf=1200),
+ d(J,"R-1A","Single-Family Residential","residential",("§405.040",29399641),lot=43560,width=200,front=35,side=20,rear=35,height=35,min_dwelling_sf=1200),
+ d(J,"R-1B","Single-Family Residential","residential",CR,lot=20000,width=100,front=25,side=10,rear=25,height=35,min_dwelling_sf=1200),
+ d(J,"R-1C","Single-Family Residential","residential",CR,lot=15000,width=80,front=25,side=10,rear=25,height=35,min_dwelling_sf=1200),
+ d(J,"R-1D","Single-Family Residential","residential",CR,lot=10000,width=80,front=25,side=7,rear=25,height=35,min_dwelling_sf=1200),
+ d(J,"R-1E","Single-Family Residential","residential",CR,lot=7000,width=70,front=25,side=7,rear=25,height=35,min_dwelling_sf=1200),
+ d(J,"R-2","Multi-Family Residential","residential",("§405.050",29399691),width=200,front=25,side=25,rear=25,height=35,
+   min_lot_sf_per_unit=5000, min_dwelling_sf=800, note="Lot area is 5,000 sf per family."),
+ d(J,"S-D/OT","Special District/Old Town Cottleville","special",("§405.095",29399946),height=35,
+   note="35 ft or 2.5 stories. No minimum lot area. Yards follow the existing layout, approved case by case by P&Z. R-1/R-2 uses permitted; commercial uses conditional."),
+ d(J,"C-1","Light Commercial Office","office",("§405.060",29399715),front=25,side=10,rear=15,height=20,
+   note="No minimum lot size or width. Street side setback 25 ft. No permanent outdoor storage. "+CS),
+ d(J,"C-2","Limited Commercial Services","commercial",("§405.065",29399744),front=30,side=15,rear=20,height=30,
+   note="No minimum lot size or width. Street side setback 30 ft. "+CS),
+ d(J,"C-3","General Commercial Retail","commercial",("§405.070",29399774),front=35,side=20,rear=25,height=40,
+   note="No minimum lot size or width. Street side setback 35 ft. "+CS),
+ d(J,"C-4","Regional Commercial Retail","commercial",("§405.075",29399804),lot=1089000,front=40,side=40,rear=40,height=60,
+   note="25-acre minimum. Street side setback 20 ft. Shopping-center site plan approval; construction must start within 2 years of rezoning. "+CS),
+ d(J,"C-5","Commercial Office (General Public)","office",("§405.080",29399836),front=40,side=40,rear=40,height=60,
+   note="Public, institutional, health care, school and church uses. No minimum lot size or width. Street side setback 20 ft. "+CS),
+ d(J,"I-1","Light Industrial","industrial",("§405.085",29399867),front=30,side=40,rear=40,height=45,
+   note="Side 10 ft and rear 15 ft, or 40 ft next to residential. No minimum lot area. Height over 45 ft needs P&Z review, plus 1 ft setback per 2 ft over 45 next to residential. Open storage up to 40% of lot. 20 ft greenbelt next to residential."),
+ d(J,"I-2","Heavy Industrial","industrial",("§405.090",29399902),front=30,side=70,rear=70,height=45,
+   note="Side 10 ft and rear 15 ft, or 70 ft next to residential. Height over 45 ft needs P&Z review, plus 1 ft setback per 2 ft over 45 next to residential. Open storage up to 60% of lot."),
+ d(J,"RD","Recreational","recreational",("§405.092",45627792),lot=43560,front=20,side=10,rear=10,
+   note="No minimum lot width. Street side setback 20 ft. No height limit stated. 25 ft vegetated buffer along natural watercourses; 10 ft greenbelt next to residential."),
+ d(J,"SD/C-CC","College Campus","special",SC,front=40,side=40,rear=40,height=45,min_open_space_pct=35,
+   note="Parking setback 40 ft."+SM),
+ d(J,"SD/C-R1","College Single-Family","residential",SC,front=35,side=15,rear=25,height=35,
+   note="No lot area or width stated in Art. IV."+SM),
+ d(J,"SD/C-R2","College Two-Family","residential",SC,front=30,side=25,rear=25,height=35,
+   note="No lot area or width stated in Art. IV."+SM),
+ d(J,"SD/C-R3","College Multi-Family","residential",SC,width=200,dens=14,front=25,side=25,rear=25,height=45,
+   min_lot_sf_per_unit=3111, min_dwelling_sf=1000, note="Lot area 3,111 sf per family, §405.213(D)."+SM),
+ d(J,"SD/C-C1","College Pedestrian Commercial / Light Office","commercial",SC,front=4,side=0,rear=0,height=35,min_open_space_pct=15,
+   note="Build-to style: 4 ft front, 0 ft sides and rear; parking 0 ft. Exempt from the 40 ft arterial setback."),
+ d(J,"SD/C-C2","College General Commercial","commercial",SC,front=25,side=25,rear=25,height=35,min_open_space_pct=25,
+   note="Parking setback 15 ft."+SM),
+ d(J,"SD/C-C3","College General Commercial Retail","commercial",SC,front=25,side=25,rear=25,height=35,min_open_space_pct=25,
+   note="Parking setback 15 ft."+SM),
+ d(J,"SD/C-C5","College General Public","office",SC,front=30,side=30,rear=30,height=40,min_open_space_pct=30,
+   note="Parking setback 20 ft."+SM),
+ d(J,"SD/C-I1","College Light Industrial Park","industrial",SC,front=35,side=15,rear=15,height=45,min_open_space_pct=25,
+   note="Parking setback 35 ft front, 10 ft side/rear."+SM),
+ d(J,"SD/C-PO","College Park and Open Space","recreational",SC,front=70,side=70,rear=70,height=35,
+   note="Parking setback 45 ft."+SM),
+ d(J,"SD/C-UC","College Urban Corridor (overlay)","overlay",SC,
+   note="Overlay; underlying district rules apply. Buildings 30 ft and parking 25 ft from Cottleville Pkwy, Mid Rivers Mall Dr and St. Peters-Cottleville Rd (except R-1A)."),
+ d(J,"PUD","Planned Unit Development","planned",("Art. V",29400341), note="Standards set by the approved PUD plan; see Article V (incl. multiple-family PUDs)."),
+]
+
+# Dardenne Prairie Ch. 405, Art. III (ecode360). R-M (2012, amended May 2026) and C-3 (2016) have sections
+# but are missing from the §405.090 district list (last amended 2021).
+J = "dardenne_prairie"
+DH = "2.5 stories or 35 ft, whichever is less. Detached accessory buildings 25 ft max."
+DD = "Min dwelling 1,600 sf one-story; 1,250 sf first floor and 2,200 sf total two-story; 1,900 sf split-level/1.5-story."
+DC = "Height over 45 ft only with P&Z and Board of Aldermen findings under the conditional use standards."
+rows += [
+ d(J,"R-1A","Single-Family Residential","residential",("§405.140",29686641),lot=43560,width=150,front=35,side=20,rear=35,height=35,
+   min_lot_depth_ft=200, max_lot_coverage_pct=25, min_dwelling_sf=1600, note=DH+" "+DD),
+ d(J,"R-1B","Single-Family Residential","residential",("§405.150",29686690),lot=20000,width=100,front=25,side=10,rear=25,height=35,
+   min_lot_depth_ft=120, max_lot_coverage_pct=30, min_dwelling_sf=1600, note=DH+" "+DD),
+ d(J,"R-1C","Single-Family Residential","residential",("§405.160",29686728),lot=15000,width=80,front=25,side=10,rear=25,height=35,
+   min_lot_depth_ft=100, max_lot_coverage_pct=30, min_dwelling_sf=1600, note=DH+" "+DD),
+ d(J,"R-1D","Single-Family Residential","residential",("§405.170",29686766),lot=12000,width=80,front=25,side=10,rear=25,height=35,
+   min_lot_depth_ft=100, max_lot_coverage_pct=30, min_dwelling_sf=1600,
+   note="Attached single-family: 5,400 sf lot or common ground, 45 ft wide, 70 ft deep, 20 ft rear yard, 1,450 sf first floor. Villas 1,450 sf first floor. "+DH+" "+DD),
+ d(J,"R-M","Multiple-Family Residential","residential",("§405.175",29686808),lot=217800,width=100,dens=8,front=20,side=20,rear=20,
+   min_dwelling_sf=900, max_stories=2,
+   note="2 stories max. 5-acre lot, no access to minor streets; must adjoin 10+ acres of commercial/industrial zoning along 35%+ of its perimeter, and new multi-family must be next to I-64. Max 6 units per building; 20 ft between building sides, 40 ft front/rear. Two-car garage per unit with its own entrance. Not in the §405.090 district list."),
+ d(J,"C-1","Local Commercial","commercial",("§405.180",29686864),lot=43560,width=70,front=25,side=10,rear=15,height=45,
+   note="1 acre, or a combined district of at least 1 acre when abutting commercial/industrial zoning. No lot depth or coverage limit. "+DC),
+ d(J,"C-2","General Commercial","commercial",("§405.190",29686911),lot=217800,width=150,front=25,side=10,rear=15,height=45,
+   note="5 acres, or a combined district of at least 1 acre when abutting commercial/industrial zoning. Corner street side yard 25 ft. Front yard excludes signs, pump islands and canopies. "+DC),
+ d(J,"C-3","Retail Commercial","commercial",("§405.195",33291485),width=150,front=25,side=10,rear=15,height=45,
+   note="No minimum lot area stated. Board of Aldermen may approve smaller lot width and yards with an Article IV area plan. Corner street side yard 25 ft. "+DC+" Not in the §405.090 district list."),
+ d(J,"I-1","Light Industrial","industrial",("§405.200",29686969),lot=43560,width=150,front=30,side=20,rear=35,height=50,
+   max_lot_coverage_pct=40, note="Corner street side yard 30 ft. 50 ft or 3 stories; Board may allow up to 6 stories."),
+ d(J,"HTCD","High Tech Corridor","industrial",("§405.210",29687062),lot=217800,width=100,front=30,side=20,rear=35,height=50,
+   max_lot_coverage_pct=50, note="5-acre site, or a combined district of at least 5 acres when abutting HTCD/commercial. Corner side yard 30 ft. Front yard kept clear of parking and loading. 50 ft or 3 stories; Planning Commission may allow up to 6 stories. Secondary uses limited to 30% of the park."),
+ d(J,"ND","New Development","mixed_use",("§405.215",44981193),
+   note="Replaced the Uptown district (2021). Lot, yard and height standards come from the corresponding district for each area (R-1B/C/D along Post Rd and Town Square Ave; C-1/C-2 or residential at Post Rd & Technology Dr; C-2/C-3/HTCD along Technology Dr/I-64). Area or site plan approval by the Board of Aldermen required; design standards in §405.215(F)."),
+ d(J,"PUD","Planned Unit Development","planned",("Art. IV",29687154), note="Standards set by the approved area and final plans; see Article IV."),
+]
+
+# Weldon Spring Ch. 405, Art. III bulk tables (ecode360; Ord. 18-12, 2018). Residential columns hold conventional-subdivision
+# values; conservation subdivisions set lot, width and yards on the final plan (density by yield plan, Ch. 410.400-410.410).
+J = "weldon_spring"
+WD = "Min dwelling 2,500 sf (2-2.5 story), 2,200 sf (1.5 story), 2,000 sf (1 story); 1,250 sf footprint."
+WC = lambda gs, sep: f"10-acre minimum district for conventional subdivisions. Conservation subdivisions: {gs}% green space, {sep} ft between dwellings, one outbuilding up to 1,000 sf. "
+WB = "25 ft buffer yard next to single-family use or zoning."
+rows += [
+ d(J,"AG","Agricultural","agricultural",("§405.070",34347019),lot=217800,width=250,dens=0.2,front=50,side=40,rear=50,height=35,
+   min_lot_depth_ft=250, min_dwelling_sf=2000, note=WC(60,100)+"Homes may reach 45 ft with Architectural Review Commission and Board approval. Stables and kennels 75 ft from lot lines. "+WD),
+ d(J,"RS-3","Single-Family Residential (3 ac)","residential",("§405.075",34347042),lot=130680,width=250,dens=0.33,front=50,side=40,rear=50,height=35,
+   min_dwelling_sf=2000, note=WC(50,75)+"Homes may reach 45 ft with Architectural Review Commission and Board approval. "+WD),
+ d(J,"RS-2","Single-Family Residential (80,000 sf)","residential",("§405.080",34347064),lot=80000,width=200,dens=0.54,front=40,side=40,rear=40,height=35,
+   min_lot_depth_ft=200, min_dwelling_sf=2000, note=WC(40,50)+"Homes may reach 40 ft with Architectural Review Commission and Board approval. "+WD),
+ d(J,"RS-1","Single-Family Residential (40,000 sf)","residential",("§405.085",34347082),lot=40000,width=150,dens=1.09,front=35,side=20,rear=35,height=35,
+   min_lot_depth_ft=150, min_dwelling_sf=2000, note=WC(30,35)+"Taller homes need Architectural Review Commission and Board approval. "+WD),
+ d(J,"RS-1/2","Single-Family Residential (20,000 sf)","residential",("§405.090",34347100),lot=20000,width=100,dens=2.18,front=25,side=15,rear=25,height=35,
+   min_lot_depth_ft=125, min_dwelling_sf=2000, note=WC(20,25)+"35 ft or 2.5 stories. "+WD),
+ d(J,"PR","Planned Residential","planned",("§405.095",34347118),lot=20000,width=100,dens=12,front=25,side=15,rear=25,height=35,
+   min_lot_depth_ft=125, min_dwelling_sf=2000,
+   note="Guidelines; P&Z and Board set bulk per site. 10-acre district. Density per Comprehensive Plan, max 12 du/ac, and within 200 ft of the line no more than 150% of the neighbor's density. Attached or cluster homes need 5 acres. Villas 1,200 sf (1,000 sf footprint). Up to 40 ft on 1-acre lots with 1 ft added yard per ft over 35. Front yard larger along major roads. "+WD),
+ d(J,"SP","Public/Semi-Public","special",("§405.100",34347142),lot=40000,width=200,front=50,side=50,rear=50,height=45,
+   min_lot_depth_ft=200, max_lot_coverage_pct=60, note="45 ft or 3 stories. 10-acre district (5 acres combined contiguous tracts). "+WB),
+ d(J,"HTO","High-Technology Office","office",("§405.105",34347153),lot=20000,width=100,front=50,side=20,rear=50,height=45,
+   min_lot_depth_ft=100, max_lot_coverage_pct=65, min_open_space_pct=35,
+   note="45 ft or 3 stories; Board may approve 4 stories or 75 ft. 40-acre district unless contiguous to existing HTO. All operations and storage enclosed. "+WB),
+ d(J,"PC","Planned Commercial","commercial",("§405.110",34347172),lot=20000,width=100,front=25,side=10,rear=15,height=45,
+   min_lot_depth_ft=100, min_open_space_pct=35,
+   note="Guidelines; bulk set by the governing ordinance and site plan. 5-acre district. 45 ft or 3 stories unless the Board approves more. Villas, townhomes and multi-family by conditional use on 5+ acres, max 12 du/ac; multi-family limited to 20% of the development's coverage or floor area. "+WB),
+ d(J,"GC","General Commercial","commercial",("§405.115",34347196),lot=10000,width=100,front=25,side=10,rear=15,height=45,
+   min_lot_depth_ft=100, max_lot_coverage_pct=80, note="45 ft or 3 stories; Board may approve 4 stories or 75 ft. 5-acre district. "+WB),
+ d(J,"LI","Light Industrial","industrial",("§405.120",34347207),lot=20000,width=100,front=25,side=10,rear=15,height=45,
+   min_lot_depth_ft=200, max_lot_coverage_pct=80, note="45 ft or 3 stories. 5-acre district. Parking and storage yards hard surfaced. "+WB),
+ d(J,"MED","Medical","special",("§405.125",34347219),lot=20000,width=100,front=50,side=20,rear=50,height=45,
+   min_lot_depth_ft=150, max_lot_coverage_pct=75,
+   note="45 ft or 3 stories. 20-acre district. Buildings set back 2 ft per ft of height from residential zoning. Helipads 50 ft from lot lines and 200 ft from residential. "+WB),
+ d(J,"FP","Floodplain (overlay)","overlay",("§405.135",34347231), note="Floodplain overlay; see §405.130-405.135 and the floodplain chapter."),
+]
+
 json.dump(rows, open(sys.argv[1] + "/zoning_districts.json", "w"), indent=1)
 print(len(rows))

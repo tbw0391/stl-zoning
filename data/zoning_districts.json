@@ -2404,5 +2404,1009 @@
    "note": "Overlay; see \u00a7415.140."
   },
   "source_url": "https://ecode360.com/37148429"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "F-P",
+  "name": "Floodplain",
+  "category": "special",
+  "min_lot_sf": 130680,
+  "min_lot_width_ft": 200,
+  "max_density_du_ac": null,
+  "front_setback_ft": 50,
+  "side_setback_ft": 50,
+  "rear_setback_ft": 50,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.035",
+   "min_dwelling_sf": 1200
+  },
+  "source_url": "https://ecode360.com/29399620"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "R-1A",
+  "name": "Single-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 200,
+  "max_density_du_ac": null,
+  "front_setback_ft": 35,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 35,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.040",
+   "min_dwelling_sf": 1200
+  },
+  "source_url": "https://ecode360.com/29399641"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "R-1B",
+  "name": "Single-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 20000,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.045",
+   "min_dwelling_sf": 1200
+  },
+  "source_url": "https://ecode360.com/29399665"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "R-1C",
+  "name": "Single-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 15000,
+  "min_lot_width_ft": 80,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.045",
+   "min_dwelling_sf": 1200
+  },
+  "source_url": "https://ecode360.com/29399665"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "R-1D",
+  "name": "Single-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 10000,
+  "min_lot_width_ft": 80,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 7,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.045",
+   "min_dwelling_sf": 1200
+  },
+  "source_url": "https://ecode360.com/29399665"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "R-1E",
+  "name": "Single-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 7000,
+  "min_lot_width_ft": 70,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 7,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.045",
+   "min_dwelling_sf": 1200
+  },
+  "source_url": "https://ecode360.com/29399665"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "R-2",
+  "name": "Multi-Family Residential",
+  "category": "residential",
+  "min_lot_sf": null,
+  "min_lot_width_ft": 200,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 25,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.050",
+   "min_lot_sf_per_unit": 5000,
+   "min_dwelling_sf": 800,
+   "note": "Lot area is 5,000 sf per family."
+  },
+  "source_url": "https://ecode360.com/29399691"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "S-D/OT",
+  "name": "Special District/Old Town Cottleville",
+  "category": "special",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.095",
+   "note": "35 ft or 2.5 stories. No minimum lot area. Yards follow the existing layout, approved case by case by P&Z. R-1/R-2 uses permitted; commercial uses conditional."
+  },
+  "source_url": "https://ecode360.com/29399946"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "C-1",
+  "name": "Light Commercial Office",
+  "category": "office",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 15,
+  "max_height_ft": 20,
+  "other_requirements": {
+   "code_section": "\u00a7405.060",
+   "note": "No minimum lot size or width. Street side setback 25 ft. No permanent outdoor storage. Commercial greenbelt: 15 ft landscaped buffer with 6 ft screen next to residential zoning."
+  },
+  "source_url": "https://ecode360.com/29399715"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "C-2",
+  "name": "Limited Commercial Services",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 20,
+  "max_height_ft": 30,
+  "other_requirements": {
+   "code_section": "\u00a7405.065",
+   "note": "No minimum lot size or width. Street side setback 30 ft. Commercial greenbelt: 15 ft landscaped buffer with 6 ft screen next to residential zoning."
+  },
+  "source_url": "https://ecode360.com/29399744"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "C-3",
+  "name": "General Commercial Retail",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 35,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 25,
+  "max_height_ft": 40,
+  "other_requirements": {
+   "code_section": "\u00a7405.070",
+   "note": "No minimum lot size or width. Street side setback 35 ft. Commercial greenbelt: 15 ft landscaped buffer with 6 ft screen next to residential zoning."
+  },
+  "source_url": "https://ecode360.com/29399774"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "C-4",
+  "name": "Regional Commercial Retail",
+  "category": "commercial",
+  "min_lot_sf": 1089000,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 40,
+  "side_setback_ft": 40,
+  "rear_setback_ft": 40,
+  "max_height_ft": 60,
+  "other_requirements": {
+   "code_section": "\u00a7405.075",
+   "note": "25-acre minimum. Street side setback 20 ft. Shopping-center site plan approval; construction must start within 2 years of rezoning. Commercial greenbelt: 15 ft landscaped buffer with 6 ft screen next to residential zoning."
+  },
+  "source_url": "https://ecode360.com/29399804"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "C-5",
+  "name": "Commercial Office (General Public)",
+  "category": "office",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 40,
+  "side_setback_ft": 40,
+  "rear_setback_ft": 40,
+  "max_height_ft": 60,
+  "other_requirements": {
+   "code_section": "\u00a7405.080",
+   "note": "Public, institutional, health care, school and church uses. No minimum lot size or width. Street side setback 20 ft. Commercial greenbelt: 15 ft landscaped buffer with 6 ft screen next to residential zoning."
+  },
+  "source_url": "https://ecode360.com/29399836"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "I-1",
+  "name": "Light Industrial",
+  "category": "industrial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 40,
+  "rear_setback_ft": 40,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.085",
+   "note": "Side 10 ft and rear 15 ft, or 40 ft next to residential. No minimum lot area. Height over 45 ft needs P&Z review, plus 1 ft setback per 2 ft over 45 next to residential. Open storage up to 40% of lot. 20 ft greenbelt next to residential."
+  },
+  "source_url": "https://ecode360.com/29399867"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "I-2",
+  "name": "Heavy Industrial",
+  "category": "industrial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 70,
+  "rear_setback_ft": 70,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.090",
+   "note": "Side 10 ft and rear 15 ft, or 70 ft next to residential. Height over 45 ft needs P&Z review, plus 1 ft setback per 2 ft over 45 next to residential. Open storage up to 60% of lot."
+  },
+  "source_url": "https://ecode360.com/29399902"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "RD",
+  "name": "Recreational",
+  "category": "recreational",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 20,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 10,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.092",
+   "note": "No minimum lot width. Street side setback 20 ft. No height limit stated. 25 ft vegetated buffer along natural watercourses; 10 ft greenbelt next to residential."
+  },
+  "source_url": "https://ecode360.com/45627792"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "SD/C-CC",
+  "name": "College Campus",
+  "category": "special",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 40,
+  "side_setback_ft": 40,
+  "rear_setback_ft": 40,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.265-405.270",
+   "min_open_space_pct": 35,
+   "note": "Parking setback 40 ft. 40 ft building and parking setback from Mid Rivers Mall Dr and St. Peters-Cottleville Rd. Taller buildings allowed with Board of Aldermen site plan review and 1 ft extra setback per ft over the limit, \u00a7405.270."
+  },
+  "source_url": "https://ecode360.com/29400532"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "SD/C-R1",
+  "name": "College Single-Family",
+  "category": "residential",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 35,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.265-405.270",
+   "note": "No lot area or width stated in Art. IV. 40 ft building and parking setback from Mid Rivers Mall Dr and St. Peters-Cottleville Rd. Taller buildings allowed with Board of Aldermen site plan review and 1 ft extra setback per ft over the limit, \u00a7405.270."
+  },
+  "source_url": "https://ecode360.com/29400532"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "SD/C-R2",
+  "name": "College Two-Family",
+  "category": "residential",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 25,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.265-405.270",
+   "note": "No lot area or width stated in Art. IV. 40 ft building and parking setback from Mid Rivers Mall Dr and St. Peters-Cottleville Rd. Taller buildings allowed with Board of Aldermen site plan review and 1 ft extra setback per ft over the limit, \u00a7405.270."
+  },
+  "source_url": "https://ecode360.com/29400532"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "SD/C-R3",
+  "name": "College Multi-Family",
+  "category": "residential",
+  "min_lot_sf": null,
+  "min_lot_width_ft": 200,
+  "max_density_du_ac": 14,
+  "front_setback_ft": 25,
+  "side_setback_ft": 25,
+  "rear_setback_ft": 25,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.265-405.270",
+   "min_lot_sf_per_unit": 3111,
+   "min_dwelling_sf": 1000,
+   "note": "Lot area 3,111 sf per family, \u00a7405.213(D). 40 ft building and parking setback from Mid Rivers Mall Dr and St. Peters-Cottleville Rd. Taller buildings allowed with Board of Aldermen site plan review and 1 ft extra setback per ft over the limit, \u00a7405.270."
+  },
+  "source_url": "https://ecode360.com/29400532"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "SD/C-C1",
+  "name": "College Pedestrian Commercial / Light Office",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 4,
+  "side_setback_ft": 0,
+  "rear_setback_ft": 0,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.265-405.270",
+   "min_open_space_pct": 15,
+   "note": "Build-to style: 4 ft front, 0 ft sides and rear; parking 0 ft. Exempt from the 40 ft arterial setback."
+  },
+  "source_url": "https://ecode360.com/29400532"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "SD/C-C2",
+  "name": "College General Commercial",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 25,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.265-405.270",
+   "min_open_space_pct": 25,
+   "note": "Parking setback 15 ft. 40 ft building and parking setback from Mid Rivers Mall Dr and St. Peters-Cottleville Rd. Taller buildings allowed with Board of Aldermen site plan review and 1 ft extra setback per ft over the limit, \u00a7405.270."
+  },
+  "source_url": "https://ecode360.com/29400532"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "SD/C-C3",
+  "name": "College General Commercial Retail",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 25,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.265-405.270",
+   "min_open_space_pct": 25,
+   "note": "Parking setback 15 ft. 40 ft building and parking setback from Mid Rivers Mall Dr and St. Peters-Cottleville Rd. Taller buildings allowed with Board of Aldermen site plan review and 1 ft extra setback per ft over the limit, \u00a7405.270."
+  },
+  "source_url": "https://ecode360.com/29400532"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "SD/C-C5",
+  "name": "College General Public",
+  "category": "office",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 30,
+  "max_height_ft": 40,
+  "other_requirements": {
+   "code_section": "\u00a7405.265-405.270",
+   "min_open_space_pct": 30,
+   "note": "Parking setback 20 ft. 40 ft building and parking setback from Mid Rivers Mall Dr and St. Peters-Cottleville Rd. Taller buildings allowed with Board of Aldermen site plan review and 1 ft extra setback per ft over the limit, \u00a7405.270."
+  },
+  "source_url": "https://ecode360.com/29400532"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "SD/C-I1",
+  "name": "College Light Industrial Park",
+  "category": "industrial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 35,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 15,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.265-405.270",
+   "min_open_space_pct": 25,
+   "note": "Parking setback 35 ft front, 10 ft side/rear. 40 ft building and parking setback from Mid Rivers Mall Dr and St. Peters-Cottleville Rd. Taller buildings allowed with Board of Aldermen site plan review and 1 ft extra setback per ft over the limit, \u00a7405.270."
+  },
+  "source_url": "https://ecode360.com/29400532"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "SD/C-PO",
+  "name": "College Park and Open Space",
+  "category": "recreational",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 70,
+  "side_setback_ft": 70,
+  "rear_setback_ft": 70,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.265-405.270",
+   "note": "Parking setback 45 ft. 40 ft building and parking setback from Mid Rivers Mall Dr and St. Peters-Cottleville Rd. Taller buildings allowed with Board of Aldermen site plan review and 1 ft extra setback per ft over the limit, \u00a7405.270."
+  },
+  "source_url": "https://ecode360.com/29400532"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "SD/C-UC",
+  "name": "College Urban Corridor (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.265-405.270",
+   "note": "Overlay; underlying district rules apply. Buildings 30 ft and parking 25 ft from Cottleville Pkwy, Mid Rivers Mall Dr and St. Peters-Cottleville Rd (except R-1A)."
+  },
+  "source_url": "https://ecode360.com/29400532"
+ },
+ {
+  "jurisdiction_id": "cottleville",
+  "code": "PUD",
+  "name": "Planned Unit Development",
+  "category": "planned",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "Art. V",
+   "note": "Standards set by the approved PUD plan; see Article V (incl. multiple-family PUDs)."
+  },
+  "source_url": "https://ecode360.com/29400341"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "code": "R-1A",
+  "name": "Single-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": null,
+  "front_setback_ft": 35,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 35,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.140",
+   "min_lot_depth_ft": 200,
+   "max_lot_coverage_pct": 25,
+   "min_dwelling_sf": 1600,
+   "note": "2.5 stories or 35 ft, whichever is less. Detached accessory buildings 25 ft max. Min dwelling 1,600 sf one-story; 1,250 sf first floor and 2,200 sf total two-story; 1,900 sf split-level/1.5-story."
+  },
+  "source_url": "https://ecode360.com/29686641"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "code": "R-1B",
+  "name": "Single-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 20000,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.150",
+   "min_lot_depth_ft": 120,
+   "max_lot_coverage_pct": 30,
+   "min_dwelling_sf": 1600,
+   "note": "2.5 stories or 35 ft, whichever is less. Detached accessory buildings 25 ft max. Min dwelling 1,600 sf one-story; 1,250 sf first floor and 2,200 sf total two-story; 1,900 sf split-level/1.5-story."
+  },
+  "source_url": "https://ecode360.com/29686690"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "code": "R-1C",
+  "name": "Single-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 15000,
+  "min_lot_width_ft": 80,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.160",
+   "min_lot_depth_ft": 100,
+   "max_lot_coverage_pct": 30,
+   "min_dwelling_sf": 1600,
+   "note": "2.5 stories or 35 ft, whichever is less. Detached accessory buildings 25 ft max. Min dwelling 1,600 sf one-story; 1,250 sf first floor and 2,200 sf total two-story; 1,900 sf split-level/1.5-story."
+  },
+  "source_url": "https://ecode360.com/29686728"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "code": "R-1D",
+  "name": "Single-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 12000,
+  "min_lot_width_ft": 80,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.170",
+   "min_lot_depth_ft": 100,
+   "max_lot_coverage_pct": 30,
+   "min_dwelling_sf": 1600,
+   "note": "Attached single-family: 5,400 sf lot or common ground, 45 ft wide, 70 ft deep, 20 ft rear yard, 1,450 sf first floor. Villas 1,450 sf first floor. 2.5 stories or 35 ft, whichever is less. Detached accessory buildings 25 ft max. Min dwelling 1,600 sf one-story; 1,250 sf first floor and 2,200 sf total two-story; 1,900 sf split-level/1.5-story."
+  },
+  "source_url": "https://ecode360.com/29686766"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "code": "R-M",
+  "name": "Multiple-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 217800,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": 8,
+  "front_setback_ft": 20,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 20,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.175",
+   "min_dwelling_sf": 900,
+   "max_stories": 2,
+   "note": "2 stories max. 5-acre lot, no access to minor streets; must adjoin 10+ acres of commercial/industrial zoning along 35%+ of its perimeter, and new multi-family must be next to I-64. Max 6 units per building; 20 ft between building sides, 40 ft front/rear. Two-car garage per unit with its own entrance. Not in the \u00a7405.090 district list."
+  },
+  "source_url": "https://ecode360.com/29686808"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "code": "C-1",
+  "name": "Local Commercial",
+  "category": "commercial",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 70,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 15,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.180",
+   "note": "1 acre, or a combined district of at least 1 acre when abutting commercial/industrial zoning. No lot depth or coverage limit. Height over 45 ft only with P&Z and Board of Aldermen findings under the conditional use standards."
+  },
+  "source_url": "https://ecode360.com/29686864"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "code": "C-2",
+  "name": "General Commercial",
+  "category": "commercial",
+  "min_lot_sf": 217800,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 15,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.190",
+   "note": "5 acres, or a combined district of at least 1 acre when abutting commercial/industrial zoning. Corner street side yard 25 ft. Front yard excludes signs, pump islands and canopies. Height over 45 ft only with P&Z and Board of Aldermen findings under the conditional use standards."
+  },
+  "source_url": "https://ecode360.com/29686911"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "code": "C-3",
+  "name": "Retail Commercial",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 15,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.195",
+   "note": "No minimum lot area stated. Board of Aldermen may approve smaller lot width and yards with an Article IV area plan. Corner street side yard 25 ft. Height over 45 ft only with P&Z and Board of Aldermen findings under the conditional use standards. Not in the \u00a7405.090 district list."
+  },
+  "source_url": "https://ecode360.com/33291485"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "code": "I-1",
+  "name": "Light Industrial",
+  "category": "industrial",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 35,
+  "max_height_ft": 50,
+  "other_requirements": {
+   "code_section": "\u00a7405.200",
+   "max_lot_coverage_pct": 40,
+   "note": "Corner street side yard 30 ft. 50 ft or 3 stories; Board may allow up to 6 stories."
+  },
+  "source_url": "https://ecode360.com/29686969"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "code": "HTCD",
+  "name": "High Tech Corridor",
+  "category": "industrial",
+  "min_lot_sf": 217800,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 35,
+  "max_height_ft": 50,
+  "other_requirements": {
+   "code_section": "\u00a7405.210",
+   "max_lot_coverage_pct": 50,
+   "note": "5-acre site, or a combined district of at least 5 acres when abutting HTCD/commercial. Corner side yard 30 ft. Front yard kept clear of parking and loading. 50 ft or 3 stories; Planning Commission may allow up to 6 stories. Secondary uses limited to 30% of the park."
+  },
+  "source_url": "https://ecode360.com/29687062"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "code": "ND",
+  "name": "New Development",
+  "category": "mixed_use",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.215",
+   "note": "Replaced the Uptown district (2021). Lot, yard and height standards come from the corresponding district for each area (R-1B/C/D along Post Rd and Town Square Ave; C-1/C-2 or residential at Post Rd & Technology Dr; C-2/C-3/HTCD along Technology Dr/I-64). Area or site plan approval by the Board of Aldermen required; design standards in \u00a7405.215(F)."
+  },
+  "source_url": "https://ecode360.com/44981193"
+ },
+ {
+  "jurisdiction_id": "dardenne_prairie",
+  "code": "PUD",
+  "name": "Planned Unit Development",
+  "category": "planned",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "Art. IV",
+   "note": "Standards set by the approved area and final plans; see Article IV."
+  },
+  "source_url": "https://ecode360.com/29687154"
+ },
+ {
+  "jurisdiction_id": "weldon_spring",
+  "code": "AG",
+  "name": "Agricultural",
+  "category": "agricultural",
+  "min_lot_sf": 217800,
+  "min_lot_width_ft": 250,
+  "max_density_du_ac": 0.2,
+  "front_setback_ft": 50,
+  "side_setback_ft": 40,
+  "rear_setback_ft": 50,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.070",
+   "min_lot_depth_ft": 250,
+   "min_dwelling_sf": 2000,
+   "note": "10-acre minimum district for conventional subdivisions. Conservation subdivisions: 60% green space, 100 ft between dwellings, one outbuilding up to 1,000 sf. Homes may reach 45 ft with Architectural Review Commission and Board approval. Stables and kennels 75 ft from lot lines. Min dwelling 2,500 sf (2-2.5 story), 2,200 sf (1.5 story), 2,000 sf (1 story); 1,250 sf footprint."
+  },
+  "source_url": "https://ecode360.com/34347019"
+ },
+ {
+  "jurisdiction_id": "weldon_spring",
+  "code": "RS-3",
+  "name": "Single-Family Residential (3 ac)",
+  "category": "residential",
+  "min_lot_sf": 130680,
+  "min_lot_width_ft": 250,
+  "max_density_du_ac": 0.33,
+  "front_setback_ft": 50,
+  "side_setback_ft": 40,
+  "rear_setback_ft": 50,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.075",
+   "min_dwelling_sf": 2000,
+   "note": "10-acre minimum district for conventional subdivisions. Conservation subdivisions: 50% green space, 75 ft between dwellings, one outbuilding up to 1,000 sf. Homes may reach 45 ft with Architectural Review Commission and Board approval. Min dwelling 2,500 sf (2-2.5 story), 2,200 sf (1.5 story), 2,000 sf (1 story); 1,250 sf footprint."
+  },
+  "source_url": "https://ecode360.com/34347042"
+ },
+ {
+  "jurisdiction_id": "weldon_spring",
+  "code": "RS-2",
+  "name": "Single-Family Residential (80,000 sf)",
+  "category": "residential",
+  "min_lot_sf": 80000,
+  "min_lot_width_ft": 200,
+  "max_density_du_ac": 0.54,
+  "front_setback_ft": 40,
+  "side_setback_ft": 40,
+  "rear_setback_ft": 40,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.080",
+   "min_lot_depth_ft": 200,
+   "min_dwelling_sf": 2000,
+   "note": "10-acre minimum district for conventional subdivisions. Conservation subdivisions: 40% green space, 50 ft between dwellings, one outbuilding up to 1,000 sf. Homes may reach 40 ft with Architectural Review Commission and Board approval. Min dwelling 2,500 sf (2-2.5 story), 2,200 sf (1.5 story), 2,000 sf (1 story); 1,250 sf footprint."
+  },
+  "source_url": "https://ecode360.com/34347064"
+ },
+ {
+  "jurisdiction_id": "weldon_spring",
+  "code": "RS-1",
+  "name": "Single-Family Residential (40,000 sf)",
+  "category": "residential",
+  "min_lot_sf": 40000,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": 1.09,
+  "front_setback_ft": 35,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 35,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.085",
+   "min_lot_depth_ft": 150,
+   "min_dwelling_sf": 2000,
+   "note": "10-acre minimum district for conventional subdivisions. Conservation subdivisions: 30% green space, 35 ft between dwellings, one outbuilding up to 1,000 sf. Taller homes need Architectural Review Commission and Board approval. Min dwelling 2,500 sf (2-2.5 story), 2,200 sf (1.5 story), 2,000 sf (1 story); 1,250 sf footprint."
+  },
+  "source_url": "https://ecode360.com/34347082"
+ },
+ {
+  "jurisdiction_id": "weldon_spring",
+  "code": "RS-1/2",
+  "name": "Single-Family Residential (20,000 sf)",
+  "category": "residential",
+  "min_lot_sf": 20000,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": 2.18,
+  "front_setback_ft": 25,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.090",
+   "min_lot_depth_ft": 125,
+   "min_dwelling_sf": 2000,
+   "note": "10-acre minimum district for conventional subdivisions. Conservation subdivisions: 20% green space, 25 ft between dwellings, one outbuilding up to 1,000 sf. 35 ft or 2.5 stories. Min dwelling 2,500 sf (2-2.5 story), 2,200 sf (1.5 story), 2,000 sf (1 story); 1,250 sf footprint."
+  },
+  "source_url": "https://ecode360.com/34347100"
+ },
+ {
+  "jurisdiction_id": "weldon_spring",
+  "code": "PR",
+  "name": "Planned Residential",
+  "category": "planned",
+  "min_lot_sf": 20000,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": 12,
+  "front_setback_ft": 25,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.095",
+   "min_lot_depth_ft": 125,
+   "min_dwelling_sf": 2000,
+   "note": "Guidelines; P&Z and Board set bulk per site. 10-acre district. Density per Comprehensive Plan, max 12 du/ac, and within 200 ft of the line no more than 150% of the neighbor's density. Attached or cluster homes need 5 acres. Villas 1,200 sf (1,000 sf footprint). Up to 40 ft on 1-acre lots with 1 ft added yard per ft over 35. Front yard larger along major roads. Min dwelling 2,500 sf (2-2.5 story), 2,200 sf (1.5 story), 2,000 sf (1 story); 1,250 sf footprint."
+  },
+  "source_url": "https://ecode360.com/34347118"
+ },
+ {
+  "jurisdiction_id": "weldon_spring",
+  "code": "SP",
+  "name": "Public/Semi-Public",
+  "category": "special",
+  "min_lot_sf": 40000,
+  "min_lot_width_ft": 200,
+  "max_density_du_ac": null,
+  "front_setback_ft": 50,
+  "side_setback_ft": 50,
+  "rear_setback_ft": 50,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.100",
+   "min_lot_depth_ft": 200,
+   "max_lot_coverage_pct": 60,
+   "note": "45 ft or 3 stories. 10-acre district (5 acres combined contiguous tracts). 25 ft buffer yard next to single-family use or zoning."
+  },
+  "source_url": "https://ecode360.com/34347142"
+ },
+ {
+  "jurisdiction_id": "weldon_spring",
+  "code": "HTO",
+  "name": "High-Technology Office",
+  "category": "office",
+  "min_lot_sf": 20000,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": null,
+  "front_setback_ft": 50,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 50,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.105",
+   "min_lot_depth_ft": 100,
+   "max_lot_coverage_pct": 65,
+   "min_open_space_pct": 35,
+   "note": "45 ft or 3 stories; Board may approve 4 stories or 75 ft. 40-acre district unless contiguous to existing HTO. All operations and storage enclosed. 25 ft buffer yard next to single-family use or zoning."
+  },
+  "source_url": "https://ecode360.com/34347153"
+ },
+ {
+  "jurisdiction_id": "weldon_spring",
+  "code": "PC",
+  "name": "Planned Commercial",
+  "category": "commercial",
+  "min_lot_sf": 20000,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 15,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.110",
+   "min_lot_depth_ft": 100,
+   "min_open_space_pct": 35,
+   "note": "Guidelines; bulk set by the governing ordinance and site plan. 5-acre district. 45 ft or 3 stories unless the Board approves more. Villas, townhomes and multi-family by conditional use on 5+ acres, max 12 du/ac; multi-family limited to 20% of the development's coverage or floor area. 25 ft buffer yard next to single-family use or zoning."
+  },
+  "source_url": "https://ecode360.com/34347172"
+ },
+ {
+  "jurisdiction_id": "weldon_spring",
+  "code": "GC",
+  "name": "General Commercial",
+  "category": "commercial",
+  "min_lot_sf": 10000,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 15,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.115",
+   "min_lot_depth_ft": 100,
+   "max_lot_coverage_pct": 80,
+   "note": "45 ft or 3 stories; Board may approve 4 stories or 75 ft. 5-acre district. 25 ft buffer yard next to single-family use or zoning."
+  },
+  "source_url": "https://ecode360.com/34347196"
+ },
+ {
+  "jurisdiction_id": "weldon_spring",
+  "code": "LI",
+  "name": "Light Industrial",
+  "category": "industrial",
+  "min_lot_sf": 20000,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 15,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.120",
+   "min_lot_depth_ft": 200,
+   "max_lot_coverage_pct": 80,
+   "note": "45 ft or 3 stories. 5-acre district. Parking and storage yards hard surfaced. 25 ft buffer yard next to single-family use or zoning."
+  },
+  "source_url": "https://ecode360.com/34347207"
+ },
+ {
+  "jurisdiction_id": "weldon_spring",
+  "code": "MED",
+  "name": "Medical",
+  "category": "special",
+  "min_lot_sf": 20000,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": null,
+  "front_setback_ft": 50,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 50,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7405.125",
+   "min_lot_depth_ft": 150,
+   "max_lot_coverage_pct": 75,
+   "note": "45 ft or 3 stories. 20-acre district. Buildings set back 2 ft per ft of height from residential zoning. Helipads 50 ft from lot lines and 200 ft from residential. 25 ft buffer yard next to single-family use or zoning."
+  },
+  "source_url": "https://ecode360.com/34347219"
+ },
+ {
+  "jurisdiction_id": "weldon_spring",
+  "code": "FP",
+  "name": "Floodplain (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.135",
+   "note": "Floodplain overlay; see \u00a7405.130-405.135 and the floodplain chapter."
+  },
+  "source_url": "https://ecode360.com/34347231"
  }
 ]
