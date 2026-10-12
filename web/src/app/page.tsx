@@ -16,6 +16,7 @@ type Meeting = {
   linked_meeting: number | null;
   status: string;
   source_url: string | null;
+  agenda_items: unknown[] | null;
 };
 
 type CalTask = { id: number; title: string; assigned_to: string | null; due_date: string; project_id: number | null; projects: { name: string } | null };
@@ -153,6 +154,9 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
                       {feeds && <span className="where">for P&amp;Z on {fmtDate(feeds)}</span>}
                       {m.status !== "published" && <span className="tag tentative">{m.status}</span>}
                       {m.event_type === "meeting" && m.location && <span className="where">{m.location}</span>}
+                      {m.agenda_items && m.agenda_items.length > 0 && (
+                        <Link href={`/meetings/${m.id}`} className="small">Agenda: {m.agenda_items.length} item{m.agenda_items.length === 1 ? "" : "s"}</Link>
+                      )}
                     </div>
                   );
                 })}

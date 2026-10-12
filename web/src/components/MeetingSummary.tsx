@@ -1,4 +1,5 @@
 export type SummaryItem = { item: string; request: string; result: string };
+export type AgendaItem = { item: string; request: string };
 
 // Renders the light markdown stored in meetings.summary: "## " headings, "- " bullets, blank-line paragraphs.
 export function SummaryText({ text }: { text: string }) {
@@ -27,6 +28,21 @@ export function SummaryItems({ items }: { items: SummaryItem[] }) {
         <tbody>
           {items.map((it, i) => (
             <tr key={i}><td>{it.item}</td><td>{it.request}</td><td>{it.result}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export function AgendaItems({ items }: { items: AgendaItem[] }) {
+  return (
+    <div className="table-wrap">
+      <table>
+        <thead><tr><th>Item</th><th>Request</th></tr></thead>
+        <tbody>
+          {items.map((it, i) => (
+            <tr key={i}><td>{it.item}</td><td>{it.request}</td></tr>
           ))}
         </tbody>
       </table>
