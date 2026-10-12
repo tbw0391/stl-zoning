@@ -16,10 +16,7 @@ import sys
 import urllib.parse
 from datetime import date
 
-from agendacenter import Blocked, body_for, fetch
-
-# Sessions that aren't the regular meeting where rezonings are heard.
-NOT_HEARING = re.compile(r"work ?session|study session|retreat|orientation|training|closed session|executive session", re.I)
+from agendacenter import Blocked, body_for, fetch, not_hearing
 
 
 def api(tenant, path, **query):
@@ -74,7 +71,7 @@ def meetings(jurisdiction_id, tenant, year):
     rows = {}
     for e in events(tenant, year):
         body = body_for(e.get("categoryName") or e.get("eventCategoryName") or "")
-        if not body or NOT_HEARING.search(e["eventName"]) or e.get("isDeleted"):
+        if not body or not_hearing(e["eventName"]) or e.get("isDeleted"):
             continue
         local = e["startDateTime"][:16]  # "YYYY-MM-DDTHH:MM", already local time
         files = {f["type"]: f["fileId"] for f in e.get("publishedFiles") or []}

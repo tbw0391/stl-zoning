@@ -35,6 +35,15 @@ SKIP = re.compile(r"adjustment|appeals|BZA|architectur|historic|landmark|park|li
                   r"traffic|personnel|audit|finance|budget|work ?session|special|port authority|road board|"
                   r"committee|advisory|task force|group|steering|notices|emergency", re.I)
 PZ = re.compile(r"planning|zoning|P\s*&\s*Z|plan commission", re.I)
+# Sessions that aren't the regular meeting where rezonings are heard.
+NOT_HEARING = re.compile(r"work ?session|study session|retreat|orientation|training|closed session|executive session", re.I)
+# ...unless it's combined with the regular meeting ("Work Session and Council Meeting").
+REGULAR = re.compile(r"regular|(council|board|commission|aldermen) meeting", re.I)
+
+
+def not_hearing(title):
+    return bool(NOT_HEARING.search(title)) and not REGULAR.search(title)
+
 GOV = re.compile(r"aldermen|alderm|city council|county council|board of trustees|village board|^council$|"
                  r"\bcouncil\b(?!.*(advisory|youth|arts))", re.I)
 
@@ -119,6 +128,8 @@ def meetings(jurisdiction_id, base, year):
         if not c["body"] or (c["latest_year"] or 0) < year:
             continue
         for a in agendas(base, c["cat_id"], year):
+            if not_hearing(a["title"]):
+                continue
             # Some sites post an agenda, a packet and an amended agenda as separate rows: keep the first per date.
             key = (c["body"], a["event_date"])
             if key not in rows:

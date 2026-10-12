@@ -26,7 +26,7 @@ export default async function JurisdictionsPage() {
   return (
     <>
       <PageTitle href="/jurisdictions">Jurisdictions</PageTitle>
-      <p className="muted">St. Charles County and its municipalities, plus a St. Louis County placeholder. Click one for its rezoning process, dates and contacts.</p>
+      <p className="muted">St. Charles County in depth, plus St. Louis, Jefferson and Franklin County cities whose meetings are collected automatically. Click one for its rezoning process, dates and contacts.</p>
       <div className="table-wrap" style={{ marginTop: 16 }}>
         <table>
           <thead>

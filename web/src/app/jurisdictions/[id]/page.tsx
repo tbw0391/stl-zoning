@@ -35,7 +35,7 @@ export default async function JurisdictionPage({ params }: { params: Promise<{ i
   const supabase = await createClient();
   const today = todayCentral();
 
-  const [{ data: j }, { data: proc }, { data: meetings }, { data: people }, { data: recorded }, { data: districts }] = await Promise.all([
+  const [{ data: j }, { data: proc }, { data: meetings }, { data: people }, { data: recorded }, { data: districts }, { data: runs }] = await Promise.all([
     supabase.from("jurisdictions").select("*").eq("id", id).maybeSingle(),
     supabase.from("rezoning_processes").select("*").eq("jurisdiction_id", id).maybeSingle(),
     supabase.from("meetings").select("*").eq("jurisdiction_id", id).gte("event_date", today).order("event_date").limit(12),
@@ -43,7 +43,9 @@ export default async function JurisdictionPage({ params }: { params: Promise<{ i
     supabase.from("meetings").select("id, body, event_date, video_url, summary").eq("jurisdiction_id", id)
       .not("video_url", "is", null).order("event_date", { ascending: false }).limit(8),
     supabase.from("zoning_districts").select("*").eq("jurisdiction_id", id).order("id"),
+    supabase.from("collector_runs").select("ran_at, ok, missing, error").eq("jurisdiction_id", id).order("ran_at", { ascending: false }).limit(1),
   ]);
+  const run = runs?.[0] as { ran_at: string; ok: boolean; missing: { event_date: string; body: string }[] | null; error: string | null } | undefined;
   if (!j) notFound();
   const p = proc as Process | null;
 
@@ -65,6 +67,18 @@ export default async function JurisdictionPage({ params }: { params: Promise<{ i
         ))}
       </div>
       {j.notes && <p>{j.notes}</p>}
+      {j.collector && (
+        <p className="small muted">
+          Meetings update automatically every day from the city&apos;s {j.collector === "civicclerk" ? "CivicClerk" : "Agenda Center"} page
+          {run && <> · last checked {fmtDate(run.ran_at.slice(0, 10))}{!run.ok && <span className="error"> (failed: {run.error})</span>}</>}
+          {j.collector === "agendacenter" && <>. Only meetings with a posted agenda appear, usually 1–2 weeks ahead.</>}
+        </p>
+      )}
+      {run?.missing && run.missing.length > 0 && (
+        <p className="notice small">
+          Not on the city&apos;s site (possibly cancelled): {run.missing.map((m) => `${fmtDate(m.event_date)} ${m.body === "planning_zoning" ? "P&Z" : j.governing_body ?? "council"}`).join("; ")}.
+        </p>
+      )}
 
       <h2>Rezoning process</h2>
       {p ? (

@@ -59,7 +59,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
   const showTasks = !sp.j && (!sp.type || sp.type === "tasks");
   const showMeetings = sp.type !== "tasks";
   const [{ data: jurisdictions }, { data: meetings }, { data: tasks }] = await Promise.all([
-    supabase.from("jurisdictions").select("id, name, governing_body").order("name"),
+    supabase.from("jurisdictions").select("id, name, governing_body, county").order("name"),
     (() => {
       let q = supabase.from("meetings").select("*").gte("event_date", start).lte("event_date", end).order("event_date").order("event_time");
       if (sp.j) q = q.eq("jurisdiction_id", sp.j);
@@ -88,6 +88,14 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
 
   const { data: covered } = await supabase.from("meetings").select("jurisdiction_id").gte("event_date", today);
   const coveredIds = [...new Set((covered ?? []).map((c) => c.jurisdiction_id))];
+
+  const coveredByCounty = Object.entries(
+    coveredIds.reduce<Record<string, number>>((acc, id) => {
+      const c = jmap.get(id)?.county ?? "Other";
+      acc[c] = (acc[c] ?? 0) + 1;
+      return acc;
+    }, {}),
+  ).sort((a, b) => (a[0] === "St. Charles" ? -1 : b[0] === "St. Charles" ? 1 : a[0].localeCompare(b[0])));
 
   const taskRows = (tasks ?? []) as unknown as CalTask[];
   const items: Item[] = [
@@ -158,8 +166,9 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
     <>
       <PageTitle href="/">Upcoming dates</PageTitle>
       <p className="muted coverage">
-        Schedules loaded for: {coveredIds.map((id) => shortName(jmap.get(id)?.name ?? id)).join(", ") || "none yet"}.
-        Other jurisdictions are still being researched.
+        Schedules loaded for {coveredIds.length} jurisdictions
+        {coveredByCounty.length > 0 && <> ({coveredByCounty.map(([c, n]) => `${c} County ${n}`).join(", ")})</>}.
+        Pick one under Jurisdiction to see just its dates.
       </p>
 
       <div className="cal-toolbar">
