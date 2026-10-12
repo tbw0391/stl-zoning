@@ -2119,5 +2119,290 @@
    "note": "3 stories, built to the street. No minimum lot width, coverage or yards, except 10 ft side/rear next to residential (director may waive with buffering)."
   },
   "source_url": "https://library.municode.com/mo/wentzville/codes/code_of_ordinances?nodeId=TIT4LAUS_CH405ZO_ARTIIDIRE_S405.330HIDOLIINLODI"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "code": "RR",
+  "name": "Rural Residential",
+  "category": "residential",
+  "min_lot_sf": 130680,
+  "min_lot_width_ft": 250,
+  "max_density_du_ac": null,
+  "front_setback_ft": 90,
+  "side_setback_ft": 35,
+  "rear_setback_ft": 50,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7415.030",
+   "old_district": "NU",
+   "note": "Formerly NU."
+  },
+  "source_url": "https://ecode360.com/37148343"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "code": "R1",
+  "name": "Residential 1",
+  "category": "residential",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": null,
+  "front_setback_ft": 50,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 50,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7415.030",
+   "old_district": "SR-3",
+   "note": "Formerly SR-3."
+  },
+  "source_url": "https://ecode360.com/37148343"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "code": "R2",
+  "name": "Residential 2",
+  "category": "residential",
+  "min_lot_sf": 15000,
+  "min_lot_width_ft": 70,
+  "max_density_du_ac": null,
+  "front_setback_ft": 35,
+  "side_setback_ft": 8,
+  "rear_setback_ft": 30,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7415.030",
+   "old_district": "SR-1",
+   "note": "Formerly SR-1."
+  },
+  "source_url": "https://ecode360.com/37148343"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "code": "R3",
+  "name": "Residential 3",
+  "category": "residential",
+  "min_lot_sf": 9000,
+  "min_lot_width_ft": 70,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 7,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7415.030",
+   "old_district": "SR-2",
+   "note": "Formerly SR-2."
+  },
+  "source_url": "https://ecode360.com/37148343"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "code": "R4",
+  "name": "Residential 4",
+  "category": "residential",
+  "min_lot_sf": 7000,
+  "min_lot_width_ft": 50,
+  "max_density_du_ac": 6,
+  "front_setback_ft": 20,
+  "side_setback_ft": 6,
+  "rear_setback_ft": 20,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7415.030"
+  },
+  "source_url": "https://ecode360.com/37148343"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "code": "R5",
+  "name": "Residential 5",
+  "category": "residential",
+  "min_lot_sf": 7000,
+  "min_lot_width_ft": 50,
+  "max_density_du_ac": 10,
+  "front_setback_ft": 30,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 30,
+  "max_height_ft": 40,
+  "other_requirements": {
+   "code_section": "\u00a7415.030",
+   "old_district": "MF",
+   "min_lot_sf_per_unit": 3500,
+   "min_lot_width_per_unit_ft": 35,
+   "building_separation_ft": 15,
+   "note": "Formerly MF. Duplex/townhouse: 3,500 sf and 35 ft width per unit (20 ft if rear-loaded). Detached houses use R4 standards."
+  },
+  "source_url": "https://ecode360.com/37148343"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "code": "R6",
+  "name": "Residential 6",
+  "category": "residential",
+  "min_lot_sf": 3000,
+  "min_lot_width_ft": 35,
+  "max_density_du_ac": 14,
+  "front_setback_ft": 10,
+  "side_setback_ft": 5,
+  "rear_setback_ft": 5,
+  "max_height_ft": 40,
+  "other_requirements": {
+   "code_section": "\u00a7415.030",
+   "min_lot_sf_per_unit": 2000,
+   "min_lot_width_per_unit_ft": 20,
+   "building_separation_ft": 10,
+   "note": "Front-loaded detached houses use R4 standards; front-loaded duplexes and townhouses use R5 standards."
+  },
+  "source_url": "https://ecode360.com/37148343"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "code": "MU",
+  "name": "Mixed-Use",
+  "category": "mixed_use",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 18,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": 40,
+  "other_requirements": {
+   "code_section": "\u00a7415.080",
+   "note": "No minimum lot size or setbacks."
+  },
+  "source_url": "https://ecode360.com/37148369"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "code": "CO",
+  "name": "Commercial-Office",
+  "category": "office",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 50,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 30,
+  "max_height_ft": 70,
+  "other_requirements": {
+   "code_section": "\u00a7415.080",
+   "max_lot_coverage_pct": 60,
+   "old_district": "BP",
+   "note": "Formerly BP. Height 50 ft where the building is within 300 ft of a platted, improved detached-house lot in a residential district existing Jan 1, 2007."
+  },
+  "source_url": "https://ecode360.com/37148369"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "code": "C1",
+  "name": "Commercial 1",
+  "category": "commercial",
+  "min_lot_sf": 21780,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 50,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 45,
+  "max_height_ft": 30,
+  "other_requirements": {
+   "code_section": "\u00a7415.080",
+   "max_far": 1.25,
+   "old_district": "CB",
+   "note": "Formerly CB."
+  },
+  "source_url": "https://ecode360.com/37148369"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "code": "C2",
+  "name": "Commercial 2",
+  "category": "commercial",
+  "min_lot_sf": 21780,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 42,
+  "side_setback_ft": 9,
+  "rear_setback_ft": 20,
+  "max_height_ft": 30,
+  "other_requirements": {
+   "code_section": "\u00a7415.080",
+   "max_far": 1.25,
+   "old_district": "HC",
+   "note": "Formerly HC. Front setback 20 ft when all parking is in the side or rear yards."
+  },
+  "source_url": "https://ecode360.com/37148369"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "code": "LI",
+  "name": "Light Industrial",
+  "category": "industrial",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": null,
+  "front_setback_ft": 50,
+  "side_setback_ft": 25,
+  "rear_setback_ft": 25,
+  "max_height_ft": 50,
+  "other_requirements": {
+   "code_section": "\u00a7415.080"
+  },
+  "source_url": "https://ecode360.com/37148369"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "code": "PA",
+  "name": "Public Activity",
+  "category": "special",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 35,
+  "side_setback_ft": 9,
+  "rear_setback_ft": 20,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7415.080"
+  },
+  "source_url": "https://ecode360.com/37148369"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "code": "PUD",
+  "name": "Planned Unit Development (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7415.130",
+   "old_district": "PD, PR",
+   "note": "Formerly PD, PR. Standards set by the approved PUD plan; also the route to modify base-district dimensions."
+  },
+  "source_url": "https://ecode360.com/37148391"
+ },
+ {
+  "jurisdiction_id": "lake_st_louis",
+  "code": "UPT",
+  "name": "Uptown (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7415.140",
+   "note": "Overlay; see \u00a7415.140."
+  },
+  "source_url": "https://ecode360.com/37148429"
  }
 ]

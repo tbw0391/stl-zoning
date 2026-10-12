@@ -229,5 +229,39 @@ rows += [
  w(J,"HD-3","Historic Downtown Light Industrial/Loft","mixed_use",("§405.330","S405.330HIDOLIINLODI"), side=10,rear=10, note="3 stories, built to the street. No minimum lot width, coverage or yards, except 10 ft side/rear next to residential (director may waive with buffering)."),
 ]
 
+# Lake Saint Louis UDO Ch. 415 (ecode360), Tables 415.030 and 415.080. Districts renamed in 2021 (Ord. 4190); old names in note.
+J = "lake_st_louis"
+LR = ("§415.030", 37148343)
+LN = ("§415.080", 37148369)
+R6N = "Front-loaded detached houses use R4 standards; front-loaded duplexes and townhouses use R5 standards."
+rows += [
+ d(J,"RR","Rural Residential","residential",LR,lot=130680,width=250,front=90,side=35,rear=50,height=35,old_district="NU"),
+ d(J,"R1","Residential 1","residential",LR,lot=43560,width=100,front=50,side=20,rear=50,height=35,old_district="SR-3"),
+ d(J,"R2","Residential 2","residential",LR,lot=15000,width=70,front=35,side=8,rear=30,height=35,old_district="SR-1"),
+ d(J,"R3","Residential 3","residential",LR,lot=9000,width=70,front=25,side=7,rear=25,height=35,old_district="SR-2"),
+ d(J,"R4","Residential 4","residential",LR,lot=7000,width=50,dens=6,front=20,side=6,rear=20,height=35),
+ d(J,"R5","Residential 5","residential",LR,lot=7000,width=50,dens=10,front=30,side=10,rear=30,height=40,old_district="MF",
+   min_lot_sf_per_unit=3500, min_lot_width_per_unit_ft=35, building_separation_ft=15,
+   note="Duplex/townhouse: 3,500 sf and 35 ft width per unit (20 ft if rear-loaded). Detached houses use R4 standards."),
+ d(J,"R6","Residential 6","residential",LR,lot=3000,width=35,dens=14,front=10,side=5,rear=5,height=40,
+   min_lot_sf_per_unit=2000, min_lot_width_per_unit_ft=20, building_separation_ft=10, note=R6N),
+ d(J,"MU","Mixed-Use","mixed_use",LN,dens=18,height=40, note="No minimum lot size or setbacks."),
+ d(J,"CO","Commercial-Office","office",LN,front=50,side=15,rear=30,height=70,max_lot_coverage_pct=60,old_district="BP",
+   note="Height 50 ft where the building is within 300 ft of a platted, improved detached-house lot in a residential district existing Jan 1, 2007."),
+ d(J,"C1","Commercial 1","commercial",LN,lot=21780,front=50,side=10,rear=45,height=30,max_far=1.25,old_district="CB"),
+ d(J,"C2","Commercial 2","commercial",LN,lot=21780,front=42,side=9,rear=20,height=30,max_far=1.25,old_district="HC",
+   note="Front setback 20 ft when all parking is in the side or rear yards."),
+ d(J,"LI","Light Industrial","industrial",LN,lot=43560,width=150,front=50,side=25,rear=25,height=50),
+ d(J,"PA","Public Activity","special",LN,lot=43560,front=35,side=9,rear=20,height=35),
+ d(J,"PUD","Planned Unit Development (overlay)","overlay",("§415.130",37148391),old_district="PD, PR",
+   note="Standards set by the approved PUD plan; also the route to modify base-district dimensions."),
+ d(J,"UPT","Uptown (overlay)","overlay",("§415.140",37148429), note="Overlay; see §415.140."),
+]
+for r in rows:
+    o = r["other_requirements"]
+    if r["jurisdiction_id"] == J and "old_district" in o:
+        o["note"] = f"Formerly {o['old_district']}. " + o.get("note", "")
+        o["note"] = o["note"].strip()
+
 json.dump(rows, open(sys.argv[1] + "/zoning_districts.json", "w"), indent=1)
 print(len(rows))
