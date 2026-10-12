@@ -201,7 +201,7 @@ Deno.serve(async (req) => {
   };
 
   // A few sites at a time, to stay polite to small-town web servers.
-  const results = [];
+  const results: unknown[] = [];
   const queue = [...(js ?? [])];
   await Promise.all(Array.from({ length: 6 }, async () => {
     for (let j = queue.shift(); j; j = queue.shift()) results.push(await runOne(j));

@@ -1,5 +1,15 @@
 export type SummaryItem = { item: string; request: string; result: string };
-export type AgendaItem = { item: string; request: string };
+// Hand-entered items have item + request; items read by the extract-agendas function also carry the rest.
+export type AgendaItem = {
+  item: string; request: string; type?: string; case_number?: string | null; applicant?: string | null;
+  address?: string | null; from_zoning?: string | null; to_zoning?: string | null; acres?: number | null; units?: number | null;
+};
+
+export const ITEM_TYPE_LABEL: Record<string, string> = {
+  rezoning: "Rezoning", pud: "PUD", special_use: "Special use", preliminary_plat: "Preliminary plat", final_plat: "Final plat",
+  site_plan: "Site plan", annexation: "Annexation", comprehensive_plan: "Comp plan", text_amendment: "Code change",
+  variance: "Variance", vacation: "Vacation", development_agreement: "Dev. agreement", other: "Other",
+};
 
 // Renders the light markdown stored in meetings.summary: "## " headings, "- " bullets, blank-line paragraphs.
 export function SummaryText({ text }: { text: string }) {
@@ -36,13 +46,19 @@ export function SummaryItems({ items }: { items: SummaryItem[] }) {
 }
 
 export function AgendaItems({ items }: { items: AgendaItem[] }) {
+  const typed = items.some((it) => it.type);
   return (
     <div className="table-wrap">
       <table>
-        <thead><tr><th>Item</th><th>Request</th></tr></thead>
+        <thead><tr>{typed && <th>Type</th>}<th>Item</th><th>Request</th>{typed && <th>Applicant</th>}</tr></thead>
         <tbody>
           {items.map((it, i) => (
-            <tr key={i}><td>{it.item}</td><td>{it.request}</td></tr>
+            <tr key={i}>
+              {typed && <td>{it.type && <span className={`tag case-${it.type}`}>{ITEM_TYPE_LABEL[it.type] ?? it.type}</span>}</td>}
+              <td>{it.item}</td>
+              <td>{it.request}</td>
+              {typed && <td>{it.applicant ?? <span className="muted">—</span>}</td>}
+            </tr>
           ))}
         </tbody>
       </table>

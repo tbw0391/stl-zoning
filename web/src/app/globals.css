@@ -313,3 +313,10 @@ ul.plain { list-style: none; margin: 0; padding: 0; display: flex; flex-directio
 .sub-card h2 svg { color: var(--sage); }
 .copy-field { display: flex; gap: 8px; max-width: 720px; }
 .copy-field input { flex: 1; min-width: 0; font-family: ui-monospace, Menlo, monospace; font-size: .85rem; }
+
+/* Land-use case types */
+.tag[class*="case-"] { background: var(--border); color: var(--muted); }
+.tag.case-rezoning, .tag.case-pud, .tag.case-annexation { background: var(--brand-soft); color: var(--brand-ink); }
+.tag.case-special_use { background: var(--warn-soft); color: var(--warn); }
+.tag.case-preliminary_plat, .tag.case-final_plat, .tag.case-site_plan { background: var(--accent-soft); color: var(--accent); }
+.tag.case-text_amendment, .tag.case-comprehensive_plan { background: var(--ok-soft); color: var(--ok); }
