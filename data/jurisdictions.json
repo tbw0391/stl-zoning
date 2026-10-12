@@ -12,7 +12,7 @@
   {"id":"st_paul","name":"City of St. Paul","kind":"city","research_status":"not_started"},
   {"id":"foristell","name":"City of Foristell","kind":"city","research_status":"not_started","notes":"Partly in Warren County."},
   {"id":"flint_hill","name":"City of Flint Hill","kind":"city","research_status":"not_started"},
-  {"id":"new_melle","name":"City of New Melle","kind":"city","research_status":"not_started"},
+  {"id":"new_melle","name":"City of New Melle","kind":"city","research_status":"complete"},
   {"id":"portage_des_sioux","name":"City of Portage des Sioux","kind":"city","research_status":"not_started"},
   {"id":"west_alton","name":"City of West Alton","kind":"city","research_status":"not_started"},
   {"id":"augusta","name":"Town of Augusta","kind":"town","research_status":"not_started"},

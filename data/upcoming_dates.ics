@@ -4,6 +4,14 @@ PRODID:-//Entitlement Tracker//STC//EN
 X-WR-CALNAME:St. Charles Co. Entitlement Dates
 X-WR-TIMEZONE:America/Chicago
 BEGIN:VEVENT
+UID:new_melle-meeting-governing_body-2026-10-13@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261013
+SUMMARY:New Melle - Board of Aldermen (18:00)
+LOCATION:New Melle City Hall\, 145 Almeling St
+DESCRIPTION:Board of Aldermen (on the rezoning hearing schedule) Source: https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf
+END:VEVENT
+BEGIN:VEVENT
 UID:stcharles_county-meeting-governing_body-2026-10-13@entitlement-tracker
 DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261013
@@ -220,6 +228,14 @@ LOCATION:Weldon Spring City Hall\, 5401 Independence Rd
 DESCRIPTION:Source: https://www.weldonspring.gov/calendar
 END:VEVENT
 BEGIN:VEVENT
+UID:new_melle-meeting-planning_zoning-2026-11-03@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261103
+SUMMARY:New Melle - P&Z Meeting [projected] (19:00)
+LOCATION:New Melle City Hall\, 145 Almeling St
+DESCRIPTION:Projected (first Tuesday); Election Day\, may move. Source: https://www.cityofnewmelle.com/meetings
+END:VEVENT
+BEGIN:VEVENT
 UID:stcharles_city-meeting-governing_body-2026-11-03@entitlement-tracker
 DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261103
@@ -284,6 +300,14 @@ LOCATION:Cottleville City Hall Board Room\, 5490 Fifth St
 DESCRIPTION:Feeds P&Z 2026-12-07. Public-notice items may need more lead time. Source: https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:new_melle-submittal_deadline-planning_zoning-2026-11-09@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261109
+SUMMARY:New Melle - P&Z SUBMITTAL DUE
+LOCATION:New Melle City Hall\, 145 Almeling St
+DESCRIPTION:Rezoning/annexation application due. Feeds P&Z 2026-12-01 (review)\, hearing 2027-02-02 (notice posted 2027-01-18; certified mail to owners within 500 ft after the review)\, Board 2027-02-09. Dates subject to change; confirm with the City Clerk\, 636-828-4807. Source: https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf
+END:VEVENT
+BEGIN:VEVENT
 UID:stcharles_city-meeting-planning_zoning-2026-11-09@entitlement-tracker
 DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261109
@@ -314,6 +338,14 @@ DTSTART;VALUE=DATE:20261109
 SUMMARY:Wentzville - P&Z Meeting (18:00)
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
 DESCRIPTION:Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
+END:VEVENT
+BEGIN:VEVENT
+UID:new_melle-meeting-governing_body-2026-11-10@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261110
+SUMMARY:New Melle - Board of Aldermen [projected] (18:00)
+LOCATION:New Melle City Hall\, 145 Almeling St
+DESCRIPTION:Projected (second Tuesday); no 2026 Board agendas posted. Source: https://www.cityofnewmelle.com/meetings
 END:VEVENT
 BEGIN:VEVENT
 UID:dardenne_prairie-meeting-planning_zoning-2026-11-11@entitlement-tracker
@@ -444,6 +476,14 @@ LOCATION:Weldon Spring City Hall\, 5401 Independence Rd
 DESCRIPTION:Board of Aldermen meeting. On the city calendar but falls on a holiday; confirm. Source: https://www.weldonspring.gov/calendar
 END:VEVENT
 BEGIN:VEVENT
+UID:new_melle-meeting-planning_zoning-2026-12-01@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261201
+SUMMARY:New Melle - P&Z Meeting (19:00)
+LOCATION:New Melle City Hall\, 145 Almeling St
+DESCRIPTION:On the hearing schedule (hearing for the September cycle\, review for the November cycle). Source: https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf
+END:VEVENT
+BEGIN:VEVENT
 UID:stcharles_city-meeting-governing_body-2026-12-01@entitlement-tracker
 DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261201
@@ -562,6 +602,14 @@ DTSTART;VALUE=DATE:20261207
 SUMMARY:Wentzville - P&Z Meeting (18:00)
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
 DESCRIPTION:Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
+END:VEVENT
+BEGIN:VEVENT
+UID:new_melle-meeting-governing_body-2026-12-08@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261208
+SUMMARY:New Melle - Board of Aldermen (18:00)
+LOCATION:New Melle City Hall\, 145 Almeling St
+DESCRIPTION:Board of Aldermen (on the rezoning hearing schedule) Source: https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:dardenne_prairie-meeting-planning_zoning-2026-12-09@entitlement-tracker

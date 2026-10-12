@@ -276,6 +276,18 @@
   "note": "Rezoning and Special Use applications due. Feeds P&Z 2026-02-04."
  },
  {
+  "jurisdiction_id": "new_melle",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-01-12",
+  "event_time": null,
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf",
+  "verified_on": "2026-10-12",
+  "note": "Rezoning/annexation application due. Feeds P&Z 2026-02-03 (review), hearing 2026-04-07 (notice posted 2026-03-23; certified mail to owners within 500 ft after the review), Board 2026-04-14. Dates subject to change; confirm with the City Clerk, 636-828-4807."
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -322,6 +334,30 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": ""
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-01-13",
+  "event_time": "19:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_78ced1ead0db4bd89ee1f48a82d7adc4.pdf",
+  "verified_on": "2026-10-12",
+  "note": "Moved from Jan 6."
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-01-13",
+  "event_time": "18:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "projected",
+  "source_url": "https://www.cityofnewmelle.com/meetings",
+  "verified_on": "2026-10-12",
+  "note": "Projected (second Tuesday); no 2026 Board agendas posted."
  },
  {
   "jurisdiction_id": "dardenne_prairie",
@@ -588,6 +624,18 @@
   "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
  },
  {
+  "jurisdiction_id": "new_melle",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-02-03",
+  "event_time": "19:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_c3afaa59c2c941cc8beac6464962fccf.pdf",
+  "verified_on": "2026-10-12",
+  "note": "Public hearing for the Nov 2025 cycle."
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -706,6 +754,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": ""
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-02-10",
+  "event_time": "18:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen (on the rezoning hearing schedule)"
  },
  {
   "jurisdiction_id": "dardenne_prairie",
@@ -984,6 +1044,18 @@
   "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
  },
  {
+  "jurisdiction_id": "new_melle",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-03-03",
+  "event_time": "19:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_8f3bd45d56e44648a1e08129fa36d887.pdf",
+  "verified_on": "2026-10-12",
+  "note": ""
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -1042,6 +1114,18 @@
   "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
   "verified_on": "2026-10-10",
   "note": "Pre-meeting 6:30 PM."
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-03-06",
+  "event_time": null,
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf",
+  "verified_on": "2026-10-12",
+  "note": "Rezoning/annexation application due. Feeds P&Z 2026-04-07 (review), hearing 2026-06-02 (notice posted 2026-05-18; certified mail to owners within 500 ft after the review), Board 2026-06-09. Dates subject to change; confirm with the City Clerk, 636-828-4807."
  },
  {
   "jurisdiction_id": "stpeters",
@@ -1114,6 +1198,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": ""
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-03-10",
+  "event_time": "18:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "projected",
+  "source_url": "https://www.cityofnewmelle.com/meetings",
+  "verified_on": "2026-10-12",
+  "note": "Projected (second Tuesday); no 2026 Board agendas posted."
  },
  {
   "jurisdiction_id": "dardenne_prairie",
@@ -1440,6 +1536,18 @@
   "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
  },
  {
+  "jurisdiction_id": "new_melle",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-04-07",
+  "event_time": "19:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_8be7c7f4fd7f44f5b576d064888b919e.pdf",
+  "verified_on": "2026-10-12",
+  "note": ""
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -1558,6 +1666,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": ""
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-04-14",
+  "event_time": "18:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen (on the rezoning hearing schedule)"
  },
  {
   "jurisdiction_id": "flint_hill",
@@ -1800,6 +1920,18 @@
   "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
  },
  {
+  "jurisdiction_id": "new_melle",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-05-05",
+  "event_time": "19:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_b5f1908aac9b4e40b7ced9fde9be62f9.pdf",
+  "verified_on": "2026-10-12",
+  "note": ""
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -1872,6 +2004,18 @@
   "note": "Rezoning and Special Use applications due. Feeds P&Z 2026-06-03."
  },
  {
+  "jurisdiction_id": "new_melle",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-05-11",
+  "event_time": null,
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf",
+  "verified_on": "2026-10-12",
+  "note": "Rezoning/annexation application due. Feeds P&Z 2026-06-02 (review), hearing 2026-08-04 (notice posted 2026-07-20; certified mail to owners within 500 ft after the review), Board 2026-08-11. Dates subject to change; confirm with the City Clerk, 636-828-4807."
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -1918,6 +2062,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": ""
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-05-12",
+  "event_time": "18:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "projected",
+  "source_url": "https://www.cityofnewmelle.com/meetings",
+  "verified_on": "2026-10-12",
+  "note": "Projected (second Tuesday); no 2026 Board agendas posted."
  },
  {
   "jurisdiction_id": "dardenne_prairie",
@@ -2268,6 +2424,18 @@
   "note": "Rezoning and Special Use applications due. Feeds P&Z 2026-07-01."
  },
  {
+  "jurisdiction_id": "new_melle",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-06-08",
+  "event_time": "18:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_695f866981144f73bf6ee7184de4e18d.pdf",
+  "verified_on": "2026-10-12",
+  "note": "Monday 6 PM (moved from Jun 2). Agenda: rezoning 4712 Highway Z, R-1B to C-2; CUP for IHM burial sites."
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -2314,6 +2482,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": ""
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-06-09",
+  "event_time": "18:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen (on the rezoning hearing schedule)"
  },
  {
   "jurisdiction_id": "wentzville",
@@ -2640,6 +2820,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "new_melle",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-07-07",
+  "event_time": "19:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "projected",
+  "source_url": "https://www.cityofnewmelle.com/meetings",
+  "verified_on": "2026-10-12",
+  "note": "Projected (first Tuesday); no agenda posted."
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -2724,6 +2916,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "new_melle",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-07-13",
+  "event_time": null,
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf",
+  "verified_on": "2026-10-12",
+  "note": "Rezoning/annexation application due. Feeds P&Z 2026-08-04 (review), hearing 2026-10-06 (notice posted 2026-09-21; certified mail to owners within 500 ft after the review), Board 2026-10-13. Dates subject to change; confirm with the City Clerk, 636-828-4807."
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -2758,6 +2962,18 @@
   "source_url": "https://www.sccmo.org/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "County Council regular meeting"
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-07-14",
+  "event_time": "18:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "projected",
+  "source_url": "https://www.cityofnewmelle.com/meetings",
+  "verified_on": "2026-10-12",
+  "note": "Projected (second Tuesday); no 2026 Board agendas posted."
  },
  {
   "jurisdiction_id": "dardenne_prairie",
@@ -2988,6 +3204,18 @@
   "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
  },
  {
+  "jurisdiction_id": "new_melle",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-08-04",
+  "event_time": "19:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf",
+  "verified_on": "2026-10-12",
+  "note": "On the hearing schedule (hearing for the May cycle, review for the July cycle)."
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -3106,6 +3334,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": ""
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-08-11",
+  "event_time": "18:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen (on the rezoning hearing schedule)"
  },
  {
   "jurisdiction_id": "dardenne_prairie",
@@ -3336,6 +3576,18 @@
   "note": "County Council regular meeting"
  },
  {
+  "jurisdiction_id": "new_melle",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-09-01",
+  "event_time": "19:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "projected",
+  "source_url": "https://www.cityofnewmelle.com/meetings",
+  "verified_on": "2026-10-12",
+  "note": "Projected (first Tuesday); no agenda posted."
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -3456,6 +3708,18 @@
   "note": "Board of Aldermen regular meeting (work session 5:30 PM)"
  },
  {
+  "jurisdiction_id": "new_melle",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-09-08",
+  "event_time": "18:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "projected",
+  "source_url": "https://www.cityofnewmelle.com/meetings",
+  "verified_on": "2026-10-12",
+  "note": "Projected (second Tuesday); no 2026 Board agendas posted."
+ },
+ {
   "jurisdiction_id": "dardenne_prairie",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -3526,6 +3790,18 @@
   "source_url": "https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf",
   "verified_on": "2026-10-09",
   "note": ""
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-09-14",
+  "event_time": null,
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf",
+  "verified_on": "2026-10-12",
+  "note": "Rezoning/annexation application due. Feeds P&Z 2026-10-06 (review), hearing 2026-12-01 (notice posted 2026-11-16; certified mail to owners within 500 ft after the review), Board 2026-12-08. Dates subject to change; confirm with the City Clerk, 636-828-4807."
  },
  {
   "jurisdiction_id": "stcharles_county",
@@ -3852,6 +4128,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "new_melle",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-10-06",
+  "event_time": "19:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf",
+  "verified_on": "2026-10-12",
+  "note": "On the hearing schedule (hearing for the July cycle, review for the September cycle)."
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -3946,6 +4234,18 @@
   "source_url": "https://www.stpetersmo.net/DocumentCenter/View/444/Development-Guide-and-Planning--Zoning-SubmittalMeeting-Schedule-PDF",
   "verified_on": "2026-10-12",
   "note": "Rezoning and Special Use applications due. Feeds P&Z 2026-11-04."
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-10-13",
+  "event_time": "18:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen (on the rezoning hearing schedule)"
  },
  {
   "jurisdiction_id": "stcharles_county",
@@ -4272,6 +4572,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "new_melle",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-11-03",
+  "event_time": "19:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "projected",
+  "source_url": "https://www.cityofnewmelle.com/meetings",
+  "verified_on": "2026-10-12",
+  "note": "Projected (first Tuesday); Election Day, may move."
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -4368,6 +4680,18 @@
   "note": "Feeds P&Z 2026-12-07. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "new_melle",
+  "body": "planning_zoning",
+  "event_type": "submittal_deadline",
+  "event_date": "2026-11-09",
+  "event_time": null,
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf",
+  "verified_on": "2026-10-12",
+  "note": "Rezoning/annexation application due. Feeds P&Z 2026-12-01 (review), hearing 2027-02-02 (notice posted 2027-01-18; certified mail to owners within 500 ft after the review), Board 2027-02-09. Dates subject to change; confirm with the City Clerk, 636-828-4807."
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "planning_zoning",
   "event_type": "meeting",
@@ -4414,6 +4738,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": ""
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-11-10",
+  "event_time": "18:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "projected",
+  "source_url": "https://www.cityofnewmelle.com/meetings",
+  "verified_on": "2026-10-12",
+  "note": "Projected (second Tuesday); no 2026 Board agendas posted."
  },
  {
   "jurisdiction_id": "dardenne_prairie",
@@ -4608,6 +4944,18 @@
   "note": "Board of Aldermen meeting. On the city calendar but falls on a holiday; confirm."
  },
  {
+  "jurisdiction_id": "new_melle",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-12-01",
+  "event_time": "19:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf",
+  "verified_on": "2026-10-12",
+  "note": "On the hearing schedule (hearing for the September cycle, review for the November cycle)."
+ },
+ {
   "jurisdiction_id": "stcharles_city",
   "body": "governing_body",
   "event_type": "meeting",
@@ -4786,6 +5134,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": ""
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-12-08",
+  "event_time": "18:00",
+  "location": "New Melle City Hall, 145 Almeling St",
+  "status": "published",
+  "source_url": "https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen (on the rezoning hearing schedule)"
  },
  {
   "jurisdiction_id": "dardenne_prairie",

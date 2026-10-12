@@ -287,6 +287,49 @@ for d in fh_pz:
         "Projected (Monday before the Board meeting, held as needed; time not posted). No submittal deadlines posted; "
         "rezoning hearings need 15 days' newspaper and certified-mail notice. Call City Hall 636-327-4441.","projected","2026-10-12")
 
+# New Melle: 2025-2027 Rezoning/Annexation Public Hearing Submission Schedule (two-month cycle: submit, P&Z review
+# at a regular meeting, notice posted, P&Z hearing, Board). P&Z first Tuesday 7 PM, Board second Tuesday 6 PM.
+# Held P&Z dates from the 2026 agendas (Jan and Jun moved); no 2026 Board agendas or minutes posted.
+NM_SCHED = "https://www.cityofnewmelle.com/_files/ugd/9d38ad_16a245ef4cc8442999bcb52c3550a92a.pdf"
+NM_PZ = "https://www.cityofnewmelle.com/planning-and-zoning-commission"
+NM_MTG = "https://www.cityofnewmelle.com/meetings"
+NMLOC = "New Melle City Hall, 145 Almeling St"
+# submittal, P&Z review, notice posted, P&Z hearing, Board
+nm = """01/12/2026 02/03/2026 03/23/2026 04/07/2026 04/14/2026
+03/06/2026 04/07/2026 05/18/2026 06/02/2026 06/09/2026
+05/11/2026 06/02/2026 07/20/2026 08/04/2026 08/11/2026
+07/13/2026 08/04/2026 09/21/2026 10/06/2026 10/13/2026
+09/14/2026 10/06/2026 11/16/2026 12/01/2026 12/08/2026
+11/09/2026 12/01/2026 01/18/2027 02/02/2027 02/09/2027"""
+for line in nm.splitlines():
+    s, rv, nt, hr, bd = [d1(x) for x in line.split()]
+    add("new_melle","planning_zoning","submittal_deadline",s,None,NMLOC,NM_SCHED,
+        f"Rezoning/annexation application due. Feeds P&Z {rv.isoformat()} (review), hearing {hr.isoformat()} "
+        f"(notice posted {nt.isoformat()}; certified mail to owners within 500 ft after the review), Board {bd.isoformat()}. "
+        "Dates subject to change; confirm with the City Clerk, 636-828-4807.",verified="2026-10-12")
+NMA = "https://www.cityofnewmelle.com/_files/ugd/9d38ad_"
+nm_pz = [("2026-01-13","19:00","published",NMA+"78ced1ead0db4bd89ee1f48a82d7adc4.pdf","Moved from Jan 6."),
+         ("2026-02-03","19:00","published",NMA+"c3afaa59c2c941cc8beac6464962fccf.pdf","Public hearing for the Nov 2025 cycle."),
+         ("2026-03-03","19:00","published",NMA+"8f3bd45d56e44648a1e08129fa36d887.pdf",""),
+         ("2026-04-07","19:00","published",NMA+"8be7c7f4fd7f44f5b576d064888b919e.pdf",""),
+         ("2026-05-05","19:00","published",NMA+"b5f1908aac9b4e40b7ced9fde9be62f9.pdf",""),
+         ("2026-06-08","18:00","published",NMA+"695f866981144f73bf6ee7184de4e18d.pdf",
+          "Monday 6 PM (moved from Jun 2). Agenda: rezoning 4712 Highway Z, R-1B to C-2; CUP for IHM burial sites."),
+         ("2026-07-07","19:00","projected",NM_MTG,"Projected (first Tuesday); no agenda posted."),
+         ("2026-08-04","19:00","published",NM_SCHED,"On the hearing schedule (hearing for the May cycle, review for the July cycle)."),
+         ("2026-09-01","19:00","projected",NM_MTG,"Projected (first Tuesday); no agenda posted."),
+         ("2026-10-06","19:00","published",NM_SCHED,"On the hearing schedule (hearing for the July cycle, review for the September cycle)."),
+         ("2026-11-03","19:00","projected",NM_MTG,"Projected (first Tuesday); Election Day, may move."),
+         ("2026-12-01","19:00","published",NM_SCHED,"On the hearing schedule (hearing for the September cycle, review for the November cycle).")]
+for d, tm, st, src, note in nm_pz:
+    add("new_melle","planning_zoning","meeting",date.fromisoformat(d),tm,NMLOC,src,note,st,"2026-10-12")
+nm_boa = {"2026-02-10","2026-04-14","2026-06-09","2026-08-11","2026-10-13","2026-12-08"}
+for d in ["2026-01-13","2026-02-10","2026-03-10","2026-04-14","2026-05-12","2026-06-09","2026-07-14","2026-08-11",
+          "2026-09-08","2026-10-13","2026-11-10","2026-12-08"]:
+    add("new_melle","governing_body","meeting",date.fromisoformat(d),"18:00",NMLOC,NM_SCHED if d in nm_boa else NM_MTG,
+        "Board of Aldermen (on the rezoning hearing schedule)" if d in nm_boa else
+        "Projected (second Tuesday); no 2026 Board agendas posted.","published" if d in nm_boa else "projected","2026-10-12")
+
 rows.sort(key=lambda r:(r["event_date"], r["jurisdiction_id"]))
 json.dump(rows, open(f"{out}/meetings.json","w"), indent=1)
 with open(f"{out}/meetings.csv","w",newline="") as f:
@@ -294,7 +337,7 @@ with open(f"{out}/meetings.csv","w",newline="") as f:
 
 # ICS, upcoming only (today forward)
 today = date.today()
-names = {"wentzville":"Wentzville","cottleville":"Cottleville","ofallon":"O'Fallon","stpeters":"St. Peters","stcharles_city":"St. Charles","stcharles_county":"St. Charles County","lake_st_louis":"Lake Saint Louis","dardenne_prairie":"Dardenne Prairie","weldon_spring":"Weldon Spring","foristell":"Foristell","flint_hill":"Flint Hill"}
+names = {"wentzville":"Wentzville","cottleville":"Cottleville","ofallon":"O'Fallon","stpeters":"St. Peters","stcharles_city":"St. Charles","stcharles_county":"St. Charles County","lake_st_louis":"Lake Saint Louis","dardenne_prairie":"Dardenne Prairie","weldon_spring":"Weldon Spring","foristell":"Foristell","flint_hill":"Flint Hill","new_melle":"New Melle"}
 lab = {("planning_zoning","meeting"):"P&Z Meeting",("planning_zoning","submittal_deadline"):"P&Z SUBMITTAL DUE",("governing_body","meeting"):"Board of Aldermen"}
 L = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Entitlement Tracker//STC//EN","X-WR-CALNAME:St. Charles Co. Entitlement Dates","X-WR-TIMEZONE:America/Chicago"]
 n=0

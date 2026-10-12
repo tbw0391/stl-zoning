@@ -4036,5 +4036,318 @@
    "note": "Designation attached to a base district, not a separate district. 5-acre minimum (Board may waive on P&Z recommendation). Lots in DSD or residential districts never under 1/2 acre. Area plan by resolution, then final plan by ordinance."
   },
   "source_url": "https://assets.smartxeo.com/38/79050-zoning-ordinance-updated-09-11-2024.pdf"
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "code": "R-1A",
+  "name": "Single-Family Residential (3 ac)",
+  "category": "residential",
+  "min_lot_sf": 130680,
+  "min_lot_width_ft": 250,
+  "max_density_du_ac": 0.33,
+  "front_setback_ft": 50,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 50,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.140",
+   "min_lot_depth_ft": 300,
+   "max_lot_coverage_pct": 30,
+   "min_dwelling_sf": 1300,
+   "note": "Min dwelling 1,300 sf ranch, 1,800 sf 1.5 story, 2,200 sf 2 story. Detached accessory 25 ft max, 10 ft from side lines. Septic allowed with P&Z approval. Horses on 3+ acres, 1 per acre."
+  },
+  "source_url": "https://ecode360.com/29500631"
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "code": "R-1B",
+  "name": "Single-Family Residential (1 ac)",
+  "category": "residential",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": 1,
+  "front_setback_ft": 50,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 50,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.145",
+   "min_lot_depth_ft": 200,
+   "max_lot_coverage_pct": 30,
+   "min_dwelling_sf": 1300,
+   "note": "Min dwelling 1,300 sf ranch, 1,600 sf 1.5 story, 2,200 sf 2 story. Detached accessory 25 ft max, 10 ft from side lines. Public sewer required."
+  },
+  "source_url": "https://ecode360.com/29500655"
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "code": "R-1C",
+  "name": "Single-Family Residential (19,001 sf-1 ac)",
+  "category": "residential",
+  "min_lot_sf": 19001,
+  "min_lot_width_ft": 60,
+  "max_density_du_ac": null,
+  "front_setback_ft": 35,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 35,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.150",
+   "min_lot_depth_ft": 125,
+   "max_lot_coverage_pct": 30,
+   "min_dwelling_sf": 1600,
+   "note": "Lots 19,001 sf to 1 acre. Min dwelling 1,600 sf ranch, 1,800 sf 1.5 story, 2,200 sf 2 story. Detached accessory 25 ft max, 10 ft from side lines. Public sewer required."
+  },
+  "source_url": "https://ecode360.com/29500678"
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "code": "R-1D",
+  "name": "Single-Family Residential (Old Town vacant lots)",
+  "category": "residential",
+  "min_lot_sf": 7000,
+  "min_lot_width_ft": 50,
+  "max_density_du_ac": null,
+  "front_setback_ft": 35,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 35,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.150",
+   "min_lot_depth_ft": 80,
+   "max_lot_coverage_pct": 30,
+   "min_dwelling_sf": 1600,
+   "note": "Vacant lots in Old Town New Melle, 7,000-19,000 sf. Min dwelling 1,600 sf ranch, 1,800 sf 1.5 story, 2,200 sf 2 story. Detached accessory 25 ft max, 10 ft from side lines. Public sewer required."
+  },
+  "source_url": "https://ecode360.com/29500678"
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "code": "R-2",
+  "name": "Two-Family Residential",
+  "category": "residential",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 200,
+  "max_density_du_ac": 2,
+  "front_setback_ft": 50,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 40,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.155",
+   "min_lot_depth_ft": 200,
+   "max_lot_coverage_pct": 30,
+   "min_dwelling_sf": 2600,
+   "note": "One two-family building per 1-acre lot. Min building 2,600 sf ranch, 2,800 sf 1.5 or 2 story. Public sewer required."
+  },
+  "source_url": "https://ecode360.com/29500702"
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "code": "R-3",
+  "name": "Apartment House",
+  "category": "residential",
+  "min_lot_sf": 21780,
+  "min_lot_width_ft": 300,
+  "max_density_du_ac": 2,
+  "front_setback_ft": 100,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 100,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.160",
+   "max_lot_coverage_pct": 35,
+   "min_dwelling_sf": 900,
+   "note": "5-acre site. One unit per 1/2 acre, never over 2 du/ac. Units 900 sf min. Building spacing 20-100 ft. P&Z site plan review; public water and sewer."
+  },
+  "source_url": "https://ecode360.com/29500726"
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "code": "R-M",
+  "name": "Mobile Home Park",
+  "category": "residential",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": 1,
+  "front_setback_ft": 50,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 50,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.165",
+   "note": "R-1B standards apply. 20-acre development minimum, 1 acre per home. Stands 30 ft from the development boundary, 50 ft from streets; 30 ft transition strip on side and rear boundaries. May only adjoin I-1 or AG zoning. Public water and sewer required."
+  },
+  "source_url": "https://ecode360.com/29500749"
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "code": "C-O",
+  "name": "Office",
+  "category": "office",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 35,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.170",
+   "max_lot_coverage_pct": 25,
+   "note": "No minimum lot. Corner street-side yard 25 ft. Next to residential: 20 ft planting strip within the 30 ft side / 35 ft rear yard."
+  },
+  "source_url": "https://ecode360.com/29500822"
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "code": "C-1",
+  "name": "Restricted Business",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 35,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.175",
+   "max_lot_coverage_pct": 30,
+   "note": "No minimum lot. Side yard only where it abuts residential or office (30 ft), corner side 25 ft. 5,000 sf max per business; no outdoor storage, wholesale or flea markets. Next to residential: 20 ft planting strip within the 30 ft side / 35 ft rear yard."
+  },
+  "source_url": "https://ecode360.com/29500842"
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "code": "C-2",
+  "name": "General Business",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 35,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.180",
+   "max_lot_coverage_pct": 85,
+   "note": "No minimum lot. Side yard only where it abuts residential or office (30 ft), corner side 25 ft. Front yard includes signs, pump islands, canopies. Next to residential: 20 ft planting strip within the 30 ft side / 35 ft rear yard."
+  },
+  "source_url": "https://ecode360.com/29500865"
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "code": "C-3",
+  "name": "Highway Commercial",
+  "category": "commercial",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 35,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.185",
+   "max_lot_coverage_pct": 30,
+   "note": "Corner street-side yard 30 ft. Next to residential: 20 ft planting strip within the 30 ft side / 35 ft rear yard."
+  },
+  "source_url": "https://ecode360.com/29500884"
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "code": "I-1",
+  "name": "Light Industrial",
+  "category": "industrial",
+  "min_lot_sf": 217800,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 25,
+  "rear_setback_ft": 100,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.190",
+   "max_lot_coverage_pct": 50,
+   "note": "Corner street-side 50 ft. Operations fully enclosed; outdoor storage screened 8 ft, not visible within 1,000 ft. Next to residential: 50 ft planting strip within the 50 ft side / 100 ft rear yard."
+  },
+  "source_url": "https://ecode360.com/29500901"
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "code": "I-2",
+  "name": "Heavy Industrial",
+  "category": "industrial",
+  "min_lot_sf": 435600,
+  "min_lot_width_ft": 75,
+  "max_density_du_ac": null,
+  "front_setback_ft": 50,
+  "side_setback_ft": 50,
+  "rear_setback_ft": 100,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.195",
+   "max_lot_coverage_pct": 50,
+   "note": "10-acre site unless it abuts industrial. Operations fully enclosed; outdoor storage screened 8 ft. Next to residential: 50 ft planting strip within the 50 ft side / 100 ft rear yard."
+  },
+  "source_url": "https://ecode360.com/29500922"
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "code": "AG",
+  "name": "Agricultural",
+  "category": "agricultural",
+  "min_lot_sf": 130680,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": null,
+  "front_setback_ft": 50,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 50,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7405.200",
+   "max_lot_coverage_pct": 10,
+   "note": "Livestock needs 10 acres (horses 3 acres, 1 per acre); livestock structures and hay/manure 100 ft from lines. Corner street-side 50 ft. Dwellings 2.5 stories; farm buildings 50 ft."
+  },
+  "source_url": "https://ecode360.com/29500944"
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "code": "P-R",
+  "name": "Park Recreation",
+  "category": "recreational",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 60,
+  "side_setback_ft": 30,
+  "rear_setback_ft": 50,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7405.205",
+   "max_lot_coverage_pct": 10,
+   "note": "No lot area or width minimum. Corner street-side 60 ft."
+  },
+  "source_url": "https://ecode360.com/29500963"
+ },
+ {
+  "jurisdiction_id": "new_melle",
+  "code": "PUD",
+  "name": "Planned Unit Development (overlay)",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "Art. V, \u00a7405.215-.285",
+   "note": "Designation attached to a base district, not a separate district. 10-acre minimum (Board may waive on P&Z recommendation). Area plan (P&Z and Board public hearings), then final plan."
+  },
+  "source_url": "https://ecode360.com/29501005"
  }
 ]
