@@ -9,13 +9,13 @@ export const dynamic = "force-dynamic";
 export default async function MeetingsPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const sp = await searchParams;
   const supabase = await createClient();
-  let q = supabase.from("meetings").select("id, jurisdiction_id, body, event_date, video_url, summary, summary_items, agenda_url, agenda_items, jurisdictions(name)")
+  let q = supabase.from("meetings").select("id, jurisdiction_id, body, event_date, video_url, summary, summary_items, agenda_url, packet_url, agenda_items, jurisdictions(name)")
     .or("video_url.not.is.null,agenda_url.not.is.null").order("event_date", { ascending: false });
   if (sp.j) q = q.eq("jurisdiction_id", sp.j);
   const { data } = await q;
   const rows = (data ?? []) as unknown as {
     id: number; jurisdiction_id: string; body: string; event_date: string; video_url: string | null;
-    agenda_url: string | null; agenda_items: AgendaItem[] | null;
+    agenda_url: string | null; packet_url: string | null; agenda_items: AgendaItem[] | null;
     summary: string | null; summary_items: SummaryItem[] | null; jurisdictions: { name: string } | null;
   }[];
 
@@ -47,6 +47,7 @@ export default async function MeetingsPage({ searchParams }: { searchParams: Pro
             <div className="links">
               {m.video_url && <Link href={`/meetings/${m.id}`}>{m.summary ? "Read summary" : "No summary yet"}</Link>}
               {m.agenda_url && <a href={m.agenda_url} target="_blank" rel="noreferrer">Agenda ↗</a>}
+              {m.packet_url && <a href={m.packet_url} target="_blank" rel="noreferrer">Full packet ↗</a>}
               {m.video_url && <a href={m.video_url} target="_blank" rel="noreferrer">Video ↗</a>}
             </div>
           </div>

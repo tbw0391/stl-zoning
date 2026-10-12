@@ -41,8 +41,13 @@ NOT_HEARING = re.compile(r"work ?session|study session|retreat|orientation|train
 REGULAR = re.compile(r"regular|(council|board|commission|aldermen) meeting", re.I)
 
 
+# Postings that aren't a meeting at all ("No regular meeting to be held", "Notice of Public Hearing - Proposed Budget").
+NOT_MEETING = re.compile(r"no (regular )?meeting|^notice of", re.I)
+CANCELLED = re.compile(r"cancell?ed", re.I)
+
+
 def not_hearing(title):
-    return bool(NOT_HEARING.search(title)) and not REGULAR.search(title)
+    return bool(NOT_MEETING.search(title)) or (bool(NOT_HEARING.search(title)) and not REGULAR.search(title))
 
 GOV = re.compile(r"aldermen|alderm|city council|county council|board of trustees|village board|^council$|"
                  r"\bcouncil\b(?!.*(advisory|youth|arts))", re.I)
@@ -81,7 +86,8 @@ def site(base):
     u = urllib.parse.urlparse(landed)
     resolved = f"{u.scheme}://{u.netloc}"
     cats = []
-    for cid, n in re.findall(r'id="cat(\d+)">\s*<h2[^>]*>([^<]+)</h2>', page):
+    # Boards are <h2> headings, or <h3> on sites that group boards under section headings (Des Peres).
+    for cid, n in re.findall(r'id="cat(\d+)">\s*<h[23][^>]*>([^<]+)</h[23]>', page):
         name = html.unescape(n).strip()
         years = [int(y) for y in re.findall(rf"changeYear\((\d{{4}}), {cid}\b", page)]
         cats.append({"cat_id": int(cid), "name": name, "body": body_for(name), "latest_year": max(years, default=None)})
@@ -116,6 +122,7 @@ def agendas(base, cat_id, year):
             "minutes_url": base + minutes.group(1) if minutes else None,
             "packet_url": base + packet.group(1) if packet else None,
         })
+        out[-1]["cancelled"] = bool(CANCELLED.search(out[-1]["title"]))
     return out
 
 
@@ -132,7 +139,8 @@ def meetings(jurisdiction_id, base, year):
                 continue
             # Some sites post an agenda, a packet and an amended agenda as separate rows: keep the first per date.
             key = (c["body"], a["event_date"])
-            if key not in rows:
+            # A cancelled posting gives way to a live one on the same date.
+            if key not in rows or (rows[key]["cancelled"] and not a["cancelled"]):
                 rows[key] = {"jurisdiction_id": jurisdiction_id, "body": c["body"], "event_type": "meeting",
                              "board": c["name"], **a}
             elif not rows[key]["minutes_url"] and a["minutes_url"]:

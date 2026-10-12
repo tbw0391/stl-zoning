@@ -23,9 +23,10 @@ export default async function MeetingPage({ params }: { params: Promise<{ id: st
         {fmtDate(m.event_date)}{m.event_time && ` · ${fmtTime(m.event_time)}`}
         {" · "}<Link href={`/jurisdictions/${m.jurisdiction_id}`}>{m.jurisdictions?.name}</Link>
       </p>
-      {(m.video_url || m.agenda_url) && (
+      {(m.video_url || m.agenda_url || m.packet_url) && (
         <p className="links">
           {m.agenda_url && <a href={m.agenda_url} target="_blank" rel="noreferrer">Posted agenda ↗</a>}
+          {m.packet_url && <a href={m.packet_url} target="_blank" rel="noreferrer">Full packet (staff reports, plans) ↗</a>}
           {m.video_url && <a href={m.video_url} target="_blank" rel="noreferrer">Watch the recording ↗</a>}
         </p>
       )}

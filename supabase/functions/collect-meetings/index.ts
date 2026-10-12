@@ -1,8 +1,8 @@
-// Daily meeting collection for jurisdictions with a `collector` set (AgendaCenter or CivicClerk).
+// Daily meeting collection for jurisdictions with a `collector` set (AgendaCenter, CivicClerk or Municode Meetings).
 // TypeScript port of scripts/collectors/*.py; keep the board-matching rules in step with agendacenter.py.
 //
-// For each jurisdiction: inserts meetings we don't have, fills missing agenda links / times / locations,
-// and marks projected meetings as published once the city posts them. Never overwrites hand-researched
+// For each jurisdiction: inserts meetings we don't have, fills missing agenda / packet links, times and
+// locations, and marks projected meetings as published (or cancelled) once the city posts them. Never overwrites hand-researched
 // values and never deletes: meetings in our data that the city's system lacks are recorded in
 // collector_runs.missing for a person to check.
 //
@@ -27,13 +27,24 @@ const GOV = /aldermen|alderm|city council|county council|board of trustees|villa
 const NOT_HEARING = /work ?session|study session|retreat|orientation|training|closed session|executive session/i;
 // ...unless it's combined with the regular meeting ("Work Session and Council Meeting").
 const REGULAR = /regular|(council|board|commission|aldermen) meeting/i;
-const notHearing = (title: string) => NOT_HEARING.test(title) && !REGULAR.test(title);
+// Postings that aren't a meeting at all ("No regular meeting to be held", "Notice of Public Hearing - Proposed Budget").
+const NOT_MEETING = /no (regular )?meeting|^notice of/i;
+const notHearing = (title: string) => NOT_MEETING.test(title) || (NOT_HEARING.test(title) && !REGULAR.test(title));
+const CANCELLED = /cancell?ed/i;
 
 type Body = "planning_zoning" | "governing_body";
 type Collected = {
   body: Body; event_date: string; event_time: string | null; location: string | null; title: string;
-  agenda_url: string | null; source_url: string;
+  agenda_url: string | null; packet_url: string | null; source_url: string; cancelled: boolean;
 };
+
+// One row per board and date. A cancelled posting gives way to a live one on the same date
+// (a cancelled special session alongside the regular meeting).
+function keep(rows: Map<string, Collected>, c: Collected) {
+  const key = `${c.body}|${c.event_date}`;
+  const prev = rows.get(key);
+  if (!prev || (prev.cancelled && !c.cancelled)) rows.set(key, c);
+}
 
 function bodyFor(name: string): Body | null {
   if (SKIP.test(name)) return null;
@@ -63,7 +74,8 @@ async function agendaCenter(site: string, year: number): Promise<Collected[]> {
   const { url, text: page } = await fetchText(site.replace(/\/$/, "") + "/AgendaCenter");
   const base = new URL(url).origin;
   const rows = new Map<string, Collected>();
-  for (const m of page.matchAll(/id="cat(\d+)">\s*<h2[^>]*>([^<]+)<\/h2>/g)) {
+  // Boards are <h2> headings, or <h3> on sites that group boards under section headings (Des Peres).
+  for (const m of page.matchAll(/id="cat(\d+)">\s*<h[23][^>]*>([^<]+)<\/h[23]>/g)) {
     const [, cid, rawName] = m;
     const name = unescape(rawName).trim();
     const body = bodyFor(name);
@@ -78,11 +90,13 @@ async function agendaCenter(site: string, year: number): Promise<Collected[]> {
       const t = row.match(/aria-describedby="h4[^"]*">\s*([\s\S]*?)\s*<\/a>/);
       const title = t ? unescape(t[1].replace(/\s+/g, " ")).trim() : "";
       if (notHearing(title)) continue;
-      const date = `${yyyy}-${mm}-${dd}`;
-      const key = `${body}|${date}`;
-      if (rows.has(key)) continue;
       const agendaUrl = `${base}/AgendaCenter/ViewFile/Agenda/_${mm}${dd}${yyyy}-${id}`;
-      rows.set(key, { body, event_date: date, event_time: null, location: null, title, agenda_url: agendaUrl, source_url: `${base}/AgendaCenter` });
+      // Agendas built in AgendaCenter also offer the compiled packet (agenda plus staff reports and plans).
+      const packet = row.includes(`_${mm}${dd}${yyyy}-${id}?packet=true`) ? `${agendaUrl}?packet=true` : null;
+      keep(rows, {
+        body, event_date: `${yyyy}-${mm}-${dd}`, event_time: null, location: null, title, agenda_url: agendaUrl,
+        packet_url: packet, source_url: `${base}/AgendaCenter`, cancelled: CANCELLED.test(title),
+      });
     }
   }
   return [...rows.values()];
@@ -107,22 +121,67 @@ async function civicClerk(tenant: string, year: number): Promise<Collected[]> {
     const body = bodyFor(e.categoryName ?? e.eventCategoryName ?? "");
     if (!body || notHearing(e.eventName) || e.isDeleted) continue;
     const local: string = e.startDateTime.slice(0, 16);
-    const key = `${body}|${local.slice(0, 10)}`;
-    if (rows.has(key)) continue;
     // deno-lint-ignore no-explicit-any
-    const agenda = (e.publishedFiles ?? []).find((f: any) => f.type === "Agenda");
+    const file = (type: string) => (e.publishedFiles ?? []).find((f: any) => f.type === type);
+    const fileUrl = (f: { fileId: number } | undefined) =>
+      f ? api(`Meetings/GetMeetingFileStream(fileId=${f.fileId},plainText=false)`).replace(/\?$/, "") : null;
     const loc = e.eventLocation ?? {};
     const time = local.slice(11, 16);
-    rows.set(key, {
+    keep(rows, {
       body, event_date: local.slice(0, 10), event_time: time && time !== "00:00" ? time : null,
       location: [loc.address1, loc.address2].filter(Boolean).join(", ") || null,
       title: e.eventName,
-      agenda_url: agenda ? api(`Meetings/GetMeetingFileStream(fileId=${agenda.fileId},plainText=false)`).replace(/\?$/, "") : null,
-      source_url: `https://${tenant}.portal.civicclerk.com/event/${e.id}/files`,
+      agenda_url: fileUrl(file("Agenda")), packet_url: fileUrl(file("Agenda Packet")),
+      source_url: `https://${tenant}.portal.civicclerk.com/event/${e.id}/files`, cancelled: CANCELLED.test(e.eventName),
     });
   }
   return [...rows.values()];
 }
+
+// ---- Municode Meetings (<city>.municodemeetings.com): a filterable table of past and scheduled meetings.
+// Boards come from the board filter; committee meetings and workshops are filed under their parent board.
+const SIDE_MEETING = /committee|workshop/i;
+
+async function municodeMeetings(site: string, year: number): Promise<Collected[]> {
+  const base = site.replace(/\/$/, "");
+  const { text: first } = await fetchText(base + "/meetings3");
+  const filter = first.slice(first.indexOf('name="field_microsite_tid_selective"'));
+  const boards = [...filter.slice(0, filter.indexOf("</select>")).matchAll(/<option value="(\d+)"[^>]*>([^<]*)/g)];
+  const range = {
+    "date_filter[value][year]": year, "date_filter[value][month]": 1, "date_filter[value][day]": 1,
+    "date_filter_1[value][year]": year, "date_filter_1[value][month]": 12, "date_filter_1[value][day]": 31,
+  };
+  const rows = new Map<string, Collected>();
+  for (const [, tid, rawName] of boards) {
+    const body = bodyFor(unescape(rawName).trim());
+    if (!body) continue;
+    for (let page = 0; page < 20; page++) {
+      const q = new URLSearchParams(Object.entries({ ...range, field_microsite_tid_selective: tid, page }).map(([k, v]) => [k, String(v)]));
+      const { text } = await fetchText(`${base}/meetings3?${q}`);
+      const trs = [...text.matchAll(/<tr class="[^"]*">([\s\S]*?)<\/tr>/g)].map((m) => m[1]);
+      for (const tr of trs) {
+        const when = tr.match(/content="(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})/); // local time, with offset
+        const t = tr.match(/data-th="Meeting">\s*([\s\S]*?)\s*<\/td>/);
+        if (!when || !t) continue;
+        const title = unescape(t[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ")).trim();
+        if (notHearing(title) || SIDE_MEETING.test(title)) continue;
+        const cell = (th: string) => tr.match(new RegExp(`data-th="${th}">\\s*<a href="([^"]+\\.pdf)"`))?.[1] ?? null;
+        const view = tr.match(/href="(\/[^"]+)"[^>]*>View Details/);
+        keep(rows, {
+          body, event_date: when[1], event_time: when[2] !== "00:00" ? when[2] : null, location: null, title,
+          agenda_url: cell("Agenda"), packet_url: cell("Agenda Packet"),
+          source_url: view ? base + view[1] : `${base}/meetings3`, cancelled: CANCELLED.test(title),
+        });
+      }
+      if (!text.includes(`page=${page + 1}`)) break;
+    }
+  }
+  return [...rows.values()];
+}
+
+const COLLECTORS: Record<string, (ref: string, year: number) => Promise<Collected[]>> = {
+  agendacenter: agendaCenter, civicclerk: civicClerk, municode: municodeMeetings,
+};
 
 Deno.serve(async (req) => {
   const url = new URL(req.url);
@@ -142,13 +201,14 @@ Deno.serve(async (req) => {
   if (error) return new Response(error.message, { status: 500 });
 
   const runOne = async (j: { id: string; collector: string; collector_ref: string }) => {
+    const fullSchedule = j.collector !== "agendacenter";
     try {
       const collected: Collected[] = [];
       for (const y of years) {
-        collected.push(...(j.collector === "civicclerk" ? await civicClerk(j.collector_ref, y) : await agendaCenter(j.collector_ref, y)));
+        collected.push(...await COLLECTORS[j.collector](j.collector_ref, y));
       }
       const { data: existing } = await db.from("meetings")
-        .select("id, body, event_date, event_time, location, agenda_url, status")
+        .select("id, body, event_date, event_time, location, agenda_url, packet_url, status")
         .eq("jurisdiction_id", j.id).eq("event_type", "meeting")
         .gte("event_date", `${years[0]}-01-01`).lte("event_date", `${years[years.length - 1]}-12-31`);
       const have = new Map((existing ?? []).map((m) => [`${m.body}|${m.event_date}`, m]));
@@ -161,16 +221,19 @@ Deno.serve(async (req) => {
         if (!m) {
           inserts.push({
             jurisdiction_id: j.id, body: c.body, event_type: "meeting", event_date: c.event_date, event_time: c.event_time,
-            location: c.location, status: "published", source_url: c.source_url, agenda_url: c.agenda_url, verified_on: today,
+            location: c.location, status: c.cancelled ? "cancelled" : "published", source_url: c.source_url,
+            agenda_url: c.agenda_url, packet_url: c.packet_url, verified_on: today,
             note: /special/i.test(c.title) ? "Special meeting" : null,
           });
           continue;
         }
         const patch: Record<string, unknown> = {};
         if (!m.agenda_url && c.agenda_url) patch.agenda_url = c.agenda_url;
+        if (!m.packet_url && c.packet_url) patch.packet_url = c.packet_url;
         if (!m.event_time && c.event_time) patch.event_time = c.event_time;
         if (!m.location && c.location) patch.location = c.location;
-        if (m.status === "projected" && (c.agenda_url || j.collector === "civicclerk")) patch.status = "published";
+        if (m.status === "projected" && c.cancelled) patch.status = "cancelled";
+        else if (m.status === "projected" && (c.agenda_url || fullSchedule)) patch.status = "published";
         if (Object.keys(patch).length) {
           patch.verified_on = today;
           const { error: ue } = await db.from("meetings").update(patch).eq("id", m.id);
@@ -182,9 +245,9 @@ Deno.serve(async (req) => {
         const { error: ie } = await db.from("meetings").insert(inserts);
         if (ie) throw new Error(ie.message);
       }
-      // CivicClerk lists the whole schedule, so anything it lacks is suspect. AgendaCenter only lists
-      // posted agendas, so only past meetings (a few days' grace) count there.
-      const cutoff = j.collector === "civicclerk" ? "9999-12-31" : new Date(Date.now() - 3 * 864e5).toISOString().slice(0, 10);
+      // CivicClerk and Municode list the whole schedule, so anything they lack is suspect. AgendaCenter only
+      // lists posted agendas, so only past meetings (a few days' grace) count there.
+      const cutoff = fullSchedule ? "9999-12-31" : new Date(Date.now() - 3 * 864e5).toISOString().slice(0, 10);
       const missing = collected.length
         ? (existing ?? []).filter((m) => m.status !== "cancelled" && m.event_date <= cutoff && !seen.has(`${m.body}|${m.event_date}`))
           .map((m) => ({ event_date: m.event_date, body: m.body }))

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { ROLE_LABEL, STATUS_LABEL, fmtDate, fmtTime, todayCentral } from "@/lib/format";
+import ProfileLinks from "@/components/ProfileLinks";
 
 export const dynamic = "force-dynamic";
 
@@ -191,7 +192,7 @@ export default async function JurisdictionPage({ params }: { params: Promise<{ i
                   <tbody>
                     {list.map((x) => (
                       <tr key={x.id}>
-                        <td>{x.full_name}</td>
+                        <td>{x.full_name}<ProfileLinks links={x.links} /></td>
                         <td>{x.title}</td>
                         <td>{x.email ? <a href={`mailto:${x.email}`}>{x.email}</a> : <span className="muted">—</span>}</td>
                         <td>{x.phone ?? <span className="muted">—</span>}</td>

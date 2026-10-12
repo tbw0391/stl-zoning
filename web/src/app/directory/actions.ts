@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { todayCentral } from "@/lib/format";
+import { parseLinks, type ProfileLink } from "@/components/ProfileLinks";
 
 const text = (fd: FormData, key: string) => String(fd.get(key) ?? "").trim() || null;
 
@@ -11,8 +12,9 @@ const PERSON_FIELDS = ["jurisdiction_id", "full_name", "role_group", "title", "e
 
 // Saving through the site counts as a fresh check of the person's details.
 function personFromForm(fd: FormData) {
-  const row: Record<string, string | null> = {};
+  const row: Record<string, string | ProfileLink[] | null> = {};
   for (const k of PERSON_FIELDS) if (fd.has(k)) row[k] = text(fd, k);
+  if (fd.has("links")) row.links = parseLinks(String(fd.get("links")));
   row.verified_on = todayCentral();
   return row;
 }

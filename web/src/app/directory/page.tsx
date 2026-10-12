@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { ROLE_LABEL, shortName } from "@/lib/format";
 import PageTitle from "@/components/PageTitle";
+import ProfileLinks from "@/components/ProfileLinks";
 
 export const dynamic = "force-dynamic";
 
@@ -53,7 +54,7 @@ export default async function DirectoryPage({ searchParams }: { searchParams: Pr
             <tbody>
               {people.map((x) => (
                 <tr key={x.id}>
-                  <td>{x.full_name}</td>
+                  <td>{x.full_name}<ProfileLinks links={x.links} /></td>
                   <td>{x.title}</td>
                   <td><Link href={`/jurisdictions/${x.jurisdiction_id}`}>{shortName(jname.get(x.jurisdiction_id) ?? x.jurisdiction_id)}</Link></td>
                   <td className="small">{ROLE_LABEL[x.role_group]}</td>

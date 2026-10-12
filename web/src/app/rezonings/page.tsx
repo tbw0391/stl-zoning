@@ -20,7 +20,7 @@ const RANGES: Record<string, { label: string; from: number; to: number }> = {
 };
 
 type Row = {
-  id: number; jurisdiction_id: string; body: string; event_date: string; agenda_url: string | null;
+  id: number; jurisdiction_id: string; body: string; event_date: string; agenda_url: string | null; packet_url: string | null;
   agenda_items: AgendaItem[]; jurisdictions: { name: string; county: string } | null;
 };
 
@@ -32,7 +32,7 @@ export default async function RezoningsPage({ searchParams }: { searchParams: Pr
   const supabase = await createClient();
 
   const { data } = await supabase.from("meetings")
-    .select("id, jurisdiction_id, body, event_date, agenda_url, agenda_items, jurisdictions(name, county)")
+    .select("id, jurisdiction_id, body, event_date, agenda_url, packet_url, agenda_items, jurisdictions(name, county)")
     .not("agenda_items", "is", null)
     .gte("event_date", addDays(today, RANGES[range].from)).lte("event_date", addDays(today, RANGES[range].to))
     .order("event_date", { ascending: range === "upcoming" });
@@ -95,7 +95,7 @@ export default async function RezoningsPage({ searchParams }: { searchParams: Pr
                       <div className="small muted">{[it.acres != null && `${it.acres} ac`, it.units != null && `${it.units} units`].filter(Boolean).join(" · ")}</div>
                     )}
                   </td>
-                  <td>{it.applicant ?? <span className="muted">—</span>}{m.agenda_url && <div className="small"><a href={m.agenda_url} target="_blank" rel="noreferrer">Agenda ↗</a></div>}</td>
+                  <td>{it.applicant ?? <span className="muted">—</span>}{m.agenda_url && <div className="small"><a href={m.agenda_url} target="_blank" rel="noreferrer">Agenda ↗</a></div>}{m.packet_url && <div className="small"><a href={m.packet_url} target="_blank" rel="noreferrer">Packet ↗</a></div>}</td>
                 </tr>
               ))}
             </tbody>
