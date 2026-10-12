@@ -168,6 +168,18 @@
   "note": "Feeds P&Z 2026-02-02. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-01-05",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
+ },
+ {
   "jurisdiction_id": "lake_st_louis",
   "body": "governing_body",
   "event_type": "meeting",
@@ -324,6 +336,18 @@
   "note": "Work session 6 PM."
  },
  {
+  "jurisdiction_id": "foristell",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-01-15",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": ""
+ },
+ {
   "jurisdiction_id": "ofallon",
   "body": "governing_body",
   "event_type": "meeting",
@@ -334,6 +358,18 @@
   "source_url": "https://public.destinyhosted.com/agenda_publish.cfm?id=63255",
   "verified_on": "2026-10-10",
   "note": "City Council regular meeting"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-01-20",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting. Moved to Tuesday (holiday)."
  },
  {
   "jurisdiction_id": "lake_st_louis",
@@ -516,6 +552,18 @@
   "note": "Feeds P&Z 2026-03-02. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-02-02",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
+ },
+ {
   "jurisdiction_id": "lake_st_louis",
   "body": "governing_body",
   "event_type": "meeting",
@@ -696,6 +744,18 @@
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
  },
  {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-02-17",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting. Moved to Tuesday (holiday)."
+ },
+ {
   "jurisdiction_id": "lake_st_louis",
   "body": "governing_body",
   "event_type": "meeting",
@@ -730,6 +790,18 @@
   "source_url": "https://www.sccmo.org/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": ""
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-02-19",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Special joint meeting with the Board of Aldermen."
  },
  {
   "jurisdiction_id": "stcharles_county",
@@ -862,6 +934,18 @@
   "source_url": "https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf",
   "verified_on": "2026-10-09",
   "note": ""
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-03-02",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
  },
  {
   "jurisdiction_id": "lake_st_louis",
@@ -1056,6 +1140,18 @@
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
  },
  {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-03-16",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
+ },
+ {
   "jurisdiction_id": "lake_st_louis",
   "body": "governing_body",
   "event_type": "meeting",
@@ -1100,6 +1196,18 @@
   "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
   "status": "published",
   "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": ""
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-03-19",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
   "verified_on": "2026-10-12",
   "note": ""
  },
@@ -1272,6 +1380,18 @@
   "note": "Feeds P&Z 2026-05-04. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-04-06",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
+ },
+ {
   "jurisdiction_id": "lake_st_louis",
   "body": "governing_body",
   "event_type": "meeting",
@@ -1414,6 +1534,30 @@
   "source_url": "https://www.sccmo.org/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "Cancelled."
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-04-16",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": ""
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-04-20",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
  },
  {
   "jurisdiction_id": "lake_st_louis",
@@ -1582,6 +1726,18 @@
   "source_url": "https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf",
   "verified_on": "2026-10-09",
   "note": "Feeds P&Z 2026-06-01. Public-notice items may need more lead time."
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-05-04",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "cancelled",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Cancelled."
  },
  {
   "jurisdiction_id": "lake_st_louis",
@@ -1764,6 +1920,18 @@
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
  },
  {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-05-18",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
+ },
+ {
   "jurisdiction_id": "lake_st_louis",
   "body": "governing_body",
   "event_type": "meeting",
@@ -1808,6 +1976,18 @@
   "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
   "status": "published",
   "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": ""
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-05-21",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
   "verified_on": "2026-10-12",
   "note": ""
  },
@@ -1906,6 +2086,18 @@
   "source_url": "https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf",
   "verified_on": "2026-10-09",
   "note": ""
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-06-01",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
  },
  {
   "jurisdiction_id": "lake_st_louis",
@@ -2100,6 +2292,18 @@
   "note": "Feeds P&Z 2026-07-13. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-06-15",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
+ },
+ {
   "jurisdiction_id": "lake_st_louis",
   "body": "governing_body",
   "event_type": "meeting",
@@ -2144,6 +2348,18 @@
   "location": "County Executive Building, 3rd Floor Council Chambers, 100 N Third St, St. Charles",
   "status": "published",
   "source_url": "https://www.sccmo.org/AgendaCenter",
+  "verified_on": "2026-10-12",
+  "note": ""
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-06-18",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
   "verified_on": "2026-10-12",
   "note": ""
  },
@@ -2316,6 +2532,18 @@
   "note": "Feeds P&Z 2026-08-03. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-07-06",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
+ },
+ {
   "jurisdiction_id": "lake_st_louis",
   "body": "governing_body",
   "event_type": "meeting",
@@ -2484,6 +2712,30 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "foristell",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-07-16",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": ""
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-07-20",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
+ },
+ {
   "jurisdiction_id": "lake_st_louis",
   "body": "governing_body",
   "event_type": "meeting",
@@ -2626,6 +2878,18 @@
   "source_url": "https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf",
   "verified_on": "2026-10-09",
   "note": ""
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-08-03",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
  },
  {
   "jurisdiction_id": "lake_st_louis",
@@ -2820,6 +3084,18 @@
   "note": "Feeds P&Z 2026-09-14. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-08-17",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
+ },
+ {
   "jurisdiction_id": "lake_st_louis",
   "body": "governing_body",
   "event_type": "meeting",
@@ -2866,6 +3142,18 @@
   "source_url": "https://www.sccmo.org/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "Cancelled."
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-08-20",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": ""
  },
  {
   "jurisdiction_id": "stcharles_county",
@@ -3048,6 +3336,18 @@
   "note": "Feeds P&Z 2026-10-05. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-09-08",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting. Moved to Tuesday (holiday)."
+ },
+ {
   "jurisdiction_id": "lake_st_louis",
   "body": "governing_body",
   "event_type": "meeting",
@@ -3190,6 +3490,30 @@
   "source_url": "https://www.sccmo.org/AgendaCenter",
   "verified_on": "2026-10-12",
   "note": "Cancelled."
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-09-17",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": ""
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-09-21",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "published",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Board of Aldermen regular meeting"
  },
  {
   "jurisdiction_id": "lake_st_louis",
@@ -3372,6 +3696,18 @@
   "note": "Feeds P&Z 2026-11-02. Public-notice items may need more lead time."
  },
  {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-10-05",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "cancelled",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Cancelled."
+ },
+ {
   "jurisdiction_id": "lake_st_louis",
   "body": "governing_body",
   "event_type": "meeting",
@@ -3538,6 +3874,30 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-10-15",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "projected",
+  "source_url": "https://www.cityofforistell.org/planning-zoning-commission",
+  "verified_on": "2026-10-12",
+  "note": "Projected (third Thursday, held as applications require). No submittal deadlines posted; call City Hall 636-463-2123."
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-10-19",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "projected",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Projected (1st & 3rd Monday)."
  },
  {
   "jurisdiction_id": "lake_st_louis",
@@ -3744,6 +4104,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-11-02",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "projected",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Projected (1st & 3rd Monday)."
+ },
+ {
   "jurisdiction_id": "lake_st_louis",
   "body": "governing_body",
   "event_type": "meeting",
@@ -3948,6 +4320,18 @@
   "note": "Board of Aldermen meeting"
  },
  {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-11-16",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "projected",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Projected (1st & 3rd Monday)."
+ },
+ {
   "jurisdiction_id": "lake_st_louis",
   "body": "governing_body",
   "event_type": "meeting",
@@ -4006,6 +4390,18 @@
   "source_url": "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf",
   "verified_on": "2026-10-09",
   "note": "Board of Aldermen (rezoning readings)"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-11-19",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "projected",
+  "source_url": "https://www.cityofforistell.org/planning-zoning-commission",
+  "verified_on": "2026-10-12",
+  "note": "Projected (third Thursday, held as applications require). No submittal deadlines posted; call City Hall 636-463-2123."
  },
  {
   "jurisdiction_id": "ofallon",
@@ -4176,6 +4572,18 @@
   "note": ""
  },
  {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-12-07",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "projected",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Projected (1st & 3rd Monday)."
+ },
+ {
   "jurisdiction_id": "lake_st_louis",
   "body": "governing_body",
   "event_type": "meeting",
@@ -4320,6 +4728,18 @@
   "note": "Projected (third Wednesday)."
  },
  {
+  "jurisdiction_id": "foristell",
+  "body": "planning_zoning",
+  "event_type": "meeting",
+  "event_date": "2026-12-17",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "projected",
+  "source_url": "https://www.cityofforistell.org/planning-zoning-commission",
+  "verified_on": "2026-10-12",
+  "note": "Projected (third Thursday, held as applications require). No submittal deadlines posted; call City Hall 636-463-2123."
+ },
+ {
   "jurisdiction_id": "ofallon",
   "body": "governing_body",
   "event_type": "meeting",
@@ -4342,6 +4762,18 @@
   "source_url": "https://www.stpetersmo.net/627/City-Meetings-Calendar",
   "verified_on": "2026-10-12",
   "note": "Board of Aldermen regular meeting (work session 5:00 PM)"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "body": "governing_body",
+  "event_type": "meeting",
+  "event_date": "2026-12-21",
+  "event_time": "19:00",
+  "location": "Foristell City Hall, 121 Mulberry St",
+  "status": "projected",
+  "source_url": "https://www.cityofforistell.org/meeting-agendas-minutes",
+  "verified_on": "2026-10-12",
+  "note": "Projected (1st & 3rd Monday)."
  },
  {
   "jurisdiction_id": "lake_st_louis",

@@ -107,6 +107,19 @@ WS_CAL = "https://www.weldonspring.gov/calendar"
 ws_pz = ["2026-10-05","2026-11-02","2026-12-07"]
 ws_boa = [("2026-10-08","published"),("2026-10-22","published"),("2026-11-12","published"),("2026-11-26","projected"),
           ("2026-12-10","published"),("2026-12-24","projected")]
+# Foristell: no published calendar or submittal deadlines. Past dates from the agendas page;
+# future dates projected from the posted pattern (P&Z 3rd Thursday "as applications require", Board 1st & 3rd Monday).
+F_AG = "https://www.cityofforistell.org/meeting-agendas-minutes"
+F_PZ = "https://www.cityofforistell.org/planning-zoning-commission"
+fo_pz = [("2026-01-15","published"),("2026-02-19","published"),("2026-03-19","published"),("2026-04-16","published"),
+         ("2026-05-21","published"),("2026-06-18","published"),("2026-07-16","published"),("2026-08-20","published"),
+         ("2026-09-17","published"),("2026-10-15","projected"),("2026-11-19","projected"),("2026-12-17","projected")]
+fo_boa = [("2026-01-05","published"),("2026-01-20","published"),("2026-02-02","published"),("2026-02-17","published"),
+          ("2026-03-02","published"),("2026-03-16","published"),("2026-04-06","published"),("2026-04-20","published"),
+          ("2026-05-04","cancelled"),("2026-05-18","published"),("2026-06-01","published"),("2026-06-15","published"),
+          ("2026-07-06","published"),("2026-07-20","published"),("2026-08-03","published"),("2026-08-17","published"),
+          ("2026-09-08","published"),("2026-09-21","published"),("2026-10-05","cancelled"),("2026-10-19","projected"),
+          ("2026-11-02","projected"),("2026-11-16","projected"),("2026-12-07","projected"),("2026-12-21","projected")]
 # P&Z (first Thursday): date, status, source
 ofal_pz = [("2026-01-08","published",O),("2026-02-05","published",O),("2026-03-05","published",O),
            ("2026-04-02","published",O),("2026-05-07","published",O),("2026-06-04","published",O),
@@ -248,6 +261,16 @@ for d, st in ws_boa:
     add("weldon_spring","governing_body","meeting",date.fromisoformat(d),"19:30",WLOC2,WS_CAL,
         "Board of Aldermen meeting" + ("" if st == "published" else ". On the city calendar but falls on a holiday; confirm."),st,"2026-10-12")
 
+FLOC = "Foristell City Hall, 121 Mulberry St"
+for d, st in fo_pz:
+    add("foristell","planning_zoning","meeting",date.fromisoformat(d),"19:00",FLOC,F_AG if st == "published" else F_PZ,
+        {"2026-02-19":"Special joint meeting with the Board of Aldermen."}.get(d, "" if st == "published" else
+        "Projected (third Thursday, held as applications require). No submittal deadlines posted; call City Hall 636-463-2123."),st,"2026-10-12")
+for d, st in fo_boa:
+    add("foristell","governing_body","meeting",date.fromisoformat(d),"19:00",FLOC,F_AG,
+        {"published":"Board of Aldermen regular meeting","cancelled":"Cancelled.","projected":"Projected (1st & 3rd Monday)."}[st]
+        + (". Moved to Tuesday (holiday)." if d in ("2026-01-20","2026-02-17","2026-09-08") else ""),st,"2026-10-12")
+
 rows.sort(key=lambda r:(r["event_date"], r["jurisdiction_id"]))
 json.dump(rows, open(f"{out}/meetings.json","w"), indent=1)
 with open(f"{out}/meetings.csv","w",newline="") as f:
@@ -255,7 +278,7 @@ with open(f"{out}/meetings.csv","w",newline="") as f:
 
 # ICS, upcoming only (today forward)
 today = date.today()
-names = {"wentzville":"Wentzville","cottleville":"Cottleville","ofallon":"O'Fallon","stpeters":"St. Peters","stcharles_city":"St. Charles","stcharles_county":"St. Charles County","lake_st_louis":"Lake Saint Louis","dardenne_prairie":"Dardenne Prairie","weldon_spring":"Weldon Spring"}
+names = {"wentzville":"Wentzville","cottleville":"Cottleville","ofallon":"O'Fallon","stpeters":"St. Peters","stcharles_city":"St. Charles","stcharles_county":"St. Charles County","lake_st_louis":"Lake Saint Louis","dardenne_prairie":"Dardenne Prairie","weldon_spring":"Weldon Spring","foristell":"Foristell"}
 lab = {("planning_zoning","meeting"):"P&Z Meeting",("planning_zoning","submittal_deadline"):"P&Z SUBMITTAL DUE",("governing_body","meeting"):"Board of Aldermen"}
 L = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Entitlement Tracker//STC//EN","X-WR-CALNAME:St. Charles Co. Entitlement Dates","X-WR-TIMEZONE:America/Chicago"]
 n=0

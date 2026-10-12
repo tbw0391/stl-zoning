@@ -5,7 +5,7 @@ X-WR-CALNAME:St. Charles Co. Entitlement Dates
 X-WR-TIMEZONE:America/Chicago
 BEGIN:VEVENT
 UID:stcharles_county-meeting-governing_body-2026-10-13@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261013
 SUMMARY:St. Charles County - County Council (19:00)
 LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
@@ -13,7 +13,7 @@ DESCRIPTION:County Council regular meeting Source: https://www.sccmo.org/AgendaC
 END:VEVENT
 BEGIN:VEVENT
 UID:dardenne_prairie-meeting-planning_zoning-2026-10-14@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261014
 SUMMARY:Dardenne Prairie - P&Z Meeting (19:00)
 LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
@@ -21,15 +21,31 @@ DESCRIPTION:Work session 6 PM. Source: https://www.dardenneprairie.gov/governmen
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2026-10-14@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261014
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
 DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:foristell-meeting-planning_zoning-2026-10-15@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261015
+SUMMARY:Foristell - P&Z Meeting [projected] (19:00)
+LOCATION:Foristell City Hall\, 121 Mulberry St
+DESCRIPTION:Projected (third Thursday\, held as applications require). No submittal deadlines posted; call City Hall 636-463-2123. Source: https://www.cityofforistell.org/planning-zoning-commission
+END:VEVENT
+BEGIN:VEVENT
+UID:foristell-meeting-governing_body-2026-10-19@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261019
+SUMMARY:Foristell - Board of Aldermen [projected] (19:00)
+LOCATION:Foristell City Hall\, 121 Mulberry St
+DESCRIPTION:Projected (1st & 3rd Monday). Source: https://www.cityofforistell.org/meeting-agendas-minutes
+END:VEVENT
+BEGIN:VEVENT
 UID:lake_st_louis-meeting-governing_body-2026-10-19@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261019
 SUMMARY:Lake Saint Louis - Board of Aldermen (18:00)
 LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
@@ -37,7 +53,7 @@ DESCRIPTION:Board of Aldermen regular meeting (work session 5:30 PM) Source: htt
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_city-meeting-planning_zoning-2026-10-19@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261019
 SUMMARY:St. Charles - P&Z Meeting (18:00)
 LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
@@ -45,7 +61,7 @@ DESCRIPTION:Applicants must attend public hearings. Source: https://www.stcharle
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_city-submittal_deadline-planning_zoning-2026-10-19@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261019
 SUMMARY:St. Charles - P&Z SUBMITTAL DUE (17:00)
 LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
@@ -53,7 +69,7 @@ DESCRIPTION:Feeds P&Z 2026-11-09. Minimum deadline; email PZ@stcharlescitymo.gov
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_city-meeting-governing_body-2026-10-20@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261020
 SUMMARY:St. Charles - City Council (19:00)
 LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
@@ -61,7 +77,7 @@ DESCRIPTION:City Council regular session Source: https://www.stcharlescitymo.gov
 END:VEVENT
 BEGIN:VEVENT
 UID:dardenne_prairie-meeting-governing_body-2026-10-21@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261021
 SUMMARY:Dardenne Prairie - Board of Aldermen [projected] (19:00)
 LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
@@ -69,7 +85,7 @@ DESCRIPTION:Projected (1st & 3rd Wednesday). Source: https://www.dardenneprairie
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_county-meeting-planning_zoning-2026-10-21@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261021
 SUMMARY:St. Charles County - P&Z Meeting (19:00)
 LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
@@ -77,7 +93,7 @@ DESCRIPTION:Source: https://www.sccmo.org/AgendaCenter
 END:VEVENT
 BEGIN:VEVENT
 UID:ofallon-meeting-governing_body-2026-10-22@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261022
 SUMMARY:O'Fallon - City Council [projected] (19:30)
 LOCATION:O'Fallon Municipal Centre\, Council Chambers\, 100 N Main St
@@ -85,7 +101,7 @@ DESCRIPTION:City Council regular meeting (projected: 2nd & 4th Thursday\, Nov/De
 END:VEVENT
 BEGIN:VEVENT
 UID:stpeters-meeting-governing_body-2026-10-22@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261022
 SUMMARY:St. Peters - Board of Aldermen (18:30)
 LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
@@ -93,7 +109,7 @@ DESCRIPTION:Board of Aldermen regular meeting (work session 5:00 PM) Source: htt
 END:VEVENT
 BEGIN:VEVENT
 UID:weldon_spring-meeting-governing_body-2026-10-22@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261022
 SUMMARY:Weldon Spring - Board of Aldermen (19:30)
 LOCATION:Weldon Spring City Hall\, 5401 Independence Rd
@@ -101,7 +117,7 @@ DESCRIPTION:Board of Aldermen meeting Source: https://www.weldonspring.gov/calen
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_county-submittal_deadline-planning_zoning-2026-10-23@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261023
 SUMMARY:St. Charles County - P&Z SUBMITTAL DUE [projected]
 LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
@@ -109,7 +125,7 @@ DESCRIPTION:Rezoning\, conditional use and preliminary plat applications. Feeds 
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_county-meeting-governing_body-2026-10-26@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261026
 SUMMARY:St. Charles County - County Council (19:00)
 LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
@@ -117,7 +133,7 @@ DESCRIPTION:County Council regular meeting Source: https://www.sccmo.org/Calenda
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2026-10-28@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261028
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
@@ -125,7 +141,7 @@ DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzville
 END:VEVENT
 BEGIN:VEVENT
 UID:lake_st_louis-submittal_deadline-planning_zoning-2026-10-29@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261029
 SUMMARY:Lake Saint Louis - P&Z SUBMITTAL DUE
 LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
@@ -133,7 +149,7 @@ DESCRIPTION:Feeds P&Z 2026-12-03. Deadline is 35 days before the meeting. Source
 END:VEVENT
 BEGIN:VEVENT
 UID:ofallon-submittal_deadline-planning_zoning-2026-10-30@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261030
 SUMMARY:O'Fallon - P&Z SUBMITTAL DUE [projected] (12:00)
 LOCATION:O'Fallon Municipal Centre\, Council Chambers\, 100 N Main St
@@ -141,7 +157,7 @@ DESCRIPTION:Feeds P&Z 2026-12-03. Projected from the 2024 schedule rule (Friday 
 END:VEVENT
 BEGIN:VEVENT
 UID:stpeters-submittal_deadline-planning_zoning-2026-10-30@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261030
 SUMMARY:St. Peters - P&Z SUBMITTAL DUE
 LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
@@ -149,7 +165,7 @@ DESCRIPTION:Initial plan submittal for P&Z 2026-12-02 (Citizenserve portal). Lan
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-submittal_deadline-planning_zoning-2026-11-01@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261101
 SUMMARY:Wentzville - P&Z SUBMITTAL DUE (17:00)
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
@@ -157,15 +173,23 @@ DESCRIPTION:Feeds P&Z 2026-12-07. If weekend/holiday\, Friday before or Monday a
 END:VEVENT
 BEGIN:VEVENT
 UID:cottleville-meeting-planning_zoning-2026-11-02@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261102
 SUMMARY:Cottleville - P&Z Meeting (19:00)
 LOCATION:Cottleville City Hall Board Room\, 5490 Fifth St
 DESCRIPTION:Source: https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:foristell-meeting-governing_body-2026-11-02@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261102
+SUMMARY:Foristell - Board of Aldermen [projected] (19:00)
+LOCATION:Foristell City Hall\, 121 Mulberry St
+DESCRIPTION:Projected (1st & 3rd Monday). Source: https://www.cityofforistell.org/meeting-agendas-minutes
+END:VEVENT
+BEGIN:VEVENT
 UID:lake_st_louis-meeting-governing_body-2026-11-02@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261102
 SUMMARY:Lake Saint Louis - Board of Aldermen (18:00)
 LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
@@ -173,7 +197,7 @@ DESCRIPTION:Board of Aldermen regular meeting (work session 5:30 PM) Source: htt
 END:VEVENT
 BEGIN:VEVENT
 UID:weldon_spring-meeting-planning_zoning-2026-11-02@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261102
 SUMMARY:Weldon Spring - P&Z Meeting (19:30)
 LOCATION:Weldon Spring City Hall\, 5401 Independence Rd
@@ -181,7 +205,7 @@ DESCRIPTION:Source: https://www.weldonspring.gov/calendar
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_city-meeting-governing_body-2026-11-03@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261103
 SUMMARY:St. Charles - City Council (19:00)
 LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
@@ -189,7 +213,7 @@ DESCRIPTION:City Council regular session Source: https://www.stcharlescitymo.gov
 END:VEVENT
 BEGIN:VEVENT
 UID:dardenne_prairie-meeting-governing_body-2026-11-04@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261104
 SUMMARY:Dardenne Prairie - Board of Aldermen [projected] (19:00)
 LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
@@ -197,7 +221,7 @@ DESCRIPTION:Projected (1st & 3rd Wednesday). Source: https://www.dardenneprairie
 END:VEVENT
 BEGIN:VEVENT
 UID:stpeters-meeting-planning_zoning-2026-11-04@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261104
 SUMMARY:St. Peters - P&Z Meeting (18:30)
 LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
@@ -205,7 +229,7 @@ DESCRIPTION:Applicant or representative must attend. Source: https://www.stpeter
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2026-11-04@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261104
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
@@ -213,7 +237,7 @@ DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzville
 END:VEVENT
 BEGIN:VEVENT
 UID:lake_st_louis-meeting-planning_zoning-2026-11-05@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261105
 SUMMARY:Lake Saint Louis - P&Z Meeting (18:00)
 LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
@@ -221,7 +245,7 @@ DESCRIPTION:Items go to the Board of Aldermen on the third Monday of the same mo
 END:VEVENT
 BEGIN:VEVENT
 UID:ofallon-meeting-planning_zoning-2026-11-05@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261105
 SUMMARY:O'Fallon - P&Z Meeting (19:00)
 LOCATION:O'Fallon Municipal Centre\, Council Chambers\, 100 N Main St
@@ -229,7 +253,7 @@ DESCRIPTION:Pre-meeting 6:30 PM. Source: https://drive.google.com/file/d/14OrNsw
 END:VEVENT
 BEGIN:VEVENT
 UID:stpeters-submittal_deadline-planning_zoning-2026-11-06@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261106
 SUMMARY:St. Peters - P&Z SUBMITTAL DUE
 LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
@@ -237,7 +261,7 @@ DESCRIPTION:Rezoning and Special Use applications due. Feeds P&Z 2026-12-02. Sou
 END:VEVENT
 BEGIN:VEVENT
 UID:cottleville-submittal_deadline-planning_zoning-2026-11-09@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261109
 SUMMARY:Cottleville - P&Z SUBMITTAL DUE (12:00)
 LOCATION:Cottleville City Hall Board Room\, 5490 Fifth St
@@ -245,7 +269,7 @@ DESCRIPTION:Feeds P&Z 2026-12-07. Public-notice items may need more lead time. S
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_city-meeting-planning_zoning-2026-11-09@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261109
 SUMMARY:St. Charles - P&Z Meeting (18:00)
 LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
@@ -253,7 +277,7 @@ DESCRIPTION:Applicants must attend public hearings. Source: https://www.stcharle
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_city-submittal_deadline-planning_zoning-2026-11-09@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261109
 SUMMARY:St. Charles - P&Z SUBMITTAL DUE (17:00)
 LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
@@ -261,7 +285,7 @@ DESCRIPTION:Feeds P&Z 2026-12-14. Minimum deadline; email PZ@stcharlescitymo.gov
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_county-meeting-governing_body-2026-11-09@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261109
 SUMMARY:St. Charles County - County Council (19:00)
 LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
@@ -269,7 +293,7 @@ DESCRIPTION:County Council regular meeting Source: https://www.sccmo.org/Calenda
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-planning_zoning-2026-11-09@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261109
 SUMMARY:Wentzville - P&Z Meeting (18:00)
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
@@ -277,7 +301,7 @@ DESCRIPTION:Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2
 END:VEVENT
 BEGIN:VEVENT
 UID:dardenne_prairie-meeting-planning_zoning-2026-11-11@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261111
 SUMMARY:Dardenne Prairie - P&Z Meeting [projected] (19:00)
 LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
@@ -285,7 +309,7 @@ DESCRIPTION:Work session 6 PM. Projected (second Wednesday). Source: https://www
 END:VEVENT
 BEGIN:VEVENT
 UID:stpeters-meeting-governing_body-2026-11-12@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261112
 SUMMARY:St. Peters - Board of Aldermen (18:30)
 LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
@@ -293,15 +317,23 @@ DESCRIPTION:Board of Aldermen regular meeting (work session 5:00 PM) Source: htt
 END:VEVENT
 BEGIN:VEVENT
 UID:weldon_spring-meeting-governing_body-2026-11-12@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261112
 SUMMARY:Weldon Spring - Board of Aldermen (19:30)
 LOCATION:Weldon Spring City Hall\, 5401 Independence Rd
 DESCRIPTION:Board of Aldermen meeting Source: https://www.weldonspring.gov/calendar
 END:VEVENT
 BEGIN:VEVENT
+UID:foristell-meeting-governing_body-2026-11-16@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261116
+SUMMARY:Foristell - Board of Aldermen [projected] (19:00)
+LOCATION:Foristell City Hall\, 121 Mulberry St
+DESCRIPTION:Projected (1st & 3rd Monday). Source: https://www.cityofforistell.org/meeting-agendas-minutes
+END:VEVENT
+BEGIN:VEVENT
 UID:lake_st_louis-meeting-governing_body-2026-11-16@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261116
 SUMMARY:Lake Saint Louis - Board of Aldermen (18:00)
 LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
@@ -309,7 +341,7 @@ DESCRIPTION:Board of Aldermen regular meeting (work session 5:30 PM) Source: htt
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_city-meeting-governing_body-2026-11-17@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261117
 SUMMARY:St. Charles - City Council (19:00)
 LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
@@ -317,7 +349,7 @@ DESCRIPTION:City Council regular session Source: https://www.stcharlescitymo.gov
 END:VEVENT
 BEGIN:VEVENT
 UID:dardenne_prairie-meeting-governing_body-2026-11-18@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261118
 SUMMARY:Dardenne Prairie - Board of Aldermen [projected] (19:00)
 LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
@@ -325,7 +357,7 @@ DESCRIPTION:Projected (1st & 3rd Wednesday). Source: https://www.dardenneprairie
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_county-meeting-planning_zoning-2026-11-18@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261118
 SUMMARY:St. Charles County - P&Z Meeting [projected] (19:00)
 LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
@@ -333,15 +365,23 @@ DESCRIPTION:Projected (third Wednesday). Source: https://www.sccmo.org/DocumentC
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2026-11-18@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261118
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
 DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:foristell-meeting-planning_zoning-2026-11-19@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261119
+SUMMARY:Foristell - P&Z Meeting [projected] (19:00)
+LOCATION:Foristell City Hall\, 121 Mulberry St
+DESCRIPTION:Projected (third Thursday\, held as applications require). No submittal deadlines posted; call City Hall 636-463-2123. Source: https://www.cityofforistell.org/planning-zoning-commission
+END:VEVENT
+BEGIN:VEVENT
 UID:ofallon-meeting-governing_body-2026-11-19@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261119
 SUMMARY:O'Fallon - City Council [projected] (19:30)
 LOCATION:O'Fallon Municipal Centre\, Council Chambers\, 100 N Main St
@@ -349,7 +389,7 @@ DESCRIPTION:City Council regular meeting (projected: 2nd & 4th Thursday\, Nov/De
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_county-submittal_deadline-planning_zoning-2026-11-20@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261120
 SUMMARY:St. Charles County - P&Z SUBMITTAL DUE [projected]
 LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
@@ -357,7 +397,7 @@ DESCRIPTION:Rezoning\, conditional use and preliminary plat applications. Feeds 
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_county-meeting-governing_body-2026-11-23@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261123
 SUMMARY:St. Charles County - County Council (19:00)
 LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
@@ -365,7 +405,7 @@ DESCRIPTION:County Council regular meeting Source: https://www.sccmo.org/Calenda
 END:VEVENT
 BEGIN:VEVENT
 UID:weldon_spring-meeting-governing_body-2026-11-26@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261126
 SUMMARY:Weldon Spring - Board of Aldermen [projected] (19:30)
 LOCATION:Weldon Spring City Hall\, 5401 Independence Rd
@@ -373,7 +413,7 @@ DESCRIPTION:Board of Aldermen meeting. On the city calendar but falls on a holid
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_city-meeting-governing_body-2026-12-01@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261201
 SUMMARY:St. Charles - City Council (19:00)
 LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
@@ -381,7 +421,7 @@ DESCRIPTION:City Council regular session Source: https://www.stcharlescitymo.gov
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-submittal_deadline-planning_zoning-2026-12-01@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261201
 SUMMARY:Wentzville - P&Z SUBMITTAL DUE (17:00)
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
@@ -389,7 +429,7 @@ DESCRIPTION:Feeds P&Z 2027-01-11. If weekend/holiday\, Friday before or Monday a
 END:VEVENT
 BEGIN:VEVENT
 UID:dardenne_prairie-meeting-governing_body-2026-12-02@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261202
 SUMMARY:Dardenne Prairie - Board of Aldermen [projected] (19:00)
 LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
@@ -397,7 +437,7 @@ DESCRIPTION:Projected (1st & 3rd Wednesday). Source: https://www.dardenneprairie
 END:VEVENT
 BEGIN:VEVENT
 UID:stpeters-meeting-planning_zoning-2026-12-02@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261202
 SUMMARY:St. Peters - P&Z Meeting (18:30)
 LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
@@ -405,7 +445,7 @@ DESCRIPTION:Applicant or representative must attend. Source: https://www.stpeter
 END:VEVENT
 BEGIN:VEVENT
 UID:lake_st_louis-meeting-planning_zoning-2026-12-03@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261203
 SUMMARY:Lake Saint Louis - P&Z Meeting (18:00)
 LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
@@ -413,7 +453,7 @@ DESCRIPTION:Items go to the Board of Aldermen on the third Monday of the same mo
 END:VEVENT
 BEGIN:VEVENT
 UID:lake_st_louis-submittal_deadline-planning_zoning-2026-12-03@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261203
 SUMMARY:Lake Saint Louis - P&Z SUBMITTAL DUE
 LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
@@ -421,7 +461,7 @@ DESCRIPTION:Feeds P&Z 2027-01-07. Deadline is 35 days before the meeting. Source
 END:VEVENT
 BEGIN:VEVENT
 UID:ofallon-meeting-planning_zoning-2026-12-03@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261203
 SUMMARY:O'Fallon - P&Z Meeting [projected] (19:00)
 LOCATION:O'Fallon Municipal Centre\, Council Chambers\, 100 N Main St
@@ -429,7 +469,7 @@ DESCRIPTION:Pre-meeting 6:30 PM. Projected (first Thursday). Source: https://pub
 END:VEVENT
 BEGIN:VEVENT
 UID:ofallon-submittal_deadline-planning_zoning-2026-12-04@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261204
 SUMMARY:O'Fallon - P&Z SUBMITTAL DUE [projected] (12:00)
 LOCATION:O'Fallon Municipal Centre\, Council Chambers\, 100 N Main St
@@ -437,7 +477,7 @@ DESCRIPTION:Feeds P&Z 2027-01-07. Projected from the 2024 schedule rule (Friday 
 END:VEVENT
 BEGIN:VEVENT
 UID:stpeters-submittal_deadline-planning_zoning-2026-12-04@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261204
 SUMMARY:St. Peters - P&Z SUBMITTAL DUE
 LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
@@ -445,15 +485,23 @@ DESCRIPTION:Initial plan submittal for P&Z 2027-01-06 (Citizenserve portal). Lan
 END:VEVENT
 BEGIN:VEVENT
 UID:cottleville-meeting-planning_zoning-2026-12-07@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261207
 SUMMARY:Cottleville - P&Z Meeting (19:00)
 LOCATION:Cottleville City Hall Board Room\, 5490 Fifth St
 DESCRIPTION:Source: https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf
 END:VEVENT
 BEGIN:VEVENT
+UID:foristell-meeting-governing_body-2026-12-07@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261207
+SUMMARY:Foristell - Board of Aldermen [projected] (19:00)
+LOCATION:Foristell City Hall\, 121 Mulberry St
+DESCRIPTION:Projected (1st & 3rd Monday). Source: https://www.cityofforistell.org/meeting-agendas-minutes
+END:VEVENT
+BEGIN:VEVENT
 UID:lake_st_louis-meeting-governing_body-2026-12-07@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261207
 SUMMARY:Lake Saint Louis - Board of Aldermen (18:00)
 LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
@@ -461,7 +509,7 @@ DESCRIPTION:Board of Aldermen regular meeting (work session 5:30 PM) Source: htt
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_county-meeting-governing_body-2026-12-07@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261207
 SUMMARY:St. Charles County - County Council (19:00)
 LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
@@ -469,7 +517,7 @@ DESCRIPTION:County Council regular meeting Source: https://www.sccmo.org/Calenda
 END:VEVENT
 BEGIN:VEVENT
 UID:weldon_spring-meeting-planning_zoning-2026-12-07@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261207
 SUMMARY:Weldon Spring - P&Z Meeting (19:30)
 LOCATION:Weldon Spring City Hall\, 5401 Independence Rd
@@ -477,7 +525,7 @@ DESCRIPTION:Source: https://www.weldonspring.gov/calendar
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-planning_zoning-2026-12-07@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261207
 SUMMARY:Wentzville - P&Z Meeting (18:00)
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
@@ -485,7 +533,7 @@ DESCRIPTION:Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2
 END:VEVENT
 BEGIN:VEVENT
 UID:dardenne_prairie-meeting-planning_zoning-2026-12-09@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261209
 SUMMARY:Dardenne Prairie - P&Z Meeting [projected] (19:00)
 LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
@@ -493,7 +541,7 @@ DESCRIPTION:Work session 6 PM. Projected (second Wednesday). Source: https://www
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2026-12-09@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261209
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
@@ -501,7 +549,7 @@ DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzville
 END:VEVENT
 BEGIN:VEVENT
 UID:weldon_spring-meeting-governing_body-2026-12-10@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261210
 SUMMARY:Weldon Spring - Board of Aldermen (19:30)
 LOCATION:Weldon Spring City Hall\, 5401 Independence Rd
@@ -509,7 +557,7 @@ DESCRIPTION:Board of Aldermen meeting Source: https://www.weldonspring.gov/calen
 END:VEVENT
 BEGIN:VEVENT
 UID:stpeters-submittal_deadline-planning_zoning-2026-12-11@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261211
 SUMMARY:St. Peters - P&Z SUBMITTAL DUE
 LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
@@ -517,7 +565,7 @@ DESCRIPTION:Rezoning and Special Use applications due. Feeds P&Z 2027-01-06. Sou
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_city-meeting-planning_zoning-2026-12-14@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261214
 SUMMARY:St. Charles - P&Z Meeting (18:00)
 LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
@@ -525,7 +573,7 @@ DESCRIPTION:Applicants must attend public hearings. Source: https://www.stcharle
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_city-meeting-governing_body-2026-12-15@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261215
 SUMMARY:St. Charles - City Council (19:00)
 LOCATION:St. Charles City Hall\, Council Chambers (4th floor)\, 200 N Second St
@@ -533,7 +581,7 @@ DESCRIPTION:City Council regular session Source: https://www.stcharlescitymo.gov
 END:VEVENT
 BEGIN:VEVENT
 UID:dardenne_prairie-meeting-governing_body-2026-12-16@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261216
 SUMMARY:Dardenne Prairie - Board of Aldermen [projected] (19:00)
 LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
@@ -541,15 +589,23 @@ DESCRIPTION:Projected (1st & 3rd Wednesday). Source: https://www.dardenneprairie
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_county-meeting-planning_zoning-2026-12-16@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261216
 SUMMARY:St. Charles County - P&Z Meeting [projected] (19:00)
 LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
 DESCRIPTION:Projected (third Wednesday). Source: https://www.sccmo.org/DocumentCenter/View/26026/2025-Planning-and-Zoning-Deadlines-and-Meeting-Dates
 END:VEVENT
 BEGIN:VEVENT
+UID:foristell-meeting-planning_zoning-2026-12-17@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261217
+SUMMARY:Foristell - P&Z Meeting [projected] (19:00)
+LOCATION:Foristell City Hall\, 121 Mulberry St
+DESCRIPTION:Projected (third Thursday\, held as applications require). No submittal deadlines posted; call City Hall 636-463-2123. Source: https://www.cityofforistell.org/planning-zoning-commission
+END:VEVENT
+BEGIN:VEVENT
 UID:ofallon-meeting-governing_body-2026-12-17@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261217
 SUMMARY:O'Fallon - City Council [projected] (19:30)
 LOCATION:O'Fallon Municipal Centre\, Council Chambers\, 100 N Main St
@@ -557,15 +613,23 @@ DESCRIPTION:City Council regular meeting (projected: 2nd & 4th Thursday\, Nov/De
 END:VEVENT
 BEGIN:VEVENT
 UID:stpeters-meeting-governing_body-2026-12-17@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261217
 SUMMARY:St. Peters - Board of Aldermen (18:30)
 LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
 DESCRIPTION:Board of Aldermen regular meeting (work session 5:00 PM) Source: https://www.stpetersmo.net/627/City-Meetings-Calendar
 END:VEVENT
 BEGIN:VEVENT
+UID:foristell-meeting-governing_body-2026-12-21@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261221
+SUMMARY:Foristell - Board of Aldermen [projected] (19:00)
+LOCATION:Foristell City Hall\, 121 Mulberry St
+DESCRIPTION:Projected (1st & 3rd Monday). Source: https://www.cityofforistell.org/meeting-agendas-minutes
+END:VEVENT
+BEGIN:VEVENT
 UID:lake_st_louis-meeting-governing_body-2026-12-21@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261221
 SUMMARY:Lake Saint Louis - Board of Aldermen (18:00)
 LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
@@ -573,7 +637,7 @@ DESCRIPTION:Board of Aldermen regular meeting (work session 5:30 PM) Source: htt
 END:VEVENT
 BEGIN:VEVENT
 UID:stcharles_county-meeting-governing_body-2026-12-21@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261221
 SUMMARY:St. Charles County - County Council (19:00)
 LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St\, St. Charles
@@ -581,7 +645,7 @@ DESCRIPTION:County Council regular meeting Source: https://www.sccmo.org/Calenda
 END:VEVENT
 BEGIN:VEVENT
 UID:weldon_spring-meeting-governing_body-2026-12-24@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261224
 SUMMARY:Weldon Spring - Board of Aldermen [projected] (19:30)
 LOCATION:Weldon Spring City Hall\, 5401 Independence Rd
@@ -589,7 +653,7 @@ DESCRIPTION:Board of Aldermen meeting. On the city calendar but falls on a holid
 END:VEVENT
 BEGIN:VEVENT
 UID:stpeters-meeting-planning_zoning-2027-01-06@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20270106
 SUMMARY:St. Peters - P&Z Meeting (18:30)
 LOCATION:St. Peters Justice Center\, 1020 Grand Teton Dr
@@ -597,7 +661,7 @@ DESCRIPTION:Applicant or representative must attend. Source: https://www.stpeter
 END:VEVENT
 BEGIN:VEVENT
 UID:lake_st_louis-meeting-planning_zoning-2027-01-07@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20270107
 SUMMARY:Lake Saint Louis - P&Z Meeting (18:00)
 LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
@@ -605,7 +669,7 @@ DESCRIPTION:Items go to the Board of Aldermen on the third Monday of the same mo
 END:VEVENT
 BEGIN:VEVENT
 UID:ofallon-meeting-planning_zoning-2027-01-07@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20270107
 SUMMARY:O'Fallon - P&Z Meeting [projected] (19:00)
 LOCATION:O'Fallon Municipal Centre\, Council Chambers\, 100 N Main St
@@ -613,7 +677,7 @@ DESCRIPTION:Pre-meeting 6:30 PM. Projected (first Thursday). Source: https://pub
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-planning_zoning-2027-01-11@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20270111
 SUMMARY:Wentzville - P&Z Meeting (18:00)
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
@@ -621,7 +685,7 @@ DESCRIPTION:Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2027-01-13@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20270113
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
@@ -629,7 +693,7 @@ DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzville
 END:VEVENT
 BEGIN:VEVENT
 UID:lake_st_louis-meeting-governing_body-2027-01-19@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20270119
 SUMMARY:Lake Saint Louis - Board of Aldermen (18:00)
 LOCATION:Lake Saint Louis City Hall\, 200 Civic Center Dr
@@ -637,7 +701,7 @@ DESCRIPTION:Board of Aldermen regular meeting (work session 5:30 PM) Source: htt
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2027-01-27@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20270127
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
@@ -645,7 +709,7 @@ DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzville
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2027-02-10@entitlement-tracker
-DTSTAMP:20261010T000000Z
+DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20270210
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd

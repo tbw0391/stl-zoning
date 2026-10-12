@@ -394,5 +394,45 @@ rows += [
  d(J,"FP","Floodplain (overlay)","overlay",("§405.135",34347231), note="Floodplain overlay; see §405.130-405.135 and the floodplain chapter."),
 ]
 
+# Foristell Ch. 400, Art. IV (ecode360; Ord. 330, 1999). Lot coverage is set only for C-1. M-1/M-2 state no height.
+J = "foristell"
+FR = "Min dwelling 1,800 sf (1 story), 2,200 sf (1.5 story), 2,400 sf (2 story)."
+FR3 = "Min dwelling 1,600 sf (1 story), 2,000 sf (1.5 story), 2,200 sf (2 story)."
+FC = "Single-family homes 1,000 sf min; new commercial buildings 2,000 sf min. Multi-family follows R-5."
+rows += [
+ d(J,"AG-1","Agricultural","agricultural",("§400.130",29733940),lot=435600,width=150,dens=0.1,front=50,side=40,rear=50,height=35,
+   min_dwelling_sf=1000, note="Min dwelling 1,000 sf (1 story) plus 700 sf per added floor."),
+ d(J,"R-1","Residential (3 ac)","residential",("§400.140",29733977),lot=130680,width=150,dens=0.33,front=35,side=20,rear=35,height=35,min_dwelling_sf=1800,note=FR),
+ d(J,"R-2","Residential (1 ac)","residential",("§400.150",29734010),lot=43560,width=150,dens=1,front=35,side=20,rear=35,height=35,min_dwelling_sf=1800,note=FR),
+ d(J,"R-3","Residential (1/2 ac)","residential",("§400.160",29734046),lot=21780,width=100,dens=2,front=25,side=15,rear=25,height=35,min_dwelling_sf=1600,note=FR3),
+ d(J,"R-4","Residential (1/3 ac; 2-4 family)","residential",("§400.170",29734076),lot=14520,width=65,front=25,side=10,rear=25,height=35,min_dwelling_sf=1600,
+   note="Lot 1/3 ac single-family; 14,000 sf two-family, 18,000 sf three-family, 22,000 sf four-family (6 du/ac for 2-3 family, 7 du/ac for 4-family). "+FR3),
+ d(J,"R-5","Residential (multi-family)","residential",("§400.180",29734109),lot=14000,width=70,dens=7,front=25,side=10,rear=25,height=45,
+   min_dwelling_sf_multifamily={"1br":800,"2br":900,"3br":1000,"4br":1100},
+   note="14,000 sf two-family, 18,000 sf three-family, 22,000 sf four-family; over four units 5,000 sf of net area per unit (7 du/ac)."),
+ d(J,"PD","Planned Development (PD-R, PD-C, PD-I, PD-MXD)","planned",("§400.190",29734152),
+   note="Standards set by the ordinance creating each district. 10-acre minimum site (30 acres for PD-MXD). PD-R density follows R-1 to R-5 with possible bonus and 15% common open space. Perimeter buffer 20 ft (higher-density residential) or 30 ft next to commercial/industrial."),
+ d(J,"C-1","Neighborhood Business","commercial",("§400.200",29734281),lot=8000,width=70,front=30,side=12,rear=30,height=35,
+   max_lot_coverage_pct=35, note="35 ft or 2.5 stories, whichever is less. Lot 8,000 sf plus room for setbacks and parking. "+FC),
+ d(J,"C-2","General Commercial","commercial",("§400.210",29734385),lot=8000,width=60,front=30,side=10,rear=25,height=50,
+   note="50 ft or 3 stories, whichever is less. Rear yard 15 ft, or 25 ft next to residential. Coverage governed by setbacks, landscaping and parking. "+FC),
+ d(J,"C-3","Planned Commercial","commercial",("§400.220",29734507),lot=130680,width=60,front=30,side=10,rear=30,height=35,
+   note="35 ft or 2.5 stories. Shopping center of at least 5 stores, one of 10,000+ sf, 20,000 sf combined. Also called Highway Commercial in the utilities section."),
+ d(J,"M-1","Light Industry","industrial",("§400.230",29734549),lot=130680,front=35,side=15,rear=15,
+   note="Lots under 3 acres need a conditional use. No height limit stated. Uses include C-2 uses except dwellings."),
+ d(J,"M-2","General Industry","industrial",("§400.240",29734578),lot=130680,front=35,side=15,rear=15,
+   note="Lots under 3 acres need a conditional use. No height limit stated. Outside storage fenced and screened."),
+ d(J,"M-3","Planned Industrial","industrial",("§400.250",29734607),lot=653400,front=30,side=50,rear=50,height=45,
+   note="15-acre minimum, at least 5 separate businesses. 30 ft from all rights-of-way. Side/rear 50 ft next to A or R zoning, 10 ft next to C or M; 50 ft greenbelt next to A or R."),
+ d(J,"MUDD","Mixed Use Development","planned",("§400.255",29734623),dens=30,
+   note="500-acre minimum district; no minimum lot. Setbacks set by the district ordinance, 10 ft minimum. Next to residential, 1 ft extra setback per 2 ft of height over 30 ft."),
+ d(J,"MH","Mobile Home Park","residential",("§400.260",29734668),lot=6000,width=50,dens=6,front=30,side=15,rear=15,
+   min_lot_depth_ft=120, note="5-acre net district minimum, 15 ft buffer strip, 2 parking spaces per lot."),
+ d(J,"PRS","Park, Recreational and Scenic","recreational",("§400.270",29734711),lot=217800,front=30,height=15,
+   note="5-acre minimum (except utilities). 30 ft from roadway is the only setback given. Parking dust-free."),
+ d(J,"OT","Special Old Town","special",("§400.271",29734732),front=15,rear=15,
+   note="No minimum lot. Side yards set by review; zero lot lines allowed with a maintenance agreement. Height set by P&Z and the Board. Metal-clad buildings prohibited."),
+]
+
 json.dump(rows, open(sys.argv[1] + "/zoning_districts.json", "w"), indent=1)
 print(len(rows))

@@ -3408,5 +3408,324 @@
    "note": "Floodplain overlay; see \u00a7405.130-405.135 and the floodplain chapter."
   },
   "source_url": "https://ecode360.com/34347231"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "code": "AG-1",
+  "name": "Agricultural",
+  "category": "agricultural",
+  "min_lot_sf": 435600,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": 0.1,
+  "front_setback_ft": 50,
+  "side_setback_ft": 40,
+  "rear_setback_ft": 50,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.130",
+   "min_dwelling_sf": 1000,
+   "note": "Min dwelling 1,000 sf (1 story) plus 700 sf per added floor."
+  },
+  "source_url": "https://ecode360.com/29733940"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "code": "R-1",
+  "name": "Residential (3 ac)",
+  "category": "residential",
+  "min_lot_sf": 130680,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": 0.33,
+  "front_setback_ft": 35,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 35,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.140",
+   "min_dwelling_sf": 1800,
+   "note": "Min dwelling 1,800 sf (1 story), 2,200 sf (1.5 story), 2,400 sf (2 story)."
+  },
+  "source_url": "https://ecode360.com/29733977"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "code": "R-2",
+  "name": "Residential (1 ac)",
+  "category": "residential",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": 1,
+  "front_setback_ft": 35,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 35,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.150",
+   "min_dwelling_sf": 1800,
+   "note": "Min dwelling 1,800 sf (1 story), 2,200 sf (1.5 story), 2,400 sf (2 story)."
+  },
+  "source_url": "https://ecode360.com/29734010"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "code": "R-3",
+  "name": "Residential (1/2 ac)",
+  "category": "residential",
+  "min_lot_sf": 21780,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": 2,
+  "front_setback_ft": 25,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.160",
+   "min_dwelling_sf": 1600,
+   "note": "Min dwelling 1,600 sf (1 story), 2,000 sf (1.5 story), 2,200 sf (2 story)."
+  },
+  "source_url": "https://ecode360.com/29734046"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "code": "R-4",
+  "name": "Residential (1/3 ac; 2-4 family)",
+  "category": "residential",
+  "min_lot_sf": 14520,
+  "min_lot_width_ft": 65,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.170",
+   "min_dwelling_sf": 1600,
+   "note": "Lot 1/3 ac single-family; 14,000 sf two-family, 18,000 sf three-family, 22,000 sf four-family (6 du/ac for 2-3 family, 7 du/ac for 4-family). Min dwelling 1,600 sf (1 story), 2,000 sf (1.5 story), 2,200 sf (2 story)."
+  },
+  "source_url": "https://ecode360.com/29734076"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "code": "R-5",
+  "name": "Residential (multi-family)",
+  "category": "residential",
+  "min_lot_sf": 14000,
+  "min_lot_width_ft": 70,
+  "max_density_du_ac": 7,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 25,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7400.180",
+   "min_dwelling_sf_multifamily": {
+    "1br": 800,
+    "2br": 900,
+    "3br": 1000,
+    "4br": 1100
+   },
+   "note": "14,000 sf two-family, 18,000 sf three-family, 22,000 sf four-family; over four units 5,000 sf of net area per unit (7 du/ac)."
+  },
+  "source_url": "https://ecode360.com/29734109"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "code": "PD",
+  "name": "Planned Development (PD-R, PD-C, PD-I, PD-MXD)",
+  "category": "planned",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.190",
+   "note": "Standards set by the ordinance creating each district. 10-acre minimum site (30 acres for PD-MXD). PD-R density follows R-1 to R-5 with possible bonus and 15% common open space. Perimeter buffer 20 ft (higher-density residential) or 30 ft next to commercial/industrial."
+  },
+  "source_url": "https://ecode360.com/29734152"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "code": "C-1",
+  "name": "Neighborhood Business",
+  "category": "commercial",
+  "min_lot_sf": 8000,
+  "min_lot_width_ft": 70,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 12,
+  "rear_setback_ft": 30,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.200",
+   "max_lot_coverage_pct": 35,
+   "note": "35 ft or 2.5 stories, whichever is less. Lot 8,000 sf plus room for setbacks and parking. Single-family homes 1,000 sf min; new commercial buildings 2,000 sf min. Multi-family follows R-5."
+  },
+  "source_url": "https://ecode360.com/29734281"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "code": "C-2",
+  "name": "General Commercial",
+  "category": "commercial",
+  "min_lot_sf": 8000,
+  "min_lot_width_ft": 60,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 25,
+  "max_height_ft": 50,
+  "other_requirements": {
+   "code_section": "\u00a7400.210",
+   "note": "50 ft or 3 stories, whichever is less. Rear yard 15 ft, or 25 ft next to residential. Coverage governed by setbacks, landscaping and parking. Single-family homes 1,000 sf min; new commercial buildings 2,000 sf min. Multi-family follows R-5."
+  },
+  "source_url": "https://ecode360.com/29734385"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "code": "C-3",
+  "name": "Planned Commercial",
+  "category": "commercial",
+  "min_lot_sf": 130680,
+  "min_lot_width_ft": 60,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 30,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7400.220",
+   "note": "35 ft or 2.5 stories. Shopping center of at least 5 stores, one of 10,000+ sf, 20,000 sf combined. Also called Highway Commercial in the utilities section."
+  },
+  "source_url": "https://ecode360.com/29734507"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "code": "M-1",
+  "name": "Light Industry",
+  "category": "industrial",
+  "min_lot_sf": 130680,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 35,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 15,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.230",
+   "note": "Lots under 3 acres need a conditional use. No height limit stated. Uses include C-2 uses except dwellings."
+  },
+  "source_url": "https://ecode360.com/29734549"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "code": "M-2",
+  "name": "General Industry",
+  "category": "industrial",
+  "min_lot_sf": 130680,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 35,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 15,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.240",
+   "note": "Lots under 3 acres need a conditional use. No height limit stated. Outside storage fenced and screened."
+  },
+  "source_url": "https://ecode360.com/29734578"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "code": "M-3",
+  "name": "Planned Industrial",
+  "category": "industrial",
+  "min_lot_sf": 653400,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 50,
+  "rear_setback_ft": 50,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a7400.250",
+   "note": "15-acre minimum, at least 5 separate businesses. 30 ft from all rights-of-way. Side/rear 50 ft next to A or R zoning, 10 ft next to C or M; 50 ft greenbelt next to A or R."
+  },
+  "source_url": "https://ecode360.com/29734607"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "code": "MUDD",
+  "name": "Mixed Use Development",
+  "category": "planned",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 30,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.255",
+   "note": "500-acre minimum district; no minimum lot. Setbacks set by the district ordinance, 10 ft minimum. Next to residential, 1 ft extra setback per 2 ft of height over 30 ft."
+  },
+  "source_url": "https://ecode360.com/29734623"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "code": "MH",
+  "name": "Mobile Home Park",
+  "category": "residential",
+  "min_lot_sf": 6000,
+  "min_lot_width_ft": 50,
+  "max_density_du_ac": 6,
+  "front_setback_ft": 30,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 15,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.260",
+   "min_lot_depth_ft": 120,
+   "note": "5-acre net district minimum, 15 ft buffer strip, 2 parking spaces per lot."
+  },
+  "source_url": "https://ecode360.com/29734668"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "code": "PRS",
+  "name": "Park, Recreational and Scenic",
+  "category": "recreational",
+  "min_lot_sf": 217800,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": 15,
+  "other_requirements": {
+   "code_section": "\u00a7400.270",
+   "note": "5-acre minimum (except utilities). 30 ft from roadway is the only setback given. Parking dust-free."
+  },
+  "source_url": "https://ecode360.com/29734711"
+ },
+ {
+  "jurisdiction_id": "foristell",
+  "code": "OT",
+  "name": "Special Old Town",
+  "category": "special",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 15,
+  "side_setback_ft": null,
+  "rear_setback_ft": 15,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7400.271",
+   "note": "No minimum lot. Side yards set by review; zero lot lines allowed with a maintenance agreement. Height set by P&Z and the Board. Metal-clad buildings prohibited."
+  },
+  "source_url": "https://ecode360.com/29734732"
  }
 ]
