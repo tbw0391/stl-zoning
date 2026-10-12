@@ -33,7 +33,7 @@ CTX.verify_mode = ssl.CERT_NONE
 SKIP = re.compile(r"adjustment|appeals|BZA|architectur|historic|landmark|park|library|police|fire|pension|retire|"
                   r"tif|tax increment|equalization|merit|ethics|youth|senior|arts|tree|beautif|cemetery|"
                   r"traffic|personnel|audit|finance|budget|work ?session|special|port authority|road board|"
-                  r"committee|advisory|task force|group|steering|notices", re.I)
+                  r"committee|advisory|task force|group|steering|notices|emergency", re.I)
 PZ = re.compile(r"planning|zoning|P\s*&\s*Z|plan commission", re.I)
 GOV = re.compile(r"aldermen|alderm|city council|county council|board of trustees|village board|^council$|"
                  r"\bcouncil\b(?!.*(advisory|youth|arts))", re.I)
