@@ -3,6 +3,9 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { STAGE_LABEL, fmtDate, fmtTime, shortName, todayCentral } from "@/lib/format";
 import { TASK_SELECT, Task, TaskForm, TaskList, assignees } from "@/components/Tasks";
+import { distanceTo, loadCases, caseTypes, ZONING_TYPES } from "@/lib/cases";
+import CaseRow from "@/components/CaseRow";
+import { createWatch } from "@/app/alerts/actions";
 import { addChecklistItem, addNote, applyTemplate, deleteChecklistItem, setChecklistDone, updateProject } from "../actions";
 
 export const dynamic = "force-dynamic";
@@ -34,6 +37,16 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
           .not("summary", "is", null).order("event_date", { ascending: false }).limit(4),
       ])
     : [{ data: [] }, { data: [] }];
+
+  // Land-use cases near the site (rezonings, PUDs, special uses, annexations, plats, site plans) within 3 miles.
+  const NEAR_MILES = 3;
+  const nearby = p.lat != null
+    ? (await loadCases(supabase))
+        .map((c) => ({ c, d: distanceTo(c, p) }))
+        .filter(({ c, d }) => d != null && d <= NEAR_MILES && caseTypes(c).some((t) => [...ZONING_TYPES, "preliminary_plat", "final_plat", "site_plan"].includes(t)))
+        .sort((a, b) => a.d! - b.d!)
+    : [];
+  const { data: watching } = await supabase.from("watches").select("id").eq("project_id", id).limit(1);
 
   const items = checklist ?? [];
   const done = items.filter((c) => c.done_at).length;
@@ -127,6 +140,28 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
             <label>Description<textarea name="description" rows={3} defaultValue={p.description ?? ""} /></label>
             <div><button type="submit">Save</button></div>
           </form>
+
+          <h2>Nearby land-use cases</h2>
+          <div className="card">
+            {p.lat == null ? (
+              <p className="muted small" style={{ margin: 0 }}>Add a street address in Details to see cases near this site.</p>
+            ) : nearby.length === 0 ? (
+              <p className="muted small" style={{ margin: 0 }}>Nothing within {NEAR_MILES} miles on agendas from the last 45 days or upcoming.</p>
+            ) : (
+              <ul className="case-list compact">
+                {nearby.map(({ c, d }) => <CaseRow key={`${c.meeting_id}-${c.idx}`} c={c} isNew={false} miles={d} />)}
+              </ul>
+            )}
+            {p.lat != null && (watching?.length ? (
+              <p className="small" style={{ marginBottom: 0 }}><Link href="/alerts">You&apos;re watching this area →</Link></p>
+            ) : (
+              <form action={createWatch} style={{ marginTop: 10 }}>
+                <input type="hidden" name="project_id" value={p.id} />
+                <input type="hidden" name="radius_miles" value={NEAR_MILES} />
+                <button type="submit" className="link">+ Watch this area (alert on new cases within {NEAR_MILES} mi)</button>
+              </form>
+            ))}
+          </div>
 
           {p.jurisdiction_id && (
             <>

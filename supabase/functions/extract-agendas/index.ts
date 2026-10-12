@@ -5,6 +5,7 @@
 //
 // Secrets: ANTHROPIC_API_KEY. Requests need the x-digest-token header (shared cron token in public.app_settings).
 //   ?limit=N   meetings per run (default 12)      ?id=N   one meeting (re-reads even if already checked)
+//   ?geocode=1 locate item addresses on already-read agendas (no Claude calls)
 // Deployed with verify_jwt off.
 import Anthropic from "npm:@anthropic-ai/sdk@0.131.0";
 import { PDFDocument } from "npm:pdf-lib@1.17.1";
@@ -65,6 +66,42 @@ const SCHEMA = {
   },
 };
 
+// Street address → lat/lng (Census geocoder, then OpenStreetMap). Same rules as web/src/lib/geocode.ts:
+// only house-number addresses, and only points inside the St. Louis region.
+const inRegion = (lat: number, lng: number) => lat > 37.9 && lat < 39.4 && lng > -91.7 && lng < -89.7;
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+async function geocode(address: string, jurisdictionName: string): Promise<{ lat: number; lng: number; geo: string } | null> {
+  const street = address.split(/\s+(?:and|&)\s+|;|\//i)[0].trim();
+  if (!/^\d+\s+\S/.test(street)) return null;
+  const place = /county/i.test(jurisdictionName) ? null : jurisdictionName.replace(/^(City|Town|Village) of /, "");
+  const q = [street, place, "MO"].filter(Boolean).join(", ");
+  try {
+    const r = await fetch("https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?" +
+      new URLSearchParams({ address: q, benchmark: "Public_AR_Current", format: "json" }));
+    const c = (await r.json())?.result?.addressMatches?.[0]?.coordinates;
+    if (c && inRegion(c.y, c.x)) return { lat: c.y, lng: c.x, geo: "census" };
+  } catch { /* fall through */ }
+  try {
+    await sleep(1100); // Nominatim allows one request a second
+    const r = await fetch("https://nominatim.openstreetmap.org/search?" +
+      new URLSearchParams({ q, format: "json", limit: "1", countrycodes: "us" }), { headers: { "User-Agent": "AGA-Entitlement-Tracker/1.0" } });
+    const h = (await r.json())?.[0];
+    if (h && inRegion(Number(h.lat), Number(h.lon))) return { lat: Number(h.lat), lng: Number(h.lon), geo: "osm" };
+  } catch { /* no match */ }
+  return null;
+}
+
+// Adds lat/lng (or geo: "none") to items that have an address and haven't been tried yet.
+// deno-lint-ignore no-explicit-any
+async function geocodeItems(items: any[], jurisdictionName: string) {
+  for (const it of items) {
+    if (!it.address || it.geo) continue;
+    const p = await geocode(it.address, jurisdictionName);
+    Object.assign(it, p ?? { geo: "none" });
+  }
+  return items;
+}
+
 // Base64 without blowing the call stack on large PDFs.
 function toBase64(bytes: Uint8Array) {
   let s = "";
@@ -104,6 +141,27 @@ Deno.serve(async (req) => {
   if (!tok || req.headers.get("x-digest-token") !== tok.value) return new Response("Not found", { status: 404 });
   if (!Deno.env.get("ANTHROPIC_API_KEY")) return new Response("Missing ANTHROPIC_API_KEY secret", { status: 500 });
 
+  // ?geocode=1: locate addresses on items already read (no Claude calls).
+  if (url.searchParams.get("geocode")) {
+    const { data: rows } = await db.from("meetings").select("id, agenda_items, jurisdictions(name)")
+      .not("agenda_items", "is", null).not("agenda_read_at", "is", null);
+    const started = Date.now();
+    let located = 0, tried = 0, remaining = 0;
+    for (const r of rows ?? []) {
+      // deno-lint-ignore no-explicit-any
+      const items = (r.agenda_items ?? []) as any[];
+      if (!items.some((it) => it.address && !it.geo)) continue;
+      if (Date.now() - started > 90_000) { remaining++; continue; } // stay under the function time limit; call again
+      const before = items.filter((it) => it.geo).length;
+      // deno-lint-ignore no-explicit-any
+      await geocodeItems(items, (r as any).jurisdictions?.name ?? "");
+      tried += items.filter((it) => it.geo).length - before;
+      located += items.filter((it) => it.lat != null).length;
+      await db.from("meetings").update({ agenda_items: items }).eq("id", r.id);
+    }
+    return new Response(JSON.stringify({ tried, located, meetings_remaining: remaining }), { headers: { "Content-Type": "application/json" } });
+  }
+
   const today = new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(new Date());
   const since = new Date(Date.now() - LOOKBACK_DAYS * 864e5).toISOString().slice(0, 10);
   let q = db.from("meetings").select("id, jurisdiction_id, body, event_date, agenda_url, jurisdictions(name)").not("agenda_url", "is", null);
@@ -137,7 +195,9 @@ Deno.serve(async (req) => {
       const text = response.content.find((b) => b.type === "text");
       const items = JSON.parse(text && "text" in text ? text.text : "{}").items;
       if (!Array.isArray(items)) throw new Error("no items array in response");
-      const { error: ue } = await db.from("meetings").update({ agenda_items: items, agenda_checked_on: today }).eq("id", m.id);
+      await geocodeItems(items, m.jurisdictions?.name ?? "");
+      const { error: ue } = await db.from("meetings")
+        .update({ agenda_items: items, agenda_checked_on: today, agenda_read_at: new Date().toISOString() }).eq("id", m.id);
       if (ue) throw new Error(ue.message);
       return { id: m.id, jurisdiction_id: m.jurisdiction_id, event_date: m.event_date, items: items.length,
         input_tokens: response.usage.input_tokens, output_tokens: response.usage.output_tokens };
