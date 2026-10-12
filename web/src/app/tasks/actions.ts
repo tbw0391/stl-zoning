@@ -25,3 +25,11 @@ export async function setTaskDone(id: number, done: boolean) {
   if (error) throw new Error(error.message);
   revalidatePath("/", "layout");
 }
+
+export async function saveTaskAnswer(id: number, fd: FormData) {
+  const answer = String(fd.get("answer") ?? "").trim() || null;
+  const supabase = await createClient();
+  const { error } = await supabase.from("tasks").update({ answer }).eq("id", id);
+  if (error) throw new Error(error.message);
+  revalidatePath("/", "layout");
+}

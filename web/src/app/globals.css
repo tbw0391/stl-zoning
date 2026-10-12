@@ -180,3 +180,9 @@ ul.plain { list-style: none; margin: 0; padding: 0; display: flex; flex-directio
 .cell-edit { margin-top: 6px; font-size: .8rem; }
 .cell-edit summary { color: var(--accent); cursor: pointer; }
 .cell-edit form { margin-top: 6px; min-width: 200px; }
+
+.call-head { display: flex; gap: 10px; align-items: baseline; }
+.call-head .small { margin-top: 4px; }
+.call-details { margin: 8px 0 10px; font-size: .9rem; }
+.call.done { opacity: .7; }
+.call.done strong { text-decoration: line-through; }
