@@ -7,11 +7,16 @@
 //   ?limit=N   meetings per run (default 12)      ?id=N   one meeting (re-reads even if already checked)
 // Deployed with verify_jwt off.
 import Anthropic from "npm:@anthropic-ai/sdk@0.131.0";
+import { PDFDocument } from "npm:pdf-lib@1.17.1";
 import { createClient } from "jsr:@supabase/supabase-js@2";
 
 const TZ = "America/Chicago";
 const MODEL = "claude-opus-5-5";
 const LOOKBACK_DAYS = 45; // older agendas aren't worth reading on the first pass
+// The API takes PDFs up to 32 MB once base64-encoded (about 24 MB raw). Some cities bundle the whole packet
+// into the agenda file; the agenda itself is at the front, so oversized files are cut to their first pages.
+const MAX_PDF_BYTES = 23 * 1024 * 1024;
+const FRONT_PAGES = 25;
 const UA = { "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36" };
 
 const SYSTEM = `You read municipal Planning & Zoning and city council / board of aldermen agendas in the St. Louis, Missouri area for a homebuilder's land-entitlement team.
@@ -74,8 +79,16 @@ async function agendaContent(url: string): Promise<Record<string, unknown>> {
   const type = res.headers.get("content-type") ?? "";
   const bytes = new Uint8Array(await res.arrayBuffer());
   if (type.includes("pdf") || (bytes[0] === 0x25 && bytes[1] === 0x50)) { // "%P" of %PDF
-    if (bytes.length > 30 * 1024 * 1024) throw new Error("agenda PDF over 30 MB");
-    return { type: "document", source: { type: "base64", media_type: "application/pdf", data: toBase64(bytes) } };
+    let pdf: Uint8Array = bytes;
+    if (pdf.length > MAX_PDF_BYTES) {
+      const src = await PDFDocument.load(pdf, { ignoreEncryption: true });
+      const front = await PDFDocument.create();
+      const pages = await front.copyPages(src, [...Array(Math.min(FRONT_PAGES, src.getPageCount())).keys()]);
+      pages.forEach((p) => front.addPage(p));
+      pdf = await front.save();
+      if (pdf.length > MAX_PDF_BYTES) throw new Error(`agenda PDF too large even cut to ${FRONT_PAGES} pages`);
+    }
+    return { type: "document", source: { type: "base64", media_type: "application/pdf", data: toBase64(pdf) } };
   }
   // Some cities serve the agenda as an HTML page.
   const text = new TextDecoder().decode(bytes).replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, " ")
@@ -130,7 +143,10 @@ Deno.serve(async (req) => {
         input_tokens: response.usage.input_tokens, output_tokens: response.usage.output_tokens };
     } catch (e) {
       // API trouble (rate limit, outage, bad key): leave the meeting unchecked so the next run retries it.
-      if (e instanceof Anthropic.APIError) return { id: m.id, error: `retry later: ${e.status} ${e.message}` };
+      // A request the API rejects as invalid (e.g. a document it can't take) won't succeed on retry, so it falls through.
+      if (e instanceof Anthropic.APIError && !(e instanceof Anthropic.BadRequestError)) {
+        return { id: m.id, error: `retry later: ${e.status} ${e.message}` };
+      }
       // Agenda can't be read (bad link, scanned image, ...): mark checked so it isn't retried forever, but leave
       // agenda_items empty (null) so the site doesn't claim the agenda had no land-use items.
       await db.from("meetings").update({ agenda_checked_on: today }).eq("id", m.id);
