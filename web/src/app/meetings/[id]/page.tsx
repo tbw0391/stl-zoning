@@ -21,8 +21,12 @@ export default async function MeetingPage({ params }: { params: Promise<{ id: st
       <h1>{shortName(m.jurisdictions?.name ?? m.jurisdiction_id)} {BODY_LABEL[m.body]}</h1>
       <p className="muted">
         {fmtDate(m.event_date)}{m.event_time && ` · ${fmtTime(m.event_time)}`}
+        {m.location && ` · ${m.location}`}
         {" · "}<Link href={`/jurisdictions/${m.jurisdiction_id}`}>{m.jurisdictions?.name}</Link>
+        {m.status !== "published" && <> <span className="tag tentative">{m.status}</span></>}
+        {" · "}<Link href={`/meetings/${m.id}/edit`}>Edit</Link>
       </p>
+      {m.note && <p className="small">{m.note}</p>}
       {(m.video_url || m.agenda_url || m.packet_url) && (
         <p className="links">
           {m.agenda_url && <a href={m.agenda_url} target="_blank" rel="noreferrer">Posted agenda ↗</a>}

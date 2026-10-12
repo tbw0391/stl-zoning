@@ -38,7 +38,8 @@ St. Louis County is a single placeholder row (`stlouis_county`); add its municip
 3. Small towns: Foristell, Flint Hill and New Melle done (Foristell/Flint Hill P&Z dates/deadlines by phone, on /chad). The other six (St. Paul, Portage des Sioux, West Alton, Augusta, Weldon Spring Heights, Josephville) likely need phone calls.
 4. Zoning district tables: all nine main jurisdictions done (small towns still open). Parcel lookup (/lookup) is live for county, St. Charles, O'Fallon, Wentzville, St. Peters, Cottleville and Lake Saint Louis zoning; Dardenne Prairie and Weldon Spring have no public layer (ask the cities for a shapefile, or check the zoning map PDF by hand).
 5. Weekly scheduled task to re-check schedule URLs and log to source_checks.
-6. Front end: `web/` (Next.js + Supabase, no login) deployed on Vercel. Edit forms live for people (/directory → Edit, /directory/new) and progress (/progress → Edit in each cell). Next: meeting edit forms.
+6. Front end: `web/` (Next.js + Supabase, no login) deployed on Vercel. Edit forms live for people (/directory → Edit, /directory/new), progress (/progress → Edit in each cell) and meetings (Oct 12, migration 20261018090000: /meetings/[id]/edit from the calendar, jurisdiction page and meeting page; /meetings/new?j=<id> via "+ Add a date" on jurisdiction pages; anon can insert/update meetings, never delete; cancel = status cancelled; saving sets verified_on; a changed agenda link clears agenda_checked_on so the reader re-reads it). The collectors only touch projected status and blank fields, so they don't undo edits.
+7. Agenda reader backlog: everything in the 45-day window is read; 598 older posted agendas are unread by design. Reading them would add case history for /rezonings and nearby-case alerts, at the cost of about 600 Claude calls.
 
 ## Key sources
 - County UDO §405.535: https://ecode360.com/27758355

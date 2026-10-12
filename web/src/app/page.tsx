@@ -292,6 +292,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
                       {m.agenda_items && m.agenda_items.length > 0 && (
                         <Link href={`/meetings/${m.id}`} className="small">Agenda: {m.agenda_items.length} item{m.agenda_items.length === 1 ? "" : "s"}</Link>
                       )}
+                      <Link href={`/meetings/${m.id}/edit`} className="small muted">Edit</Link>
                     </div>
                   );
                 })}

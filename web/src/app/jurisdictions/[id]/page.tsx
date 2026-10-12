@@ -115,7 +115,7 @@ export default async function JurisdictionPage({ params }: { params: Promise<{ i
         <>
           <div className="table-wrap">
             <table>
-              <thead><tr><th>District</th><th>Min lot</th><th>Width</th><th>Front / side / rear</th><th>Height</th><th>Density</th><th>Notes</th></tr></thead>
+              <thead><tr><th>District</th><th>Min lot</th><th>Width</th><th>Front / side / rear</th><th>Height</th><th>Density</th><th>Notes</th><th></th></tr></thead>
               <tbody>
                 {districts.map((d) => (
                   <tr key={d.id}>
@@ -153,6 +153,7 @@ export default async function JurisdictionPage({ params }: { params: Promise<{ i
                     {m.status !== "published" && <> <span className="tag tentative">{m.status}</span></>}</td>
                   <td>{fmtTime(m.event_time) || <span className="muted">—</span>}</td>
                   <td className="small">{m.note}</td>
+                  <td className="small"><Link href={`/meetings/${m.id}/edit`}>Edit</Link></td>
                 </tr>
               ))}
             </tbody>
@@ -161,6 +162,7 @@ export default async function JurisdictionPage({ params }: { params: Promise<{ i
       ) : (
         <div className="card empty">No schedule loaded yet.</div>
       )}
+      <p className="small"><Link href={`/meetings/new?j=${id}`}>+ Add a date</Link></p>
 
       {recorded && recorded.length > 0 && (
         <>
