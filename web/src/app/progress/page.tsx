@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { fmtDate } from "@/lib/format";
 import { updateProgress } from "./actions";
 import PageTitle from "@/components/PageTitle";
+import { needsReview } from "../sources/review";
 
 export const dynamic = "force-dynamic";
 
@@ -24,10 +25,12 @@ type Row = { jurisdiction_id: string; task: string; status: string; note: string
 
 export default async function ProgressPage() {
   const supabase = await createClient();
-  const [{ data: js }, { data: rows }] = await Promise.all([
+  const [{ data: js }, { data: rows }, { data: watches }] = await Promise.all([
     supabase.from("jurisdictions").select("id, name, kind, county"),
     supabase.from("jurisdiction_progress").select("jurisdiction_id, task, status, note, updated_on"),
+    supabase.from("source_watches").select("last_changed_at, reviewed_at"),
   ]);
+  const toReview = (watches ?? []).filter(needsReview).length;
 
   const byJ = new Map<string, Map<string, Row>>();
   for (const r of (rows ?? []) as Row[]) {
@@ -49,6 +52,9 @@ export default async function ProgressPage() {
         Research status for every jurisdiction, by county. A jurisdiction is complete when all four tasks are done.
         Use Edit in any cell to change its status or note.
         {lastUpdate && <> Last updated {fmtDate(lastUpdate)}.</>}
+      </p>
+      <p className={toReview ? "notice" : "small"}>
+        <Link href="/sources">{toReview ? `${toReview} schedule source${toReview === 1 ? "" : "s"} changed and need${toReview === 1 ? "s" : ""} review →` : "Schedule sources (checked weekly) →"}</Link>
       </p>
 
       {counties.map((county) => {

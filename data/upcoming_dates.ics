@@ -28,14 +28,6 @@ LOCATION:Dardenne Prairie City Hall Board Room\, 2032 Hanley Rd
 DESCRIPTION:Work session 6 PM. Source: https://www.dardenneprairie.gov/government/boards_commissions/planning_zoning_commission.php
 END:VEVENT
 BEGIN:VEVENT
-UID:wentzville-meeting-governing_body-2026-10-14@entitlement-tracker
-DTSTAMP:20261012T000000Z
-DTSTART;VALUE=DATE:20261014
-SUMMARY:Wentzville - Board of Aldermen
-LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
-DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
-END:VEVENT
-BEGIN:VEVENT
 UID:foristell-meeting-planning_zoning-2026-10-15@entitlement-tracker
 DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261015
@@ -116,6 +108,14 @@ LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St
 DESCRIPTION:Source: https://www.sccmo.org/AgendaCenter
 END:VEVENT
 BEGIN:VEVENT
+UID:wentzville-meeting-governing_body-2026-10-21@entitlement-tracker
+DTSTAMP:20261012T000000Z
+DTSTART;VALUE=DATE:20261021
+SUMMARY:Wentzville - Board of Aldermen
+LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
+DESCRIPTION:Board of Aldermen (rezoning readings). Moved from Oct 28 on the revised 2026 schedule (Aug 2026). Source: https://www.wentzvillemo.gov/wp-content/uploads/2026/08/PZ-2026-Schedule-PZ-2026-Schedule-Revised-Website.pdf
+END:VEVENT
+BEGIN:VEVENT
 UID:ofallon-meeting-governing_body-2026-10-22@entitlement-tracker
 DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261022
@@ -156,14 +156,6 @@ LOCATION:County Executive Building\, 3rd Floor Council Chambers\, 100 N Third St
 DESCRIPTION:County Council regular meeting Source: https://www.sccmo.org/Calendar.aspx
 END:VEVENT
 BEGIN:VEVENT
-UID:wentzville-meeting-governing_body-2026-10-28@entitlement-tracker
-DTSTAMP:20261012T000000Z
-DTSTART;VALUE=DATE:20261028
-SUMMARY:Wentzville - Board of Aldermen
-LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
-DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
-END:VEVENT
-BEGIN:VEVENT
 UID:lake_st_louis-submittal_deadline-planning_zoning-2026-10-29@entitlement-tracker
 DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261029
@@ -193,7 +185,7 @@ DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261101
 SUMMARY:Wentzville - P&Z SUBMITTAL DUE (17:00)
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
-DESCRIPTION:Feeds P&Z 2026-12-07. If weekend/holiday\, Friday before or Monday after. Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
+DESCRIPTION:Feeds P&Z 2026-12-07. If weekend/holiday\, Friday before or Monday after. Source: https://www.wentzvillemo.gov/wp-content/uploads/2026/08/PZ-2026-Schedule-PZ-2026-Schedule-Revised-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:cottleville-meeting-planning_zoning-2026-11-02@entitlement-tracker
@@ -201,7 +193,7 @@ DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261102
 SUMMARY:Cottleville - P&Z Meeting (19:00)
 LOCATION:Cottleville City Hall Board Room\, 5490 Fifth St
-DESCRIPTION:Source: https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf
+DESCRIPTION:Source: https://www.cityofcottleville.com/wp-content/uploads/2026/07/PZ-Schedule-2026-2.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:foristell-meeting-governing_body-2026-11-02@entitlement-tracker
@@ -265,7 +257,7 @@ DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261104
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
-DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
+DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2026/08/PZ-2026-Schedule-PZ-2026-Schedule-Revised-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:lake_st_louis-meeting-planning_zoning-2026-11-05@entitlement-tracker
@@ -297,7 +289,7 @@ DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261109
 SUMMARY:Cottleville - P&Z SUBMITTAL DUE (12:00)
 LOCATION:Cottleville City Hall Board Room\, 5490 Fifth St
-DESCRIPTION:Feeds P&Z 2026-12-07. Public-notice items may need more lead time. Source: https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf
+DESCRIPTION:Feeds P&Z 2026-12-07. Public-notice items may need more lead time. Source: https://www.cityofcottleville.com/wp-content/uploads/2026/07/PZ-Schedule-2026-2.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:new_melle-submittal_deadline-planning_zoning-2026-11-09@entitlement-tracker
@@ -337,7 +329,7 @@ DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261109
 SUMMARY:Wentzville - P&Z Meeting (18:00)
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
-DESCRIPTION:Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
+DESCRIPTION:Source: https://www.wentzvillemo.gov/wp-content/uploads/2026/08/PZ-2026-Schedule-PZ-2026-Schedule-Revised-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:new_melle-meeting-governing_body-2026-11-10@entitlement-tracker
@@ -433,7 +425,7 @@ DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261118
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
-DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
+DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2026/08/PZ-2026-Schedule-PZ-2026-Schedule-Revised-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:foristell-meeting-planning_zoning-2026-11-19@entitlement-tracker
@@ -497,7 +489,7 @@ DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261201
 SUMMARY:Wentzville - P&Z SUBMITTAL DUE (17:00)
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
-DESCRIPTION:Feeds P&Z 2027-01-11. If weekend/holiday\, Friday before or Monday after. Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
+DESCRIPTION:Feeds P&Z 2027-01-11. If weekend/holiday\, Friday before or Monday after. Source: https://www.wentzvillemo.gov/wp-content/uploads/2026/08/PZ-2026-Schedule-PZ-2026-Schedule-Revised-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:dardenne_prairie-meeting-governing_body-2026-12-02@entitlement-tracker
@@ -561,7 +553,7 @@ DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261207
 SUMMARY:Cottleville - P&Z Meeting (19:00)
 LOCATION:Cottleville City Hall Board Room\, 5490 Fifth St
-DESCRIPTION:Source: https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf
+DESCRIPTION:Source: https://www.cityofcottleville.com/wp-content/uploads/2026/07/PZ-Schedule-2026-2.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:foristell-meeting-governing_body-2026-12-07@entitlement-tracker
@@ -601,7 +593,7 @@ DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261207
 SUMMARY:Wentzville - P&Z Meeting (18:00)
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
-DESCRIPTION:Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
+DESCRIPTION:Source: https://www.wentzvillemo.gov/wp-content/uploads/2026/08/PZ-2026-Schedule-PZ-2026-Schedule-Revised-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:new_melle-meeting-governing_body-2026-12-08@entitlement-tracker
@@ -625,7 +617,7 @@ DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20261209
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
-DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
+DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2026/08/PZ-2026-Schedule-PZ-2026-Schedule-Revised-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:weldon_spring-meeting-governing_body-2026-12-10@entitlement-tracker
@@ -777,7 +769,7 @@ DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20270111
 SUMMARY:Wentzville - P&Z Meeting (18:00)
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
-DESCRIPTION:Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
+DESCRIPTION:Source: https://www.wentzvillemo.gov/wp-content/uploads/2026/08/PZ-2026-Schedule-PZ-2026-Schedule-Revised-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2027-01-13@entitlement-tracker
@@ -785,7 +777,7 @@ DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20270113
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
-DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
+DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2026/08/PZ-2026-Schedule-PZ-2026-Schedule-Revised-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:lake_st_louis-meeting-governing_body-2027-01-19@entitlement-tracker
@@ -801,7 +793,7 @@ DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20270127
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
-DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
+DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2026/08/PZ-2026-Schedule-PZ-2026-Schedule-Revised-Website.pdf
 END:VEVENT
 BEGIN:VEVENT
 UID:wentzville-meeting-governing_body-2027-02-10@entitlement-tracker
@@ -809,6 +801,6 @@ DTSTAMP:20261012T000000Z
 DTSTART;VALUE=DATE:20270210
 SUMMARY:Wentzville - Board of Aldermen
 LOCATION:Wentzville City Hall\, 1001 Schroeder Creek Blvd
-DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf
+DESCRIPTION:Board of Aldermen (rezoning readings) Source: https://www.wentzvillemo.gov/wp-content/uploads/2026/08/PZ-2026-Schedule-PZ-2026-Schedule-Revised-Website.pdf
 END:VEVENT
 END:VCALENDAR

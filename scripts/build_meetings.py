@@ -2,8 +2,12 @@ import json, csv, sys
 from datetime import date, datetime, timedelta
 
 out = sys.argv[1]
-W = "https://www.wentzvillemo.gov/wp-content/uploads/2025/10/PZ-2026-Schedule-Website.pdf"
-C = "https://www.cityofcottleville.com/wp-content/uploads/2025/12/PZ-Schedule-2026-1.pdf"
+# Revised Aug 2026: Board of Aldermen Oct 14 -> Oct 7 and Oct 28 -> Oct 21.
+W = "https://www.wentzvillemo.gov/wp-content/uploads/2026/08/PZ-2026-Schedule-PZ-2026-Schedule-Revised-Website.pdf"
+W_MOVED = {"2026-10-07": "Oct 14", "2026-10-21": "Oct 28"}
+# Revised Jul 2026: Jul and Sep meetings and the Jun, Aug, Sep deadlines moved.
+C = "https://www.cityofcottleville.com/wp-content/uploads/2026/07/PZ-Schedule-2026-2.pdf"
+C_MOVED = {"2026-06-08": "Jun 15", "2026-07-06": "Jul 13", "2026-08-11": "Aug 17", "2026-09-04": "Sep 7", "2026-09-08": "Sep 14"}
 # O'Fallon: no 2026 schedule posted (P&Z page still links the 2024 PDF, now a dead Drive link).
 # Held meetings come from the AgendaQuick archive; deadlines follow the 2024 schedule's rule
 # (Friday 34 days before the meeting, noon) and are marked projected.
@@ -150,8 +154,8 @@ went = """12/01/2025 01/12/2026 01/28/2026 02/11/2026
 05/01/2026 06/08/2026 06/24/2026 07/08/2026
 06/01/2026 07/06/2026 07/22/2026 08/12/2026
 07/01/2026 08/10/2026 08/26/2026 09/09/2026
-08/01/2026 09/14/2026 09/23/2026 10/14/2026
-09/01/2026 10/05/2026 10/28/2026 11/04/2026
+08/01/2026 09/14/2026 09/23/2026 10/07/2026
+09/01/2026 10/05/2026 10/21/2026 11/04/2026
 10/01/2026 11/09/2026 11/18/2026 12/09/2026
 11/01/2026 12/07/2026 01/13/2027 01/27/2027
 12/01/2026 01/11/2027 01/27/2027 02/10/2027"""
@@ -162,10 +166,10 @@ cott = """1-5-26 12-8-25
 4-6-26 3-9-26
 5-4-26 4-6-26
 6-1-26 5-4-26
-7-13-26 6-15-26
+7-6-26 6-8-26
 8-3-26 7-6-26
-9-14-26 8-17-26
-10-5-26 9-7-26
+9-8-26 8-11-26
+10-5-26 9-4-26
 11-2-26 10-5-26
 12-7-26 11-9-26"""
 
@@ -185,13 +189,18 @@ for line in went.splitlines():
     add("wentzville","planning_zoning","meeting",pz,"18:00",WLOC,W)
     for b in (b1, b2):
         if b not in seen:
-            seen.add(b); add("wentzville","governing_body","meeting",b,None,WLOC,W,"Board of Aldermen (rezoning readings)")
+            seen.add(b); moved = W_MOVED.get(b.isoformat())
+            add("wentzville","governing_body","meeting",b,None,WLOC,W,"Board of Aldermen (rezoning readings)"
+                + (f". Moved from {moved} on the revised 2026 schedule (Aug 2026)." if moved else ""),
+                status="changed" if moved else "published")
 
 CLOC = "Cottleville City Hall Board Room, 5490 Fifth St"
 for line in cott.splitlines():
     m, d = [d2(x) for x in line.split()]
-    add("cottleville","planning_zoning","submittal_deadline",d,"12:00",CLOC,C,f"Feeds P&Z {m.isoformat()}. Public-notice items may need more lead time.")
-    add("cottleville","planning_zoning","meeting",m,"19:00",CLOC,C)
+    moved = lambda x: f" Moved from {C_MOVED[x.isoformat()]} on the revised schedule (Jul 2026)." if x.isoformat() in C_MOVED else ""
+    status = lambda x: "changed" if x.isoformat() in C_MOVED else "published"
+    add("cottleville","planning_zoning","submittal_deadline",d,"12:00",CLOC,C,f"Feeds P&Z {m.isoformat()}. Public-notice items may need more lead time.{moved(d)}",status=status(d))
+    add("cottleville","planning_zoning","meeting",m,"19:00",CLOC,C,moved(m).strip(),status=status(m))
 
 OLOC = "O'Fallon Municipal Centre, Council Chambers, 100 N Main St"
 for d, st, src in ofal_pz:
