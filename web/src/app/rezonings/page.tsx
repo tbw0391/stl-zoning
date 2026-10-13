@@ -51,7 +51,7 @@ export default async function RezoningsPage({ searchParams }: { searchParams: Pr
     <>
       <PageTitle href="/rezonings">Rezonings</PageTitle>
       <p className="muted">
-        Land-use cases on posted P&amp;Z and council agendas across every jurisdiction we track, read from the agendas automatically.
+        Land-use cases on posted P&amp;Z and council agendas across every municipality we track, read from the agendas automatically.
         Check the posted agenda before relying on a detail.
       </p>
 

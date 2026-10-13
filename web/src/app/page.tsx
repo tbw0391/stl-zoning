@@ -171,15 +171,15 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
       <PageTitle href="/">Upcoming dates</PageTitle>
       {!reviewed && (
         <div className="notice banner">
-          <strong>First, pick your jurisdictions.</strong> We&apos;re tracking all {(jurisdictions ?? []).length} cities and counties right now. Before we start
-          filling in data for each one, go to <Link href="/jurisdictions">Jurisdictions</Link>, untick the ones you don&apos;t need,
-          and press Save. This message goes away once the list is saved.
+          <strong>First, pick your municipalities.</strong> We&apos;re tracking all {(jurisdictions ?? []).length} cities and counties right now. Before we start
+          filling in data for each one, go to <Link href="/jurisdictions#follow">Municipalities</Link>: the ones with projects are ticked to start.
+          Tick any others you&apos;re prospecting in and press Save. This message goes away once the list is saved.
         </div>
       )}
       <p className="muted coverage">
-        Schedules loaded for {coveredIds.length} jurisdictions
+        Schedules loaded for {coveredIds.length} municipalities
         {coveredByCounty.length > 0 && <> ({coveredByCounty.map(([c, n]) => `${c} County ${n}`).join(", ")})</>}.
-        Pick one under Jurisdiction to see just its dates.
+        Pick one under Municipality to see just its dates.
       </p>
 
       <div className="cal-toolbar">
@@ -197,7 +197,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
         <input type="hidden" name="view" value={view} />
         {view === "month" && sp.m && <input type="hidden" name="m" value={sp.m} />}
         {view === "week" && sp.w && <input type="hidden" name="w" value={sp.w} />}
-        <label>Jurisdiction
+        <label>Municipality
           <select name="j" defaultValue={sp.j ?? ""}>
             <option value="">All</option>
             {(jurisdictions ?? []).filter((j) => coveredIds.includes(j.id)).map((j) => (

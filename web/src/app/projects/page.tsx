@@ -41,6 +41,7 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Pro
         {rows.length} {showClosed ? "" : "active "}project{rows.length === 1 ? "" : "s"}.{" "}
         {closedCount > 0 && (showClosed ? <Link href="/projects">Hide closed</Link> : <Link href="/projects?show=all">Show {closedCount} closed</Link>)}
         {" · "}<Link href="/projects/checklist">Default checklist</Link>
+        {" · "}<Link href="/jurisdictions#follow">Choose municipalities</Link>
       </p>
 
       {rows.length === 0 ? (
@@ -49,7 +50,7 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Pro
         <div className="table-wrap">
           <table>
             <thead>
-              <tr><th>Project</th><th>Jurisdiction</th><th>Stage</th><th>Checklist</th><th>Open tasks</th><th>Next follow-up</th></tr>
+              <tr><th>Project</th><th>Municipality</th><th>Stage</th><th>Checklist</th><th>Open tasks</th><th>Next follow-up</th></tr>
             </thead>
             <tbody>
               {rows.map((p) => {
@@ -75,7 +76,7 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Pro
       <h2>New project</h2>
       <form action={createProject} className="card stack-form">
         <label>Name<input name="name" required placeholder="e.g. Hwy N & Bryan Rd" /></label>
-        <label>Jurisdiction
+        <label>Municipality
           <select name="jurisdiction_id" defaultValue="">
             <option value="">Not sure yet</option>
             {(jurisdictions ?? []).map((j) => <option key={j.id} value={j.id}>{j.name}</option>)}

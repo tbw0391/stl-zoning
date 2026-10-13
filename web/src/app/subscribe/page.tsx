@@ -36,7 +36,7 @@ export default async function SubscribePage({ searchParams }: { searchParams: Pr
       </p>
 
       <form className="filters" method="get">
-        <label>Which jurisdictions?
+        <label>Which municipalities?
           <select name="j" defaultValue={sp.j ?? ""}>
             <option value="">All of them</option>
             {(js ?? []).filter((j) => coveredIds.has(j.id)).map((j) => (

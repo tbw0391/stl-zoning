@@ -27,14 +27,14 @@ export default async function DirectoryPage({ searchParams }: { searchParams: Pr
   return (
     <>
       <PageTitle href="/directory">Directory</PageTitle>
-      <p className="muted">P&amp;Z commissioners, elected officials and key staff. Coverage grows as each jurisdiction is researched. Anyone can fix a row with Edit.</p>
+      <p className="muted">P&amp;Z commissioners, elected officials and key staff. Coverage grows as each municipality is researched. Anyone can fix a row with Edit.</p>
       <p><Link href={sp.j ? `/directory/new?j=${sp.j}` : "/directory/new"}>+ Add person</Link></p>
 
       <form className="filters" method="get">
         <label>Search
           <input type="search" name="q" defaultValue={sp.q ?? ""} placeholder="Name or title" />
         </label>
-        <label>Jurisdiction
+        <label>Municipality
           <select name="j" defaultValue={sp.j ?? ""}>
             <option value="">All</option>
             {(js ?? []).map((j) => <option key={j.id} value={j.id}>{shortName(j.name)}</option>)}
@@ -54,7 +54,7 @@ export default async function DirectoryPage({ searchParams }: { searchParams: Pr
       ) : (
         <div className="table-wrap">
           <table>
-            <thead><tr><th>Name</th><th>Title</th><th>Jurisdiction</th><th>Group</th><th>Email</th><th>Phone</th><th></th></tr></thead>
+            <thead><tr><th>Name</th><th>Title</th><th>Municipality</th><th>Group</th><th>Email</th><th>Phone</th><th></th></tr></thead>
             <tbody>
               {people.map((x) => (
                 <tr key={x.id}>

@@ -15,7 +15,7 @@ export const NAV: { href: string; label: string; icon: IconDefinition }[] = [
   { href: "/alerts", label: "Alerts", icon: faBell },
   { href: "/meetings", label: "Meetings", icon: faComments },
   { href: "/lookup", label: "Parcel lookup", icon: faMap },
-  { href: "/jurisdictions", label: "Jurisdictions", icon: faLandmark },
+  { href: "/jurisdictions", label: "Municipalities", icon: faLandmark },
   { href: "/progress", label: "Progress", icon: faFlag },
   { href: "/directory", label: "Directory", icon: faAddressBook },
   { href: "/todo", label: "Suggestions", icon: faLightbulb },

@@ -58,7 +58,7 @@ export default async function JurisdictionPage({ params }: { params: Promise<{ i
 
   return (
     <>
-      <p className="small"><Link href="/jurisdictions">← All jurisdictions</Link></p>
+      <p className="small"><Link href="/jurisdictions">← All municipalities</Link></p>
       <h1>{j.name}</h1>
       <p className="muted">
         {j.governing_body ?? "Governing body not recorded"} · <span className={`tag ${j.research_status}`}>{STATUS_LABEL[j.research_status]}</span>
@@ -69,7 +69,7 @@ export default async function JurisdictionPage({ params }: { params: Promise<{ i
       </p>
       {!j.followed && (
         <p className="notice" style={{ marginTop: 8 }}>
-          Not following: this jurisdiction is left out of the calendar, rezonings, alerts and the weekly email, and its meetings and agendas aren&apos;t collected or read.
+          Not following: this municipality is left out of the calendar, rezonings, alerts and the weekly email, and its meetings and agendas aren&apos;t collected or read.
         </p>
       )}
       <div className="links">

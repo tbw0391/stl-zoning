@@ -25,12 +25,20 @@ async function locateProject(id: number) {
   await supabase.from("projects").update({ lat: point?.lat ?? null, lng: point?.lng ?? null }).eq("id", id);
 }
 
+// A project's municipality is always followed (suggestion #13), so its meetings and agendas keep being collected.
+async function followProjectPlace(jurisdictionId: unknown) {
+  if (typeof jurisdictionId !== "string" || !jurisdictionId) return;
+  const supabase = await createClient();
+  await supabase.from("jurisdictions").update({ followed: true }).eq("id", jurisdictionId).eq("followed", false);
+}
+
 export async function createProject(fd: FormData) {
   const row = projectFromForm(fd);
   if (!row.name) return;
   const supabase = await createClient();
   const { data, error } = await supabase.from("projects").insert(row).select("id").single();
   if (error) throw new Error(error.message);
+  await followProjectPlace(row.jurisdiction_id);
   if (row.address) await locateProject(data.id);
   redirect(`/projects/${data.id}`);
 }
@@ -41,6 +49,7 @@ export async function updateProject(id: number, fd: FormData) {
   const supabase = await createClient();
   const { error } = await supabase.from("projects").update(row).eq("id", id);
   if (error) throw new Error(error.message);
+  await followProjectPlace(row.jurisdiction_id);
   if ("address" in row || "jurisdiction_id" in row) await locateProject(id);
   revalidatePath("/", "layout");
 }

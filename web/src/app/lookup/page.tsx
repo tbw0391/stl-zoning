@@ -48,7 +48,7 @@ export default async function LookupPage({ searchParams }: { searchParams: Promi
   return (
     <>
       <PageTitle href="/lookup">Parcel lookup</PageTitle>
-      <p className="muted">Address or parcel ID → jurisdiction, current zoning and that district&apos;s standards. St. Charles and St. Louis counties; city zoning where the city publishes a zoning map layer.</p>
+      <p className="muted">Address or parcel ID → municipality, current zoning and that district&apos;s standards. St. Charles and St. Louis counties; city zoning where the city publishes a zoning map layer.</p>
 
       <form className="filters" method="get">
         <label className="grow">Address or parcel ID
@@ -83,7 +83,7 @@ export default async function LookupPage({ searchParams }: { searchParams: Promi
             <h2 style={{ marginTop: 0 }}>{parcel.address || parcel.parcelId}</h2>
             <div className="facts">
               <div className="muted">Parcel ID</div><div>{parcel.parcelId}</div>
-              <div className="muted">Jurisdiction</div>
+              <div className="muted">Municipality</div>
               <div>{j ? <Link href={`/jurisdictions/${j.id}`}>{j.name}</Link> : parcel.municipality}</div>
               <div className="muted">Owner</div><div>{parcel.owner ?? dash}</div>
               <div className="muted">Lot size</div><div>{parcel.lotSize ?? dash}</div>
@@ -110,7 +110,7 @@ export default async function LookupPage({ searchParams }: { searchParams: Promi
             </div>
             <p className="source">
               Parcel: {parcel.county === "St. Louis" ? "St. Louis County Assessor via the county's parcel map service" : "St. Charles County Assessor via county open data"}.
-              {zoning && <> Zoning: {zoning.source}. GIS layers can lag recent rezonings; confirm with the jurisdiction before relying on it.</>}
+              {zoning && <> Zoning: {zoning.source}. GIS layers can lag recent rezonings; confirm with the municipality before relying on it.</>}
             </p>
           </div>
 

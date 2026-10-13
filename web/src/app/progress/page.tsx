@@ -49,7 +49,7 @@ export default async function ProgressPage() {
     <>
       <PageTitle href="/progress">Progress</PageTitle>
       <p className="muted">
-        Research status for every jurisdiction, by county. A jurisdiction is complete when all four tasks are done.
+        Research status for every municipality, by county. A municipality is complete when all four tasks are done.
         Use Edit in any cell to change its status or note.
         {lastUpdate && <> Last updated {fmtDate(lastUpdate)}.</>}
       </p>
@@ -74,7 +74,7 @@ export default async function ProgressPage() {
               <table>
                 <thead>
                   <tr>
-                    <th>Jurisdiction</th>
+                    <th>Municipality</th>
                     {TASKS.map((t) => {
                       const done = list.filter((j) => byJ.get(j.id)?.get(t.id)?.status === "done").length;
                       return <th key={t.id}>{t.label} <span className="muted">({done}/{list.length})</span></th>;

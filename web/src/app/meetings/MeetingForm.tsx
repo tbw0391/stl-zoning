@@ -34,7 +34,7 @@ export function MeetingForm({ action, meeting, jurisdictions, submitLabel }: {
     <form action={action} className="card stack-form">
       {jurisdictions && (
         <>
-          <label>Jurisdiction
+          <label>Municipality
             <select name="jurisdiction_id" required defaultValue={meeting?.jurisdiction_id ?? ""}>
               <option value="" disabled>Choose one</option>
               {jurisdictions.map((j) => <option key={j.id} value={j.id}>{shortName(j.name)}</option>)}

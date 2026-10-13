@@ -56,7 +56,7 @@ export default async function SourcesPage() {
       <h2>All watched sources</h2>
       <div className="table-wrap">
         <table>
-          <thead><tr><th>Jurisdiction</th><th>Source</th><th>Last checked</th><th>Last change</th></tr></thead>
+          <thead><tr><th>Municipality</th><th>Source</th><th>Last checked</th><th>Last change</th></tr></thead>
           <tbody>
             {watches.map((w) => (
               <tr key={w.id}>

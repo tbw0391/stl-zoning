@@ -22,7 +22,7 @@ export function PersonForm({ action, person, jurisdictions, submitLabel }: {
   return (
     <form action={action} className="card stack-form">
       <label>Name<input name="full_name" required defaultValue={person?.full_name ?? ""} /></label>
-      <label>Jurisdiction
+      <label>Municipality
         <select name="jurisdiction_id" required defaultValue={person?.jurisdiction_id ?? ""}>
           <option value="" disabled>Choose one</option>
           {jurisdictions.map((j) => <option key={j.id} value={j.id}>{shortName(j.name)}</option>)}

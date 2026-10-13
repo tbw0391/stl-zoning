@@ -184,9 +184,8 @@ textarea { font: inherit; padding: 7px 10px; border: 1px solid var(--border); bo
 
 .tag.task { background: var(--accent-soft); color: var(--accent); }
 .tag[class*="stage-"] { background: var(--accent-soft); color: var(--accent); }
-.tag.stage-approved { background: var(--ok-soft); color: var(--ok); }
-.tag.stage-denied, .tag.stage-withdrawn { background: var(--due-soft); color: var(--due); }
-.tag.stage-on_hold, .tag.stage-closed, .tag.stage-prospect { background: var(--border); color: var(--muted); }
+.tag.stage-development { background: var(--ok-soft); color: var(--ok); }
+.tag.stage-closed, .tag.stage-prospect { background: var(--border); color: var(--muted); }
 
 .inline-form { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
 .inline-form .grow { flex: 1 1 260px; }

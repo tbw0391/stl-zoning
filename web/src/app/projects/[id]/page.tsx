@@ -126,7 +126,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
                 {Object.entries(STAGE_LABEL).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
               </select>
             </label>
-            <label>Jurisdiction
+            <label>Municipality
               <select name="jurisdiction_id" defaultValue={p.jurisdiction_id ?? ""}>
                 <option value="">Not sure yet</option>
                 {(jurisdictions ?? []).map((j) => <option key={j.id} value={j.id}>{j.name}</option>)}
@@ -168,7 +168,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
               <h2>Upcoming in {shortName(p.jurisdictions?.name ?? "")}</h2>
               <div className="card">
                 {(meetings ?? []).length === 0 ? (
-                  <p className="muted small" style={{ margin: 0 }}>No schedule loaded yet for this jurisdiction.</p>
+                  <p className="muted small" style={{ margin: 0 }}>No schedule loaded yet for this municipality.</p>
                 ) : (
                   <ul className="plain">
                     {meetings!.map((m) => (

@@ -76,7 +76,7 @@ export default async function VotesPage({ searchParams }: { searchParams: Promis
             </div>
           </>
         ) : <div className="card empty">No named votes for this member.</div>}
-        <p className="source">Votes are read from posted minutes; members are matched to the directory by last name within the jurisdiction.</p>
+        <p className="source">Votes are read from posted minutes; members are matched to the directory by last name within the municipality.</p>
       </>
     );
   }
@@ -93,7 +93,7 @@ export default async function VotesPage({ searchParams }: { searchParams: Promis
         where the minutes name who voted which way appear here; each meeting page has the full result.
       </p>
       <form className="filters" method="get">
-        <label>Jurisdiction
+        <label>Municipality
           <select name="j" defaultValue={sp.j ?? ""}>
             <option value="">All</option>
             {(js ?? []).filter((j) => byJ.has(j.id) || j.id === sp.j).map((j) => <option key={j.id} value={j.id}>{shortName(j.name)}</option>)}

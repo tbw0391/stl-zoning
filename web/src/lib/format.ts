@@ -39,20 +39,14 @@ export const ROLE_LABEL: Record<string, string> = {
 
 export const STAGE_LABEL: Record<string, string> = {
   prospect: "Prospect",
-  due_diligence: "Due diligence",
-  pre_application: "Pre-application",
-  submitted: "Submitted",
-  pz_hearing: "P&Z hearing",
-  governing_body: "Council / Aldermen",
-  approved: "Approved",
-  denied: "Denied",
-  withdrawn: "Withdrawn",
-  on_hold: "On hold",
+  loi: "LOI",
+  diligence: "Diligence",
+  development: "Development",
   closed: "Closed",
 };
 
-// Stages that count as finished for the projects summary.
-export const CLOSED_STAGES = ["approved", "denied", "withdrawn", "closed"];
+// Stages hidden from /projects unless "Show closed".
+export const CLOSED_STAGES = ["closed"];
 
 // Day of week for a plain date, 0 = Sunday.
 export const weekday = (d: string) => new Date(d + "T00:00:00Z").getUTCDay();

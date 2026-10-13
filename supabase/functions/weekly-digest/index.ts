@@ -36,9 +36,7 @@ const esc = (s: unknown) =>
 const shortName = (n: string) => n.replace(/^(City|Town|Village) of /, "");
 
 const STAGE: Record<string, string> = {
-  prospect: "Prospect", due_diligence: "Due diligence", pre_application: "Pre-application", submitted: "Submitted",
-  pz_hearing: "P&Z hearing", governing_body: "Council / Aldermen", approved: "Approved", denied: "Denied",
-  withdrawn: "Withdrawn", on_hold: "On hold", closed: "Closed",
+  prospect: "Prospect", loi: "LOI", diligence: "Diligence", development: "Development", closed: "Closed",
 };
 
 const C = { teal: "#096764", amber: "#ffb549", orange: "#c4502a", green: "#2d6a3e", text: "#1d2a28", muted: "#5f6b67", border: "#e3e1da", bg: "#f6f5f1" };

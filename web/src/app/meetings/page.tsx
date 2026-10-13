@@ -30,7 +30,7 @@ export default async function MeetingsPage({ searchParams }: { searchParams: Pro
       <PageTitle href="/meetings">Meetings</PageTitle>
       <p className="muted">
         Posted agendas for upcoming meetings, and recorded meetings summarized from the video captions.
-        {sp.j && <> <Link href="/meetings">Show all jurisdictions</Link></>}
+        {sp.j && <> <Link href="/meetings">Show all municipalities</Link></>}
       </p>
       <p className={waiting ? "notice" : "small"}>
         <Link href="/agenda-requests">{waiting ? `${waiting} agenda request${waiting === 1 ? "" : "s"} waiting for approval →` : "Agenda requests →"}</Link>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import { STATUS_LABEL, todayCentral } from "@/lib/format";
+import { CLOSED_STAGES, STATUS_LABEL, todayCentral } from "@/lib/format";
 import PageTitle from "@/components/PageTitle";
 import FollowPicker from "./FollowPicker";
 
@@ -9,12 +9,17 @@ export const dynamic = "force-dynamic";
 export default async function JurisdictionsPage() {
   const supabase = await createClient();
   const today = todayCentral();
-  const [{ data: js }, { data: procs }, { data: meetings }, { data: people }] = await Promise.all([
+  const [{ data: js }, { data: procs }, { data: meetings }, { data: people }, { data: projects }, { data: reviewed }] = await Promise.all([
     supabase.from("jurisdictions").select("id, name, kind, county, governing_body, research_status, followed").order("name"),
     supabase.from("rezoning_processes").select("jurisdiction_id"),
     supabase.from("meetings").select("jurisdiction_id, event_date").gte("event_date", today),
     supabase.from("people").select("jurisdiction_id").eq("active", true),
+    supabase.from("projects").select("jurisdiction_id, stage").not("jurisdiction_id", "is", null),
+    supabase.from("site_flags").select("key").eq("key", "followed_reviewed").maybeSingle(),
   ]);
+  // Open projects per municipality; those municipalities are ticked to start (suggestion #13).
+  const projectCount: Record<string, number> = {};
+  for (const p of projects ?? []) if (!CLOSED_STAGES.includes(p.stage)) projectCount[p.jurisdiction_id!] = (projectCount[p.jurisdiction_id!] ?? 0) + 1;
 
   const hasProc = new Set((procs ?? []).map((p) => p.jurisdiction_id));
   const count = (rows: { jurisdiction_id: string }[] | null, id: string) => (rows ?? []).filter((r) => r.jurisdiction_id === id).length;
@@ -32,7 +37,7 @@ export default async function JurisdictionsPage() {
     <div className="table-wrap" style={{ marginTop: 8 }}>
       <table>
         <thead>
-          <tr><th>Jurisdiction</th><th>County</th><th>Governing body</th><th>Research</th><th>Rezoning process</th><th>Schedule through</th><th>People</th></tr>
+          <tr><th>Municipality</th><th>County</th><th>Governing body</th><th>Research</th><th>Rezoning process</th><th>Schedule through</th><th>People</th></tr>
         </thead>
         <tbody>
           {rows.map((j) => {
@@ -56,16 +61,18 @@ export default async function JurisdictionsPage() {
 
   return (
     <>
-      <PageTitle href="/jurisdictions">Jurisdictions</PageTitle>
+      <PageTitle href="/jurisdictions">Municipalities</PageTitle>
       <p className="muted">St. Charles County in depth, plus St. Louis, Jefferson and Franklin County cities whose meetings are collected automatically. Click one for its rezoning process, dates and contacts.</p>
-      <h2>Which jurisdictions to follow</h2>
+      <h2 id="follow">Which municipalities to follow</h2>
       <p className="small">
-        Untick a jurisdiction to leave it out of the calendar, meetings, rezonings, votes, alerts, directory, progress and the weekly email;
+        Untick a municipality to leave it out of the calendar, meetings, rezonings, votes, alerts, directory, progress and the weekly email;
         its meetings stop being collected and its agendas and minutes stop being read. Nothing is deleted, and ticking it again picks back up.
+        Municipalities with a project are ticked to start, and adding a project in another one follows it automatically.
       </p>
-      <FollowPicker jurisdictions={sorted.map(({ id, name, county, followed }) => ({ id, name, county, followed }))} counties={counties} />
+      <FollowPicker jurisdictions={sorted.map(({ id, name, county, followed }) => ({ id, name, county, followed }))} counties={counties}
+        projectCount={projectCount} reviewed={!!reviewed} />
       <h2>Following ({followed.length})</h2>
-      {followed.length ? table(followed) : <div className="card empty">Not following any jurisdictions.</div>}
+      {followed.length ? table(followed) : <div className="card empty">Not following any municipalities.</div>}
       {off.length > 0 && <>
         <h2>Not following ({off.length})</h2>
         {table(off)}
