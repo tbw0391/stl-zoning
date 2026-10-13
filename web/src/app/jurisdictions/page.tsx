@@ -2,7 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { STATUS_LABEL, todayCentral } from "@/lib/format";
 import PageTitle from "@/components/PageTitle";
-import { setFollowed } from "./actions";
+import FollowPicker from "./FollowPicker";
 
 export const dynamic = "force-dynamic";
 
@@ -32,7 +32,7 @@ export default async function JurisdictionsPage() {
     <div className="table-wrap" style={{ marginTop: 8 }}>
       <table>
         <thead>
-          <tr><th>Jurisdiction</th><th>County</th><th>Governing body</th><th>Research</th><th>Rezoning process</th><th>Schedule through</th><th>People</th><th></th></tr>
+          <tr><th>Jurisdiction</th><th>County</th><th>Governing body</th><th>Research</th><th>Rezoning process</th><th>Schedule through</th><th>People</th></tr>
         </thead>
         <tbody>
           {rows.map((j) => {
@@ -46,11 +46,6 @@ export default async function JurisdictionsPage() {
                 <td>{hasProc.has(j.id) ? "Yes" : <span className="muted">Not yet</span>}</td>
                 <td>{last ? last : <span className="muted">Not loaded</span>}</td>
                 <td>{count(people, j.id) || <span className="muted">0</span>}</td>
-                <td>
-                  <form action={setFollowed.bind(null, !j.followed, { id: j.id })}>
-                    <button type="submit" className="link">{j.followed ? "Stop following" : "Follow"}</button>
-                  </form>
-                </td>
               </tr>
             );
           })}
@@ -63,24 +58,12 @@ export default async function JurisdictionsPage() {
     <>
       <PageTitle href="/jurisdictions">Jurisdictions</PageTitle>
       <p className="muted">St. Charles County in depth, plus St. Louis, Jefferson and Franklin County cities whose meetings are collected automatically. Click one for its rezoning process, dates and contacts.</p>
+      <h2>Which jurisdictions to follow</h2>
       <p className="small">
-        Stop following a jurisdiction to leave it out of the calendar, meetings, rezonings, votes, alerts, directory, progress and the weekly email;
-        its meetings stop being collected and its agendas and minutes stop being read. Nothing is deleted, and following it again picks back up.
+        Untick a jurisdiction to leave it out of the calendar, meetings, rezonings, votes, alerts, directory, progress and the weekly email;
+        its meetings stop being collected and its agendas and minutes stop being read. Nothing is deleted, and ticking it again picks back up.
       </p>
-      <div className="links small">
-        {counties.map((c) => {
-          const n = sorted.filter((j) => j.county === c);
-          const on = n.filter((j) => j.followed).length;
-          return (
-            <span key={c}>
-              {c} County ({on} of {n.length}):{" "}
-              {on < n.length && <form action={setFollowed.bind(null, true, { county: c })} style={{ display: "inline" }}><button type="submit" className="link">follow all</button></form>}
-              {on < n.length && on > 0 && " · "}
-              {on > 0 && <form action={setFollowed.bind(null, false, { county: c })} style={{ display: "inline" }}><button type="submit" className="link">stop all</button></form>}
-            </span>
-          );
-        })}
-      </div>
+      <FollowPicker jurisdictions={sorted.map(({ id, name, county, followed }) => ({ id, name, county, followed }))} counties={counties} />
       <h2>Following ({followed.length})</h2>
       {followed.length ? table(followed) : <div className="card empty">Not following any jurisdictions.</div>}
       {off.length > 0 && <>

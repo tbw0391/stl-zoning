@@ -350,3 +350,11 @@ ul.plain { list-style: none; margin: 0; padding: 0; display: flex; flex-directio
 .votes { display: flex; flex-direction: column; gap: 10px; }
 .vote .small { margin-top: 4px; }
 ul.roll { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .88rem; }
+
+/* Jurisdiction follow checklist (/jurisdictions) */
+.follow-picker fieldset { border: 0; padding: 0; margin: 0 0 14px; }
+.follow-picker legend { padding: 0; margin-bottom: 6px; }
+.follow-picker label { display: flex; align-items: center; gap: 8px; font-size: .92rem; cursor: pointer; }
+.follow-picker input[type=checkbox] { width: 16px; height: 16px; accent-color: var(--accent); flex: none; }
+.follow-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 6px 16px; padding-left: 24px; }
+.follow-actions { display: flex; align-items: center; gap: 14px; border-top: 1px solid var(--border); padding-top: 12px; }
