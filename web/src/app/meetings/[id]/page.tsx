@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { fmtDate, fmtTime, shortName } from "@/lib/format";
+import { AgendaRequest } from "../AgendaRequest";
 import { AgendaItem, AgendaItems, BODY_LABEL, SummaryItem, SummaryItems, SummaryText } from "@/components/MeetingSummary";
 
 export const dynamic = "force-dynamic";
@@ -33,6 +34,11 @@ export default async function MeetingPage({ params }: { params: Promise<{ id: st
           {m.packet_url && <a href={m.packet_url} target="_blank" rel="noreferrer">Full packet (staff reports, plans) ↗</a>}
           {m.video_url && <a href={m.video_url} target="_blank" rel="noreferrer">Watch the recording ↗</a>}
         </p>
+      )}
+
+      <AgendaRequest m={m} />
+      {m.agenda_checked_on && !m.agenda_items && m.agenda_url && (
+        <p className="small muted">The agenda reader couldn&apos;t read this agenda; open the posted agenda instead.</p>
       )}
 
       {agenda.length > 0 && items.length === 0 && (

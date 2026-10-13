@@ -39,3 +39,23 @@ export async function updateMeeting(id: number, oldAgendaUrl: string | null, fd:
   revalidatePath("/", "layout");
   redirect(`/meetings/${id}`);
 }
+
+// Ask for an older agenda to be read (the reader skips agendas past its 45-day window). It waits for approval on
+// /agenda-requests, since each read is a paid API call; the requester is emailed when it's done.
+export async function requestAgendaRead(id: number, fd: FormData) {
+  const email = text(fd, "email");
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+  const supabase = await createClient();
+  const { error } = await supabase.from("meetings")
+    .update({ agenda_requested_at: new Date().toISOString(), agenda_requested_by: email, agenda_request_status: "pending", agenda_request_notified_at: null })
+    .eq("id", id).is("agenda_checked_on", null);
+  if (error) throw new Error(error.message);
+  revalidatePath("/", "layout");
+}
+
+export async function decideAgendaRequest(id: number, status: "approved" | "declined") {
+  const supabase = await createClient();
+  const { error } = await supabase.from("meetings").update({ agenda_request_status: status }).eq("id", id).eq("agenda_request_status", "pending");
+  if (error) throw new Error(error.message);
+  revalidatePath("/", "layout");
+}

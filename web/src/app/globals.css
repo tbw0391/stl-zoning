@@ -339,3 +339,5 @@ ul.plain { list-style: none; margin: 0; padding: 0; display: flex; flex-directio
 .watch-form label.check input { width: auto; }
 .watch-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 10px; }
 @media (max-width: 640px) { .watch-grid { grid-template-columns: 1fr; } .watch-head { flex-direction: column; } }
+.agenda-request { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin-top: 10px; }
+.agenda-request input { flex: 1 1 180px; min-width: 0; max-width: 260px; }

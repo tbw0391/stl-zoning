@@ -1,9 +1,12 @@
 // Reads posted agendas with Claude and stores the land-use items (rezonings, plats, site plans, ...) in
-// meetings.agenda_items. Picks up meetings that have an agenda_url but no agenda_checked_on, newest first,
+// meetings.agenda_items. Picks up meetings that have an agenda_url but no agenda_checked_on, newest first
+// (agendas older than LOOKBACK_DAYS only when someone requests one on the site and it's approved, to keep API
+// costs down; the requester is emailed when it's read, once RESEND_API_KEY and DIGEST_FROM are set),
 // a batch per run; pg_cron runs it hourly so the backlog clears and new agendas are read within the hour.
 // Never touches meetings already checked (including the hand-entered ones).
 //
-// Secrets: ANTHROPIC_API_KEY. Requests need the x-digest-token header (shared cron token in public.app_settings).
+// Secrets: ANTHROPIC_API_KEY; RESEND_API_KEY + DIGEST_FROM (optional, for request emails); SITE_URL (optional).
+// Requests need the x-digest-token header (shared cron token in public.app_settings).
 //   ?limit=N   meetings per run (default 12)      ?id=N   one meeting (re-reads even if already checked)
 //   ?geocode=1 locate item addresses on already-read agendas (no Claude calls)
 // Deployed with verify_jwt off.
@@ -18,6 +21,7 @@ const LOOKBACK_DAYS = 45; // older agendas aren't worth reading on the first pas
 // into the agenda file; the agenda itself is at the front, so oversized files are cut to their first pages.
 const MAX_PDF_BYTES = 23 * 1024 * 1024;
 const FRONT_PAGES = 25;
+const SITE = (Deno.env.get("SITE_URL") ?? "https://stl-zoning.vercel.app").replace(/\/$/, "");
 const UA = { "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36" };
 
 const SYSTEM = `You read municipal Planning & Zoning and city council / board of aldermen agendas in the St. Louis, Missouri area for a homebuilder's land-entitlement team.
@@ -134,6 +138,25 @@ async function agendaContent(url: string): Promise<Record<string, unknown>> {
   return { type: "text", text: `<agenda>\n${text}\n</agenda>` };
 }
 
+// Tells the person who requested an older agenda that it's been read. Skipped (and retried next run) until email is set up.
+// deno-lint-ignore no-explicit-any
+async function notifyRequester(db: any, m: any, items: number | null) {
+  const key = Deno.env.get("RESEND_API_KEY"), from = Deno.env.get("DIGEST_FROM");
+  if (!key || !from || !m.agenda_requested_by || m.agenda_request_notified_at) return;
+  const what = `${m.jurisdictions?.name ?? m.jurisdiction_id} ${m.body === "planning_zoning" ? "Planning & Zoning" : "council / aldermen"} agenda for ${m.event_date}`;
+  const result = items == null ? "couldn't be read automatically (open the posted agenda instead)"
+    : items === 0 ? "has been read: it has no land-use items" : `has been read: ${items} land-use item${items === 1 ? "" : "s"}`;
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      from, to: [m.agenda_requested_by], subject: `Agenda ready: ${what}`,
+      html: `<p>The ${what} you requested ${result}.</p><p><a href="${SITE}/meetings/${m.id}">Open it in the Entitlement Tracker</a></p>`,
+    }),
+  });
+  if (res.ok) await db.from("meetings").update({ agenda_request_notified_at: new Date().toISOString() }).eq("id", m.id);
+}
+
 Deno.serve(async (req) => {
   const url = new URL(req.url);
   const db = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
@@ -164,9 +187,18 @@ Deno.serve(async (req) => {
 
   const today = new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(new Date());
   const since = new Date(Date.now() - LOOKBACK_DAYS * 864e5).toISOString().slice(0, 10);
-  let q = db.from("meetings").select("id, jurisdiction_id, body, event_date, agenda_url, jurisdictions(name)").not("agenda_url", "is", null);
+  // Read agendas whose requester hasn't been emailed yet (email wasn't set up, or sending failed).
+  const { data: unsent } = await db.from("meetings").select("id, jurisdiction_id, body, event_date, agenda_items, agenda_requested_by, jurisdictions(name)")
+    .eq("agenda_request_status", "approved").not("agenda_checked_on", "is", null).is("agenda_request_notified_at", null).limit(20);
+  for (const m of unsent ?? []) await notifyRequester(db, m, Array.isArray(m.agenda_items) ? m.agenda_items.length : null);
+
+  let q = db.from("meetings").select("id, jurisdiction_id, body, event_date, agenda_url, agenda_request_status, agenda_requested_by, agenda_request_notified_at, jurisdictions(name)")
+    .not("agenda_url", "is", null);
   const one = url.searchParams.get("id");
-  q = one ? q.eq("id", Number(one)) : q.is("agenda_checked_on", null).gte("event_date", since)
+  // Older agendas are read only when a request on the site has been approved; those go first.
+  q = one ? q.eq("id", Number(one)) : q.is("agenda_checked_on", null)
+    .or(`event_date.gte.${since},agenda_request_status.eq.approved`)
+    .order("agenda_requested_at", { ascending: false, nullsFirst: false })
     .order("event_date", { ascending: false }).limit(Number(url.searchParams.get("limit") ?? 12));
   const { data: meetings, error } = await q;
   if (error) return new Response(error.message, { status: 500 });
@@ -199,6 +231,7 @@ Deno.serve(async (req) => {
       const { error: ue } = await db.from("meetings")
         .update({ agenda_items: items, agenda_checked_on: today, agenda_read_at: new Date().toISOString() }).eq("id", m.id);
       if (ue) throw new Error(ue.message);
+      if (m.agenda_request_status === "approved") await notifyRequester(db, m, items.length);
       return { id: m.id, jurisdiction_id: m.jurisdiction_id, event_date: m.event_date, items: items.length,
         input_tokens: response.usage.input_tokens, output_tokens: response.usage.output_tokens };
     } catch (e) {
@@ -210,6 +243,7 @@ Deno.serve(async (req) => {
       // Agenda can't be read (bad link, scanned image, ...): mark checked so it isn't retried forever, but leave
       // agenda_items empty (null) so the site doesn't claim the agenda had no land-use items.
       await db.from("meetings").update({ agenda_checked_on: today }).eq("id", m.id);
+      if (m.agenda_request_status === "approved") await notifyRequester(db, m, null);
       return { id: m.id, error: String((e as Error).message ?? e).slice(0, 300) };
     }
   };
