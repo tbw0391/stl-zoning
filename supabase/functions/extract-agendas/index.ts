@@ -229,7 +229,7 @@ async function sendAlerts(db: any, toOverride?: string | null) {
 
   const [{ data: watches }, { data: projects }, { data: js }] = await Promise.all([
     db.from("watches").select("*"), db.from("projects").select("id, name, lat, lng"),
-    db.from("jurisdictions").select("id, name, county, governing_body"),
+    db.from("jurisdictions").select("id, name, county, governing_body, followed"),
   ]);
   const pmap = new Map(((projects ?? []) as Row[]).map((p) => [p.id, p]));
   const jmap = new Map(((js ?? []) as Row[]).map((j) => [j.id, j]));
@@ -238,6 +238,7 @@ async function sendAlerts(db: any, toOverride?: string | null) {
   type Hit = { it: Row; why: string[]; removed: boolean };
   const sections: { m: Row; revised: boolean; hits: Hit[] }[] = [];
   for (const m of pending) {
+    if (jmap.get(m.jurisdiction_id)?.followed === false) continue;
     if (m.event_date < oldest) continue;
     const j = jmap.get(m.jurisdiction_id) ?? {};
     const items = (Array.isArray(m.agenda_items) ? m.agenda_items : []) as Row[];
@@ -353,10 +354,12 @@ Deno.serve(async (req) => {
     .eq("agenda_request_status", "approved").not("agenda_checked_on", "is", null).is("agenda_request_notified_at", null).limit(20);
   for (const m of unsent ?? []) await notifyRequester(db, m, Array.isArray(m.agenda_items) ? m.agenda_items.length : null);
 
-  const FIELDS = "id, jurisdiction_id, body, event_date, agenda_url, agenda_items, agenda_hash, agenda_request_status, agenda_requested_by, agenda_request_notified_at, jurisdictions(name)";
+  const FIELDS = "id, jurisdiction_id, body, event_date, agenda_url, agenda_items, agenda_hash, agenda_request_status, agenda_requested_by, agenda_request_notified_at, jurisdictions!inner(name)";
   const recheck = !!url.searchParams.get("recheck");
   let q = db.from("meetings").select(FIELDS).not("agenda_url", "is", null);
   const one = url.searchParams.get("id");
+  // Unfollowed jurisdictions are skipped unless one meeting is named.
+  if (!one) q = q.eq("jurisdictions.followed", true);
   if (recheck) {
     // Upcoming agendas already read, least recently re-fetched first.
     q = q.not("agenda_checked_on", "is", null).gte("event_date", today)

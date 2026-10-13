@@ -117,9 +117,10 @@ Deno.serve(async (req) => {
 
   const today = new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(new Date());
   const since = new Date(Date.now() - MINUTES_LOOKBACK_DAYS * 864e5).toISOString().slice(0, 10);
-  let q = db.from("meetings").select("id, jurisdiction_id, body, event_date, minutes_url, agenda_items, jurisdictions(name)")
+  let q = db.from("meetings").select("id, jurisdiction_id, body, event_date, minutes_url, agenda_items, jurisdictions!inner(name)")
     .not("minutes_url", "is", null);
   const one = url.searchParams.get("id");
+  if (!one) q = q.eq("jurisdictions.followed", true);
   q = one ? q.eq("id", Number(one)) : q.is("minutes_checked_on", null).gte("event_date", since).lt("event_date", today)
     .not("agenda_items", "is", null).neq("agenda_items", "[]")
     .order("event_date", { ascending: false }).limit(Number(url.searchParams.get("limit") ?? 8));

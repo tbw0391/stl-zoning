@@ -64,14 +64,17 @@ Deno.serve(async (req) => {
   const horizon = addDays(today, 14);
   const weekAgo = new Date(Date.now() - 7 * 864e5).toISOString();
 
-  const [{ data: js }, { data: meetings }, { data: tasks }, { data: changes }, { data: projects }] = await Promise.all([
-    db.from("jurisdictions").select("id, name, governing_body"),
-    db.from("meetings").select("*").gte("event_date", today).lte("event_date", horizon).neq("status", "cancelled")
+  const [{ data: js }, { data: meetings }, { data: tasks }, { data: changes }, { data: projects }, { data: sources }] = await Promise.all([
+    db.from("jurisdictions").select("id, name, governing_body, followed"),
+    db.from("meetings").select("*, jurisdictions!inner(followed)").eq("jurisdictions.followed", true).gte("event_date", today).lte("event_date", horizon).neq("status", "cancelled")
       .order("event_date").order("event_time"),
     db.from("tasks").select("id, title, assigned_to, due_date, project_id").is("done_at", null)
       .not("due_date", "is", null).lte("due_date", horizon).order("due_date"),
     db.from("change_log").select("*").gte("at", weekAgo).order("at"),
     db.from("projects").select("id, name"),
+    // Same rule as needsReview in web/src/app/sources/review.ts; check-sources runs an hour before this.
+    db.from("source_watches").select("jurisdiction_id, url, label, last_status, last_changed_at, change_summary, reviewed_at, jurisdictions!inner(followed)")
+      .eq("jurisdictions.followed", true).not("last_changed_at", "is", null).order("jurisdiction_id"),
   ]);
   const jmap = new Map((js ?? []).map((j: Row) => [j.id, j]));
   const pmap = new Map((projects ?? []).map((p: Row) => [p.id, p.name]));
@@ -103,6 +106,7 @@ Deno.serve(async (req) => {
     const when = fmtDate(new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(new Date(c.at)));
     if (c.table_name === "meetings") {
       const r = c.action === "delete" ? o : n;
+      if (jmap.get(r.jurisdiction_id)?.followed === false) continue;
       const what = r.event_type === "submittal_deadline" ? "submittal deadline" : r.body === "planning_zoning" ? "P&Z meeting" : gov(r.jurisdiction_id);
       if (c.action === "insert") { newDates.set(r.jurisdiction_id, (newDates.get(r.jurisdiction_id) ?? 0) + 1); continue; }
       if (c.action === "delete") { changeLines.push(li(when, `${pill("REMOVED", C.orange)} ${place(r.jurisdiction_id)} ${esc(what)} on ${fmtDate(r.event_date)}`)); continue; }
@@ -128,6 +132,15 @@ Deno.serve(async (req) => {
     changeLines.unshift(li("This week", `${pill("NEW DATES", C.teal)} ${count} date${count === 1 ? "" : "s"} added for ${link(`/jurisdictions/${jid}`, place(jid))}`));
   }
 
+  // ---- Schedule sources that changed and nobody has marked reviewed on /sources
+  const toReview = ((sources ?? []) as Row[]).filter((w) => !w.reviewed_at || w.reviewed_at < w.last_changed_at);
+  const sourceLines = toReview.map((w) => {
+    const when = fmtDate(new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(new Date(w.last_changed_at)));
+    const status = w.last_status && w.last_status !== 200 ? ` ${pill(`HTTP ${w.last_status}`, C.orange)}` : "";
+    return li(when, `${place(w.jurisdiction_id)}: <a href="${esc(w.url)}" style="color:${C.teal}">${esc(w.label ?? "source")}</a>${status}` +
+      (w.change_summary ? ` <span style="color:${C.muted}">— ${esc(w.change_summary)}</span>` : ""));
+  });
+
   const subject = `Entitlement dates: week of ${fmtDate(today)}` +
     (deadlines.length ? ` · ${deadlines.length} submittal deadline${deadlines.length === 1 ? "" : "s"}` : "");
 
@@ -145,6 +158,8 @@ ${section("Meetings — next 2 weeks", list(hearings.map(meetingLine), "No meeti
 ${overdue.length ? section("Overdue tasks", list(overdue.map(taskLine), "")) : ""}
 ${section("Tasks due — next 2 weeks", list(dueSoon.map(taskLine), "No tasks due."))}
 ${section("What changed this week", list(changeLines, "No changes this week."))}
+${sourceLines.length ? section(`Schedule sources to review (${sourceLines.length})`, list(sourceLines, "") +
+  `<p style="margin:8px 0 0;font-size:13px">${link("/sources", "Review them on the Sources page")}</p>`) : ""}
 <tr><td style="padding:24px">
   <a href="${SITE}/" style="display:inline-block;background:${C.teal};color:#fff;text-decoration:none;font-weight:700;padding:10px 18px;border-radius:7px;font-size:14px">Open the calendar</a>
   <a href="${SITE}/subscribe" style="margin-left:14px;color:${C.teal};font-size:13px">Add these dates to your calendar</a>

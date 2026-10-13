@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { STATUS_LABEL, todayCentral } from "@/lib/format";
 import PageTitle from "@/components/PageTitle";
+import { setFollowed } from "./actions";
 
 export const dynamic = "force-dynamic";
 
@@ -9,7 +10,7 @@ export default async function JurisdictionsPage() {
   const supabase = await createClient();
   const today = todayCentral();
   const [{ data: js }, { data: procs }, { data: meetings }, { data: people }] = await Promise.all([
-    supabase.from("jurisdictions").select("id, name, kind, governing_body, research_status").order("name"),
+    supabase.from("jurisdictions").select("id, name, kind, county, governing_body, research_status, followed").order("name"),
     supabase.from("rezoning_processes").select("jurisdiction_id"),
     supabase.from("meetings").select("jurisdiction_id, event_date").gte("event_date", today),
     supabase.from("people").select("jurisdiction_id").eq("active", true),
@@ -22,33 +23,70 @@ export default async function JurisdictionsPage() {
   // County first, then cities, then towns and villages.
   const order = { county: 0, city: 1, town: 2, village: 3 } as Record<string, number>;
   const sorted = [...(js ?? [])].sort((a, b) => order[a.kind] - order[b.kind] || a.name.localeCompare(b.name));
+  const followed = sorted.filter((j) => j.followed);
+  const off = sorted.filter((j) => !j.followed);
+  const counties = [...new Set(sorted.map((j) => j.county))].sort((a, b) =>
+    a === "St. Charles" ? -1 : b === "St. Charles" ? 1 : a.localeCompare(b));
+
+  const table = (rows: typeof sorted) => (
+    <div className="table-wrap" style={{ marginTop: 8 }}>
+      <table>
+        <thead>
+          <tr><th>Jurisdiction</th><th>County</th><th>Governing body</th><th>Research</th><th>Rezoning process</th><th>Schedule through</th><th>People</th><th></th></tr>
+        </thead>
+        <tbody>
+          {rows.map((j) => {
+            const last = lastDate(j.id);
+            return (
+              <tr key={j.id} className={j.followed ? undefined : "muted"}>
+                <td><Link href={`/jurisdictions/${j.id}`}>{j.name}</Link></td>
+                <td>{j.county}</td>
+                <td>{j.governing_body ?? <span className="muted">—</span>}</td>
+                <td><span className={`tag ${j.research_status}`}>{STATUS_LABEL[j.research_status] ?? j.research_status}</span></td>
+                <td>{hasProc.has(j.id) ? "Yes" : <span className="muted">Not yet</span>}</td>
+                <td>{last ? last : <span className="muted">Not loaded</span>}</td>
+                <td>{count(people, j.id) || <span className="muted">0</span>}</td>
+                <td>
+                  <form action={setFollowed.bind(null, !j.followed, { id: j.id })}>
+                    <button type="submit" className="link">{j.followed ? "Stop following" : "Follow"}</button>
+                  </form>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
 
   return (
     <>
       <PageTitle href="/jurisdictions">Jurisdictions</PageTitle>
       <p className="muted">St. Charles County in depth, plus St. Louis, Jefferson and Franklin County cities whose meetings are collected automatically. Click one for its rezoning process, dates and contacts.</p>
-      <div className="table-wrap" style={{ marginTop: 16 }}>
-        <table>
-          <thead>
-            <tr><th>Jurisdiction</th><th>Governing body</th><th>Research</th><th>Rezoning process</th><th>Schedule through</th><th>People</th></tr>
-          </thead>
-          <tbody>
-            {sorted.map((j) => {
-              const last = lastDate(j.id);
-              return (
-                <tr key={j.id}>
-                  <td><Link href={`/jurisdictions/${j.id}`}>{j.name}</Link></td>
-                  <td>{j.governing_body ?? <span className="muted">—</span>}</td>
-                  <td><span className={`tag ${j.research_status}`}>{STATUS_LABEL[j.research_status] ?? j.research_status}</span></td>
-                  <td>{hasProc.has(j.id) ? "Yes" : <span className="muted">Not yet</span>}</td>
-                  <td>{last ? last : <span className="muted">Not loaded</span>}</td>
-                  <td>{count(people, j.id) || <span className="muted">0</span>}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+      <p className="small">
+        Stop following a jurisdiction to leave it out of the calendar, meetings, rezonings, votes, alerts, directory, progress and the weekly email;
+        its meetings stop being collected and its agendas and minutes stop being read. Nothing is deleted, and following it again picks back up.
+      </p>
+      <div className="links small">
+        {counties.map((c) => {
+          const n = sorted.filter((j) => j.county === c);
+          const on = n.filter((j) => j.followed).length;
+          return (
+            <span key={c}>
+              {c} County ({on} of {n.length}):{" "}
+              {on < n.length && <form action={setFollowed.bind(null, true, { county: c })} style={{ display: "inline" }}><button type="submit" className="link">follow all</button></form>}
+              {on < n.length && on > 0 && " · "}
+              {on > 0 && <form action={setFollowed.bind(null, false, { county: c })} style={{ display: "inline" }}><button type="submit" className="link">stop all</button></form>}
+            </span>
+          );
+        })}
       </div>
+      <h2>Following ({followed.length})</h2>
+      {followed.length ? table(followed) : <div className="card empty">Not following any jurisdictions.</div>}
+      {off.length > 0 && <>
+        <h2>Not following ({off.length})</h2>
+        {table(off)}
+      </>}
     </>
   );
 }

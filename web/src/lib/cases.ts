@@ -2,6 +2,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { addDays, todayCentral } from "@/lib/format";
 import { milesBetween } from "@/lib/geocode";
+import { skipUnfollowed, unfollowedIds } from "@/lib/followed";
 
 export type Case = {
   meeting_id: number; idx: number; jurisdiction_id: string; jurisdiction_name: string; county: string;
@@ -27,8 +28,8 @@ export const caseTypes = (c: Case) =>
   c.type ? [c.type] : /rezon|zoning|PUD|planned unit|special use|conditional use|annex|\bRZ[\s-]?\d|\b[A-Z]{1,3}-?\d?[A-Z]? to [A-Z]{1,3}-?\d/i.test(`${c.item} ${c.request}`) ? ["rezoning"] : ["other"];
 
 export async function loadCases(supabase: SupabaseClient) {
-  const { data } = await supabase.from("land_use_cases").select("*")
-    .gte("event_date", addDays(todayCentral(), -LOOKBACK_DAYS)).order("event_date", { ascending: false });
+  const { data } = await skipUnfollowed(supabase.from("land_use_cases").select("*")
+    .gte("event_date", addDays(todayCentral(), -LOOKBACK_DAYS)).order("event_date", { ascending: false }), await unfollowedIds(supabase));
   return (data ?? []) as Case[];
 }
 
@@ -58,7 +59,7 @@ export async function newAlertCount(supabase: SupabaseClient) {
   if (!watches?.length) return 0;
   const oldest = watches.reduce((m, w) => (w.last_seen_at < m ? w.last_seen_at : m), watches[0].last_seen_at);
   const [{ data: cases }, { data: projects }] = await Promise.all([
-    supabase.from("land_use_cases").select("*").gt("agenda_read_at", oldest),
+    skipUnfollowed(supabase.from("land_use_cases").select("*").gt("agenda_read_at", oldest), await unfollowedIds(supabase)),
     supabase.from("projects").select("id, lat, lng"),
   ]);
   const pmap = new Map((projects ?? []).map((p) => [p.id, p as Place]));

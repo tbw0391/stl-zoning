@@ -50,9 +50,9 @@ Deno.serve(async (req) => {
   const { data: tok } = await db.from("app_settings").select("value").eq("key", "digest_token").single();
   if (!tok || req.headers.get("x-digest-token") !== tok.value) return new Response("Not found", { status: 404 });
 
-  let q = db.from("source_watches").select("*").order("id");
+  let q = db.from("source_watches").select("*, jurisdictions!inner(followed)").order("id");
   const one = url.searchParams.get("id");
-  if (one) q = q.eq("id", Number(one));
+  q = one ? q.eq("id", Number(one)) : q.eq("jurisdictions.followed", true);
   const { data: watches, error } = await q;
   if (error) return new Response(error.message, { status: 500 });
 

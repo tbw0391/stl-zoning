@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight, faList, faCalendarDays, faCalendarWeek, faRss } from "@fortawesome/free-solid-svg-icons";
 import { createClient } from "@/lib/supabase/server";
+import { skipUnfollowed, unfollowedIds } from "@/lib/followed";
 import { addDays, addMonths, fmtDate, fmtMonth, fmtTime, shortName, startOfWeek, todayCentral } from "@/lib/format";
 import PageTitle from "@/components/PageTitle";
 
@@ -56,13 +57,14 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
   }
 
   const supabase = await createClient();
+  const off = await unfollowedIds(supabase);
   const showTasks = !sp.j && (!sp.type || sp.type === "tasks");
   const showMeetings = sp.type !== "tasks";
   const [{ data: jurisdictions }, { data: meetings }, { data: tasks }] = await Promise.all([
     supabase.from("jurisdictions").select("id, name, governing_body, county").order("name"),
     (() => {
       let q = supabase.from("meetings").select("*").gte("event_date", start).lte("event_date", end).order("event_date").order("event_time");
-      if (sp.j) q = q.eq("jurisdiction_id", sp.j);
+      q = sp.j ? q.eq("jurisdiction_id", sp.j) : skipUnfollowed(q, off);
       if (sp.type === "deadlines") q = q.eq("event_type", "submittal_deadline");
       if (sp.type === "pz") q = q.eq("body", "planning_zoning").eq("event_type", "meeting");
       if (sp.type === "gov") q = q.eq("body", "governing_body");
@@ -86,7 +88,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
     : { data: [] as { id: number; event_date: string }[] };
   const linkedDate = new Map((linked ?? []).map((m) => [m.id, m.event_date]));
 
-  const { data: covered } = await supabase.from("meetings").select("jurisdiction_id").gte("event_date", today);
+  const { data: covered } = await skipUnfollowed(supabase.from("meetings").select("jurisdiction_id").gte("event_date", today), off);
   const coveredIds = [...new Set((covered ?? []).map((c) => c.jurisdiction_id))];
 
   const coveredByCounty = Object.entries(

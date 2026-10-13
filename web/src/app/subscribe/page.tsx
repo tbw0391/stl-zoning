@@ -16,7 +16,7 @@ export default async function SubscribePage({ searchParams }: { searchParams: Pr
 
   const supabase = await createClient();
   const [{ data: js }, { data: covered }] = await Promise.all([
-    supabase.from("jurisdictions").select("id, name").order("name"),
+    supabase.from("jurisdictions").select("id, name").eq("followed", true).order("name"),
     supabase.from("meetings").select("jurisdiction_id").gte("event_date", todayCentral()),
   ]);
   const coveredIds = new Set((covered ?? []).map((c) => c.jurisdiction_id));

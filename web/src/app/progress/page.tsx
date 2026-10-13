@@ -26,9 +26,9 @@ type Row = { jurisdiction_id: string; task: string; status: string; note: string
 export default async function ProgressPage() {
   const supabase = await createClient();
   const [{ data: js }, { data: rows }, { data: watches }] = await Promise.all([
-    supabase.from("jurisdictions").select("id, name, kind, county"),
+    supabase.from("jurisdictions").select("id, name, kind, county").eq("followed", true),
     supabase.from("jurisdiction_progress").select("jurisdiction_id, task, status, note, updated_on"),
-    supabase.from("source_watches").select("last_changed_at, reviewed_at"),
+    supabase.from("source_watches").select("last_changed_at, reviewed_at, jurisdictions!inner(followed)").eq("jurisdictions.followed", true),
   ]);
   const toReview = (watches ?? []).filter(needsReview).length;
 

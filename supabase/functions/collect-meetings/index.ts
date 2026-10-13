@@ -198,7 +198,7 @@ Deno.serve(async (req) => {
 
   let q = db.from("jurisdictions").select("id, collector, collector_ref").not("collector", "is", null);
   const only = url.searchParams.get("j");
-  if (only) q = q.eq("id", only);
+  q = only ? q.eq("id", only) : q.eq("followed", true);
   const { data: js, error } = await q;
   if (error) return new Response(error.message, { status: 500 });
 

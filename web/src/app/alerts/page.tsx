@@ -15,7 +15,7 @@ export default async function AlertsPage() {
   const [{ data: watchRows }, { data: projects }, { data: jurisdictions }, cases] = await Promise.all([
     supabase.from("watches").select("*").order("created_at"),
     supabase.from("projects").select("id, name, lat, lng").order("name"),
-    supabase.from("jurisdictions").select("id, name, county").order("name"),
+    supabase.from("jurisdictions").select("id, name, county").eq("followed", true).order("name"),
     loadCases(supabase),
   ]);
   const watches = (watchRows ?? []) as Watch[];

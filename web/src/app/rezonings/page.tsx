@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { skipUnfollowed, unfollowedIds } from "@/lib/followed";
 import { addDays, fmtDate, shortName, todayCentral } from "@/lib/format";
 import { AgendaItem, BODY_LABEL, ITEM_TYPE_LABEL } from "@/components/MeetingSummary";
 import PageTitle from "@/components/PageTitle";
@@ -33,8 +34,8 @@ export default async function RezoningsPage({ searchParams }: { searchParams: Pr
   const today = todayCentral();
   const supabase = await createClient();
 
-  const { data } = await supabase.from("meetings")
-    .select("id, jurisdiction_id, body, event_date, agenda_url, packet_url, agenda_items, votes, jurisdictions(name, county)")
+  const { data } = await skipUnfollowed(supabase.from("meetings")
+    .select("id, jurisdiction_id, body, event_date, agenda_url, packet_url, agenda_items, votes, jurisdictions(name, county)"), await unfollowedIds(supabase))
     .not("agenda_items", "is", null)
     .gte("event_date", addDays(today, RANGES[range].from)).lte("event_date", addDays(today, RANGES[range].to))
     .order("event_date", { ascending: range === "upcoming" });

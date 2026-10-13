@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { ROLE_LABEL, STATUS_LABEL, fmtDate, fmtTime, todayCentral } from "@/lib/format";
 import ProfileLinks from "@/components/ProfileLinks";
+import { setFollowed } from "../actions";
 
 export const dynamic = "force-dynamic";
 
@@ -61,7 +62,16 @@ export default async function JurisdictionPage({ params }: { params: Promise<{ i
       <h1>{j.name}</h1>
       <p className="muted">
         {j.governing_body ?? "Governing body not recorded"} · <span className={`tag ${j.research_status}`}>{STATUS_LABEL[j.research_status]}</span>
+        {" · "}
+        <form action={setFollowed.bind(null, !j.followed, { id: j.id })} style={{ display: "inline" }}>
+          <button type="submit" className="link">{j.followed ? "Stop following" : "Follow"}</button>
+        </form>
       </p>
+      {!j.followed && (
+        <p className="notice" style={{ marginTop: 8 }}>
+          Not following: this jurisdiction is left out of the calendar, rezonings, alerts and the weekly email, and its meetings and agendas aren&apos;t collected or read.
+        </p>
+      )}
       <div className="links">
         {links.filter(([, url]) => url).map(([label, url]) => (
           <a key={label} href={url!} target="_blank" rel="noreferrer">{label} ↗</a>
