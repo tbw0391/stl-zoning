@@ -24,5 +24,7 @@ export async function saveFollowed(fd: FormData) {
     : await supabase.from("jurisdictions").update({ followed: false }).neq("id", "");
   const error = on.error ?? off.error;
   if (error) throw new Error(error.message);
+  // Hides the "pick your jurisdictions" banner on the calendar page.
+  await supabase.from("site_flags").upsert({ key: "followed_reviewed", set_at: new Date().toISOString() });
   revalidatePath("/", "layout");
 }

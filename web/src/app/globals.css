@@ -358,3 +358,4 @@ ul.roll { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wra
 .follow-picker input[type=checkbox] { width: 16px; height: 16px; accent-color: var(--accent); flex: none; }
 .follow-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 6px 16px; padding-left: 24px; }
 .follow-actions { display: flex; align-items: center; gap: 14px; border-top: 1px solid var(--border); padding-top: 12px; }
+.notice.banner { margin: 8px 0 16px; border-left: 4px solid var(--accent); line-height: 1.5; }

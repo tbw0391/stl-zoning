@@ -88,6 +88,8 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
     : { data: [] as { id: number; event_date: string }[] };
   const linkedDate = new Map((linked ?? []).map((m) => [m.id, m.event_date]));
 
+  // Until someone saves the follow checklist once, ask the team to untick the jurisdictions they don't need.
+  const { data: reviewed } = await supabase.from("site_flags").select("key").eq("key", "followed_reviewed").maybeSingle();
   const { data: covered } = await skipUnfollowed(supabase.from("meetings").select("jurisdiction_id").gte("event_date", today), off);
   const coveredIds = [...new Set((covered ?? []).map((c) => c.jurisdiction_id))];
 
@@ -167,6 +169,13 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
   return (
     <>
       <PageTitle href="/">Upcoming dates</PageTitle>
+      {!reviewed && (
+        <div className="notice banner">
+          <strong>First, pick your jurisdictions.</strong> We&apos;re tracking all {(jurisdictions ?? []).length} cities and counties right now. Before we start
+          filling in data for each one, go to <Link href="/jurisdictions">Jurisdictions</Link>, untick the ones you don&apos;t need,
+          and press Save. This message goes away once the list is saved.
+        </div>
+      )}
       <p className="muted coverage">
         Schedules loaded for {coveredIds.length} jurisdictions
         {coveredByCounty.length > 0 && <> ({coveredByCounty.map(([c, n]) => `${c} County ${n}`).join(", ")})</>}.
