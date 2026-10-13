@@ -4,6 +4,8 @@ import { createClient } from "@/lib/supabase/server";
 import { fmtDate, fmtTime, shortName } from "@/lib/format";
 import { AgendaRequest } from "../AgendaRequest";
 import { AgendaItem, AgendaItems, BODY_LABEL, SummaryItem, SummaryItems, SummaryText } from "@/components/MeetingSummary";
+import { VotesList } from "@/components/Votes";
+import { MeetingVotes, MemberVote } from "@/lib/votes";
 
 export const dynamic = "force-dynamic";
 
@@ -11,8 +13,12 @@ export default async function MeetingPage({ params }: { params: Promise<{ id: st
   const id = Number((await params).id);
   if (!Number.isInteger(id)) notFound();
   const supabase = await createClient();
-  const { data: m } = await supabase.from("meetings").select("*, jurisdictions(name)").eq("id", id).maybeSingle();
+  const [{ data: m }, { data: memberRows }] = await Promise.all([
+    supabase.from("meetings").select("*, jurisdictions(name)").eq("id", id).maybeSingle(),
+    supabase.from("member_votes").select("*").eq("meeting_id", id),
+  ]);
   if (!m) notFound();
+  const votes = m.votes as MeetingVotes | null;
   const items = (m.summary_items ?? []) as SummaryItem[];
   const agenda = (m.agenda_items ?? []) as AgendaItem[];
 
@@ -28,10 +34,11 @@ export default async function MeetingPage({ params }: { params: Promise<{ id: st
         {" · "}<Link href={`/meetings/${m.id}/edit`}>Edit</Link>
       </p>
       {m.note && <p className="small">{m.note}</p>}
-      {(m.video_url || m.agenda_url || m.packet_url) && (
+      {(m.video_url || m.agenda_url || m.packet_url || m.minutes_url) && (
         <p className="links">
           {m.agenda_url && <a href={m.agenda_url} target="_blank" rel="noreferrer">Posted agenda ↗</a>}
           {m.packet_url && <a href={m.packet_url} target="_blank" rel="noreferrer">Full packet (staff reports, plans) ↗</a>}
+          {m.minutes_url && <a href={m.minutes_url} target="_blank" rel="noreferrer">Minutes ↗</a>}
           {m.video_url && <a href={m.video_url} target="_blank" rel="noreferrer">Watch the recording ↗</a>}
         </p>
       )}
@@ -47,6 +54,20 @@ export default async function MeetingPage({ params }: { params: Promise<{ id: st
           <AgendaItems items={agenda} />
           {m.agenda_checked_on && <p className="source">Agenda checked {fmtDate(m.agenda_checked_on)}. Cities can add items until the meeting; check the posted agenda.</p>}
         </>
+      )}
+
+      {votes && votes.votes.length > 0 && (
+        <>
+          <h2>Votes</h2>
+          <VotesList votes={votes} members={(memberRows ?? []) as MemberVote[]} jurisdictionId={m.jurisdiction_id} />
+          <p className="source">
+            Read from the <a href={m.minutes_url} target="_blank" rel="noreferrer">posted minutes</a>
+            {m.minutes_read_at && ` on ${fmtDate(m.minutes_read_at.slice(0, 10))}`}. Members are named only where the minutes record who voted which way; check the minutes before relying on a detail.
+          </p>
+        </>
+      )}
+      {votes && votes.votes.length === 0 && (
+        <p className="small muted">The minutes don&apos;t record a vote on this meeting&apos;s land-use items.</p>
       )}
 
       {items.length > 0 && (

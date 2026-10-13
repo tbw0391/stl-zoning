@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { ROLE_LABEL, shortName } from "@/lib/format";
 import PageTitle from "@/components/PageTitle";
 import ProfileLinks from "@/components/ProfileLinks";
+import { memberHref } from "@/lib/votes";
 
 export const dynamic = "force-dynamic";
 
@@ -14,10 +15,12 @@ export default async function DirectoryPage({ searchParams }: { searchParams: Pr
   if (sp.j) q = q.eq("jurisdiction_id", sp.j);
   if (sp.role) q = q.eq("role_group", sp.role);
   if (sp.q) q = q.or(`full_name.ilike.%${sp.q.replace(/[%,()]/g, "")}%,title.ilike.%${sp.q.replace(/[%,()]/g, "")}%`);
-  const [{ data: people }, { data: js }] = await Promise.all([
+  const [{ data: people }, { data: js }, { data: voted }] = await Promise.all([
     q,
     supabase.from("jurisdictions").select("id, name").order("name"),
+    supabase.from("member_votes").select("person_id, member_key").not("person_id", "is", null),
   ]);
+  const voteKey = new Map((voted ?? []).map((v) => [v.person_id, v.member_key]));
   const jname = new Map((js ?? []).map((j) => [j.id, j.name]));
 
   return (
@@ -60,7 +63,10 @@ export default async function DirectoryPage({ searchParams }: { searchParams: Pr
                   <td className="small">{ROLE_LABEL[x.role_group]}</td>
                   <td>{x.email ? <a href={`mailto:${x.email}`}>{x.email}</a> : <span className="muted">—</span>}</td>
                   <td>{x.phone ?? <span className="muted">—</span>}</td>
-                  <td className="small"><Link href={`/directory/${x.id}`}>Edit</Link></td>
+                  <td className="small">
+                    <Link href={`/directory/${x.id}`}>Edit</Link>
+                    {voteKey.has(x.id) && <> · <Link href={memberHref(x.jurisdiction_id, voteKey.get(x.id)!)}>Votes</Link></>}
+                  </td>
                 </tr>
               ))}
             </tbody>

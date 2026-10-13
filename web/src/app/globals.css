@@ -341,3 +341,12 @@ ul.plain { list-style: none; margin: 0; padding: 0; display: flex; flex-directio
 @media (max-width: 640px) { .watch-grid { grid-template-columns: 1fr; } .watch-head { flex-direction: column; } }
 .agenda-request { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin-top: 10px; }
 .agenda-request input { flex: 1 1 180px; min-width: 0; max-width: 260px; }
+
+/* Votes read from minutes */
+.tag[class*="result-"], .tag[class*="vote-"] { background: var(--border); color: var(--muted); }
+.tag.result-approved, .tag.result-approved_with_conditions, .tag.result-recommended_approval, .tag.vote-aye { background: var(--ok-soft); color: var(--ok); }
+.tag.result-denied, .tag.result-recommended_denial, .tag.vote-nay { background: var(--due-soft); color: var(--due); }
+.tag.result-tabled, .tag.result-continued, .tag.vote-abstain, .tag.vote-recused { background: var(--warn-soft); color: var(--warn); }
+.votes { display: flex; flex-direction: column; gap: 10px; }
+.vote .small { margin-top: 4px; }
+ul.roll { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .88rem; }

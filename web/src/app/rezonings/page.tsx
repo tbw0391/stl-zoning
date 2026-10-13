@@ -3,6 +3,8 @@ import { createClient } from "@/lib/supabase/server";
 import { addDays, fmtDate, shortName, todayCentral } from "@/lib/format";
 import { AgendaItem, BODY_LABEL, ITEM_TYPE_LABEL } from "@/components/MeetingSummary";
 import PageTitle from "@/components/PageTitle";
+import { ResultTag } from "@/components/Votes";
+import { MeetingVotes, tally, voteFor } from "@/lib/votes";
 
 export const dynamic = "force-dynamic";
 
@@ -21,7 +23,7 @@ const RANGES: Record<string, { label: string; from: number; to: number }> = {
 
 type Row = {
   id: number; jurisdiction_id: string; body: string; event_date: string; agenda_url: string | null; packet_url: string | null;
-  agenda_items: AgendaItem[]; jurisdictions: { name: string; county: string } | null;
+  agenda_items: AgendaItem[]; votes: MeetingVotes | null; jurisdictions: { name: string; county: string } | null;
 };
 
 export default async function RezoningsPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
@@ -32,7 +34,7 @@ export default async function RezoningsPage({ searchParams }: { searchParams: Pr
   const supabase = await createClient();
 
   const { data } = await supabase.from("meetings")
-    .select("id, jurisdiction_id, body, event_date, agenda_url, packet_url, agenda_items, jurisdictions(name, county)")
+    .select("id, jurisdiction_id, body, event_date, agenda_url, packet_url, agenda_items, votes, jurisdictions(name, county)")
     .not("agenda_items", "is", null)
     .gte("event_date", addDays(today, RANGES[range].from)).lte("event_date", addDays(today, RANGES[range].to))
     .order("event_date", { ascending: range === "upcoming" });
@@ -78,7 +80,7 @@ export default async function RezoningsPage({ searchParams }: { searchParams: Pr
         <div className="table-wrap">
           <table>
             <thead>
-              <tr><th>Meeting</th><th>Type</th><th>Case</th><th>Request</th><th>Applicant</th></tr>
+              <tr><th>Meeting</th><th>Type</th><th>Case</th><th>Request</th><th>Applicant</th><th>Result</th></tr>
             </thead>
             <tbody>
               {rows.map(({ m, it, key }) => (
@@ -96,6 +98,7 @@ export default async function RezoningsPage({ searchParams }: { searchParams: Pr
                     )}
                   </td>
                   <td>{it.applicant ?? <span className="muted">—</span>}{m.agenda_url && <div className="small"><a href={m.agenda_url} target="_blank" rel="noreferrer">Agenda ↗</a></div>}{m.packet_url && <div className="small"><a href={m.packet_url} target="_blank" rel="noreferrer">Packet ↗</a></div>}</td>
+                  <td><Result m={m} it={it} /></td>
                 </tr>
               ))}
             </tbody>
@@ -103,5 +106,17 @@ export default async function RezoningsPage({ searchParams }: { searchParams: Pr
         </div>
       )}
     </>
+  );
+}
+
+// The vote from the minutes, when they've been read; links to the meeting page for who voted how.
+function Result({ m, it }: { m: Row; it: AgendaItem }) {
+  const v = voteFor(it, m.votes);
+  if (!v) return <span className="muted">—</span>;
+  return (
+    <Link href={`/meetings/${m.id}`}>
+      <ResultTag result={v.result} />
+      {tally(v) && <div className="small muted">{tally(v)}</div>}
+    </Link>
   );
 }
