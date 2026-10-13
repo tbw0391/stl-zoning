@@ -574,5 +574,53 @@ rows += [
    note="Standards are set by the ordinance for each MXD; density never over 60 units per acre (excluding road right-of-way)."),
 ]
 
+# City of Chesterfield Ch. 405 Unified Development Code (ecode360, read in Chrome Oct 12, 2026). Straight districts in
+# §405.03.030, planned districts (all commercial and industrial land) in §405.03.040. Front setback is the table's
+# right-of-way column. GIS writes estate codes with a space ("E-1 AC"); matchDistrict ignores punctuation.
+J = "chesterfield"
+CS = ("§405.03.030", 35256131)
+CP = ("§405.03.040", 35256649)
+MF = ("Setbacks depend on which wall faces which line: front wall 50 ft from the front line (+10 ft per story over 2), "
+      "side walls 30 ft (20 ft if windowless) from side lines, rear wall 50 ft from the rear line; up to 100 ft where a front or rear wall faces a side or rear line. ")
+PLN = "Planned district: uses, height, density and internal setbacks are set by the site-specific ordinance and site plan."
+rows += [
+ d(J,"AG","Agricultural","agricultural",CS,lot=435600,width=300,dens=0.1,front=50,side=25,rear=25,height=50,
+   note="10 acres for most uses. 50 ft from right-of-way, 25 ft from other lines; livestock housed 100 ft from lines."),
+ d(J,"PS","Park and Scenic","recreational",CS,front=25,note="25 ft from road right-of-way (more if the underlying district requires)."),
+ d(J,"LLR","Large Lot Residential","residential",CS,lot=130680,width=200,dens=0.33,front=75,side=50,rear=50,height=50,
+   note="3 acres per home (5 acres for non-residential). 75 ft from road right-of-way, 50 ft from other lines."),
+ d(J,"E-2AC","Estate (2 ac)","residential",CS,lot=87120,dens=0.5,front=25,side=25,height=50,
+   note="2 acres per dwelling. 25 ft side, 25 ft from right-of-way, 50 ft between structures. Non-residential: 75 ft from lines, 150 ft from arterials. Stables 100 ft from lines."),
+ d(J,"E-1AC","Estate (1 ac)","residential",CS,lot=43560,dens=1,front=25,side=25,height=50,
+   note="1 acre per dwelling. 25 ft side, 25 ft from right-of-way, 40 ft between structures. Non-residential: 75 ft from lines, 150 ft from arterials."),
+ d(J,"E-1/2AC","Estate (1/2 ac)","residential",CS,lot=21780,dens=2,front=20,side=15,height=50,
+   note="1/2 acre per dwelling. 15 ft side, 20 ft from right-of-way, 30 ft between structures."),
+ d(J,"R-2","Residential (15,000 sf)","residential",CS,lot=15000,dens=2.9,front=25,side=10,rear=15,height=45,note="3 stories or 45 ft. Front setback is from the right-of-way."),
+ d(J,"R-3","Residential (10,000 sf)","residential",CS,lot=10000,dens=4.36,front=20,side=8,rear=15,height=45,note="3 stories or 45 ft. Front setback is from the right-of-way."),
+ d(J,"R-4","Residential (7,500 sf)","residential",CS,lot=7500,dens=5.8,front=20,side=6,rear=15,height=45,note="3 stories or 45 ft. Front setback is from the right-of-way."),
+ d(J,"R-5","Residential (6,000 sf)","residential",CS,lot=6000,dens=7.26,front=20,side=6,rear=15,height=45,
+   note="3 stories or 45 ft. Attached single-family exempt from interior side yards; detached garages 3 ft from side and rear lines."),
+ d(J,"R-6A","Residential (apartments 4,000 sf/unit)","residential",CS,lot=4500,dens=10.9,front=50,side=20,rear=50,
+   min_lot_sf_per_unit={"two_family":4500,"three_family":4000,"multiple_family":4000}, note="4 stories. "+MF+"Density shown is for multifamily."),
+ d(J,"R-6AA","Residential (apartments 3,000 sf/unit)","residential",CS,lot=4500,dens=14.5,front=50,side=20,rear=50,
+   min_lot_sf_per_unit={"two_family":4500,"three_family":3500,"multiple_family":3000}, note="4 stories. "+MF+"Density shown is for multifamily."),
+ d(J,"R-6","Residential (apartments 2,000 sf/unit)","residential",CS,lot=4500,dens=21.8,front=50,side=20,rear=50,
+   min_lot_sf_per_unit={"two_family":2500,"three_family":2000,"multiple_family":2000}, note="4 stories. "+MF+"Density shown is for multifamily."),
+ d(J,"R-7","Residential (apartments 1,750 sf/unit)","residential",CS,lot=4500,dens=24.9,height=200,
+   min_lot_sf_per_unit={"two_family":2500,"three_family":2000,"multiple_family":1750}, note="Up to 200 ft. Setbacks per §405.03.030 (wall-orientation table). Density shown is for multifamily."),
+ d(J,"R-8","Residential (apartments 500 sf/unit)","residential",CS,lot=4500,dens=87.1,front=50,side=20,rear=20,height=200,
+   min_lot_sf_per_unit={"two_family":2500,"three_family":2000,"multiple_family":500},
+   note="Up to 200 ft. Front 50 ft plus 1 ft per 2 ft of height over 45 ft; side and rear 20 ft plus 1 ft per 3 ft over 45 ft (30 ft for walls with windows facing side lines). Density shown is for multifamily."),
+ d(J,"PC","Planned Commercial","commercial",CP,note=PLN+" Buildings 35 ft from property shown as residential on the Comprehensive Land Use Map."),
+ d(J,"NB","Neighborhood Business","commercial",CP,front=30,side=30,rear=30,height=30,note="2 stories or 30 ft. 30 ft from all property lines; 35 ft next to residential. "+PLN),
+ d(J,"PI","Planned Industrial","industrial",CP,note=PLN+" Buildings 35 ft from property shown as residential on the Comprehensive Land Use Map."),
+ d(J,"MU","Medical Use","special",CP,lot=130680,front=50,note="3-acre minimum. Up to 8 stories. Structures, parking and drives 50 ft from right-of-way. "+PLN),
+ d(J,"UC","Urban Core","mixed_use",CP,lot=130680,note="3-acre minimum. Up to 8 stories. Structures 35 ft from the district boundary. "+PLN),
+ d(J,"MXD","Mixed Use","mixed_use",CP,note="Structures 35 ft from the district boundary; required residential floor area (hotels may count for half). "+PLN),
+ d(J,"PC-R","Planned Commercial and Residential","mixed_use",CP,note=PLN),
+ d(J,"PUD","Planned Unit Development","planned",CP,note=PLN),
+ d(J,"FP","Floodplain (overlay)","overlay",("§405.03.050",35256649),note="Overlay; height per the underlying district; floodplain permit rules apply."),
+]
+
 json.dump(rows, open(sys.argv[1] + "/zoning_districts.json", "w"), indent=1)
 print(len(rows))
