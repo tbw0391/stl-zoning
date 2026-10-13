@@ -121,33 +121,36 @@ function toBase64(bytes: Uint8Array) {
 const sha256 = async (data: Uint8Array) =>
   Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", data)), (b) => b.toString(16).padStart(2, "0")).join("");
 
-type Agenda = { block: Record<string, unknown>; hash: string };
+type Agenda = { block: () => Promise<Record<string, unknown>>; hash: string };
 
-// A document block for a PDF agenda, or a text block for an HTML one, plus a hash for spotting revisions
-// (the whole PDF, or the page's text so markup changes don't count).
+// A hash of the agenda for spotting revisions (the whole PDF, or the page's text so markup changes don't count),
+// and the content block to send to Claude: a document for a PDF, text for an HTML page. The block is built only
+// when asked for, so a recheck of an unchanged agenda doesn't trim and encode the PDF.
 async function fetchAgenda(url: string): Promise<Agenda> {
   const res = await fetch(url, { headers: UA, redirect: "follow" });
   if (!res.ok) throw new Error(`agenda HTTP ${res.status}`);
   const type = res.headers.get("content-type") ?? "";
   const bytes = new Uint8Array(await res.arrayBuffer());
   if (type.includes("pdf") || (bytes[0] === 0x25 && bytes[1] === 0x50)) { // "%P" of %PDF
-    const hash = await sha256(bytes);
-    let pdf: Uint8Array = bytes;
-    if (pdf.length > MAX_PDF_BYTES) {
-      const src = await PDFDocument.load(pdf, { ignoreEncryption: true });
-      const front = await PDFDocument.create();
-      const pages = await front.copyPages(src, [...Array(Math.min(FRONT_PAGES, src.getPageCount())).keys()]);
-      pages.forEach((p) => front.addPage(p));
-      pdf = await front.save();
-      if (pdf.length > MAX_PDF_BYTES) throw new Error(`agenda PDF too large even cut to ${FRONT_PAGES} pages`);
-    }
-    return { block: { type: "document", source: { type: "base64", media_type: "application/pdf", data: toBase64(pdf) } }, hash };
+    const block = async () => {
+      let pdf: Uint8Array = bytes;
+      if (pdf.length > MAX_PDF_BYTES) {
+        const src = await PDFDocument.load(pdf, { ignoreEncryption: true });
+        const front = await PDFDocument.create();
+        const pages = await front.copyPages(src, [...Array(Math.min(FRONT_PAGES, src.getPageCount())).keys()]);
+        pages.forEach((p) => front.addPage(p));
+        pdf = await front.save();
+        if (pdf.length > MAX_PDF_BYTES) throw new Error(`agenda PDF too large even cut to ${FRONT_PAGES} pages`);
+      }
+      return { type: "document", source: { type: "base64", media_type: "application/pdf", data: toBase64(pdf) } };
+    };
+    return { block, hash: await sha256(bytes) };
   }
   // Some cities serve the agenda as an HTML page.
   const text = new TextDecoder().decode(bytes).replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, " ")
     .replace(/<[^>]+>/g, " ").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
   if (text.length < 200) throw new Error(`agenda isn't a PDF and has little text (${type})`);
-  return { block: { type: "text", text: `<agenda>\n${text}\n</agenda>` }, hash: await sha256(new TextEncoder().encode(text)) };
+  return { block: async () => ({ type: "text", text: `<agenda>\n${text}\n</agenda>` }), hash: await sha256(new TextEncoder().encode(text)) };
 }
 
 // Tells the person who requested an older agenda that it's been read. Skipped (and retried next run) until email is set up.
@@ -370,6 +373,7 @@ Deno.serve(async (req) => {
     let agenda = fetched;
     try {
       agenda ??= await fetchAgenda(m.agenda_url);
+      const content = await agenda.block();
       const board = m.body === "planning_zoning" ? "Planning & Zoning Commission" : "governing body (council / board of aldermen)";
       const response = await client.beta.messages.create({
         model: MODEL,
@@ -380,7 +384,7 @@ Deno.serve(async (req) => {
         output_config: { effort: "low", format: { type: "json_schema", schema: SCHEMA } },
         messages: [{
           role: "user",
-          content: [agenda.block, { type: "text", text: `${m.jurisdictions?.name ?? m.jurisdiction_id} ${board} agenda for ${m.event_date}. List its land-use items.` }],
+          content: [content, { type: "text", text: `${m.jurisdictions?.name ?? m.jurisdiction_id} ${board} agenda for ${m.event_date}. List its land-use items.` }],
         }],
       // deno-lint-ignore no-explicit-any
       } as any);
@@ -436,7 +440,7 @@ Deno.serve(async (req) => {
   const results: unknown[] = [];
   const queue = [...(meetings ?? [])];
   const started = Date.now();
-  await Promise.all(Array.from({ length: recheck ? 6 : 4 }, async () => {
+  await Promise.all(Array.from({ length: 4 }, async () => {
     for (let m = queue.shift(); m; m = queue.shift()) {
       if (recheck && Date.now() - started > 100_000) break; // stay under the time limit; the rest go first next time
       const r = recheck ? await recheckOne(m) : await read(m);

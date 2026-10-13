@@ -213,6 +213,8 @@ Deno.serve(async (req) => {
         .gte("event_date", `${years[0]}-01-01`).lte("event_date", `${years[years.length - 1]}-12-31`);
       const have = new Map((existing ?? []).map((m) => [`${m.body}|${m.event_date}`, m]));
       const seen = new Set(collected.map((c) => `${c.body}|${c.event_date}`));
+      // Every agenda link listed for a meeting (some cities post the original and an amended one side by side).
+      const listed = new Set(collected.map((c) => `${c.body}|${c.event_date}|${c.agenda_url}`));
 
       const inserts = [];
       let updated = 0;
@@ -231,7 +233,8 @@ Deno.serve(async (req) => {
         if (!m.agenda_url && c.agenda_url) patch.agenda_url = c.agenda_url;
         // A different agenda link for an upcoming meeting is usually an amended agenda; extract-agendas' recheck
         // sees the new file and reads it again.
-        else if (m.agenda_url && c.agenda_url && c.agenda_url !== m.agenda_url && c.event_date >= today) patch.agenda_url = c.agenda_url;
+        else if (m.agenda_url && c.agenda_url && c.event_date >= today &&
+          !listed.has(`${c.body}|${c.event_date}|${m.agenda_url}`)) patch.agenda_url = c.agenda_url;
         if (!m.packet_url && c.packet_url) patch.packet_url = c.packet_url;
         if (!m.event_time && c.event_time) patch.event_time = c.event_time;
         if (!m.location && c.location) patch.location = c.location;
