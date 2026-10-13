@@ -1,7 +1,7 @@
 // Daily meeting collection for jurisdictions with a `collector` set (AgendaCenter, CivicClerk or Municode Meetings).
 // TypeScript port of scripts/collectors/*.py; keep the board-matching rules in step with agendacenter.py.
 //
-// For each jurisdiction: inserts meetings we don't have, fills missing agenda / packet links, times and
+// For each jurisdiction: inserts meetings we don't have, fills missing agenda / packet / minutes links, times and
 // locations, and marks projected meetings as published (or cancelled) once the city posts them. Never overwrites hand-researched
 // values (except an upcoming meeting's agenda link, when the city posts a different one) and never deletes: meetings in our data that the city's system lacks are recorded in
 // collector_runs.missing for a person to check.
@@ -35,15 +35,16 @@ const CANCELLED = /cancell?ed/i;
 type Body = "planning_zoning" | "governing_body";
 type Collected = {
   body: Body; event_date: string; event_time: string | null; location: string | null; title: string;
-  agenda_url: string | null; packet_url: string | null; source_url: string; cancelled: boolean;
+  agenda_url: string | null; packet_url: string | null; minutes_url: string | null; source_url: string; cancelled: boolean;
 };
 
 // One row per board and date. A cancelled posting gives way to a live one on the same date
-// (a cancelled special session alongside the regular meeting).
+// (a cancelled special session alongside the regular meeting). Minutes may sit on another row for the same date.
 function keep(rows: Map<string, Collected>, c: Collected) {
   const key = `${c.body}|${c.event_date}`;
   const prev = rows.get(key);
-  if (!prev || (prev.cancelled && !c.cancelled)) rows.set(key, c);
+  if (!prev || (prev.cancelled && !c.cancelled)) rows.set(key, { ...c, minutes_url: c.minutes_url ?? prev?.minutes_url ?? null });
+  else if (!prev.minutes_url && c.minutes_url) prev.minutes_url = c.minutes_url;
 }
 
 function bodyFor(name: string): Body | null {
@@ -93,9 +94,10 @@ async function agendaCenter(site: string, year: number): Promise<Collected[]> {
       const agendaUrl = `${base}/AgendaCenter/ViewFile/Agenda/_${mm}${dd}${yyyy}-${id}`;
       // Agendas built in AgendaCenter also offer the compiled packet (agenda plus staff reports and plans).
       const packet = row.includes(`_${mm}${dd}${yyyy}-${id}?packet=true`) ? `${agendaUrl}?packet=true` : null;
+      const minutes = row.match(/href="(\/AgendaCenter\/ViewFile\/Minutes\/[^"]+)"/);
       keep(rows, {
         body, event_date: `${yyyy}-${mm}-${dd}`, event_time: null, location: null, title, agenda_url: agendaUrl,
-        packet_url: packet, source_url: `${base}/AgendaCenter`, cancelled: CANCELLED.test(title),
+        packet_url: packet, minutes_url: minutes ? base + unescape(minutes[1]) : null, source_url: `${base}/AgendaCenter`, cancelled: CANCELLED.test(title),
       });
     }
   }
@@ -131,7 +133,7 @@ async function civicClerk(tenant: string, year: number): Promise<Collected[]> {
       body, event_date: local.slice(0, 10), event_time: time && time !== "00:00" ? time : null,
       location: [loc.address1, loc.address2].filter(Boolean).join(", ") || null,
       title: e.eventName,
-      agenda_url: fileUrl(file("Agenda")), packet_url: fileUrl(file("Agenda Packet")),
+      agenda_url: fileUrl(file("Agenda")), packet_url: fileUrl(file("Agenda Packet")), minutes_url: fileUrl(file("Minutes")),
       source_url: `https://${tenant}.portal.civicclerk.com/event/${e.id}/files`, cancelled: CANCELLED.test(e.eventName),
     });
   }
@@ -169,7 +171,7 @@ async function municodeMeetings(site: string, year: number): Promise<Collected[]
         const view = tr.match(/href="(\/[^"]+)"[^>]*>View Details/);
         keep(rows, {
           body, event_date: when[1], event_time: when[2] !== "00:00" ? when[2] : null, location: null, title,
-          agenda_url: cell("Agenda"), packet_url: cell("Agenda Packet"),
+          agenda_url: cell("Agenda"), packet_url: cell("Agenda Packet"), minutes_url: cell("Minutes"),
           source_url: view ? base + view[1] : `${base}/meetings3`, cancelled: CANCELLED.test(title),
         });
       }
@@ -208,7 +210,7 @@ Deno.serve(async (req) => {
         collected.push(...await COLLECTORS[j.collector](j.collector_ref, y));
       }
       const { data: existing } = await db.from("meetings")
-        .select("id, body, event_date, event_time, location, agenda_url, packet_url, status")
+        .select("id, body, event_date, event_time, location, agenda_url, packet_url, minutes_url, status")
         .eq("jurisdiction_id", j.id).eq("event_type", "meeting")
         .gte("event_date", `${years[0]}-01-01`).lte("event_date", `${years[years.length - 1]}-12-31`);
       const have = new Map((existing ?? []).map((m) => [`${m.body}|${m.event_date}`, m]));
@@ -222,7 +224,7 @@ Deno.serve(async (req) => {
           inserts.push({
             jurisdiction_id: j.id, body: c.body, event_type: "meeting", event_date: c.event_date, event_time: c.event_time,
             location: c.location, status: c.cancelled ? "cancelled" : "published", source_url: c.source_url,
-            agenda_url: c.agenda_url, packet_url: c.packet_url, verified_on: today,
+            agenda_url: c.agenda_url, packet_url: c.packet_url, minutes_url: c.minutes_url, verified_on: today,
             note: /special/i.test(c.title) ? "Special meeting" : null,
           });
           continue;
@@ -233,6 +235,7 @@ Deno.serve(async (req) => {
         // sees the new file and reads it again.
         else if (m.agenda_url && c.agenda_url && c.agenda_url !== m.agenda_url && c.event_date >= today) patch.agenda_url = c.agenda_url;
         if (!m.packet_url && c.packet_url) patch.packet_url = c.packet_url;
+        if (!m.minutes_url && c.minutes_url) patch.minutes_url = c.minutes_url;
         if (!m.event_time && c.event_time) patch.event_time = c.event_time;
         if (!m.location && c.location) patch.location = c.location;
         if (m.status === "projected" && c.cancelled) patch.status = "cancelled";
