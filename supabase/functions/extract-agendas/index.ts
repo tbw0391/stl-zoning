@@ -14,6 +14,7 @@
 // Requests need the x-digest-token header (shared cron token in public.app_settings).
 //   ?limit=N   meetings per run (default 12)      ?id=N   one meeting (re-reads even if already checked)
 //   ?geocode=1 locate item addresses on already-read agendas (no Claude calls)
+//   ?recheck=1 look for revised upcoming agendas      ?to=a@b.c  send this run's alert email there instead of DIGEST_TO
 // Deployed with verify_jwt off.
 import Anthropic from "npm:@anthropic-ai/sdk@0.131.0";
 import { PDFDocument } from "npm:pdf-lib@1.17.1";
@@ -183,7 +184,7 @@ const TYPE_LABEL: Record<string, string> = {
 // deno-lint-ignore no-explicit-any
 type Row = Record<string, any>;
 const caseTypes = (it: Row) =>
-  it.type ? [it.type] : /rezon|zoning|PUD|planned unit|special use|conditional use|annex/i.test(`${it.item} ${it.request}`) ? ["rezoning"] : ["other"];
+  it.type ? [it.type] : /rezon|zoning|PUD|planned unit|special use|conditional use|annex|\bRZ[\s-]?\d|\b[A-Z]{1,3}-?\d?[A-Z]? to [A-Z]{1,3}-?\d/i.test(`${it.item} ${it.request}`) ? ["rezoning"] : ["other"];
 function milesBetween(a: { lat: number; lng: number }, b: { lat: number; lng: number }) {
   const rad = Math.PI / 180;
   const dLat = (b.lat - a.lat) * rad, dLng = (b.lng - a.lng) * rad;
@@ -202,8 +203,11 @@ function watchMatch(it: Row, county: string, jurisdictionId: string, w: Row, pro
   const d = milesBetween({ lat: project.lat, lng: project.lng }, { lat: it.lat, lng: it.lng });
   return d <= Number(w.radius_miles) ? `${name}, ${d.toFixed(1)} mi` : null;
 }
-// Identity of an item across two reads of the same agenda: case number, else address, else its title.
-const itemKey = (it: Row) => String(it.case_number || it.address || it.item || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+// Identity of an item across two reads of the same agenda: its case number (from the field, or the start of the title,
+// since hand-entered items have only a title like "RZ26-07 (Castlegate, LLC)"), else address, else the title.
+const norm = (s: unknown) => String(s ?? "").toLowerCase().replace(/[^a-z0-9]/g, "");
+const caseId = (s: unknown) => norm(String(s ?? "").match(/[A-Z]{0,5}\d{2,}[\d-]*/i)?.[0]);
+const itemKey = (it: Row) => caseId(it.case_number) || caseId(it.item) || norm(it.address) || norm(it.item);
 
 const esc = (s: unknown) =>
   String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -213,8 +217,9 @@ const shortName = (n: string) => n.replace(/^(City|Town|Village) of /, "");
 
 // Checks every newly read or revised agenda against the watches and emails the matches in one message.
 // A meeting is marked alerted once checked; if the email can't go out it stays pending for the next run.
+// toOverride (?to= on the request) sends to that address instead of DIGEST_TO, for testing.
 // deno-lint-ignore no-explicit-any
-async function sendAlerts(db: any) {
+async function sendAlerts(db: any, toOverride?: string | null) {
   const since = new Date(Date.now() - ALERT_WINDOW_DAYS * 864e5).toISOString();
   const { data: rows } = await db.from("meetings")
     .select("id, jurisdiction_id, body, event_date, agenda_url, agenda_items, agenda_previous_items, agenda_read_at, agenda_revised_at, agenda_alerted_at")
@@ -261,7 +266,7 @@ async function sendAlerts(db: any) {
   if (!sections.length) return { checked: pending.length, emailed: 0 };
 
   const key = Deno.env.get("RESEND_API_KEY"), from = Deno.env.get("DIGEST_FROM");
-  const to = (Deno.env.get("DIGEST_TO") ?? "").split(",").map((s) => s.trim()).filter(Boolean);
+  const to = (toOverride ?? Deno.env.get("DIGEST_TO") ?? "").split(",").map((s) => s.trim()).filter(Boolean);
   if (!key || !from || !to.length) return { checked: pending.length, emailed: 0, waiting: "email secrets not set" };
 
   const C = { teal: "#096764", amber: "#ffb549", orange: "#c4502a", text: "#1d2a28", muted: "#5f6b67", border: "#e3e1da", bg: "#f6f5f1" };
@@ -447,6 +452,6 @@ Deno.serve(async (req) => {
       if (r) results.push(r);
     }
   }));
-  const alerts = await sendAlerts(db);
+  const alerts = await sendAlerts(db, url.searchParams.get("to"));
   return new Response(JSON.stringify({ results, alerts }, null, 1), { headers: { "Content-Type": "application/json" } });
 });

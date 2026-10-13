@@ -24,7 +24,7 @@ export const LOOKBACK_DAYS = 45;
 
 // Hand-entered items have no type, so fall back to the words.
 export const caseTypes = (c: Case) =>
-  c.type ? [c.type] : /rezon|zoning|PUD|planned unit|special use|conditional use|annex/i.test(`${c.item} ${c.request}`) ? ["rezoning"] : ["other"];
+  c.type ? [c.type] : /rezon|zoning|PUD|planned unit|special use|conditional use|annex|\bRZ[\s-]?\d|\b[A-Z]{1,3}-?\d?[A-Z]? to [A-Z]{1,3}-?\d/i.test(`${c.item} ${c.request}`) ? ["rezoning"] : ["other"];
 
 export async function loadCases(supabase: SupabaseClient) {
   const { data } = await supabase.from("land_use_cases").select("*")
