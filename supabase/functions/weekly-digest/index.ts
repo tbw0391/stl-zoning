@@ -160,8 +160,9 @@ ${section("What changed this week", list(changeLines, "No changes this week."))}
   const key = Deno.env.get("RESEND_API_KEY");
   const from = Deno.env.get("DIGEST_FROM");
   const to = (url.searchParams.get("to") ?? Deno.env.get("DIGEST_TO") ?? "").split(",").map((s) => s.trim()).filter(Boolean);
-  if (!key || !from || !to.length) {
-    return new Response("Missing RESEND_API_KEY, DIGEST_FROM or DIGEST_TO secret", { status: 500 });
+  const missing = [!key && "RESEND_API_KEY", !from && "DIGEST_FROM", !to.length && "DIGEST_TO"].filter(Boolean);
+  if (missing.length) {
+    return new Response(`Missing secret: ${missing.join(", ")}`, { status: 500 });
   }
 
   const res = await fetch("https://api.resend.com/emails", {
