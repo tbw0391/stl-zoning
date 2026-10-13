@@ -5300,5 +5300,489 @@
    "note": "Overlay; height per the underlying district; floodplain permit rules apply."
   },
   "source_url": "https://ecode360.com/35256649"
+ },
+ {
+  "jurisdiction_id": "ballwin",
+  "code": "R-1A",
+  "name": "Single-Family (40,000 sf)",
+  "category": "residential",
+  "min_lot_sf": 40000,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": 1.09,
+  "front_setback_ft": 50,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 35,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "App. A, Art. III-A",
+   "min_dwelling_sf": {
+    "one_story": 2200,
+    "two_story_ground_floor": 1600
+   },
+   "note": "35 ft and 3 stories. Manchester Road frontage: 60 ft front yard."
+  },
+  "source_url": "https://library.municode.com/mo/ballwin/codes/code_of_ordinances?nodeId=COOR_APXAZOOR_ARTIII-ASIMIDWDIRE"
+ },
+ {
+  "jurisdiction_id": "ballwin",
+  "code": "R-1",
+  "name": "Single-Family (20,000 sf)",
+  "category": "residential",
+  "min_lot_sf": 20000,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": 2.18,
+  "front_setback_ft": 40,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "App. A, Art. IV",
+   "min_dwelling_sf": {
+    "one_story": 1150,
+    "two_story_ground_floor": 850
+   },
+   "note": "35 ft and 3 stories. Manchester Road frontage: 60 ft front yard."
+  },
+  "source_url": "https://library.municode.com/mo/ballwin/codes/code_of_ordinances?nodeId=COOR_APXAZOOR_ARTIVSIMIDWDIRE"
+ },
+ {
+  "jurisdiction_id": "ballwin",
+  "code": "R-2",
+  "name": "Single-Family (12,500 sf sewered)",
+  "category": "residential",
+  "min_lot_sf": 12500,
+  "min_lot_width_ft": 85,
+  "max_density_du_ac": 3.48,
+  "front_setback_ft": 40,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 25,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "App. A, Art. V",
+   "note": "12,500 sf and 85 ft wide (45 ft at the street) on sewer; 20,000 sf and 100 ft unsewered. Yards and height as R-1. Manchester Road frontage: 60 ft front yard."
+  },
+  "source_url": "https://library.municode.com/mo/ballwin/codes/code_of_ordinances?nodeId=COOR_APXAZOOR_ARTVSIMIDWDIRE"
+ },
+ {
+  "jurisdiction_id": "ballwin",
+  "code": "R-2A",
+  "name": "Single-Family (15,000 sf sewered)",
+  "category": "residential",
+  "min_lot_sf": 15000,
+  "min_lot_width_ft": 70,
+  "max_density_du_ac": 2.9,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 15,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "App. A, Art. VA",
+   "note": "15,000 sf and 70 ft wide on public sewer; 20,000 sf and 100 ft otherwise. 40 ft front on Ries, New Ballwin, Clayton, Henry, Baxter and Oak. Manchester Road frontage: 60 ft front yard."
+  },
+  "source_url": "https://library.municode.com/mo/ballwin/codes/code_of_ordinances?nodeId=COOR_APXAZOOR_ARTVASIMIDWDIRE"
+ },
+ {
+  "jurisdiction_id": "ballwin",
+  "code": "R-3",
+  "name": "Single-Family (10,000 sf sewered)",
+  "category": "residential",
+  "min_lot_sf": 10000,
+  "min_lot_width_ft": 70,
+  "max_density_du_ac": 4.36,
+  "front_setback_ft": 20,
+  "side_setback_ft": 8,
+  "rear_setback_ft": 15,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "App. A, Art. VI",
+   "note": "10,000 sf and 70 ft at the street on public sewer; 20,000 sf and 100 ft otherwise. 40 ft front on Ries, New Ballwin and Oak. Manchester Road frontage: 60 ft front yard."
+  },
+  "source_url": "https://library.municode.com/mo/ballwin/codes/code_of_ordinances?nodeId=COOR_APXAZOOR_ARTVISIMIDWDIRE"
+ },
+ {
+  "jurisdiction_id": "ballwin",
+  "code": "R-4",
+  "name": "Planned Multiple Dwelling",
+  "category": "residential",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 21.8,
+  "front_setback_ft": 60,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 10,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "App. A, Art. VII",
+   "note": "Planned district: 2,000 sf of tract per unit; max 6 units per building (average 5); units 900 sf min, 1,200 sf average. Buildings 10 ft from the tract perimeter, 60 ft from public streets and single-family; 2 stories."
+  },
+  "source_url": "https://library.municode.com/mo/ballwin/codes/code_of_ordinances?nodeId=COOR_APXAZOOR_ARTVIIPLMUDWDIRE"
+ },
+ {
+  "jurisdiction_id": "ballwin",
+  "code": "R-5",
+  "name": "Planned Infill Multiple-Family (PIM)",
+  "category": "residential",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 15.8,
+  "front_setback_ft": 40,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 25,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "App. A, Art. VIII",
+   "note": "2,750 sf of land per unit; max 6 units per building; units 900 sf min. Height is the mean of adjoining districts, never over 45 ft. Yards as R-2, or as the abutting single-family district."
+  },
+  "source_url": "https://library.municode.com/mo/ballwin/codes/code_of_ordinances?nodeId=COOR_APXAZOOR_ARTVIIIPLINMUPIFADWDIRE"
+ },
+ {
+  "jurisdiction_id": "ballwin",
+  "code": "PA",
+  "name": "Public Activity",
+  "category": "special",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 40,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "App. A, Art. VIIIA",
+   "note": "No side or rear yard except next to a residential use (then R-1 yards: 10 ft side, 25 ft rear). 35 ft and 3 stories. Manchester Road frontage: 60 ft front yard."
+  },
+  "source_url": "https://library.municode.com/mo/ballwin/codes/code_of_ordinances?nodeId=COOR_APXAZOOR_ARTVIIIAPAPUACDIRE"
+ },
+ {
+  "jurisdiction_id": "ballwin",
+  "code": "C-1",
+  "name": "Commercial",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 40,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "App. A, Art. IX",
+   "note": "60 ft front on Manchester Road (20 ft allowed along up to 75% of a development's Manchester frontage, landscaping and pedestrian use only); 10 ft on the south side of Orchard Lane."
+  },
+  "source_url": "https://library.municode.com/mo/ballwin/codes/code_of_ordinances?nodeId=COOR_APXAZOOR_ARTIXCODIRE"
+ },
+ {
+  "jurisdiction_id": "ballwin",
+  "code": "C-2",
+  "name": "Regional Shopping",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 135,
+  "side_setback_ft": 135,
+  "rear_setback_ft": 135,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "App. A, Art. X",
+   "note": "Buildings 135 ft from the district boundary (60 ft along up to 10% of the perimeter). One tower up to 90 ft if 250 ft from the access street and 100 ft from other boundaries."
+  },
+  "source_url": "https://library.municode.com/mo/ballwin/codes/code_of_ordinances?nodeId=COOR_APXAZOOR_ARTXRESHDIRE"
+ },
+ {
+  "jurisdiction_id": "ballwin",
+  "code": "C-3",
+  "name": "Planned Limited Commercial",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 40,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 20,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "App. A, Art. XI",
+   "note": "Height may rise 2 ft per extra foot of setback beyond the required yards. Multiple dwellings: 500 sf of lot per unit. Manchester Road frontage: 60 ft front yard."
+  },
+  "source_url": "https://library.municode.com/mo/ballwin/codes/code_of_ordinances?nodeId=COOR_APXAZOOR_ARTXIPLLICODIRE"
+ },
+ {
+  "jurisdiction_id": "ballwin",
+  "code": "S-1",
+  "name": "Service",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 100,
+  "side_setback_ft": 100,
+  "rear_setback_ft": 100,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "App. A, Art. XII",
+   "note": "No building within 100 ft of the S-1 tract perimeter; screened buffer required."
+  },
+  "source_url": "https://library.municode.com/mo/ballwin/codes/code_of_ordinances?nodeId=COOR_APXAZOOR_ARTXIISEDIRE"
+ },
+ {
+  "jurisdiction_id": "ballwin",
+  "code": "PSD",
+  "name": "Planned Single-Family Dwelling Development",
+  "category": "planned",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 15,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 10,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "App. A, Art. XIIA",
+   "note": "No fixed yards: 15 ft from streets (40 ft on collectors and state highways, 60 ft on Manchester), 20 ft from the perimeter where it meets single-family zoning, 10 ft from undeveloped neighbors."
+  },
+  "source_url": "https://library.municode.com/mo/ballwin/codes/code_of_ordinances?nodeId=COOR_APXAZOOR_ARTXIIAPLSIMIDWDEDI"
+ },
+ {
+  "jurisdiction_id": "ballwin",
+  "code": "POD",
+  "name": "Planned Overlay District",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "App. A, Art. XIIB",
+   "note": "Overlay allowing a planned development on a base district; standards set by the approving ordinance."
+  },
+  "source_url": "https://library.municode.com/mo/ballwin/codes/code_of_ordinances?nodeId=COOR_APXAZOOR_ARTXIIBPLOVDIPORE"
+ },
+ {
+  "jurisdiction_id": "ballwin",
+  "code": "MRRO",
+  "name": "Manchester Road Revitalization Overlay",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "App. A, Art. XIIC",
+   "note": "Overlay along Manchester Road; see Article XIIC."
+  },
+  "source_url": "https://library.municode.com/mo/ballwin/codes/code_of_ordinances?nodeId=COOR_APXAZOOR_ARTXIICMAROREOVDIMR"
+ },
+ {
+  "jurisdiction_id": "ballwin",
+  "code": "CSO",
+  "name": "Conservation Subdivision Overlay",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "App. A, Art. XIID",
+   "note": "Overlay allowing clustered lots with preserved open space; see Article XIID."
+  },
+  "source_url": "https://library.municode.com/mo/ballwin/codes/code_of_ordinances?nodeId=COOR_APXAZOOR_ARTXIIDCOSUOVDI"
+ },
+ {
+  "jurisdiction_id": "des_peres",
+  "code": "A",
+  "name": "Residential A",
+  "category": "residential",
+  "min_lot_sf": 43000,
+  "min_lot_width_ft": 150,
+  "max_density_du_ac": 1.01,
+  "front_setback_ft": 50,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 50,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7404.005",
+   "min_dwelling_sf": 1500,
+   "note": "2.5 stories or 35 ft. 2-car garage and paved driveway required; garages capped at 50% of the first floor and 55% of the front width."
+  },
+  "source_url": "https://library.municode.com/mo/des_peres/codes/code_of_ordinances?nodeId=COOR_APXCZORE_CH404ZODIRE_S404.005REDI"
+ },
+ {
+  "jurisdiction_id": "des_peres",
+  "code": "AA",
+  "name": "Residential AA",
+  "category": "residential",
+  "min_lot_sf": 32000,
+  "min_lot_width_ft": 125,
+  "max_density_du_ac": 1.36,
+  "front_setback_ft": 50,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 40,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7404.010",
+   "min_dwelling_sf": 1500,
+   "note": "2.5 stories or 35 ft. 2-car garage and paved driveway required; garages capped at 50% of the first floor and 55% of the front width. 50% brick or stone exterior."
+  },
+  "source_url": "https://library.municode.com/mo/des_peres/codes/code_of_ordinances?nodeId=COOR_APXCZORE_CH404ZODIRE_S404.010REAADI"
+ },
+ {
+  "jurisdiction_id": "des_peres",
+  "code": "B",
+  "name": "Residential B",
+  "category": "residential",
+  "min_lot_sf": 21000,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": 2.07,
+  "front_setback_ft": 40,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 40,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7404.015",
+   "min_dwelling_sf": 1500,
+   "note": "2.5 stories or 35 ft. 2-car garage and paved driveway required; garages capped at 50% of the first floor and 55% of the front width."
+  },
+  "source_url": "https://library.municode.com/mo/des_peres/codes/code_of_ordinances?nodeId=COOR_APXCZORE_CH404ZODIRE_S404.015REBDI"
+ },
+ {
+  "jurisdiction_id": "des_peres",
+  "code": "D",
+  "name": "Residential D",
+  "category": "residential",
+  "min_lot_sf": 15000,
+  "min_lot_width_ft": 100,
+  "max_density_du_ac": 2.9,
+  "front_setback_ft": 35,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 40,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7404.020",
+   "min_dwelling_sf": 1000,
+   "note": "2.5 stories or 35 ft. 2-car garage and paved driveway required; garages capped at 50% of the first floor and 55% of the front width."
+  },
+  "source_url": "https://library.municode.com/mo/des_peres/codes/code_of_ordinances?nodeId=COOR_APXCZORE_CH404ZODIRE_S404.020REDDI"
+ },
+ {
+  "jurisdiction_id": "des_peres",
+  "code": "E",
+  "name": "Residential E",
+  "category": "residential",
+  "min_lot_sf": 10000,
+  "min_lot_width_ft": 75,
+  "max_density_du_ac": 4.36,
+  "front_setback_ft": 30,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 30,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7404.025",
+   "min_dwelling_sf": 1000,
+   "note": "2.5 stories or 35 ft. 2-car garage and paved driveway required; garages capped at 50% of the first floor and 55% of the front width."
+  },
+  "source_url": "https://library.municode.com/mo/des_peres/codes/code_of_ordinances?nodeId=COOR_APXCZORE_CH404ZODIRE_S404.025REEDI"
+ },
+ {
+  "jurisdiction_id": "des_peres",
+  "code": "F",
+  "name": "Residential F",
+  "category": "residential",
+  "min_lot_sf": 9000,
+  "min_lot_width_ft": 75,
+  "max_density_du_ac": 4.84,
+  "front_setback_ft": 25,
+  "side_setback_ft": 8,
+  "rear_setback_ft": 30,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7404.030",
+   "min_dwelling_sf": 1000,
+   "note": "Side yard 10% of lot width or 8 ft, whichever is less, never under 5 ft. 2.5 stories or 35 ft. 2-car garage and paved driveway required; garages capped at 50% of the first floor and 55% of the front width."
+  },
+  "source_url": "https://library.municode.com/mo/des_peres/codes/code_of_ordinances?nodeId=COOR_APXCZORE_CH404ZODIRE_S404.030REFDI"
+ },
+ {
+  "jurisdiction_id": "des_peres",
+  "code": "C-1",
+  "name": "Commercial",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7404.035",
+   "max_gross_floor_area_sf_per_acre": 15000,
+   "note": "35 ft (also for planned developments here). 15,000 sf of floor area per acre (16,500 with Board approval). Setbacks and buffers per \u00a7404.035 and the master development plan; Manchester Road design standards (Ch. 407) apply."
+  },
+  "source_url": "https://library.municode.com/mo/des_peres/codes/code_of_ordinances?nodeId=COOR_APXCZORE_CH404ZODIRE_S404.035CODI"
+ },
+ {
+  "jurisdiction_id": "des_peres",
+  "code": "C-2",
+  "name": "Commercial",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": 1000,
+  "max_density_du_ac": null,
+  "front_setback_ft": 175,
+  "side_setback_ft": 50,
+  "rear_setback_ft": 75,
+  "max_height_ft": 35,
+  "other_requirements": {
+   "code_section": "\u00a7404.040",
+   "note": "Lot at least 1,000 ft wide. Front yard 175 ft from the street centerline. Plus buffers: 75 ft at the rear, 15 ft beside residential. Floor area 30% of lot outside a planned business center."
+  },
+  "source_url": "https://library.municode.com/mo/des_peres/codes/code_of_ordinances?nodeId=COOR_APXCZORE_CH404ZODIRE_S404.040CODI"
+ },
+ {
+  "jurisdiction_id": "des_peres",
+  "code": "C-3",
+  "name": "Office Building",
+  "category": "office",
+  "min_lot_sf": null,
+  "min_lot_width_ft": 1000,
+  "max_density_du_ac": null,
+  "front_setback_ft": 100,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": 98,
+  "other_requirements": {
+   "code_section": "\u00a7404.045",
+   "max_gross_floor_area_sf_per_acre": 43500,
+   "note": "1,000 ft of Manchester Road frontage. Offices built after 2007: 98 ft (125 ft before); parking structures 36 ft. Setbacks: 100 ft from the Manchester centerline, 50 ft from Ballas Rd and Nicholas Ln, 10 ft from JJ Kelley Memorial Dr."
+  },
+  "source_url": "https://library.municode.com/mo/des_peres/codes/code_of_ordinances?nodeId=COOR_APXCZORE_CH404ZODIRE_S404.045OFBUDI"
+ },
+ {
+  "jurisdiction_id": "des_peres",
+  "code": "PD",
+  "name": "Planned Development",
+  "category": "planned",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a7404.050",
+   "note": "Flexible standards set by the ordinance and master development plan approved by the Board of Aldermen; can mix uses and housing types."
+  },
+  "source_url": "https://library.municode.com/mo/des_peres/codes/code_of_ordinances?nodeId=COOR_APXCZORE_CH404ZODIRE_S404.050PDPLDEDI"
  }
 ]

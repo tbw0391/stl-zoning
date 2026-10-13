@@ -622,5 +622,68 @@ rows += [
  d(J,"FP","Floodplain (overlay)","overlay",("§405.03.050",35256649),note="Overlay; height per the underlying district; floodplain permit rules apply."),
 ]
 
+# City of Ballwin Appendix A Zoning Ordinance (Municode, via api.municode.com Oct 12, 2026). Single-family districts
+# list 20,000 sf unsewered with a smaller minimum on public sewer; the sewered figure is stored (new subdivisions are
+# sewered) and the unsewered one is in the note. Manchester Road frontage needs a 60 ft front yard in every district.
+J = "ballwin"
+BW = "https://library.municode.com/mo/ballwin/codes/code_of_ordinances?nodeId=COOR_APXAZOOR_"
+def bw(art, node): return (f"App. A, Art. {art}", BW + node)
+MR = " Manchester Road frontage: 60 ft front yard."
+rows += [
+ d(J,"R-1A","Single-Family (40,000 sf)","residential",bw("III-A","ARTIII-ASIMIDWDIRE"),lot=40000,width=150,dens=1.09,front=50,side=15,rear=35,height=35,
+   min_dwelling_sf={"one_story":2200,"two_story_ground_floor":1600}, note="35 ft and 3 stories."+MR),
+ d(J,"R-1","Single-Family (20,000 sf)","residential",bw("IV","ARTIVSIMIDWDIRE"),lot=20000,width=100,dens=2.18,front=40,side=10,rear=25,height=35,
+   min_dwelling_sf={"one_story":1150,"two_story_ground_floor":850}, note="35 ft and 3 stories."+MR),
+ d(J,"R-2","Single-Family (12,500 sf sewered)","residential",bw("V","ARTVSIMIDWDIRE"),lot=12500,width=85,dens=3.48,front=40,side=10,rear=25,height=35,
+   note="12,500 sf and 85 ft wide (45 ft at the street) on sewer; 20,000 sf and 100 ft unsewered. Yards and height as R-1."+MR),
+ d(J,"R-2A","Single-Family (15,000 sf sewered)","residential",bw("VA","ARTVASIMIDWDIRE"),lot=15000,width=70,dens=2.9,front=25,side=10,rear=15,height=35,
+   note="15,000 sf and 70 ft wide on public sewer; 20,000 sf and 100 ft otherwise. 40 ft front on Ries, New Ballwin, Clayton, Henry, Baxter and Oak."+MR),
+ d(J,"R-3","Single-Family (10,000 sf sewered)","residential",bw("VI","ARTVISIMIDWDIRE"),lot=10000,width=70,dens=4.36,front=20,side=8,rear=15,height=35,
+   note="10,000 sf and 70 ft at the street on public sewer; 20,000 sf and 100 ft otherwise. 40 ft front on Ries, New Ballwin and Oak."+MR),
+ d(J,"R-4","Planned Multiple Dwelling","residential",bw("VII","ARTVIIPLMUDWDIRE"),dens=21.8,front=60,side=10,rear=10,height=35,
+   note="Planned district: 2,000 sf of tract per unit; max 6 units per building (average 5); units 900 sf min, 1,200 sf average. Buildings 10 ft from the tract perimeter, 60 ft from public streets and single-family; 2 stories."),
+ d(J,"R-5","Planned Infill Multiple-Family (PIM)","residential",bw("VIII","ARTVIIIPLINMUPIFADWDIRE"),dens=15.8,front=40,side=10,rear=25,height=45,
+   note="2,750 sf of land per unit; max 6 units per building; units 900 sf min. Height is the mean of adjoining districts, never over 45 ft. Yards as R-2, or as the abutting single-family district."),
+ d(J,"PA","Public Activity","special",bw("VIIIA","ARTVIIIAPAPUACDIRE"),front=40,height=35,
+   note="No side or rear yard except next to a residential use (then R-1 yards: 10 ft side, 25 ft rear). 35 ft and 3 stories."+MR),
+ d(J,"C-1","Commercial","commercial",bw("IX","ARTIXCODIRE"),front=40,height=45,
+   note="60 ft front on Manchester Road (20 ft allowed along up to 75% of a development's Manchester frontage, landscaping and pedestrian use only); 10 ft on the south side of Orchard Lane."),
+ d(J,"C-2","Regional Shopping","commercial",bw("X","ARTXRESHDIRE"),front=135,side=135,rear=135,height=45,
+   note="Buildings 135 ft from the district boundary (60 ft along up to 10% of the perimeter). One tower up to 90 ft if 250 ft from the access street and 100 ft from other boundaries."),
+ d(J,"C-3","Planned Limited Commercial","commercial",bw("XI","ARTXIPLLICODIRE"),front=40,side=10,rear=20,height=45,
+   note="Height may rise 2 ft per extra foot of setback beyond the required yards. Multiple dwellings: 500 sf of lot per unit."+MR),
+ d(J,"S-1","Service","commercial",bw("XII","ARTXIISEDIRE"),front=100,side=100,rear=100,height=45,
+   note="No building within 100 ft of the S-1 tract perimeter; screened buffer required."),
+ d(J,"PSD","Planned Single-Family Dwelling Development","planned",bw("XIIA","ARTXIIAPLSIMIDWDEDI"),front=15,side=10,rear=10,height=35,
+   note="No fixed yards: 15 ft from streets (40 ft on collectors and state highways, 60 ft on Manchester), 20 ft from the perimeter where it meets single-family zoning, 10 ft from undeveloped neighbors."),
+ d(J,"POD","Planned Overlay District","overlay",bw("XIIB","ARTXIIBPLOVDIPORE"),note="Overlay allowing a planned development on a base district; standards set by the approving ordinance."),
+ d(J,"MRRO","Manchester Road Revitalization Overlay","overlay",bw("XIIC","ARTXIICMAROREOVDIMR"),note="Overlay along Manchester Road; see Article XIIC."),
+ d(J,"CSO","Conservation Subdivision Overlay","overlay",bw("XIID","ARTXIIDCOSUOVDI"),note="Overlay allowing clustered lots with preserved open space; see Article XIID."),
+]
+
+# City of Des Peres Appendix C Zoning Regulations, Ch. 404 (Municode, via api.municode.com Oct 12, 2026). Every
+# residential district is 2.5 stories or 35 ft, needs a 2-car garage and paved driveway, and has design standards.
+J = "des_peres"
+DP = "https://library.municode.com/mo/des_peres/codes/code_of_ordinances?nodeId=COOR_APXCZORE_CH404ZODIRE_"
+def dp(sec, node): return (f"§{sec}", DP + node)
+DPH = "2.5 stories or 35 ft. 2-car garage and paved driveway required; garages capped at 50% of the first floor and 55% of the front width."
+rows += [
+ d(J,"A","Residential A","residential",dp("404.005","S404.005REDI"),lot=43000,width=150,dens=1.01,front=50,side=20,rear=50,height=35,min_dwelling_sf=1500,note=DPH),
+ d(J,"AA","Residential AA","residential",dp("404.010","S404.010REAADI"),lot=32000,width=125,dens=1.36,front=50,side=20,rear=40,height=35,min_dwelling_sf=1500,note=DPH+" 50% brick or stone exterior."),
+ d(J,"B","Residential B","residential",dp("404.015","S404.015REBDI"),lot=21000,width=100,dens=2.07,front=40,side=10,rear=40,height=35,min_dwelling_sf=1500,note=DPH),
+ d(J,"D","Residential D","residential",dp("404.020","S404.020REDDI"),lot=15000,width=100,dens=2.9,front=35,side=10,rear=40,height=35,min_dwelling_sf=1000,note=DPH),
+ d(J,"E","Residential E","residential",dp("404.025","S404.025REEDI"),lot=10000,width=75,dens=4.36,front=30,side=10,rear=30,height=35,min_dwelling_sf=1000,note=DPH),
+ d(J,"F","Residential F","residential",dp("404.030","S404.030REFDI"),lot=9000,width=75,dens=4.84,front=25,side=8,rear=30,height=35,min_dwelling_sf=1000,
+   note="Side yard 10% of lot width or 8 ft, whichever is less, never under 5 ft. "+DPH),
+ d(J,"C-1","Commercial","commercial",dp("404.035","S404.035CODI"),height=35,max_gross_floor_area_sf_per_acre=15000,
+   note="35 ft (also for planned developments here). 15,000 sf of floor area per acre (16,500 with Board approval). Setbacks and buffers per §404.035 and the master development plan; Manchester Road design standards (Ch. 407) apply."),
+ d(J,"C-2","Commercial","commercial",dp("404.040","S404.040CODI"),width=1000,front=175,side=50,rear=75,height=35,
+   note="Lot at least 1,000 ft wide. Front yard 175 ft from the street centerline. Plus buffers: 75 ft at the rear, 15 ft beside residential. Floor area 30% of lot outside a planned business center."),
+ d(J,"C-3","Office Building","office",dp("404.045","S404.045OFBUDI"),width=1000,front=100,height=98,max_gross_floor_area_sf_per_acre=43500,
+   note="1,000 ft of Manchester Road frontage. Offices built after 2007: 98 ft (125 ft before); parking structures 36 ft. Setbacks: 100 ft from the Manchester centerline, 50 ft from Ballas Rd and Nicholas Ln, 10 ft from JJ Kelley Memorial Dr."),
+ d(J,"PD","Planned Development","planned",dp("404.050","S404.050PDPLDEDI"),
+   note="Flexible standards set by the ordinance and master development plan approved by the Board of Aldermen; can mix uses and housing types."),
+]
+
 json.dump(rows, open(sys.argv[1] + "/zoning_districts.json", "w"), indent=1)
 print(len(rows))
