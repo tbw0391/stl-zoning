@@ -4349,5 +4349,499 @@
    "note": "Designation attached to a base district, not a separate district. 10-acre minimum (Board may waive on P&Z recommendation). Area plan (P&Z and Board public hearings), then final plan."
   },
   "source_url": "https://ecode360.com/29501005"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "NU",
+  "name": "Non-Urban",
+  "category": "agricultural",
+  "min_lot_sf": 130680,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 0.33,
+  "front_setback_ft": 50,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 20,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a71003.107",
+   "note": "3 acres per single-family home (existing smaller lots of record may hold one). 20 ft from all lines other than road right-of-way. Height limited only by the air navigation rules (\u00a71003.161)."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.107NUNBADIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "KP",
+  "name": "Karst Preservation",
+  "category": "special",
+  "min_lot_sf": 130680,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 0.33,
+  "front_setback_ft": 50,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 20,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a71003.109",
+   "note": "Same 3-acre lot and setbacks as NU, plus karst (sinkhole) protection rules."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.109KPKAPRDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "PS",
+  "name": "Park and Scenic",
+  "category": "recreational",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a71003.103",
+   "note": "Parks and open space. 25 ft from road right-of-way; height limited only by air navigation rules."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.103PSPASCDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "FP",
+  "name": "Flood Plain",
+  "category": "overlay",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 25,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a71003.101",
+   "note": "Applied with an underlying district (GIS shows it as a prefix, e.g. FPR3). Floodplain development permit and flood rules apply; 25 ft from road right-of-way."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.101FPFLPLDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "R-1",
+  "name": "Residence (1 ac)",
+  "category": "residential",
+  "min_lot_sf": 43560,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 1,
+  "front_setback_ft": 30,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 15,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a71003.111",
+   "note": "3 stories or 45 ft for dwellings; other structures 60 ft. Nonresidential structures over 30 ft add 1 ft of setback per foot of height above 30 ft."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.111REDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "R-1A",
+  "name": "Residence (22,000 sf)",
+  "category": "residential",
+  "min_lot_sf": 22000,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 1.98,
+  "front_setback_ft": 25,
+  "side_setback_ft": 12,
+  "rear_setback_ft": 15,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a71003.112",
+   "note": "3 stories or 45 ft for dwellings; other structures 60 ft. Nonresidential structures over 30 ft add 1 ft of setback per foot of height above 30 ft."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.112REDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "R-2",
+  "name": "Residence (15,000 sf)",
+  "category": "residential",
+  "min_lot_sf": 15000,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 2.9,
+  "front_setback_ft": 25,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 15,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a71003.113",
+   "note": "3 stories or 45 ft for dwellings; other structures 60 ft. Nonresidential structures over 30 ft add 1 ft of setback per foot of height above 30 ft."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.113REDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "R-3",
+  "name": "Residence (10,000 sf)",
+  "category": "residential",
+  "min_lot_sf": 10000,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 4.36,
+  "front_setback_ft": 20,
+  "side_setback_ft": 8,
+  "rear_setback_ft": 15,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a71003.115",
+   "note": "3 stories or 45 ft for dwellings; other structures 60 ft. Lots 60 ft wide or less: side yard 10% of lot width, at least 5 ft. Front setback may match the average of neighbors within 10 ft variation. Nonresidential structures over 30 ft add 1 ft of setback per foot of height above 30 ft."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.115REDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "R-4",
+  "name": "Residence (7,500 sf)",
+  "category": "residential",
+  "min_lot_sf": 7500,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 5.8,
+  "front_setback_ft": 20,
+  "side_setback_ft": 6,
+  "rear_setback_ft": 15,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a71003.117",
+   "note": "3 stories or 45 ft for dwellings; other structures 60 ft. Nonresidential structures over 30 ft add 1 ft of setback per foot of height above 30 ft."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.117REDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "R-5",
+  "name": "Residence (6,000 sf)",
+  "category": "residential",
+  "min_lot_sf": 6000,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 7.26,
+  "front_setback_ft": 20,
+  "side_setback_ft": 6,
+  "rear_setback_ft": 15,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a71003.119",
+   "min_lot_sf_per_unit_attached": 6000,
+   "note": "3 stories or 45 ft for dwellings; other structures 60 ft. Single-family attached allowed at 6,000 sf per unit; attached units and detached garages are exempt from the side and rear yards. Nonresidential structures over 30 ft add 1 ft of setback per foot of height above 30 ft."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.119REDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "R-6A",
+  "name": "Residence (4,500 sf; apartments 4,000 sf/unit)",
+  "category": "residential",
+  "min_lot_sf": 4500,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 10.9,
+  "front_setback_ft": 20,
+  "side_setback_ft": 5,
+  "rear_setback_ft": 15,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a71003.120",
+   "min_lot_sf_per_unit": {
+    "two_family": 4500,
+    "three_family": 4000,
+    "multiple_family": 4000
+   },
+   "note": "Dwellings 4 stories (counting basement living space); other structures 60 ft. Density shown is for multiple-family (4,000 sf per unit)."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.120REDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "R-6AA",
+  "name": "Residence (4,500 sf; apartments 3,000 sf/unit)",
+  "category": "residential",
+  "min_lot_sf": 4500,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 14.5,
+  "front_setback_ft": 20,
+  "side_setback_ft": 5,
+  "rear_setback_ft": 15,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a71003.120A",
+   "min_lot_sf_per_unit": {
+    "two_family": 4500,
+    "three_family": 3500,
+    "multiple_family": 3000
+   },
+   "note": "Dwellings 4 stories (counting basement living space); other structures 60 ft. Density shown is for multiple-family (3,000 sf per unit)."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.120AAREDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "R-6",
+  "name": "Residence (4,500 sf; apartments 2,000 sf/unit)",
+  "category": "residential",
+  "min_lot_sf": 4500,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 21.8,
+  "front_setback_ft": 20,
+  "side_setback_ft": 5,
+  "rear_setback_ft": 15,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a71003.121",
+   "min_lot_sf_per_unit": {
+    "two_family": 2500,
+    "three_family": 2000,
+    "multiple_family": 2000
+   },
+   "note": "Dwellings 4 stories (counting basement living space); other structures 60 ft. Density shown is for multiple-family (2,000 sf per unit)."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.121REDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "R-7",
+  "name": "Residence (apartments 1,750 sf/unit)",
+  "category": "residential",
+  "min_lot_sf": 4500,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 24.9,
+  "front_setback_ft": 20,
+  "side_setback_ft": 5,
+  "rear_setback_ft": 15,
+  "max_height_ft": 200,
+  "other_requirements": {
+   "code_section": "\u00a71003.123",
+   "min_lot_sf_per_unit": {
+    "two_family": 2500,
+    "three_family": 2000,
+    "multiple_family": 1750
+   },
+   "note": "Structures up to 200 ft (air navigation rules may limit). Density shown is for multiple-family (1,750 sf per unit)."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.123REDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "R-8",
+  "name": "Residence (apartments 500 sf/unit)",
+  "category": "residential",
+  "min_lot_sf": 4500,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 87.1,
+  "front_setback_ft": 20,
+  "side_setback_ft": 5,
+  "rear_setback_ft": 15,
+  "max_height_ft": 200,
+  "other_requirements": {
+   "code_section": "\u00a71003.125",
+   "min_lot_sf_per_unit": {
+    "two_family": 2500,
+    "three_family": 2000,
+    "multiple_family": 500
+   },
+   "note": "Structures up to 200 ft (air navigation rules may limit). Density shown is for multiple-family (500 sf per unit)."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.125REDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "C-1",
+  "name": "Neighborhood Business",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 20,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 15,
+  "max_height_ft": 20,
+  "other_requirements": {
+   "code_section": "\u00a71003.131",
+   "note": "1 story or 20 ft. Side and rear yards apply only next to NU, PS or R-zoned property; otherwise 0 ft. No minimum lot area. Front setback matches adjoining R-zoned lots when theirs is deeper."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.131NEBUDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "C-2",
+  "name": "Shopping",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 15,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 15,
+  "max_height_ft": 40,
+  "other_requirements": {
+   "code_section": "\u00a71003.133",
+   "note": "2 stories or 40 ft. Side and rear yards apply only next to NU, PS or R-zoned property; otherwise 0 ft. No minimum lot area."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.133SHDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "C-3",
+  "name": "Shopping",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 15,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 15,
+  "max_height_ft": 200,
+  "other_requirements": {
+   "code_section": "\u00a71003.135",
+   "note": "Up to 200 ft (air navigation rules may limit). Side and rear yards apply only next to NU, PS or R-zoned property; otherwise 0 ft. No minimum lot area."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.135SHDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "C-4",
+  "name": "Highway Service Commercial",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 50,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 20,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a71003.137",
+   "note": "20 ft side and rear (no structures, storage or display) only next to NU, PS or R-zoned property; otherwise 0 ft. No minimum lot area."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.137HISECODIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "C-6",
+  "name": "Office and Research Service",
+  "category": "office",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 15,
+  "side_setback_ft": 15,
+  "rear_setback_ft": 15,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a71003.141",
+   "note": "3 stories or 45 ft. Side and rear yards apply only next to NU, PS or R-zoned property; otherwise 0 ft. No minimum lot area."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.141OFRESEDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "C-7",
+  "name": "General Extensive Commercial",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 50,
+  "side_setback_ft": 20,
+  "rear_setback_ft": 20,
+  "max_height_ft": 45,
+  "other_requirements": {
+   "code_section": "\u00a71003.143",
+   "note": "20 ft side and rear (no structures, storage or display) only next to NU, PS or R-zoned property; otherwise 0 ft. No minimum lot area except listed uses (junk yards 10 ac, correctional 5 ac)."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.143GEEXCODI"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "C-8",
+  "name": "Planned Commercial",
+  "category": "commercial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a71003.145",
+   "note": "Planned district: uses, setbacks and heights are set by the ordinance that zones each site."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.145PLCODI"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "M-1",
+  "name": "Industrial",
+  "category": "industrial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 10,
+  "max_height_ft": 200,
+  "other_requirements": {
+   "code_section": "\u00a71003.151",
+   "note": "No minimum lot area for most uses (towed-vehicle yards 1 ac; transfer stations 5 ac). Up to 200 ft (air navigation rules may limit)."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.151INDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "M-2",
+  "name": "Industrial",
+  "category": "industrial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": 30,
+  "side_setback_ft": 10,
+  "rear_setback_ft": 10,
+  "max_height_ft": 200,
+  "other_requirements": {
+   "code_section": "\u00a71003.153",
+   "note": "No minimum lot area for most uses (towed-vehicle yards 1 ac; transfer stations 5 ac). Up to 200 ft (air navigation rules may limit)."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.153INDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "M-3",
+  "name": "Planned Industrial",
+  "category": "industrial",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": null,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a71003.155",
+   "note": "Planned district: standards are set by the ordinance that zones each site."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.155PLINDIRE"
+ },
+ {
+  "jurisdiction_id": "stlouis_county",
+  "code": "MXD",
+  "name": "Mixed Use Development",
+  "category": "mixed_use",
+  "min_lot_sf": null,
+  "min_lot_width_ft": null,
+  "max_density_du_ac": 60,
+  "front_setback_ft": null,
+  "side_setback_ft": null,
+  "rear_setback_ft": null,
+  "max_height_ft": null,
+  "other_requirements": {
+   "code_section": "\u00a71003.157",
+   "note": "Standards are set by the ordinance for each MXD; density never over 60 units per acre (excluding road right-of-way)."
+  },
+  "source_url": "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_1003.157MXMIUSDEDI"
  }
 ]

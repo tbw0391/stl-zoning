@@ -1,4 +1,4 @@
-import json, sys
+import json, re, sys
 
 # Zoning district dimensional standards, one list per jurisdiction. Usage: python3 scripts/build_districts.py data
 # Conditional yards (e.g. 0 ft next to like zoning) store the larger value; the rule goes in note.
@@ -512,6 +512,66 @@ rows += [
    max_lot_coverage_pct=10, note="No lot area or width minimum. Corner street-side 60 ft."),
  d(J,"PUD","Planned Unit Development (overlay)","overlay",("Art. V, §405.215-.285",29501005),
    note="Designation attached to a base district, not a separate district. 10-acre minimum (Board may waive on P&Z recommendation). Area plan (P&Z and Board public hearings), then final plan."),
+]
+
+# St. Louis County (unincorporated) Ch. 1003 Zoning Ordinance (Municode, codified through Ord. 29,532, Feb 2026).
+# Each district section lists minimum lot area by use; "lot" is the single-family dwelling figure. Setbacks are the
+# general ones (corner lots, front-yard averaging and taller nonresidential buildings have extra rules). Density for
+# single-family districts is 43,560 / lot; for apartment districts it comes from the multiple-family lot area per unit.
+# The county GIS writes codes without hyphens and prefixes floodplain parcels with FP ("FPR3"); matchDistrict handles both.
+J = "stlouis_county"
+MC = "https://library.municode.com/mo/st._louis_county/codes/code_of_ordinances?nodeId=TITXPLZO_CH1003ZOOR_"
+def sl(n): return ("§" + re.match(r"1003\.\d+A?(?=A?[A-Z])", n).group(0), MC + n)
+H45 = "3 stories or 45 ft for dwellings; other structures 60 ft."
+H4S = "Dwellings 4 stories (counting basement living space); other structures 60 ft."
+TALL = "Nonresidential structures over 30 ft add 1 ft of setback per foot of height above 30 ft."
+NR = "Side and rear yards apply only next to NU, PS or R-zoned property; otherwise 0 ft. No minimum lot area."
+rows += [
+ d(J,"NU","Non-Urban","agricultural",sl("1003.107NUNBADIRE"),lot=130680,dens=0.33,front=50,side=20,rear=20,
+   note="3 acres per single-family home (existing smaller lots of record may hold one). 20 ft from all lines other than road right-of-way. Height limited only by the air navigation rules (§1003.161)."),
+ d(J,"KP","Karst Preservation","special",sl("1003.109KPKAPRDIRE"),lot=130680,dens=0.33,front=50,side=20,rear=20,
+   note="Same 3-acre lot and setbacks as NU, plus karst (sinkhole) protection rules."),
+ d(J,"PS","Park and Scenic","recreational",sl("1003.103PSPASCDIRE"),front=25,
+   note="Parks and open space. 25 ft from road right-of-way; height limited only by air navigation rules."),
+ d(J,"FP","Flood Plain","overlay",sl("1003.101FPFLPLDIRE"),front=25,
+   note="Applied with an underlying district (GIS shows it as a prefix, e.g. FPR3). Floodplain development permit and flood rules apply; 25 ft from road right-of-way."),
+ d(J,"R-1","Residence (1 ac)","residential",sl("1003.111REDIRE"),lot=43560,dens=1,front=30,side=15,rear=15,height=45,note=H45+" "+TALL),
+ d(J,"R-1A","Residence (22,000 sf)","residential",sl("1003.112REDIRE"),lot=22000,dens=1.98,front=25,side=12,rear=15,height=45,note=H45+" "+TALL),
+ d(J,"R-2","Residence (15,000 sf)","residential",sl("1003.113REDIRE"),lot=15000,dens=2.9,front=25,side=10,rear=15,height=45,note=H45+" "+TALL),
+ d(J,"R-3","Residence (10,000 sf)","residential",sl("1003.115REDIRE"),lot=10000,dens=4.36,front=20,side=8,rear=15,height=45,
+   note=H45+" Lots 60 ft wide or less: side yard 10% of lot width, at least 5 ft. Front setback may match the average of neighbors within 10 ft variation. "+TALL),
+ d(J,"R-4","Residence (7,500 sf)","residential",sl("1003.117REDIRE"),lot=7500,dens=5.8,front=20,side=6,rear=15,height=45,note=H45+" "+TALL),
+ d(J,"R-5","Residence (6,000 sf)","residential",sl("1003.119REDIRE"),lot=6000,dens=7.26,front=20,side=6,rear=15,height=45,
+   min_lot_sf_per_unit_attached=6000, note=H45+" Single-family attached allowed at 6,000 sf per unit; attached units and detached garages are exempt from the side and rear yards. "+TALL),
+ d(J,"R-6A","Residence (4,500 sf; apartments 4,000 sf/unit)","residential",sl("1003.120REDIRE"),lot=4500,dens=10.9,front=20,side=5,rear=15,
+   min_lot_sf_per_unit={"two_family":4500,"three_family":4000,"multiple_family":4000}, note=H4S+" Density shown is for multiple-family (4,000 sf per unit)."),
+ d(J,"R-6AA","Residence (4,500 sf; apartments 3,000 sf/unit)","residential",sl("1003.120AAREDIRE"),lot=4500,dens=14.5,front=20,side=5,rear=15,
+   min_lot_sf_per_unit={"two_family":4500,"three_family":3500,"multiple_family":3000}, note=H4S+" Density shown is for multiple-family (3,000 sf per unit)."),
+ d(J,"R-6","Residence (4,500 sf; apartments 2,000 sf/unit)","residential",sl("1003.121REDIRE"),lot=4500,dens=21.8,front=20,side=5,rear=15,
+   min_lot_sf_per_unit={"two_family":2500,"three_family":2000,"multiple_family":2000}, note=H4S+" Density shown is for multiple-family (2,000 sf per unit)."),
+ d(J,"R-7","Residence (apartments 1,750 sf/unit)","residential",sl("1003.123REDIRE"),lot=4500,dens=24.9,front=20,side=5,rear=15,height=200,
+   min_lot_sf_per_unit={"two_family":2500,"three_family":2000,"multiple_family":1750}, note="Structures up to 200 ft (air navigation rules may limit). Density shown is for multiple-family (1,750 sf per unit)."),
+ d(J,"R-8","Residence (apartments 500 sf/unit)","residential",sl("1003.125REDIRE"),lot=4500,dens=87.1,front=20,side=5,rear=15,height=200,
+   min_lot_sf_per_unit={"two_family":2500,"three_family":2000,"multiple_family":500}, note="Structures up to 200 ft (air navigation rules may limit). Density shown is for multiple-family (500 sf per unit)."),
+ d(J,"C-1","Neighborhood Business","commercial",sl("1003.131NEBUDIRE"),front=20,side=15,rear=15,height=20,
+   note="1 story or 20 ft. "+NR+" Front setback matches adjoining R-zoned lots when theirs is deeper."),
+ d(J,"C-2","Shopping","commercial",sl("1003.133SHDIRE"),front=15,side=15,rear=15,height=40,note="2 stories or 40 ft. "+NR),
+ d(J,"C-3","Shopping","commercial",sl("1003.135SHDIRE"),front=15,side=15,rear=15,height=200,note="Up to 200 ft (air navigation rules may limit). "+NR),
+ d(J,"C-4","Highway Service Commercial","commercial",sl("1003.137HISECODIRE"),front=50,side=20,rear=20,height=45,
+   note="20 ft side and rear (no structures, storage or display) only next to NU, PS or R-zoned property; otherwise 0 ft. No minimum lot area."),
+ d(J,"C-6","Office and Research Service","office",sl("1003.141OFRESEDIRE"),front=15,side=15,rear=15,height=45,note="3 stories or 45 ft. "+NR),
+ d(J,"C-7","General Extensive Commercial","commercial",sl("1003.143GEEXCODI"),front=50,side=20,rear=20,height=45,
+   note="20 ft side and rear (no structures, storage or display) only next to NU, PS or R-zoned property; otherwise 0 ft. No minimum lot area except listed uses (junk yards 10 ac, correctional 5 ac)."),
+ d(J,"C-8","Planned Commercial","commercial",sl("1003.145PLCODI"),
+   note="Planned district: uses, setbacks and heights are set by the ordinance that zones each site."),
+ d(J,"M-1","Industrial","industrial",sl("1003.151INDIRE"),front=30,side=10,rear=10,height=200,
+   note="No minimum lot area for most uses (towed-vehicle yards 1 ac; transfer stations 5 ac). Up to 200 ft (air navigation rules may limit)."),
+ d(J,"M-2","Industrial","industrial",sl("1003.153INDIRE"),front=30,side=10,rear=10,height=200,
+   note="No minimum lot area for most uses (towed-vehicle yards 1 ac; transfer stations 5 ac). Up to 200 ft (air navigation rules may limit)."),
+ d(J,"M-3","Planned Industrial","industrial",sl("1003.155PLINDIRE"),
+   note="Planned district: standards are set by the ordinance that zones each site."),
+ d(J,"MXD","Mixed Use Development","mixed_use",sl("1003.157MXMIUSDEDI"),dens=60,
+   note="Standards are set by the ordinance for each MXD; density never over 60 units per acre (excluding road right-of-way)."),
 ]
 
 json.dump(rows, open(sys.argv[1] + "/zoning_districts.json", "w"), indent=1)

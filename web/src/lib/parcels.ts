@@ -284,10 +284,11 @@ export async function zoningFor(parcel: Parcel): Promise<Zoning> {
 }
 
 // GIS codes vary in punctuation ("R1C" vs "R-1C", "PD-R" vs "PD"); compare on letters and digits, then on the
-// part before the first "/" (overlays like "RR/FF") or "-" (planned-district subtypes).
+// part before the first "/" (overlays like "RR/FF") or "-" (planned-district subtypes), then without a floodplain
+// "FP" prefix (St. Louis County and Wildwood write "FPR3" for R-3 in the flood plain).
 export function matchDistrict<T extends { code: string }>(gisCode: string, districts: T[]): T | undefined {
   const norm = (s: string) => s.toUpperCase().replace(/[^A-Z0-9]/g, "");
-  const tries = [gisCode, gisCode.split("/")[0], gisCode.split(/[-/]/)[0]];
+  const tries = [gisCode, gisCode.split("/")[0], gisCode.split(/[-/]/)[0], gisCode.replace(/^FP(?=[A-Z])/i, "")];
   for (const t of tries) {
     const hit = districts.find((d) => norm(d.code) === norm(t));
     if (hit) return hit;
