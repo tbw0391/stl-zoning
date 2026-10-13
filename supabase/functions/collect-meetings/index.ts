@@ -229,6 +229,9 @@ Deno.serve(async (req) => {
         }
         const patch: Record<string, unknown> = {};
         if (!m.agenda_url && c.agenda_url) patch.agenda_url = c.agenda_url;
+        // A different agenda link for an upcoming meeting is usually an amended agenda; extract-agendas' recheck
+        // sees the new file and reads it again.
+        else if (m.agenda_url && c.agenda_url && c.agenda_url !== m.agenda_url && c.event_date >= today) patch.agenda_url = c.agenda_url;
         if (!m.packet_url && c.packet_url) patch.packet_url = c.packet_url;
         if (!m.event_time && c.event_time) patch.event_time = c.event_time;
         if (!m.location && c.location) patch.location = c.location;
