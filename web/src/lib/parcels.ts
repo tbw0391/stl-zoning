@@ -1,19 +1,22 @@
-// Address → parcel → zoning lookups against public ArcGIS REST services.
-// Parcels come from St. Charles County's open data on gis-dev.sccmo.org (maps.sccmo.org and gis.sccmo.org sit
-// behind a Cloudflare challenge that blocks server requests). Zoning comes from the county (unincorporated only)
-// or from each city's own layer where one is public.
+// Address → parcel → zoning lookups against public ArcGIS REST services, for St. Charles and St. Louis counties.
+// St. Charles parcels come from the county's open data on gis-dev.sccmo.org (maps.sccmo.org and gis.sccmo.org sit
+// behind a Cloudflare challenge that blocks server requests). St. Louis County parcels come from the county's
+// AGS_Parcels service, which also carries county zoning for unincorporated parcels ("Municipal" inside cities; its
+// MUNI_ZONING field is empty). City zoning comes from each city's own layer where one is public.
 
 const COUNTY = "https://gis-dev.sccmo.org/scc_gis/rest/services/open_data";
 const PARCELS = `${COUNTY}/Tax_Information/MapServer/3`;
+const STL_PARCELS = "https://maps.stlouisco.com/hosting/rest/services/Maps/AGS_Parcels/MapServer/0";
 
 // `aliases` maps a GIS code to the code-book district it falls under (e.g. subdistricts that share one table row).
 // `search` is for layers republished under date-stamped names: the newest ArcGIS Online item matching it wins,
-// with `url` as the fallback.
+// with `url` as the fallback. `fromParcel` reads the zoning straight off the parcel record instead.
 type ZoningSource = {
   url: string; field: string; label: string; extra?: string[]; aliases?: Record<string, string>; search?: string;
+  fromParcel?: boolean; extraLabels?: Record<string, string>;
 };
 
-// Keyed by the county parcel layer's Municipality value.
+// Keyed by Parcel.municipality (St. Charles: the parcel layer's Municipality; St. Louis: see stlMunicipality).
 export const ZONING_SOURCES: Record<string, ZoningSource> = {
   "Unincorporated County": {
     url: `${COUNTY}/Community_Development/MapServer/17`, field: "ZONING", label: "St. Charles County zoning districts",
@@ -45,7 +48,44 @@ export const ZONING_SOURCES: Record<string, ZoningSource> = {
     url: "https://services2.arcgis.com/PhrOBa64VhLxWQwF/arcgis/rest/services/Zoning/FeatureServer/0",
     field: "ZONING", label: "Wentzville zoning (ArcGIS Online)",
   },
+  // St. Louis County. No public zoning layer found (Oct 2026) for Ballwin, Creve Coeur, Des Peres, Kirkwood (its
+  // server is behind the city's bot protection), Ellisville, Manchester, Town and Country, Webster Groves, and the
+  // other tracked cities.
+  "Unincorporated St. Louis County": {
+    url: STL_PARCELS, field: "ZONING", label: "St. Louis County zoning (on the county parcel record)", fromParcel: true,
+  },
+  "Chesterfield": {
+    url: "https://services.arcgis.com/Kg3jhCxXSbejcNhT/arcgis/rest/services/Zoning_District/FeatureServer/43",
+    field: "ZONECLASS", label: "Chesterfield zoning districts (ArcGIS Online)", extra: ["ZONEDESC"], extraLabels: { ZONEDESC: "District" },
+  },
+  // About a third of Wildwood's polygons carry no code; an FP prefix is the floodplain overlay on the base district.
+  "Wildwood": {
+    url: "https://services8.arcgis.com/rDXXA5lcGuU7OXIY/arcgis/rest/services/Zoning_Districts/FeatureServer/0",
+    field: "ZONING", label: "Wildwood zoning (ArcGIS Online)",
+  },
+  "Eureka": {
+    url: "https://services8.arcgis.com/MkUfAWaYm2SQf4Qa/arcgis/rest/services/EU3292_Zoning_Districts_Eureka_10282025/FeatureServer/0",
+    search: "owner:Maplink_GenCode title:EU3292_Zoning", field: "Zone", label: "Eureka zoning (General Code ZoningHub)", extra: ["CUP"], extraLabels: { CUP: "Conditional use permit" },
+  },
+  "Fenton": {
+    url: "https://services8.arcgis.com/MkUfAWaYm2SQf4Qa/arcgis/rest/services/FE3298_zoning_districts_02262026/FeatureServer/0",
+    search: "owner:Maplink_GenCode title:FE3298_zoning", field: "Zone", label: "Fenton zoning (General Code ZoningHub)", extra: ["OVERLAY"], extraLabels: { OVERLAY: "Overlay" },
+  },
+  "Ferguson": {
+    url: "https://services8.arcgis.com/9kFbD8WiSOt2jLF0/arcgis/rest/services/Current_Zoning_Public_View/FeatureServer/0",
+    field: "CODE", label: "Ferguson current zoning (ArcGIS Online)",
+  },
+  "Olivette": {
+    url: "https://services3.arcgis.com/G53ZHa9kCVZAtZYR/arcgis/rest/services/Zoning_082025/FeatureServer/0",
+    field: "OZON_SHORT", label: "Olivette zoning (ArcGIS Online)",
+  },
+  "University City": {
+    url: "https://services8.arcgis.com/WDEr9Y4mYuchWtm7/arcgis/rest/services/University_City_Zoning_Districts/FeatureServer/19",
+    field: "ZON_ABBR_1", label: "University City zoning districts (ArcGIS Online)",
+  },
 };
+
+export const hasZoningSource = (municipality: string) => municipality in ZONING_SOURCES;
 
 export const MUNICIPALITY_TO_JURISDICTION: Record<string, string> = {
   "Unincorporated County": "stcharles_county",
@@ -66,9 +106,17 @@ export const MUNICIPALITY_TO_JURISDICTION: Record<string, string> = {
   "City of Portage Des Sioux": "portage_des_sioux",
   "City of St Paul": "st_paul",
   "City of West Alton": "west_alton",
+  "Unincorporated St. Louis County": "stlouis_county",
+  "Ballwin": "ballwin", "Black Jack": "black_jack", "Brentwood": "brentwood", "Bridgeton": "bridgeton",
+  "Chesterfield": "chesterfield", "Creve Coeur": "creve_coeur", "Des Peres": "des_peres", "Ellisville": "ellisville",
+  "Eureka": "eureka", "Fenton": "fenton", "Ferguson": "ferguson", "Hazelwood": "hazelwood", "Jennings": "jennings",
+  "Kirkwood": "kirkwood", "Manchester": "manchester", "Olivette": "olivette", "Overland": "overland",
+  "Sunset Hills": "sunset_hills", "Town & Country": "town_and_country", "Valley Park": "valley_park",
+  "Webster Groves": "webster_groves", "Wildwood": "wildwood",
 };
 
 export type Parcel = {
+  county: "St. Charles" | "St. Louis";
   parcelId: string;
   address: string;
   municipality: string;
@@ -76,6 +124,7 @@ export type Parcel = {
   lotSize: string | null;
   propType: string | null;
   point: { x: number; y: number } | null;
+  gisZoning?: string; // zoning on the parcel record itself (St. Louis County)
 };
 
 // `code` is what the GIS layer says; `districtCode` is the code to look up in zoning_districts.
@@ -93,6 +142,9 @@ const SUFFIXES: [RegExp, string][] = [
   [/\bSTREET\b/g, "ST"], [/\bDRIVE\b/g, "DR"], [/\bROAD\b/g, "RD"], [/\bAVENUE\b/g, "AVE"], [/\bBOULEVARD\b/g, "BLVD"],
   [/\bLANE\b/g, "LN"], [/\bCOURT\b/g, "CT"], [/\bPARKWAY\b/g, "PKWY"], [/\bHIGHWAY\b/g, "HWY"], [/\bCIRCLE\b/g, "CIR"],
   [/\bPLACE\b/g, "PL"], [/\bTERRACE\b/g, "TER"], [/\bNORTH\b/g, "N"], [/\bSOUTH\b/g, "S"], [/\bEAST\b/g, "E"], [/\bWEST\b/g, "W"],
+  // Assessor records number the street ("N 2ND ST").
+  [/\bFIRST\b/g, "1ST"], [/\bSECOND\b/g, "2ND"], [/\bTHIRD\b/g, "3RD"], [/\bFOURTH\b/g, "4TH"], [/\bFIFTH\b/g, "5TH"],
+  [/\bSIXTH\b/g, "6TH"], [/\bSEVENTH\b/g, "7TH"], [/\bEIGHTH\b/g, "8TH"], [/\bNINTH\b/g, "9TH"], [/\bTENTH\b/g, "10TH"],
 ];
 
 // "123 Main Street, St. Charles, MO 63301" → "123 MAIN ST"
@@ -115,7 +167,10 @@ function centroid(rings: number[][][]) {
   return { x: cx / (3 * a), y: cy / (3 * a) };
 }
 
-const toParcel = (f: { attributes: Record<string, unknown>; geometry?: { rings?: number[][][] } }): Parcel => ({
+type Feature = { attributes: Record<string, unknown>; geometry?: { rings?: number[][][] } };
+
+const toParcel = (f: Feature): Parcel => ({
+  county: "St. Charles",
   parcelId: String(f.attributes.Parcel_ID),
   address: String(f.attributes.SiteAddress ?? "").trim(),
   municipality: String(f.attributes.Municipality ?? ""),
@@ -126,24 +181,66 @@ const toParcel = (f: { attributes: Record<string, unknown>; geometry?: { rings?:
 });
 
 const PARCEL_FIELDS = "Parcel_ID,SiteAddress,Municipality,Owner,LotSize,PropType";
+const STL_FIELDS = "LOCATOR,PROP_ADD,PROP_ZIP,MUNICIPALITY,OWNER_NAME,ACRES,LUCODE,ZONING";
 
-// Matches a street address prefix, or an exact parcel ID when the input looks like one. Text after the first comma
-// narrows the results: a ZIP filters on SitusZip, and a city name is preferred when it matches the municipality
-// (it is often only the postal city, so non-matching parcels are kept if nothing matches).
+// "TOWN & COUNTRY" → "Town & Country"; "UNINCORPORATED" → "Unincorporated St. Louis County".
+function stlMunicipality(raw: string) {
+  const m = raw.trim();
+  if (!m || m === "UNINCORPORATED") return "Unincorporated St. Louis County";
+  return m.toLowerCase().replace(/\b[a-z]/g, (c) => c.toUpperCase()).replace(/\bSt\b/, "St.");
+}
+
+const toStlParcel = (f: Feature): Parcel => {
+  const a = f.attributes;
+  const zoning = String(a.ZONING ?? "").trim();
+  return {
+    county: "St. Louis",
+    parcelId: String(a.LOCATOR),
+    address: String(a.PROP_ADD ?? "").trim(),
+    municipality: stlMunicipality(String(a.MUNICIPALITY ?? "")),
+    owner: (a.OWNER_NAME as string)?.trim() || null,
+    lotSize: a.ACRES ? `${a.ACRES} ac` : null,
+    propType: (a.LUCODE as string)?.trim() || null,
+    point: f.geometry?.rings?.length ? centroid(f.geometry.rings) : null,
+    gisZoning: zoning && zoning !== "Municipal" ? zoning : undefined,
+  };
+};
+
+// Searches both counties. Matches a street address prefix, or an exact parcel ID when the input looks like one
+// (St. Charles "6-009D-D603", St. Louis "23R440916"). Text after the first comma narrows the results: a ZIP filters
+// on the site ZIP, and a city name is preferred when it matches the municipality (it is often only the postal city,
+// so non-matching parcels are kept if nothing matches).
 export async function findParcels(input: string): Promise<Parcel[]> {
   const q = input.trim();
-  const isParcelId = /^[0-9A-Z]-[0-9A-Z]{3,4}-/i.test(q);
+  const sccId = /^[0-9A-Z]-[0-9A-Z]{3,4}-/i.test(q);
+  const stlId = /^\d{2}[A-Z]\d{6}$/i.test(q);
+  const isParcelId = sccId || stlId;
   const value = (isParcelId ? q.toUpperCase() : normalizeAddress(q)).replace(/'/g, "''");
   if (value.length < 3) return [];
   const rest = isParcelId ? "" : q.split(",").slice(1).join(" ").toUpperCase();
   const zip = rest.match(/\b(63\d{3})\b/)?.[1];
   const city = rest.replace(/\b(MO|MISSOURI|63\d{3}(-\d{4})?)\b/g, "").replace(/[.,']/g, "").replace(/\bSAINT\b/g, "ST").replace(/\s+/g, " ").trim();
-  let where = isParcelId ? `Parcel_ID LIKE '${value}%'` : `SiteAddress LIKE '${value}%'`;
-  if (zip) where += ` AND SitusZip = '${zip}'`;
-  const features = await query(PARCELS, {
-    where, outFields: PARCEL_FIELDS, returnGeometry: "true", outSR: "4326", orderByFields: "SiteAddress", resultRecordCount: "25",
-  });
-  const parcels = features.map(toParcel);
+
+  const searches: Promise<Parcel[]>[] = [];
+  if (!stlId) {
+    let where = sccId ? `Parcel_ID LIKE '${value}%'` : `SiteAddress LIKE '${value}%'`;
+    if (zip) where += ` AND SitusZip = '${zip}'`;
+    searches.push(query(PARCELS, {
+      where, outFields: PARCEL_FIELDS, returnGeometry: "true", outSR: "4326", orderByFields: "SiteAddress", resultRecordCount: "25",
+    }).then((fs) => fs.map(toParcel)));
+  }
+  if (!sccId) {
+    let where = stlId ? `LOCATOR = '${value}'` : `PROP_ADD LIKE '${value}%'`;
+    if (zip) where += ` AND PROP_ZIP = '${zip}'`;
+    searches.push(query(STL_PARCELS, {
+      where, outFields: STL_FIELDS, returnGeometry: "true", outSR: "4326", orderByFields: "PROP_ADD", resultRecordCount: "25",
+    }).then((fs) => fs.map(toStlParcel)));
+  }
+  // One county's service being down shouldn't hide the other county's matches.
+  const settled = await Promise.allSettled(searches);
+  const failed = settled.filter((r) => r.status === "rejected") as PromiseRejectedResult[];
+  if (failed.length === settled.length) throw failed[0].reason;
+  const parcels = settled.flatMap((r) => (r.status === "fulfilled" ? r.value : [])).slice(0, 25);
   if (!city) return parcels;
   const muni = (p: Parcel) => p.municipality.toUpperCase().replace(/[.']/g, "").replace(/\bSAINT\b/g, "ST");
   const inCity = parcels.filter((p) => muni(p).includes(city));
@@ -165,7 +262,11 @@ async function layerUrl(src: ZoningSource) {
 
 export async function zoningFor(parcel: Parcel): Promise<Zoning> {
   const src = ZONING_SOURCES[parcel.municipality];
-  if (!src || !parcel.point) return null;
+  if (!src) return null;
+  if (src.fromParcel) {
+    return parcel.gisZoning ? { code: parcel.gisZoning, districtCode: src.aliases?.[parcel.gisZoning] ?? parcel.gisZoning, extra: {}, source: src.label } : null;
+  }
+  if (!parcel.point) return null;
   const features = await query(await layerUrl(src), {
     geometry: JSON.stringify({ ...parcel.point, spatialReference: { wkid: 4326 } }),
     geometryType: "esriGeometryPoint", inSR: "4326", spatialRel: "esriSpatialRelIntersects",
@@ -177,7 +278,7 @@ export async function zoningFor(parcel: Parcel): Promise<Zoning> {
   const extra: Record<string, string> = {};
   for (const k of src.extra ?? []) {
     const v = String(a?.[k] ?? "").trim();
-    if (v && v !== "None" && v !== "No") extra[k] = v;
+    if (v && v !== "None" && v !== "No") extra[src.extraLabels?.[k] ?? k] = v;
   }
   return { code, districtCode: src.aliases?.[code] ?? code, extra, source: src.label };
 }

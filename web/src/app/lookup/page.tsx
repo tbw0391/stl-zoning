@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import { MUNICIPALITY_TO_JURISDICTION, findParcels, matchDistrict, zoningFor, type Parcel, type Zoning } from "@/lib/parcels";
+import { MUNICIPALITY_TO_JURISDICTION, findParcels, hasZoningSource, matchDistrict, zoningFor, type Parcel, type Zoning } from "@/lib/parcels";
 import PageTitle from "@/components/PageTitle";
 
 export const dynamic = "force-dynamic";
@@ -48,11 +48,11 @@ export default async function LookupPage({ searchParams }: { searchParams: Promi
   return (
     <>
       <PageTitle href="/lookup">Parcel lookup</PageTitle>
-      <p className="muted">Address or parcel ID → jurisdiction, current zoning and that district&apos;s standards. St. Charles County only for now.</p>
+      <p className="muted">Address or parcel ID → jurisdiction, current zoning and that district&apos;s standards. St. Charles and St. Louis counties; city zoning where the city publishes a zoning map layer.</p>
 
       <form className="filters" method="get">
         <label className="grow">Address or parcel ID
-          <input name="q" defaultValue={q} placeholder="e.g. 400 N Main St or 6-009D-D603" required autoFocus />
+          <input name="q" defaultValue={q} placeholder="e.g. 400 N Main St, St. Charles · 6-009D-D603 · 23R440916" required autoFocus />
         </label>
         <button type="submit">Look up</button>
       </form>
@@ -70,7 +70,7 @@ export default async function LookupPage({ searchParams }: { searchParams: Promi
             {parcels.map((p) => (
               <li key={p.parcelId}>
                 <Link href={`/lookup?${new URLSearchParams({ q, pid: p.parcelId })}`}>{p.address || "(no site address)"}</Link>
-                <span className="muted small"> · {p.municipality} · {p.parcelId}</span>
+                <span className="muted small"> · {p.municipality}{p.county === "St. Louis" && p.municipality !== "Unincorporated St. Louis County" ? " (St. Louis County)" : ""} · {p.parcelId}</span>
               </li>
             ))}
           </ul>
@@ -100,14 +100,16 @@ export default async function LookupPage({ searchParams }: { searchParams: Promi
                   <span className="error">Zoning service error: {zoningError}</span>
                 ) : (
                   <span className="muted">
-                    No online zoning layer for {parcel.municipality} yet.
+                    {hasZoningSource(parcel.municipality)
+                      ? `The ${parcel.municipality} zoning layer has no district at this parcel.`
+                      : `No online zoning layer for ${parcel.municipality} yet.`}
                     {j?.zoning_map_url && <> Check the <a href={j.zoning_map_url} target="_blank" rel="noreferrer">zoning map ↗</a>.</>}
                   </span>
                 )}
               </div>
             </div>
             <p className="source">
-              Parcel: St. Charles County Assessor via county open data.
+              Parcel: {parcel.county === "St. Louis" ? "St. Louis County Assessor via the county's parcel map service" : "St. Charles County Assessor via county open data"}.
               {zoning && <> Zoning: {zoning.source}. GIS layers can lag recent rezonings; confirm with the jurisdiction before relying on it.</>}
             </p>
           </div>
