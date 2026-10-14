@@ -58,7 +58,7 @@ export default async function DirectoryPage({ searchParams }: { searchParams: Pr
             <tbody>
               {people.map((x) => (
                 <tr key={x.id}>
-                  <td>{x.full_name}<ProfileLinks links={x.links} /></td>
+                  <td>{voteKey.has(x.id) ? <Link href={memberHref(x.jurisdiction_id, voteKey.get(x.id)!)} title="Voting record">{x.full_name}</Link> : x.full_name}<ProfileLinks links={x.links} /></td>
                   <td>{x.title}</td>
                   <td><Link href={`/jurisdictions/${x.jurisdiction_id}`}>{shortName(jname.get(x.jurisdiction_id) ?? x.jurisdiction_id)}</Link></td>
                   <td className="small">{ROLE_LABEL[x.role_group]}</td>

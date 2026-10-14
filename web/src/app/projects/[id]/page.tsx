@@ -124,7 +124,8 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
 
         <aside>
           <h2>Details</h2>
-          <form action={updateProject.bind(null, id)} className="card stack-form">
+          {/* Keyed on updated_at: React resets the form after a save, and a <select> would otherwise snap back to the old stage (suggestion #18). */}
+          <form key={p.updated_at} action={updateProject.bind(null, id)} className="card stack-form">
             <label>Name<input name="name" defaultValue={p.name} required /></label>
             <label>Stage
               <select name="stage" defaultValue={p.stage}>

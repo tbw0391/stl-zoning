@@ -98,7 +98,7 @@ export default async function ProgressPage() {
                             {r && (
                               <details className="cell-edit">
                                 <summary>Edit</summary>
-                                <form action={updateProgress.bind(null, j.id, t.id)} className="stack-form">
+                                <form key={`${status}|${r.note ?? ""}`} action={updateProgress.bind(null, j.id, t.id)} className="stack-form">
                                   <select name="status" defaultValue={status} aria-label="Status">
                                     {Object.entries(PROGRESS_LABEL).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
                                   </select>

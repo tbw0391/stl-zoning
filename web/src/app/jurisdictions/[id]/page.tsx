@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { memberHref } from "@/lib/votes";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { ROLE_LABEL, STATUS_LABEL, fmtDate, fmtTime, todayCentral } from "@/lib/format";
@@ -47,6 +48,9 @@ export default async function JurisdictionPage({ params }: { params: Promise<{ i
     supabase.from("zoning_districts").select("*").eq("jurisdiction_id", id).order("id"),
     supabase.from("collector_runs").select("ran_at, ok, missing, error").eq("jurisdiction_id", id).order("ran_at", { ascending: false }).limit(1),
   ]);
+  // Names link to the member's voting record when minutes have votes for them (suggestion #19).
+  const { data: voted } = await supabase.from("member_votes").select("person_id, member_key").eq("jurisdiction_id", id).not("person_id", "is", null);
+  const voteKey = new Map((voted ?? []).map((v) => [v.person_id, v.member_key]));
   const run = runs?.[0] as { ran_at: string; ok: boolean; missing: { event_date: string; body: string }[] | null; error: string | null } | undefined;
   if (!j) notFound();
   const p = proc as Process | null;
@@ -204,7 +208,7 @@ export default async function JurisdictionPage({ params }: { params: Promise<{ i
                   <tbody>
                     {list.map((x) => (
                       <tr key={x.id}>
-                        <td>{x.full_name}<ProfileLinks links={x.links} /></td>
+                        <td>{voteKey.has(x.id) ? <Link href={memberHref(id, voteKey.get(x.id)!)} title="Voting record">{x.full_name}</Link> : x.full_name}<ProfileLinks links={x.links} /></td>
                         <td>{x.title}</td>
                         <td>{x.email ? <a href={`mailto:${x.email}`}>{x.email}</a> : <span className="muted">—</span>}</td>
                         <td>{x.phone ?? <span className="muted">—</span>}</td>
