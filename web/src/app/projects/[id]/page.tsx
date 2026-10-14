@@ -5,6 +5,8 @@ import { STAGE_LABEL, fmtDate, fmtTime, shortName, todayCentral } from "@/lib/fo
 import { TASK_SELECT, Task, TaskForm, TaskList, assignees } from "@/components/Tasks";
 import { distanceTo, loadCases, caseTypes, ZONING_TYPES } from "@/lib/cases";
 import CaseRow from "@/components/CaseRow";
+import TimelineCard from "@/components/TimelineCard";
+import { loadTimeline } from "@/lib/timeline";
 import { createWatch } from "@/app/alerts/actions";
 import { addChecklistItem, addNote, applyTemplate, deleteChecklistItem, setChecklistDone, updateProject } from "../actions";
 
@@ -13,10 +15,12 @@ export const dynamic = "force-dynamic";
 const stamp = (ts: string) =>
   new Date(ts).toLocaleString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit", timeZone: "America/Chicago" });
 
-export default async function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function ProjectPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ start?: string }> }) {
   const id = Number((await params).id);
   if (!Number.isInteger(id)) notFound();
   const today = todayCentral();
+  const { start: startParam } = await searchParams;
+  const start = startParam && /^\d{4}-\d{2}-\d{2}$/.test(startParam) && startParam >= today ? startParam : today;
   const supabase = await createClient();
 
   const [{ data: p }, { data: notes }, { data: checklist }, { data: tasks }, { data: names }, { data: jurisdictions }, { data: activeDefaults }] = await Promise.all([
@@ -30,13 +34,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
   ]);
   if (!p) notFound();
 
-  const [{ data: meetings }, { data: recorded }] = p.jurisdiction_id
+  const [{ data: meetings }, { data: recorded }, timeline] = p.jurisdiction_id
     ? await Promise.all([
         supabase.from("meetings").select("*").eq("jurisdiction_id", p.jurisdiction_id).gte("event_date", today).order("event_date").limit(6),
         supabase.from("meetings").select("id, body, event_date").eq("jurisdiction_id", p.jurisdiction_id)
           .not("summary", "is", null).order("event_date", { ascending: false }).limit(4),
+        loadTimeline(supabase, p.jurisdiction_id, start),
       ])
-    : [{ data: [] }, { data: [] }];
+    : [{ data: [] }, { data: [] }, null];
 
   // Land-use cases near the site (rezonings, PUDs, special uses, annexations, plats, site plans) within 3 miles.
   const NEAR_MILES = 3;
@@ -165,6 +170,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
 
           {p.jurisdiction_id && (
             <>
+              <h2>Expected timeline</h2>
+              {timeline && <TimelineCard t={timeline} start={start} today={today} />}
+
               <h2>Upcoming in {shortName(p.jurisdictions?.name ?? "")}</h2>
               <div className="card">
                 {(meetings ?? []).length === 0 ? (
