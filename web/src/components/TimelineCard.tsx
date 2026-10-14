@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { fmtDate } from "@/lib/format";
-import { MIN_HISTORY_CASES, Path, Timeline, daysBetween, median } from "@/lib/timeline";
+import { MIN_HISTORY_CASES, Path, Timeline, daysBetween } from "@/lib/timeline";
 
 const weeks = (start: string, end: string | null) => (end ? `about ${Math.round(daysBetween(start, end) / 7)} weeks` : "past the loaded schedule");
 
@@ -37,16 +37,14 @@ export default function TimelineCard({ t, start, today }: { t: Timeline; start: 
         </p>
       )}
 
-      {t.history.map((h) => {
-        const gap = median(h.gapDays);
-        return (
-          <p key={h.scope} className="small muted" style={{ marginBottom: 0 }}>
-            Agendas since Aug, {h.scope}: {h.continued} of {h.cases} P&amp;Z case{h.cases === 1 ? "" : "s"} ({Math.round((100 * h.continued) / h.cases)}%) came back for a second meeting
-            {gap != null && <>; P&amp;Z to council took {gap} days (median of {h.gapDays.length})</>}.
-            {h.scope === "here" && h.cases < MIN_HISTORY_CASES && " Small sample."}
-          </p>
-        );
-      })}
+      {t.history.map((h) => (
+        <p key={h.scope} className="small muted" style={{ marginBottom: 0 }}>
+          Agendas since {fmtDate(h.since)}, {h.scope}: {h.continued} of {h.cases} P&amp;Z case{h.cases === 1 ? "" : "s"} ({Math.round((100 * h.continued) / h.cases)}%) came back for another P&amp;Z meeting
+          {h.totalP50 != null && <>; first P&amp;Z to final council action took {h.totalP50} days at the median, {h.totalP80} days for 80% of cases ({h.withCouncil} cases)</>}
+.
+          {h.scope === "here" && h.cases < MIN_HISTORY_CASES && " Small sample."}
+        </p>
+      ))}
 
       {t.assumptions.map((a) => <p key={a} className="small muted" style={{ marginBottom: 0 }}>{a}</p>)}
       <p className="small muted" style={{ marginBottom: 0 }}>

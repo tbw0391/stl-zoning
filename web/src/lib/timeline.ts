@@ -5,7 +5,12 @@ import { addDays } from "@/lib/format";
 
 export type Step = { label: string; date: string | null; meetingId?: number; estimated: boolean; note?: string };
 export type Path = { steps: Step[]; finalDate: string | null };
-export type History = { scope: string; cases: number; continued: number; gapDays: number[] };
+// From the board_history view (agenda history): cases seen at P&Z, how many came back for another P&Z meeting, and
+// calendar days from first P&Z to final council action.
+export type History = {
+  scope: string; since: string; cases: number; continued: number; withCouncil: number;
+  totalP50: number | null; totalP80: number | null;
+};
 export type Timeline = { best: Path; continued: Path | null; history: History[]; assumptions: string[] };
 
 type Meeting = { id: number; body: string; event_type: string; event_date: string; linked_meeting: number | null; status: string };
@@ -15,11 +20,6 @@ const DEFAULT_LEAD_DAYS = 30;
 // Fewer P&Z cases than this and the page flags the sample as small.
 export const MIN_HISTORY_CASES = 5;
 
-export const median = (xs: number[]) => {
-  if (!xs.length) return null;
-  const s = [...xs].sort((a, b) => a - b);
-  return s.length % 2 ? s[(s.length - 1) / 2] : Math.round((s[s.length / 2 - 1] + s[s.length / 2]) / 2);
-};
 
 export const daysBetween = (a: string, b: string) =>
   Math.round((new Date(b + "T00:00:00Z").getTime() - new Date(a + "T00:00:00Z").getTime()) / 86400000);
@@ -39,11 +39,11 @@ function councilSteps(hearing: Meeting, gb: Meeting[], readings: number): Path {
 }
 
 export async function loadTimeline(supabase: SupabaseClient, jurisdictionId: string, start: string): Promise<Timeline> {
-  const [{ data: meetings }, { data: proc }, { data: cases }] = await Promise.all([
+  const [{ data: meetings }, { data: proc }, { data: boards }] = await Promise.all([
     supabase.from("meetings").select("id, body, event_type, event_date, linked_meeting, status")
       .eq("jurisdiction_id", jurisdictionId).gte("event_date", start).neq("status", "cancelled").order("event_date"),
     supabase.from("rezoning_processes").select("pz_hearing_timing, governing_body_action").eq("jurisdiction_id", jurisdictionId).maybeSingle(),
-    supabase.from("land_use_cases").select("jurisdiction_id, body, event_date, case_number").not("case_number", "is", null),
+    supabase.from("board_history").select("*").or(`jurisdiction_id.eq.${jurisdictionId},jurisdiction_id.is.null`),
   ]);
   const ms = (meetings ?? []) as Meeting[];
   const pz = ms.filter((m) => m.body === "planning_zoning" && m.event_type === "meeting");
@@ -70,7 +70,7 @@ export async function loadTimeline(supabase: SupabaseClient, jurisdictionId: str
 
   if (!hearing) {
     steps.push({ label: "P&Z hearing", date: null, estimated: true, note: pz.length ? "past the loaded schedule" : "no upcoming P&Z meetings loaded for this city" });
-    return { best: { steps, finalDate: null }, continued: null, history: history(cases ?? [], jurisdictionId), assumptions };
+    return { best: { steps, finalDate: null }, continued: null, history: history(boards ?? [], jurisdictionId), assumptions };
   }
   steps.push({ label: "P&Z hearing", date: hearing.event_date, meetingId: hearing.id, estimated: hearing.status === "projected" });
   const council = councilSteps(hearing, gb, readings);
@@ -86,34 +86,16 @@ export async function loadTimeline(supabase: SupabaseClient, jurisdictionId: str
     finalDate: c?.finalDate ?? null,
   };
 
-  return { best, continued, history: history(cases ?? [], jurisdictionId), assumptions };
+  return { best, continued, history: history(boards ?? [], jurisdictionId), assumptions };
 }
 
-// From agenda history: a case number on more than one P&Z agenda was continued; P&Z -> council gap per case.
-function history(rows: { jurisdiction_id: string; body: string; event_date: string; case_number: string | null }[], jurisdictionId: string): History[] {
-  const tally = (only?: string): History => {
-    const byCase = new Map<string, { pz: Set<string>; gb: string[] }>();
-    for (const r of rows) {
-      const cn = r.case_number?.trim();
-      if (!cn || (only && r.jurisdiction_id !== only)) continue;
-      const key = `${r.jurisdiction_id}|${cn}`;
-      const c = byCase.get(key) ?? { pz: new Set(), gb: [] };
-      if (r.body === "planning_zoning") c.pz.add(r.event_date); else c.gb.push(r.event_date);
-      byCase.set(key, c);
-    }
-    let cases = 0, continued = 0;
-    const gapDays: number[] = [];
-    for (const c of byCase.values()) {
-      if (!c.pz.size) continue;
-      cases++;
-      if (c.pz.size > 1) continued++;
-      const lastPz = [...c.pz].sort().at(-1)!;
-      const firstGb = c.gb.filter((d) => d > lastPz).sort()[0];
-      if (firstGb) gapDays.push(daysBetween(lastPz, firstGb));
-    }
-    return { scope: only ? "here" : "all tracked boards", cases, continued, gapDays };
-  };
-  const local = tally(jurisdictionId);
-  const all = tally();
-  return local.cases ? [local, all] : [all];
+// This board's history first (when it has any), then all tracked boards.
+function history(rows: Record<string, unknown>[], jurisdictionId: string): History[] {
+  const toHistory = (r: Record<string, unknown>, scope: string): History => ({
+    scope, since: r.since as string, cases: r.cases as number, continued: r.continued as number, withCouncil: r.with_council as number,
+    totalP50: r.total_p50 as number | null, totalP80: r.total_p80 as number | null,
+  });
+  const local = rows.find((r) => r.jurisdiction_id === jurisdictionId);
+  const all = rows.find((r) => r.jurisdiction_id == null);
+  return [...(local ? [toHistory(local, "here")] : []), ...(all ? [toHistory(all, "all tracked boards")] : [])];
 }

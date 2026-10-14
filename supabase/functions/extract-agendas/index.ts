@@ -15,6 +15,9 @@
 //   ?limit=N   meetings per run (default 12)      ?id=N   one meeting (re-reads even if already checked)
 //   ?geocode=1 locate item addresses on already-read agendas (no Claude calls)
 //   ?recheck=1 look for revised upcoming agendas      ?to=a@b.c  send this run's alert email there instead of DIGEST_TO
+//   ?backfill=1 read past agendas older than LOOKBACK_DAYS (history for the project timeline estimate). They're stamped
+//               as read and alerted on the meeting date, so watches, the nav badge and alert emails ignore them, and
+//               aren't geocoded (?geocode=1 can do that later). ?from=YYYY-MM-DD limits how far back.
 // Deployed with verify_jwt off.
 import Anthropic from "npm:@anthropic-ai/sdk@0.131.0";
 import { PDFDocument } from "npm:pdf-lib@1.17.1";
@@ -356,6 +359,7 @@ Deno.serve(async (req) => {
 
   const FIELDS = "id, jurisdiction_id, body, event_date, agenda_url, agenda_items, agenda_hash, agenda_request_status, agenda_requested_by, agenda_request_notified_at, jurisdictions!inner(name)";
   const recheck = !!url.searchParams.get("recheck");
+  const backfill = !!url.searchParams.get("backfill");
   let q = db.from("meetings").select(FIELDS).not("agenda_url", "is", null);
   const one = url.searchParams.get("id");
   // Unfollowed jurisdictions are skipped unless one meeting is named.
@@ -364,6 +368,9 @@ Deno.serve(async (req) => {
     // Upcoming agendas already read, least recently re-fetched first.
     q = q.not("agenda_checked_on", "is", null).gte("event_date", today)
       .order("agenda_rechecked_at", { ascending: true, nullsFirst: true }).limit(Number(url.searchParams.get("limit") ?? 80));
+  } else if (backfill && !one) {
+    q = q.is("agenda_checked_on", null).lt("event_date", since).gte("event_date", url.searchParams.get("from") ?? "2000-01-01")
+      .order("event_date", { ascending: false }).limit(Number(url.searchParams.get("limit") ?? 12));
   } else {
     // Older agendas are read only when a request on the site has been approved; those go first.
     q = one ? q.eq("id", Number(one)) : q.is("agenda_checked_on", null)
@@ -401,12 +408,13 @@ Deno.serve(async (req) => {
       const text = response.content.find((b) => b.type === "text");
       const items = JSON.parse(text && "text" in text ? text.text : "{}").items;
       if (!Array.isArray(items)) throw new Error("no items array in response");
-      await geocodeItems(items, m.jurisdictions?.name ?? "");
+      if (!backfill) await geocodeItems(items, m.jurisdictions?.name ?? "");
       const now = new Date().toISOString();
+      const asOf = backfill ? { agenda_read_at: `${m.event_date}T12:00:00Z`, agenda_alerted_at: `${m.event_date}T12:00:00Z` } : { agenda_read_at: now };
       const revised = Array.isArray(m.agenda_items);
       const reread = revised ? { agenda_previous_items: m.agenda_items, agenda_revised_at: now } : {};
       const { error: ue } = await db.from("meetings").update({
-        agenda_items: items, agenda_checked_on: today, agenda_read_at: now, agenda_hash: agenda.hash, agenda_rechecked_at: now, ...reread,
+        agenda_items: items, agenda_checked_on: today, agenda_hash: agenda.hash, agenda_rechecked_at: now, ...asOf, ...reread,
       }).eq("id", m.id);
       if (ue) throw new Error(ue.message);
       if (m.agenda_request_status === "approved") await notifyRequester(db, m, items.length);
@@ -450,11 +458,11 @@ Deno.serve(async (req) => {
   const started = Date.now();
   await Promise.all(Array.from({ length: 4 }, async () => {
     for (let m = queue.shift(); m; m = queue.shift()) {
-      if (recheck && Date.now() - started > 100_000) break; // stay under the time limit; the rest go first next time
+      if ((recheck || backfill) && Date.now() - started > 100_000) break; // stay under the time limit; the rest go first next time
       const r = recheck ? await recheckOne(m) : await read(m);
       if (r) results.push(r);
     }
   }));
-  const alerts = await sendAlerts(db, url.searchParams.get("to"));
+  const alerts = backfill ? null : await sendAlerts(db, url.searchParams.get("to"));
   return new Response(JSON.stringify({ results, alerts }, null, 1), { headers: { "Content-Type": "application/json" } });
 });

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { skipUnfollowed, unfollowedIds } from "@/lib/followed";
-import { fmtDate, shortName } from "@/lib/format";
+import { addDays, fmtDate, shortName, todayCentral } from "@/lib/format";
 import { AgendaItem, BODY_LABEL, SummaryItem } from "@/components/MeetingSummary";
 import PageTitle from "@/components/PageTitle";
 import { AgendaRequest } from "./AgendaRequest";
@@ -13,7 +13,8 @@ export default async function MeetingsPage({ searchParams }: { searchParams: Pro
   const supabase = await createClient();
   let q = supabase.from("meetings").select("id, jurisdiction_id, body, event_date, video_url, summary, summary_items, agenda_url, packet_url, agenda_items, agenda_checked_on, agenda_requested_by, agenda_request_status, jurisdictions(name)")
     .or("video_url.not.is.null,agenda_url.not.is.null").order("event_date", { ascending: false });
-  q = sp.j ? q.eq("jurisdiction_id", sp.j) : skipUnfollowed(q, await unfollowedIds(supabase));
+  // All municipalities: the last 12 months (agenda history goes back years). One municipality: everything.
+  q = sp.j ? q.eq("jurisdiction_id", sp.j) : skipUnfollowed(q.gte("event_date", addDays(todayCentral(), -365)), await unfollowedIds(supabase));
   const [{ data }, { count: waiting }] = await Promise.all([
     q,
     supabase.from("meetings").select("id", { count: "exact", head: true }).eq("agenda_request_status", "pending"),

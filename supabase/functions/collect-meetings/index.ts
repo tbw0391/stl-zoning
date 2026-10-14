@@ -193,8 +193,10 @@ Deno.serve(async (req) => {
 
   const today = new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(new Date());
   const year = Number(today.slice(0, 4));
-  // Late in the year, also pick up next year's meetings as cities post them.
-  const years = Number(today.slice(5, 7)) >= 11 ? [year, year + 1] : [year];
+  // Late in the year, also pick up next year's meetings as cities post them. ?years=2021,2022 backfills past years
+  // (one jurisdiction and year per call keeps CivicClerk's 15-per-page paging under the time limit).
+  const asked = (url.searchParams.get("years") ?? "").split(",").map(Number).filter((y) => y >= 2000 && y <= year + 1);
+  const years = asked.length ? asked.sort((a, b) => a - b) : Number(today.slice(5, 7)) >= 11 ? [year, year + 1] : [year];
 
   let q = db.from("jurisdictions").select("id, collector, collector_ref").not("collector", "is", null);
   const only = url.searchParams.get("j");
