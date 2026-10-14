@@ -11,7 +11,10 @@ export type History = {
   scope: string; since: string; cases: number; continued: number; withCouncil: number;
   totalP50: number | null; totalP80: number | null;
 };
-export type Timeline = { best: Path; continued: Path | null; history: History[]; assumptions: string[] };
+// From this board's history: the hearing date plus the median and 80th-percentile days from first P&Z to final
+// council action. Only when the board has MIN_HISTORY_CASES cases that reached council.
+export type Typical = { hearing: string; p50: string; p80: string; cases: number; since: string };
+export type Timeline = { best: Path; continued: Path | null; typical: Typical | null; history: History[]; assumptions: string[] };
 
 type Meeting = { id: number; body: string; event_type: string; event_date: string; linked_meeting: number | null; status: string };
 
@@ -70,7 +73,7 @@ export async function loadTimeline(supabase: SupabaseClient, jurisdictionId: str
 
   if (!hearing) {
     steps.push({ label: "P&Z hearing", date: null, estimated: true, note: pz.length ? "past the loaded schedule" : "no upcoming P&Z meetings loaded for this city" });
-    return { best: { steps, finalDate: null }, continued: null, history: history(boards ?? [], jurisdictionId), assumptions };
+    return { best: { steps, finalDate: null }, continued: null, typical: null, history: history(boards ?? [], jurisdictionId), assumptions };
   }
   steps.push({ label: "P&Z hearing", date: hearing.event_date, meetingId: hearing.id, estimated: hearing.status === "projected" });
   const council = councilSteps(hearing, gb, readings);
@@ -86,7 +89,13 @@ export async function loadTimeline(supabase: SupabaseClient, jurisdictionId: str
     finalDate: c?.finalDate ?? null,
   };
 
-  return { best, continued, history: history(boards ?? [], jurisdictionId), assumptions };
+  const hist = history(boards ?? [], jurisdictionId);
+  const local = hist.find((h) => h.scope === "here");
+  const typical = local && local.withCouncil >= MIN_HISTORY_CASES && local.totalP50 != null && local.totalP80 != null
+    ? { hearing: hearing.event_date, p50: addDays(hearing.event_date, local.totalP50), p80: addDays(hearing.event_date, local.totalP80),
+        cases: local.withCouncil, since: local.since }
+    : null;
+  return { best, continued, typical, history: hist, assumptions };
 }
 
 // This board's history first (when it has any), then all tracked boards.
