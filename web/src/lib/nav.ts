@@ -1,12 +1,13 @@
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import {
-  faCalendar, faFileLines, faFolderOpen, faSquareCheck, faUser, faComments, faMap, faFlag, faAddressBook, faLightbulb, faThumbsUp,
+  faCalendar, faChartBar, faFileLines, faFolderOpen, faSquareCheck, faUser, faComments, faMap, faFlag, faAddressBook, faLightbulb, faThumbsUp,
 } from "@fortawesome/free-regular-svg-icons";
 import { faLandmark } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-regular-svg-icons";
 
 export const NAV: { href: string; label: string; icon: IconDefinition }[] = [
   { href: "/", label: "Calendar", icon: faCalendar },
+  { href: "/dashboard", label: "Dashboard", icon: faChartBar },
   { href: "/projects", label: "Projects", icon: faFolderOpen },
   { href: "/tasks", label: "Tasks", icon: faSquareCheck },
   { href: "/chad", label: "Chad's tasks", icon: faUser },
