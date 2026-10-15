@@ -6,11 +6,15 @@ import { TASK_SELECT, Task, TaskForm, TaskList, assignees } from "@/components/T
 import { distanceTo, loadCases, caseTypes, ZONING_TYPES } from "@/lib/cases";
 import CaseRow from "@/components/CaseRow";
 import TimelineCard from "@/components/TimelineCard";
-import { loadTimeline } from "@/lib/timeline";
+import { STEP_LABEL, currentStep, loadDelays, loadTimeline } from "@/lib/timeline";
 import { createWatch } from "@/app/alerts/actions";
-import { addChecklistItem, addNote, applyTemplate, deleteChecklistItem, setChecklistDone, updateProject } from "../actions";
+import { addChecklistItem, addDelay, addNote, applyTemplate, deleteChecklistItem, deleteDelay, setChecklistDone, updateProject } from "../actions";
 
 export const dynamic = "force-dynamic";
+
+// Suggestions for the delay reason field.
+const DELAY_REASONS = ["Applicant requested continuance", "Staff report not ready", "Continued by P&Z", "Tabled by council",
+  "Meeting cancelled", "No quorum", "Public notice issue", "Resubmittal required"];
 
 const stamp = (ts: string) =>
   new Date(ts).toLocaleString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit", timeZone: "America/Chicago" });
@@ -34,14 +38,25 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
   ]);
   if (!p) notFound();
 
-  const [{ data: meetings }, { data: recorded }, timeline] = p.jurisdiction_id
+  // Once a filing date is set the timeline is the project's own schedule, and postponements shift it.
+  const filed = !!p.filed_on;
+  const timelineStart = p.filed_on ?? start;
+  const delays = await loadDelays(supabase, id);
+
+  const [{ data: meetings }, { data: recorded }, timeline, { data: boardMeetings }] = p.jurisdiction_id
     ? await Promise.all([
         supabase.from("meetings").select("*").eq("jurisdiction_id", p.jurisdiction_id).gte("event_date", today).order("event_date").limit(6),
         supabase.from("meetings").select("id, body, event_date").eq("jurisdiction_id", p.jurisdiction_id)
           .not("summary", "is", null).order("event_date", { ascending: false }).limit(4),
-        loadTimeline(supabase, p.jurisdiction_id, start),
+        loadTimeline(supabase, p.jurisdiction_id, timelineStart, filed ? delays : []),
+        supabase.from("meetings").select("id, body, event_date, status").eq("jurisdiction_id", p.jurisdiction_id).eq("event_type", "meeting")
+          .in("body", ["planning_zoning", "governing_body"]).neq("status", "cancelled").gte("event_date", today).order("event_date").limit(40),
       ])
-    : [{ data: [] }, { data: [] }, null];
+    : [{ data: [] }, { data: [] }, null, { data: [] }];
+  const pzNow = timeline && filed ? currentStep(timeline.best, "pz") : undefined;
+  const councilNow = timeline && filed ? currentStep(timeline.best, "council") : undefined;
+  const meetingName = (m: { body: string; event_date: string; status: string }) =>
+    `${m.body === "planning_zoning" ? "P&Z" : "Council"} ${fmtDate(m.event_date)}${m.status === "projected" ? " (projected)" : ""}`;
 
   // Land-use cases near the site (rezonings, PUDs, special uses, annexations, plats, site plans) within 3 miles.
   const NEAR_MILES = 3;
@@ -138,6 +153,7 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
                 {(jurisdictions ?? []).map((j) => <option key={j.id} value={j.id}>{j.name}</option>)}
               </select>
             </label>
+            <label>Application filed (or planned)<input name="filed_on" type="date" defaultValue={p.filed_on ?? ""} /></label>
             <label>Address / location<input name="address" defaultValue={p.address ?? ""} /></label>
             <label>Parcel ID(s)<input name="parcel_ids" defaultValue={p.parcel_ids ?? ""} /></label>
             <label>Acreage<input name="acreage" type="number" step="any" min="0" defaultValue={p.acreage ?? ""} /></label>
@@ -172,7 +188,48 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
           {p.jurisdiction_id && (
             <>
               <h2>Expected timeline</h2>
-              {timeline && <TimelineCard t={timeline} start={start} today={today} />}
+              {timeline && <TimelineCard t={timeline} start={timelineStart} today={today} filed={filed} />}
+
+              {filed && (pzNow?.date || councilNow?.date) && (
+                <form action={addDelay.bind(null, id)} className="card stack-form">
+                  <strong className="small">Log a delay</strong>
+                  <label>What was postponed
+                    <select name="step" defaultValue={pzNow?.date && pzNow.date >= today ? "pz" : "council"}>
+                      {pzNow?.date && <option value="pz">P&amp;Z hearing ({fmtDate(pzNow.date)})</option>}
+                      {councilNow?.date && <option value="council">Council vote ({fmtDate(councilNow.date)})</option>}
+                    </select>
+                  </label>
+                  <label>New date
+                    <select name="to_meeting_id" defaultValue="">
+                      <option value="">The board&apos;s next meeting</option>
+                      {(boardMeetings ?? []).map((m) => <option key={m.id} value={m.id}>{meetingName(m)}</option>)}
+                    </select>
+                  </label>
+                  <label>Reason<input name="reason" list="delay-reasons" placeholder="e.g. Applicant requested continuance" /></label>
+                  <datalist id="delay-reasons">{DELAY_REASONS.map((r) => <option key={r} value={r} />)}</datalist>
+                  <label>Your name<input name="reported_by" list="note-authors" /></label>
+                  <div><button type="submit">Log delay and alert the team</button></div>
+                </form>
+              )}
+              {!filed && (
+                <p className="small muted">Set the filing date in Details to track this project&apos;s own schedule and log delays.</p>
+              )}
+              {delays.length > 0 && (
+                <div className="card">
+                  <strong className="small">Delays</strong>
+                  <ul className="plain small">
+                    {delays.map((d) => (
+                      <li key={d.id}>
+                        {STEP_LABEL[d.step]}{d.from_date && <> from {fmtDate(d.from_date)}</>}{d.reason && <> · {d.reason}</>}
+                        <span className="muted"> · {d.reported_by ? `${d.reported_by}, ` : ""}{stamp(d.created_at)}</span>{" "}
+                        <form action={deleteDelay.bind(null, d.id)} style={{ display: "inline" }}>
+                          <button type="submit" className="link small">Remove</button>
+                        </form>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               <h2>Upcoming in {shortName(p.jurisdictions?.name ?? "")}</h2>
               <div className="card">

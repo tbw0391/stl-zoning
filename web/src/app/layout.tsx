@@ -8,6 +8,8 @@ import Nav from "@/components/Nav";
 import SuggestButton from "@/components/SuggestButton";
 import { createClient } from "@/lib/supabase/server";
 import { newAlertCount } from "@/lib/cases";
+import { unseenProjectAlerts } from "@/lib/projectAlerts";
+import { dismissProjectAlerts } from "@/app/alerts/actions";
 import "./globals.css";
 
 config.autoAddCss = false;
@@ -20,7 +22,11 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const alerts = await newAlertCount(await createClient()).catch(() => 0);
+  const supabase = await createClient();
+  const [alerts, projectAlerts] = await Promise.all([
+    newAlertCount(supabase).catch(() => 0),
+    unseenProjectAlerts(supabase).catch(() => []),
+  ]);
   return (
     <html lang="en" className={jakarta.className}>
       <body>
@@ -29,9 +35,25 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <Image src="/lombardo-logo.png" alt="Lombardo Homes" width={142} height={40} priority />
             <span className="brand-name">Entitlement Tracker</span>
           </Link>
-          <Nav alerts={alerts} />
+          <Nav alerts={alerts + projectAlerts.length} />
           <SuggestButton />
         </header>
+        {projectAlerts.length > 0 && (
+          <div className="alert-banner" role="status">
+            <ul className="plain">
+              {projectAlerts.slice(0, 3).map((a) => (
+                <li key={a.id}>
+                  <strong><Link href={`/projects/${a.project_id}`}>{a.title}</Link></strong>
+                  {a.body && <span> · {a.body}</span>}
+                </li>
+              ))}
+            </ul>
+            <div className="alert-banner-actions">
+              {projectAlerts.length > 3 && <Link href="/alerts">{projectAlerts.length - 3} more</Link>}
+              <form action={dismissProjectAlerts}><button type="submit" className="link">Dismiss</button></form>
+            </div>
+          </div>
+        )}
         <main>{children}</main>
       </body>
     </html>

@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { CLOSED_STAGES, STAGE_LABEL, addDays, fmtDate, shortName, todayCentral } from "@/lib/format";
 import { BODY_LABEL } from "@/components/MeetingSummary";
 import PageTitle from "@/components/PageTitle";
-import { Timeline, daysBetween, loadTimeline } from "@/lib/timeline";
+import { Delay, Timeline, daysBetween, loadTimeline } from "@/lib/timeline";
 
 export const dynamic = "force-dynamic";
 
@@ -16,7 +16,7 @@ const RECENT_DAYS = 60;
 
 type Project = {
   id: number; name: string; stage: string; jurisdiction_id: string | null; address: string | null;
-  acreage: number | null; current_zoning: string | null; proposed_zoning: string | null; updated_at: string;
+  acreage: number | null; current_zoning: string | null; proposed_zoning: string | null; updated_at: string; filed_on: string | null;
   jurisdictions: { name: string } | null;
   checklist_items: { done_at: string | null }[];
   tasks: { due_date: string | null; done_at: string | null }[];
@@ -35,7 +35,7 @@ export default async function DashboardPage() {
   const supabase = await createClient();
   const [{ data }, { data: changes }] = await Promise.all([
     supabase.from("projects")
-      .select("id, name, stage, jurisdiction_id, address, acreage, current_zoning, proposed_zoning, updated_at, jurisdictions(name), checklist_items(done_at), tasks(due_date, done_at), project_notes(body, author, created_at)")
+      .select("id, name, stage, jurisdiction_id, address, acreage, current_zoning, proposed_zoning, updated_at, filed_on, jurisdictions(name), checklist_items(done_at), tasks(due_date, done_at), project_notes(body, author, created_at)")
       .order("updated_at", { ascending: false }),
     supabase.from("project_stage_changes").select("project_id, from_stage, to_stage, changed_at, baseline").order("changed_at", { ascending: false }),
   ]);
@@ -57,6 +57,15 @@ export default async function DashboardPage() {
       : Promise.resolve({ data: [] }),
   ]);
   const timelineFor = new Map<string, Timeline>(places.map((j, i) => [j, timelines[i]]));
+
+  // Filed projects get their own schedule, with any postponements.
+  const filed = active.filter((p) => p.filed_on && p.jurisdiction_id);
+  const { data: delayRows } = filed.length
+    ? await supabase.from("project_delays").select("*").in("project_id", filed.map((p) => p.id)).order("created_at")
+    : { data: [] };
+  const own = await Promise.all(filed.map((p) => loadTimeline(supabase, p.jurisdiction_id!, p.filed_on!,
+    ((delayRows ?? []) as (Delay & { project_id: number })[]).filter((d) => d.project_id === p.id))));
+  const projectTimeline = new Map<number, Timeline>(filed.map((p, i) => [p.id, own[i]]));
 
   const totalAcres = active.reduce((s, p) => s + (p.acreage ?? 0), 0);
   const openTasks = active.flatMap((p) => p.tasks.filter((t) => !t.done_at));
@@ -91,7 +100,7 @@ export default async function DashboardPage() {
               {list.length === 0 && <div className="pipeline-empty small muted">None</div>}
               {list.map((p) => (
                 <ProjectCard key={p.id} p={p} today={today} change={lastChange.get(p.id)}
-                  timeline={p.jurisdiction_id ? timelineFor.get(p.jurisdiction_id) : undefined} />
+                  timeline={projectTimeline.get(p.id) ?? (p.jurisdiction_id ? timelineFor.get(p.jurisdiction_id) : undefined)} />
               ))}
             </section>
           );
@@ -151,7 +160,7 @@ function ProjectCard({ p, today, change, timeline }: { p: Project; today: string
   const note = [...p.project_notes].sort((a, b) => b.created_at.localeCompare(a.created_at))[0];
   const since = change ? dateOf(change.changed_at) : null;
   const days = since ? daysBetween(since, today) : null;
-  const hearing = timeline?.best.steps.find((s) => s.label === "P&Z hearing");
+  const hearing = timeline?.best.steps.find((s) => s.label === "P&Z hearing" && s.postponed == null);
   const zoning = p.current_zoning || p.proposed_zoning ? `${p.current_zoning ?? "?"} → ${p.proposed_zoning ?? "?"}` : null;
 
   return (
@@ -184,8 +193,9 @@ function ProjectCard({ p, today, change, timeline }: { p: Project; today: string
 
       {hearing && (
         <div className="small muted">
-          If filed now: P&amp;Z {hearing.date ? shortDate(hearing.date) : "past the loaded schedule"}
+          {p.filed_on ? "Scheduled" : "If filed now"}: P&amp;Z {hearing.date ? shortDate(hearing.date) : "past the loaded schedule"}
           {timeline?.best.finalDate && <>, council {shortDate(timeline.best.finalDate)}</>}
+          {p.filed_on && timeline?.original !== undefined && <> <span className="tag postponed">delayed</span></>}
         </div>
       )}
 

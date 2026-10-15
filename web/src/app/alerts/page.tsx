@@ -4,7 +4,14 @@ import { ITEM_TYPE_LABEL } from "@/components/MeetingSummary";
 import { Place, Watch, ZONING_TYPES, distanceTo, isNew, loadCases, matches } from "@/lib/cases";
 import CaseRow from "@/components/CaseRow";
 import PageTitle from "@/components/PageTitle";
-import { createWatch, deleteWatch, markSeen } from "./actions";
+import Link from "next/link";
+import { createWatch, deleteWatch, dismissProjectAlerts, markSeen } from "./actions";
+import { unseenProjectAlerts } from "@/lib/projectAlerts";
+
+// Project timeline changes listed at the top of the page.
+const PROJECT_ALERT_DAYS = 60;
+const stamp = (ts: string) =>
+  new Date(ts).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: "America/Chicago" });
 
 export const dynamic = "force-dynamic";
 
@@ -18,6 +25,12 @@ export default async function AlertsPage() {
     supabase.from("jurisdictions").select("id, name, county").eq("followed", true).order("name"),
     loadCases(supabase),
   ]);
+  const [{ data: projectAlerts }, unseen] = await Promise.all([
+    supabase.from("project_alerts").select("*").gt("created_at", new Date(Date.now() - PROJECT_ALERT_DAYS * 86400000).toISOString())
+      .order("created_at", { ascending: false }),
+    unseenProjectAlerts(supabase).catch(() => []),
+  ]);
+  const unseenIds = new Set(unseen.map((a) => a.id));
   const watches = (watchRows ?? []) as Watch[];
   const pmap = new Map((projects ?? []).map((p) => [p.id, p as Place & { name: string }]));
   const counties = [...new Set((jurisdictions ?? []).map((j) => j.county))].sort();
@@ -30,6 +43,25 @@ export default async function AlertsPage() {
         Watches flag land-use cases as soon as their agenda is read: near a project, or anywhere in the counties or cities you pick.
         Cases from the last 45 days and upcoming meetings are shown; <strong>NEW</strong> marks ones that arrived since you last marked a watch as seen.
       </p>
+
+      {(projectAlerts ?? []).length > 0 && (
+        <section className="card watch">
+          <div className="watch-head">
+            <h2>Project timeline changes {unseenIds.size > 0 && <span className="tag due">{unseenIds.size} NEW</span>}</h2>
+            {unseenIds.size > 0 && <form action={dismissProjectAlerts}><button type="submit" className="link">Mark seen</button></form>}
+          </div>
+          <ul className="plain">
+            {projectAlerts!.map((a) => (
+              <li key={a.id}>
+                <strong><Link href={`/projects/${a.project_id}`}>{a.title}</Link></strong>
+                {unseenIds.has(a.id) && <span className="tag due">NEW</span>}
+                <span className="small muted"> · {stamp(a.created_at)}</span>
+                {a.body && <div className="small">{a.body}</div>}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {watches.length > 0 && totalNew > 0 && (
         <form action={async () => { "use server"; await markSeen(); }} style={{ margin: "12px 0" }}>

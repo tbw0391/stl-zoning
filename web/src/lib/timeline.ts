@@ -3,8 +3,12 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { addDays } from "@/lib/format";
 
-export type Step = { label: string; date: string | null; meetingId?: number; estimated: boolean; note?: string };
+// postponed: the step was moved off this date (the reason, or "" when none was given); the next step is the new date.
+export type Step = { label: string; date: string | null; meetingId?: number; estimated: boolean; note?: string; postponed?: string };
 export type Path = { steps: Step[]; finalDate: string | null };
+// A postponed P&Z hearing or council vote (project_delays). With no to_meeting_id it goes to the board's next meeting.
+export type Delay = { id: number; step: "pz" | "council"; from_date: string | null; to_meeting_id: number | null; reason: string | null;
+  reported_by: string | null; created_at: string };
 // From the board_history view (agenda history): cases seen at P&Z, how many came back for another P&Z meeting, and
 // calendar days from first P&Z to final council action.
 export type History = {
@@ -14,7 +18,9 @@ export type History = {
 // From this board's history: the hearing date plus the median and 80th-percentile days from first P&Z to final
 // council action. Only when the board has MIN_HISTORY_CASES cases that reached council.
 export type Typical = { hearing: string; p50: string; p80: string; cases: number; since: string };
-export type Timeline = { best: Path; continued: Path | null; typical: Typical | null; history: History[]; assumptions: string[] };
+// original: the final date before any delays, when there are some.
+export type Timeline = { best: Path; continued: Path | null; typical: Typical | null; history: History[]; assumptions: string[];
+  original?: string | null };
 
 type Meeting = { id: number; body: string; event_type: string; event_date: string; linked_meeting: number | null; status: string };
 
@@ -27,10 +33,31 @@ export const MIN_HISTORY_CASES = 5;
 export const daysBetween = (a: string, b: string) =>
   Math.round((new Date(b + "T00:00:00Z").getTime() - new Date(a + "T00:00:00Z").getTime()) / 86400000);
 
+// Applies postponements in the order they were logged: each one moves the step from its current meeting to the chosen
+// meeting, or to the board's next meeting after it. Returns the struck-through steps and the meeting it ends up at.
+// A delay whose from_date the step has already passed is skipped, so a postponed meeting that is also marked cancelled
+// (and so drops out of the schedule) doesn't shift the step twice.
+function postpone(label: string, first: Meeting | undefined, board: Meeting[], all: Meeting[], delays: Delay[]) {
+  const moved: Step[] = [];
+  let at = first;
+  for (const d of delays) {
+    if (!at) break;
+    if (d.from_date && at.event_date > d.from_date) continue;
+    moved.push({ label, date: at.event_date, meetingId: at.id, estimated: at.status === "projected", postponed: d.reason ?? "" });
+    const from = at.event_date;
+    at = (d.to_meeting_id ? all.find((m) => m.id === d.to_meeting_id && m.event_date > from) : undefined)
+      ?? board.find((m) => m.event_date > from);
+  }
+  return { moved, at };
+}
+
 // From the hearing on, the council side: next governing-body meeting, plus a second one when the code needs two readings.
-function councilSteps(hearing: Meeting, gb: Meeting[], readings: number): Path {
-  const after = gb.filter((m) => m.event_date > hearing.event_date);
-  const steps: Step[] = [];
+// A council delay moves the first council meeting, and the second reading follows from there.
+function councilSteps(hearing: Meeting, gb: Meeting[], readings: number, delays: Delay[] = [], all: Meeting[] = gb): Path {
+  const firstLabel = readings === 1 ? "Council / Board vote" : "Council / Board first reading";
+  const { moved, at } = postpone(firstLabel, gb.find((m) => m.event_date > hearing.event_date), gb, all, delays);
+  const after = at ? gb.filter((m) => m.event_date >= at.event_date) : [];
+  const steps: Step[] = [...moved];
   for (let i = 0; i < readings; i++) {
     const m = after[i];
     const label = readings === 1 ? "Council / Board vote" : i === 0 ? "Council / Board first reading" : "Council / Board final vote";
@@ -41,7 +68,8 @@ function councilSteps(hearing: Meeting, gb: Meeting[], readings: number): Path {
   return { steps, finalDate: steps[steps.length - 1].date };
 }
 
-export async function loadTimeline(supabase: SupabaseClient, jurisdictionId: string, start: string): Promise<Timeline> {
+// start is the filing date (the project's filed_on, or a what-if date). delays are the project's postponements.
+export async function loadTimeline(supabase: SupabaseClient, jurisdictionId: string, start: string, delays: Delay[] = []): Promise<Timeline> {
   const [{ data: meetings }, { data: proc }, { data: boards }] = await Promise.all([
     supabase.from("meetings").select("id, body, event_type, event_date, linked_meeting, status")
       .eq("jurisdiction_id", jurisdictionId).gte("event_date", start).neq("status", "cancelled").order("event_date"),
@@ -75,12 +103,24 @@ export async function loadTimeline(supabase: SupabaseClient, jurisdictionId: str
     steps.push({ label: "P&Z hearing", date: null, estimated: true, note: pz.length ? "past the loaded schedule" : "no upcoming P&Z meetings loaded for this city" });
     return { best: { steps, finalDate: null }, continued: null, typical: null, history: history(boards ?? [], jurisdictionId), assumptions };
   }
+  const pzDelays = delays.filter((d) => d.step === "pz");
+  const gbDelays = delays.filter((d) => d.step === "council");
+  const scheduled = hearing;
+  const { moved, at } = postpone("P&Z hearing", hearing, pz, ms, pzDelays);
+  steps.push(...moved);
+  if (!at) {
+    steps.push({ label: "P&Z hearing", date: null, estimated: true, note: "new date past the loaded schedule" });
+    return { best: { steps, finalDate: null }, continued: null, typical: null, history: history(boards ?? [], jurisdictionId), assumptions,
+      original: delays.length ? councilSteps(scheduled, gb, readings).finalDate : undefined };
+  }
+  hearing = at;
   steps.push({ label: "P&Z hearing", date: hearing.event_date, meetingId: hearing.id, estimated: hearing.status === "projected" });
-  const council = councilSteps(hearing, gb, readings);
+  const council = councilSteps(hearing, gb, readings, gbDelays, ms);
   const best = { steps: [...steps, ...council.steps], finalDate: council.finalDate };
+  const original = best.steps.some((s) => s.postponed != null) ? councilSteps(scheduled, gb, readings).finalDate : undefined;
 
-  // Same path, but P&Z continues the case once to its next meeting.
-  const nextPz = pz.find((p) => p.event_date > hearing.event_date);
+  // Same path, but P&Z continues the case once more to its next meeting.
+  const nextPz = pz.find((p) => p.event_date > hearing!.event_date);
   const c = nextPz ? councilSteps(nextPz, gb, readings) : null;
   const continued = {
     steps: [...steps, nextPz
@@ -95,7 +135,7 @@ export async function loadTimeline(supabase: SupabaseClient, jurisdictionId: str
     ? { hearing: hearing.event_date, p50: addDays(hearing.event_date, local.totalP50), p80: addDays(hearing.event_date, local.totalP80),
         cases: local.withCouncil, since: local.since }
     : null;
-  return { best, continued, typical, history: hist, assumptions };
+  return { best, continued, typical, history: hist, assumptions, original };
 }
 
 // This board's history first (when it has any), then all tracked boards.
@@ -107,4 +147,18 @@ function history(rows: Record<string, unknown>[], jurisdictionId: string): Histo
   const local = rows.find((r) => r.jurisdiction_id === jurisdictionId);
   const all = rows.find((r) => r.jurisdiction_id == null);
   return [...(local ? [toHistory(local, "here")] : []), ...(all ? [toHistory(all, "all tracked boards")] : [])];
+}
+
+export const STEP_LABEL: Record<Delay["step"], string> = { pz: "P&Z hearing", council: "Council vote" };
+
+// A project's postponements, oldest first. Empty when the table can't be read.
+export async function loadDelays(supabase: SupabaseClient, projectId: number): Promise<Delay[]> {
+  const { data } = await supabase.from("project_delays").select("*").eq("project_id", projectId).order("created_at");
+  return (data ?? []) as Delay[];
+}
+
+// Where the step stands now (after any postponements): the P&Z hearing, or the first council meeting.
+export function currentStep(path: Path, step: Delay["step"]): Step | undefined {
+  const live = path.steps.filter((s) => !s.postponed);
+  return step === "pz" ? live.find((s) => s.label === "P&Z hearing") : live.find((s) => s.label.startsWith("Council"));
 }

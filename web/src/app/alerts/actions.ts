@@ -1,7 +1,9 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
+import { SEEN_COOKIE } from "@/lib/projectAlerts";
 
 const list = (fd: FormData, key: string) => {
   const v = fd.getAll(key).map(String).filter(Boolean);
@@ -41,5 +43,11 @@ export async function markSeen(id?: number) {
   q = id ? q.eq("id", id) : q.gt("id", 0);
   const { error } = await q;
   if (error) throw new Error(error.message);
+  revalidatePath("/", "layout");
+}
+
+// Dismiss project alerts in this browser only (see lib/projectAlerts).
+export async function dismissProjectAlerts() {
+  (await cookies()).set(SEEN_COOKIE, new Date().toISOString(), { path: "/", maxAge: 60 * 60 * 24 * 365, sameSite: "lax" });
   revalidatePath("/", "layout");
 }

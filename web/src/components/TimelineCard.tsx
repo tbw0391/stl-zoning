@@ -8,10 +8,12 @@ function Steps({ path }: { path: Path }) {
   return (
     <ul className="plain timeline">
       {path.steps.map((s, i) => (
-        <li key={i}>
+        <li key={i} className={s.postponed != null ? "postponed" : undefined}>
           <strong>{s.date ? fmtDate(s.date) : "—"}</strong>{" "}
-          {s.meetingId && s.label !== "Submit application" ? <Link href={`/meetings/${s.meetingId}`}>{s.label}</Link> : s.label}
-          {s.estimated && s.date && <span className="tag tentative">est.</span>}
+          <span className="step-label">{s.meetingId && s.label !== "Submit application" ? <Link href={`/meetings/${s.meetingId}`}>{s.label}</Link> : s.label}</span>
+          {s.postponed != null && <span className="tag postponed">postponed</span>}
+          {s.postponed && <span className="small muted"> · {s.postponed}</span>}
+          {s.estimated && s.date && s.postponed == null && <span className="tag tentative">est.</span>}
           {s.note && <span className="small muted"> · {s.note}</span>}
         </li>
       ))}
@@ -19,13 +21,30 @@ function Steps({ path }: { path: Path }) {
   );
 }
 
-export default function TimelineCard({ t, start, today }: { t: Timeline; start: string; today: string }) {
+// filed: the project's filing date is set, so this is its schedule (delays included) rather than a what-if.
+export default function TimelineCard({ t, start, today, filed = false }: { t: Timeline; start: string; today: string; filed?: boolean }) {
+  const slip = t.original && t.best.finalDate ? daysBetween(t.original, t.best.finalDate) : null;
   return (
     <div className="card">
-      <form method="get" className="row-form small">
-        <label className="grow">If we submit on <input type="date" name="start" defaultValue={start} min={today} /></label>
-        <button type="submit">Update</button>
-      </form>
+      {filed ? (
+        <p className="small" style={{ marginTop: 0 }}>Filed {fmtDate(start)}. Change the filing date in Details.</p>
+      ) : (
+        <form method="get" className="row-form small">
+          <label className="grow">If we submit on <input type="date" name="start" defaultValue={start} min={today} /></label>
+          <button type="submit">Update</button>
+        </form>
+      )}
+
+      {t.original !== undefined && (
+        <p className="small" style={{ marginBottom: 8 }}>
+          <span className="tag postponed">Delayed</span>{" "}
+          {slip === 0
+            ? <>Final council action still {fmtDate(t.best.finalDate!)}.</>
+            : slip != null
+            ? <>Final council action {fmtDate(t.best.finalDate!)}, {slip} days later than the original {t.original ? fmtDate(t.original) : "date"}.</>
+            : <>Final council action is now past the loaded schedule{t.original ? ` (was ${fmtDate(t.original)})` : ""}.</>}
+        </p>
+      )}
 
       {t.typical && (
         <p className="small" style={{ marginBottom: 8 }}>
@@ -35,7 +54,7 @@ export default function TimelineCard({ t, start, today }: { t: Timeline; start: 
         </p>
       )}
 
-      <p className="small" style={{ marginBottom: 4 }}><strong>Best case{t.typical ? " (calendar)" : ""}:</strong> {weeks(start, t.best.finalDate)}</p>
+      <p className="small" style={{ marginBottom: 4 }}><strong>{filed ? "Schedule" : "Best case"}{t.typical ? " (calendar)" : ""}:</strong> {weeks(start, t.best.finalDate)}</p>
       <Steps path={t.best} />
 
       {t.continued && (
