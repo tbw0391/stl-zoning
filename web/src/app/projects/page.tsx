@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import { CLOSED_STAGES, fmtDate, shortName, todayCentral } from "@/lib/format";
+import { CLOSED_STAGES, diligenceLeft, fmtDate, shortName, todayCentral } from "@/lib/format";
 import { createProject } from "./actions";
 import PageTitle from "@/components/PageTitle";
 import StageSelect from "./StageSelect";
@@ -14,6 +14,8 @@ type Row = {
   address: string | null;
   stage: string;
   updated_at: string;
+  diligence_expires_on: string | null;
+  closing_on: string | null;
   jurisdictions: { name: string } | null;
   checklist_items: { done_at: string | null }[];
   tasks: { due_date: string | null; done_at: string | null }[];
@@ -27,7 +29,7 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Pro
 
   const [{ data }, { data: jurisdictions }] = await Promise.all([
     supabase.from("projects")
-      .select("id, name, jurisdiction_id, address, stage, updated_at, jurisdictions(name), checklist_items(done_at), tasks(due_date, done_at)")
+      .select("id, name, jurisdiction_id, address, stage, updated_at, diligence_expires_on, closing_on, jurisdictions(name), checklist_items(done_at), tasks(due_date, done_at)")
       .order("updated_at", { ascending: false }),
     supabase.from("jurisdictions").select("id, name").order("name"),
   ]);
@@ -51,18 +53,21 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Pro
         <div className="table-wrap">
           <table>
             <thead>
-              <tr><th>Project</th><th>Municipality</th><th>Stage</th><th>Checklist</th><th>Open tasks</th><th>Next follow-up</th></tr>
+              <tr><th>Project</th><th>Municipality</th><th>Stage</th><th>Diligence</th><th>Projected close</th><th>Checklist</th><th>Open tasks</th><th>Next follow-up</th></tr>
             </thead>
             <tbody>
               {rows.map((p) => {
                 const done = p.checklist_items.filter((c) => c.done_at).length;
                 const open = p.tasks.filter((t) => !t.done_at);
+                const dil = diligenceLeft(p.diligence_expires_on, today);
                 const next = open.map((t) => t.due_date).filter((d): d is string => !!d).sort()[0];
                 return (
                   <tr key={p.id}>
                     <td><Link href={`/projects/${p.id}`}><strong>{p.name}</strong></Link>{p.address && <div className="small muted">{p.address}</div>}</td>
                     <td>{p.jurisdictions ? <Link href={`/jurisdictions/${p.jurisdiction_id}`}>{shortName(p.jurisdictions.name)}</Link> : <span className="muted">—</span>}</td>
                     <td><StageSelect key={`${p.id}-${p.stage}`} id={p.id} stage={p.stage} /></td>
+                    <td>{dil ? <span className={dil.warn ? "tag due" : undefined}>{dil.text}</span> : <span className="muted">—</span>}</td>
+                    <td>{p.closing_on ? fmtDate(p.closing_on) : <span className="muted">—</span>}</td>
                     <td>{p.checklist_items.length ? `${done} of ${p.checklist_items.length}` : <span className="muted">—</span>}</td>
                     <td>{open.length || <span className="muted">0</span>}</td>
                     <td>{next ? <span className={next < today ? "tag due" : undefined}>{fmtDate(next)}</span> : <span className="muted">—</span>}</td>

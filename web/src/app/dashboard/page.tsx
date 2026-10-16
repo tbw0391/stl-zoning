@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import { CLOSED_STAGES, STAGE_LABEL, addDays, fmtDate, shortName, todayCentral } from "@/lib/format";
+import { CLOSED_STAGES, STAGE_LABEL, addDays, diligenceLeft, fmtDate, shortName, todayCentral } from "@/lib/format";
 import { BODY_LABEL } from "@/components/MeetingSummary";
 import PageTitle from "@/components/PageTitle";
 import { Delay, Timeline, daysBetween, loadTimeline } from "@/lib/timeline";
@@ -13,8 +13,6 @@ const PIPELINE = ["prospect", "loi", "diligence", "development", "oyl"];
 const AHEAD_DAYS = 30;
 // Stage moves listed under "Recent moves".
 const RECENT_DAYS = 60;
-// Diligence expiring within this many days is flagged on the card.
-const DILIGENCE_WARN_DAYS = 30;
 
 type Project = {
   id: number; name: string; stage: string; jurisdiction_id: string | null; address: string | null;
@@ -77,18 +75,17 @@ export default async function DashboardPage() {
 
   return (
     <div className="dash-wide">
-      <PageTitle href="/dashboard">Dashboard</PageTitle>
-      <p className="muted">
-        Where each project stands. {closed > 0 && <><Link href="/projects?show=all">{closed} closed</Link> not shown. </>}
-        <Link href="/projects">All projects</Link>
-      </p>
-
-      <div className="stat-row">
+      <div className="dash-head">
+        <PageTitle href="/dashboard">Dashboard</PageTitle>
         <div className="card stat">
           <div className="stat-value">{openTasks.length}</div>
           <div className="stat-label">Open tasks{overdue > 0 && <> · <span className="tag due">{overdue} overdue</span></>}</div>
         </div>
       </div>
+      <p className="muted">
+        Where each project stands. {closed > 0 && <><Link href="/projects?show=all">{closed} closed</Link> not shown. </>}
+        <Link href="/projects">All projects</Link>
+      </p>
 
       <div className="pipeline">
         {PIPELINE.map((stage) => {
@@ -159,6 +156,7 @@ function ProjectCard({ p, today, change, timeline }: { p: Project; today: string
   const note = [...p.project_notes].sort((a, b) => b.created_at.localeCompare(a.created_at))[0];
   const since = change ? dateOf(change.changed_at) : null;
   const days = since ? daysBetween(since, today) : null;
+  const dil = diligenceLeft(p.diligence_expires_on, today);
   const hearing = timeline?.best.steps.find((s) => s.label === "P&Z hearing" && s.postponed == null);
   const zoning = p.current_zoning || p.proposed_zoning ? `${p.current_zoning ?? "?"} → ${p.proposed_zoning ?? "?"}` : null;
 
@@ -198,17 +196,16 @@ function ProjectCard({ p, today, change, timeline }: { p: Project; today: string
         </div>
       )}
 
-      {(p.diligence_expires_on || p.closing_on) && (
-        <div className="small">
-          {p.diligence_expires_on && (
-            <span className={p.diligence_expires_on < addDays(today, DILIGENCE_WARN_DAYS) ? "tag due" : undefined}>
-              Diligence {p.diligence_expires_on < today ? "expired" : "expires"} {shortDate(p.diligence_expires_on)}
-            </span>
-          )}
-          {p.diligence_expires_on && p.closing_on && " · "}
-          {p.closing_on && <>Closing {shortDate(p.closing_on)}</>}
+      <div className="small card-dates">
+        <div>
+          <span className="muted">Diligence:</span>{" "}
+          {dil ? <span className={dil.warn ? "tag due" : undefined}>{dil.text}</span> : <span className="muted">not set</span>}
         </div>
-      )}
+        <div>
+          <span className="muted">Projected close:</span>{" "}
+          {p.closing_on ? shortDate(p.closing_on) : <span className="muted">not set</span>}
+        </div>
+      </div>
       {p.diligence_expires_on && p.diligence_expires_on >= today && timeline?.best.finalDate && p.stage !== "development"
         && timeline.best.finalDate > p.diligence_expires_on && (
         <div className="small"><span className="tag due">Council vote after diligence ends</span></div>

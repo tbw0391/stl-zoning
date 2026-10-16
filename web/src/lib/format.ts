@@ -58,3 +58,13 @@ export function addMonths(month: string, n: number) {
   const x = new Date(Date.UTC(y, m - 1 + n, 1));
   return x.toISOString().slice(0, 7);
 }
+
+// Days of diligence left, for the dashboard and the projects list. warn: ends within DILIGENCE_WARN_DAYS or already ended.
+export const DILIGENCE_WARN_DAYS = 30;
+export function diligenceLeft(expires: string | null, today: string): { text: string; warn: boolean } | null {
+  if (!expires) return null;
+  const days = Math.round((new Date(expires + "T00:00:00Z").getTime() - new Date(today + "T00:00:00Z").getTime()) / 86400000);
+  const text = days > 1 ? `${days} days left` : days === 1 ? "1 day left" : days === 0 ? "ends today"
+    : `expired ${-days} day${days === -1 ? "" : "s"} ago`;
+  return { text, warn: days <= DILIGENCE_WARN_DAYS };
+}
