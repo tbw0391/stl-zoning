@@ -62,7 +62,7 @@ Deno.serve(async (req) => {
   const horizon = addDays(today, 14);
   const weekAgo = new Date(Date.now() - 7 * 864e5).toISOString();
 
-  const [{ data: js }, { data: meetings }, { data: tasks }, { data: changes }, { data: projects }, { data: sources }] = await Promise.all([
+  const [{ data: js }, { data: meetings }, { data: tasks }, { data: changes }, { data: projects }, { data: sources }, { data: timeline }] = await Promise.all([
     db.from("jurisdictions").select("id, name, governing_body, followed"),
     db.from("meetings").select("*, jurisdictions!inner(followed)").eq("jurisdictions.followed", true).gte("event_date", today).lte("event_date", horizon).neq("status", "cancelled")
       .order("event_date").order("event_time"),
@@ -73,6 +73,8 @@ Deno.serve(async (req) => {
     // Same rule as needsReview in web/src/app/sources/review.ts; check-sources runs an hour before this.
     db.from("source_watches").select("jurisdiction_id, url, label, last_status, last_changed_at, change_summary, reviewed_at, jurisdictions!inner(followed)")
       .eq("jurisdictions.followed", true).not("last_changed_at", "is", null).order("jurisdiction_id"),
+    // Logged delays and possible delays from agendas/minutes (each was also emailed when posted, by project-alerts).
+    db.from("project_alerts").select("project_id, kind, title, body, created_at").gte("created_at", weekAgo).order("created_at"),
   ]);
   const jmap = new Map((js ?? []).map((j: Row) => [j.id, j]));
   const pmap = new Map((projects ?? []).map((p: Row) => [p.id, p.name]));
@@ -130,6 +132,12 @@ Deno.serve(async (req) => {
     changeLines.unshift(li("This week", `${pill("NEW DATES", C.teal)} ${count} date${count === 1 ? "" : "s"} added for ${link(`/jurisdictions/${jid}`, place(jid))}`));
   }
 
+  // ---- Project timeline changes (last 7 days)
+  const timelineLines = ((timeline ?? []) as Row[]).map((a) =>
+    li(fmtDate(new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(new Date(a.created_at))),
+      `${a.kind === "delay" ? pill("DELAY", C.orange) : pill("POSSIBLE DELAY", "#8a5a00")} ${link(`/projects/${a.project_id}`, esc(a.title))}` +
+      (a.body ? `<div style="color:${C.muted};font-size:13px;margin-top:2px">${esc(a.body)}</div>` : "")));
+
   // ---- Schedule sources that changed and nobody has marked reviewed on /sources
   const toReview = ((sources ?? []) as Row[]).filter((w) => !w.reviewed_at || w.reviewed_at < w.last_changed_at);
   const sourceLines = toReview.map((w) => {
@@ -155,6 +163,7 @@ ${section("Submittal deadlines — next 2 weeks", list(deadlines.map(deadlineLin
 ${section("Meetings — next 2 weeks", list(hearings.map(meetingLine), "No meetings in the next two weeks."))}
 ${overdue.length ? section("Overdue tasks", list(overdue.map(taskLine), "")) : ""}
 ${section("Tasks due — next 2 weeks", list(dueSoon.map(taskLine), "No tasks due."))}
+${timelineLines.length ? section("Project timeline changes", list(timelineLines, "")) : ""}
 ${section("What changed this week", list(changeLines, "No changes this week."))}
 ${sourceLines.length ? section(`Schedule sources to review (${sourceLines.length})`, list(sourceLines, "") +
   `<p style="margin:8px 0 0;font-size:13px">${link("/sources", "Review them on the Sources page")}</p>`) : ""}

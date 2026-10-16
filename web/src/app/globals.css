@@ -407,3 +407,6 @@ ul.roll { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wra
 .todo-edit { display: inline; }
 .todo-edit summary { cursor: pointer; display: inline; }
 .todo-edit form { margin-top: 6px; }
+.possible-delays { border-left: 3px solid var(--warn); }
+.possible-delays li + li { margin-top: 8px; }
+.row-actions { display: flex; gap: 14px; margin-top: 2px; }

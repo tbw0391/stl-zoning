@@ -5,10 +5,12 @@ import { STAGE_LABEL, fmtDate, fmtTime, shortName, todayCentral } from "@/lib/fo
 import { TASK_SELECT, Task, TaskForm, TaskList, assignees } from "@/components/Tasks";
 import { distanceTo, loadCases, caseTypes, ZONING_TYPES } from "@/lib/cases";
 import CaseRow from "@/components/CaseRow";
+import { RESULT_LABEL } from "@/lib/votes";
 import TimelineCard from "@/components/TimelineCard";
 import { STEP_LABEL, currentStep, loadDelays, loadTimeline } from "@/lib/timeline";
 import { createWatch } from "@/app/alerts/actions";
-import { addChecklistItem, addDelay, addNote, applyTemplate, deleteChecklistItem, deleteDelay, setChecklistDone, updateProject } from "../actions";
+import { addChecklistItem, addDelay, addNote, applyTemplate, confirmPossibleDelay, deleteChecklistItem, deleteDelay, dismissPossibleDelay,
+  setChecklistDone, updateProject } from "../actions";
 
 export const dynamic = "force-dynamic";
 
@@ -41,7 +43,12 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
   // Once a filing date is set the timeline is the project's own schedule, and postponements shift it.
   const filed = !!p.filed_on;
   const timelineStart = p.filed_on ?? start;
-  const delays = await loadDelays(supabase, id);
+  const [delays, { data: possible }, { data: sightings }] = await Promise.all([
+    loadDelays(supabase, id),
+    supabase.from("project_alerts").select("id, title, body, created_at").eq("project_id", id).eq("kind", "possible_delay")
+      .is("resolved_at", null).order("created_at"),
+    supabase.from("project_case_events").select("meeting_id, body, event_date, kind").eq("project_id", id).order("event_date"),
+  ]);
 
   const [{ data: meetings }, { data: recorded }, timeline, { data: boardMeetings }] = p.jurisdiction_id
     ? await Promise.all([
@@ -155,6 +162,7 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
             </label>
             <label>Diligence expires<input name="diligence_expires_on" type="date" defaultValue={p.diligence_expires_on ?? ""} /></label>
             <label>Closing date<input name="closing_on" type="date" defaultValue={p.closing_on ?? ""} /></label>
+            <label>City case number(s)<input name="case_numbers" defaultValue={p.case_numbers ?? ""} placeholder="e.g. P.Z. 13-26, comma-separated" /></label>
             <label>Application filed (or planned)<input name="filed_on" type="date" defaultValue={p.filed_on ?? ""} /></label>
             <label>Address / location<input name="address" defaultValue={p.address ?? ""} /></label>
             <label>Parcel ID(s)<input name="parcel_ids" defaultValue={p.parcel_ids ?? ""} /></label>
@@ -192,6 +200,25 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
               <h2>Expected timeline</h2>
               {timeline && <TimelineCard t={timeline} start={timelineStart} today={today} filed={filed} />}
 
+              {(possible ?? []).length > 0 && (
+                <div className="card possible-delays">
+                  <strong className="small">Possible delays found on agendas and minutes</strong>
+                  <ul className="plain small">
+                    {possible!.map((a) => (
+                      <li key={a.id}>
+                        <div>{a.body}</div>
+                        <div className="row-actions">
+                          {filed ? (
+                            <form action={confirmPossibleDelay.bind(null, a.id)}><button type="submit" className="link">Log as delay</button></form>
+                          ) : <span className="muted">Set the filing date to log it.</span>}
+                          <form action={dismissPossibleDelay.bind(null, a.id)}><button type="submit" className="link">Not a delay</button></form>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
               {filed && (pzNow?.date || councilNow?.date) && (
                 <form action={addDelay.bind(null, id)} className="card stack-form">
                   <strong className="small">Log a delay</strong>
@@ -212,6 +239,19 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
                   <label>Your name<input name="reported_by" list="note-authors" /></label>
                   <div><button type="submit">Log delay and alert the team</button></div>
                 </form>
+              )}
+              {(sightings ?? []).length > 0 && (
+                <div className="card">
+                  <strong className="small">This case on agendas and in minutes</strong>
+                  <ul className="plain small">
+                    {[...new Map(sightings!.map((e) => [`${e.meeting_id}-${e.kind}`, e])).values()].map((e) => (
+                      <li key={`${e.meeting_id}-${e.kind}`}>
+                        <Link href={`/meetings/${e.meeting_id}`}>{fmtDate(e.event_date)} {e.body === "planning_zoning" ? "P&Z" : "Council"}</Link>
+                        {e.kind === "agenda" ? <span className="muted"> · on the agenda</span> : <> <span className={`tag result-${e.kind}`}>{RESULT_LABEL[e.kind] ?? e.kind}</span></>}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
               {!filed && (
                 <p className="small muted">Set the filing date in Details to track this project&apos;s own schedule and log delays.</p>

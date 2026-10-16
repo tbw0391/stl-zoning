@@ -9,7 +9,7 @@ import { Delay, STEP_LABEL, currentStep, daysBetween, loadDelays, loadTimeline }
 
 const text = (fd: FormData, key: string) => String(fd.get(key) ?? "").trim() || null;
 
-const PROJECT_FIELDS = ["name", "jurisdiction_id", "address", "parcel_ids", "current_zoning", "proposed_zoning", "stage", "description", "filed_on", "diligence_expires_on", "closing_on"];
+const PROJECT_FIELDS = ["name", "jurisdiction_id", "address", "parcel_ids", "current_zoning", "proposed_zoning", "stage", "description", "filed_on", "diligence_expires_on", "closing_on", "case_numbers"];
 
 function projectFromForm(fd: FormData) {
   const row: Record<string, string | number | null> = {};
@@ -53,6 +53,8 @@ export async function updateProject(id: number, fd: FormData) {
   if (error) throw new Error(error.message);
   await followProjectPlace(row.jurisdiction_id);
   if ("address" in row || "jurisdiction_id" in row) await locateProject(id);
+  // A new case number may already be on agendas: look now rather than at the next hourly check.
+  if (row.case_numbers) await supabase.rpc("check_project_delays", { only_project: id });
   revalidatePath("/", "layout");
 }
 
@@ -129,22 +131,29 @@ export async function applyTemplate(projectId: number) {
 // Log a postponed P&Z hearing or council vote; the timeline shifts from it, and the team gets an alert.
 // A new meeting that isn't for that board or isn't after the current date is dropped, so the step goes to the board's next meeting.
 export async function addDelay(projectId: number, fd: FormData) {
-  const step = fd.get("step") === "council" ? "council" : "pz";
+  await recordDelay(projectId, fd.get("step") === "council" ? "council" : "pz", Number(fd.get("to_meeting_id")) || null,
+    text(fd, "reason"), text(fd, "reported_by"));
+  revalidatePath("/", "layout");
+}
+
+// Shared by the Log a delay form and possible delays found on agendas. Returns false when the project has no filing
+// date or the step has no date to move from.
+async function recordDelay(projectId: number, step: Delay["step"], toMeetingId: number | null, reason: string | null, reportedBy: string | null) {
   const supabase = await createClient();
   const { data: p } = await supabase.from("projects").select("name, jurisdiction_id, filed_on").eq("id", projectId).single();
-  if (!p?.jurisdiction_id || !p.filed_on) return;
+  if (!p?.jurisdiction_id || !p.filed_on) return false;
   const delays = await loadDelays(supabase, projectId);
   const before = await loadTimeline(supabase, p.jurisdiction_id, p.filed_on, delays);
   const from = currentStep(before.best, step);
-  if (!from?.date) return;
+  if (!from?.date) return false;
 
-  let toMeeting = Number(fd.get("to_meeting_id")) || null;
+  let toMeeting = toMeetingId;
   if (toMeeting) {
     const { data: m } = await supabase.from("meetings").select("body, event_date").eq("id", toMeeting).maybeSingle();
     const body = step === "pz" ? "planning_zoning" : "governing_body";
     if (!m || m.body !== body || m.event_date <= from.date) toMeeting = null;
   }
-  const delay = { project_id: projectId, step, from_date: from.date, to_meeting_id: toMeeting, reason: text(fd, "reason"), reported_by: text(fd, "reported_by") };
+  const delay = { project_id: projectId, step, from_date: from.date, to_meeting_id: toMeeting, reason, reported_by: reportedBy };
   const { data: row, error } = await supabase.from("project_delays").insert(delay).select("*").single();
   if (error) throw new Error(error.message);
 
@@ -158,6 +167,26 @@ export async function addDelay(projectId: number, fd: FormData) {
     delay.reported_by ? `Logged by ${delay.reported_by}.` : "",
   ].filter(Boolean).join(" ");
   await supabase.from("project_alerts").insert({ project_id: projectId, kind: "delay", title: `${p.name}: ${STEP_LABEL[step]} postponed`, body });
+  return true;
+}
+
+// A possible delay (found on an agenda or in minutes) confirmed from the project page. The step moves to the meeting
+// where the case turned up again when that's later than its current date, otherwise to the board's next meeting.
+export async function confirmPossibleDelay(alertId: number) {
+  const supabase = await createClient();
+  const { data: a } = await supabase.from("project_alerts").select("project_id, step, meeting_id, title").eq("id", alertId).single();
+  if (!a) return;
+  const reason = /continued|tabled/.exec(a.title)?.[0];
+  const ok = await recordDelay(a.project_id, a.step === "council" ? "council" : "pz", a.meeting_id,
+    reason ? `Case ${reason} (from minutes)` : "Back on a later agenda", null);
+  if (ok) await supabase.from("project_alerts").update({ resolved_at: new Date().toISOString() }).eq("id", alertId);
+  revalidatePath("/", "layout");
+}
+
+export async function dismissPossibleDelay(alertId: number) {
+  const supabase = await createClient();
+  const { error } = await supabase.from("project_alerts").update({ resolved_at: new Date().toISOString() }).eq("id", alertId);
+  if (error) throw new Error(error.message);
   revalidatePath("/", "layout");
 }
 
