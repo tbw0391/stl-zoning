@@ -4,7 +4,8 @@
 //
 // Secrets: RESEND_API_KEY, DIGEST_FROM, DIGEST_TO (shared with weekly-digest); SITE_URL optional.
 // Requests need the x-digest-token header (value in public.app_settings). ?preview=1 returns the HTML without
-// sending or marking anything; ?to=a@b.c sends to that address instead of DIGEST_TO.
+// sending or marking anything; ?to=a@b.c sends to that address instead of DIGEST_TO. ?sample=1&to=a@b.c sends a
+// made-up delay and a made-up possible delay to that one address (never to the list), to see what the team gets.
 // Deployed with verify_jwt off; the token guards access.
 import { createClient } from "jsr:@supabase/supabase-js@2";
 
@@ -28,14 +29,24 @@ Deno.serve(async (req) => {
   const { data: tok } = await db.from("app_settings").select("value").eq("key", "digest_token").single();
   if (!tok || req.headers.get("x-digest-token") !== tok.value) return new Response("Not found", { status: 404 });
 
-  const { data: alerts } = await db.from("project_alerts").select("*").is("emailed_at", null).order("created_at");
+  const sample = !!url.searchParams.get("sample");
+  if (sample && !url.searchParams.get("to")) return new Response("sample needs ?to=", { status: 400 });
+  const now = new Date().toISOString();
+  const { data: alerts } = sample
+    ? { data: [
+        { project_id: 0, kind: "delay", created_at: now, title: "Sample Project: P&Z hearing postponed",
+          body: "P&Z hearing moved from Dec 7 to Jan 4 (Applicant requested continuance). Final council action now Jan 20, was Dec 16 (+35 days). Logged by Sample User." },
+        { project_id: 0, kind: "possible_delay", created_at: now, title: "Sample Project: case back on the P&Z agenda",
+          body: "On the P&Z agenda for Jan 4 after being on the one for Dec 7, so it was likely continued. If the schedule moved, log it as a delay on the project." },
+      ] }
+    : await db.from("project_alerts").select("*").is("emailed_at", null).order("created_at");
   const rows = (alerts ?? []) as Row[];
   if (!rows.length) return Response.json({ emailed: 0 });
 
   const items = rows.map((a) => `
     <tr><td style="padding:12px 0;border-top:1px solid ${C.border};font-size:14px;color:${C.text}">
       ${a.kind === "delay" ? pill("DELAY", C.orange) : pill("POSSIBLE DELAY", C.warn)}
-      <a href="${SITE}/projects/${a.project_id}" style="color:${C.teal};font-weight:700;text-decoration:none">${esc(a.title)}</a>
+      <a href="${SITE}/projects${a.project_id ? `/${a.project_id}` : ""}" style="color:${C.teal};font-weight:700;text-decoration:none">${esc(a.title)}</a>
       ${a.body ? `<div style="margin-top:4px">${esc(a.body)}</div>` : ""}
       <div style="font-size:12px;color:${C.muted};margin-top:2px">${stamp(a.created_at)}</div>
     </td></tr>`).join("");
@@ -57,13 +68,14 @@ Deno.serve(async (req) => {
   const missing = [!key && "RESEND_API_KEY", !from && "DIGEST_FROM", !to.length && "DIGEST_TO"].filter(Boolean);
   if (missing.length) return new Response(`Missing secret: ${missing.join(", ")}`, { status: 500 });
 
-  const subject = rows.length === 1 ? rows[0].title : `${rows.length} project timeline alerts: ${rows[0].title}`;
+  const subject = (sample ? "[Sample] " : "") + (rows.length === 1 ? rows[0].title : `${rows.length} project timeline alerts: ${rows[0].title}`);
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
     body: JSON.stringify({ from, to, subject, html }),
   });
   const out = await res.json().catch(() => ({}));
+  if (sample) return Response.json({ sample: true, ok: res.ok, error: res.ok ? undefined : out }, { status: res.ok ? 200 : 502 });
   await db.from("digest_log").insert({
     kind: "project_alert", recipients: to.join(", "), resend_id: out?.id ?? null,
     error: res.ok ? null : JSON.stringify(out).slice(0, 1000),
