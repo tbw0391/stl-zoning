@@ -4,6 +4,7 @@ import { CLOSED_STAGES, STAGE_LABEL, addDays, diligenceLeft, fmtDate, shortName,
 import { BODY_LABEL } from "@/components/MeetingSummary";
 import PageTitle from "@/components/PageTitle";
 import CardDate from "./CardDate";
+import Board from "./Board";
 import { Delay, Timeline, daysBetween, loadTimeline } from "@/lib/timeline";
 
 export const dynamic = "force-dynamic";
@@ -17,7 +18,7 @@ const RECENT_DAYS = 60;
 
 type Project = {
   id: number; name: string; stage: string; jurisdiction_id: string | null; address: string | null;
-  acreage: number | null; current_zoning: string | null; proposed_zoning: string | null; updated_at: string; filed_on: string | null;
+  acreage: number | null; current_zoning: string | null; proposed_zoning: string | null; updated_at: string; filed_on: string | null; board_order: number | null;
   diligence_expires_on: string | null; closing_on: string | null;
   jurisdictions: { name: string } | null;
   checklist_items: { done_at: string | null }[];
@@ -30,6 +31,9 @@ const dateOf = (ts: string) => new Date(ts).toLocaleDateString("en-CA", { timeZo
 // "Oct 14" on the cards; the year only when it isn't this year.
 const shortDate = (d: string) => new Date(d + "T00:00:00Z").toLocaleDateString("en-US",
   { month: "short", day: "numeric", ...(d.slice(0, 4) !== todayCentral().slice(0, 4) && { year: "numeric" }), timeZone: "UTC" });
+// Dragged order first; cards nobody has placed follow, newest-updated first (the query's order).
+const byBoardOrder = (a: { board_order: number | null }, b: { board_order: number | null }) =>
+  a.board_order == null ? (b.board_order == null ? 0 : 1) : b.board_order == null ? -1 : a.board_order - b.board_order;
 const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? "" : "s"}`;
 
 export default async function DashboardPage() {
@@ -37,7 +41,7 @@ export default async function DashboardPage() {
   const supabase = await createClient();
   const [{ data }, { data: changes }] = await Promise.all([
     supabase.from("projects")
-      .select("id, name, stage, jurisdiction_id, address, acreage, current_zoning, proposed_zoning, updated_at, filed_on, diligence_expires_on, closing_on, jurisdictions(name), checklist_items(done_at), tasks(due_date, done_at), project_notes(body, author, created_at)")
+      .select("id, name, stage, jurisdiction_id, address, acreage, current_zoning, proposed_zoning, updated_at, filed_on, board_order, diligence_expires_on, closing_on, jurisdictions(name), checklist_items(done_at), tasks(due_date, done_at), project_notes(body, author, created_at)")
       .order("updated_at", { ascending: false }),
     supabase.from("project_stage_changes").select("project_id, from_stage, to_stage, changed_at, baseline").order("changed_at", { ascending: false }),
   ]);
@@ -88,21 +92,17 @@ export default async function DashboardPage() {
         <Link href="/projects">All projects</Link>
       </p>
 
-      <div className="pipeline">
-        {PIPELINE.map((stage) => {
-          const list = active.filter((p) => p.stage === stage);
-          return (
-            <section key={stage} className="pipeline-col">
-              <h2><span className={`tag stage-${stage}`}>{STAGE_LABEL[stage]}</span> <span className="muted small">{list.length}</span></h2>
-              {list.length === 0 && <div className="pipeline-empty small muted">None</div>}
-              {list.map((p) => (
-                <ProjectCard key={p.id} p={p} today={today} change={lastChange.get(p.id)}
-                  timeline={projectTimeline.get(p.id) ?? (p.jurisdiction_id ? timelineFor.get(p.jurisdiction_id) : undefined)} />
-              ))}
-            </section>
-          );
-        })}
-      </div>
+      <Board columns={PIPELINE.map((stage) => {
+        const list = active.filter((p) => p.stage === stage).sort(byBoardOrder);
+        return {
+          stage,
+          header: <h2><span className={`tag stage-${stage}`}>{STAGE_LABEL[stage]}</span> <span className="muted small">{list.length}</span></h2>,
+          cards: list.map((p) => ({ id: p.id, node: (
+            <ProjectCard p={p} today={today} change={lastChange.get(p.id)}
+              timeline={projectTimeline.get(p.id) ?? (p.jurisdiction_id ? timelineFor.get(p.jurisdiction_id) : undefined)} />
+          ) })),
+        };
+      })} />
 
       <div className="dash-lower">
         <section>

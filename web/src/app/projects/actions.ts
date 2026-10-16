@@ -216,3 +216,19 @@ export async function setProjectDate(id: number, field: "diligence_expires_on" |
   if (error) throw new Error(error.message);
   revalidatePath("/", "layout");
 }
+
+// Dashboard drag-and-drop: the dragged project lands in `stage` (changing its stage if it moved columns; the stage
+// history trigger logs that), and that column's cards take the order given.
+export async function moveProject(id: number, stage: string, columnOrder: number[]) {
+  if (!(stage in STAGE_LABEL) || !columnOrder.includes(id)) return;
+  const supabase = await createClient();
+  const { data: p } = await supabase.from("projects").select("stage").eq("id", id).single();
+  if (p && p.stage !== stage) {
+    const { error } = await supabase.from("projects").update({ stage }).eq("id", id);
+    if (error) throw new Error(error.message);
+  }
+  const results = await Promise.all(columnOrder.map((pid, i) => supabase.from("projects").update({ board_order: i }).eq("id", pid)));
+  const failed = results.find((r) => r.error);
+  if (failed?.error) throw new Error(failed.error.message);
+  revalidatePath("/", "layout");
+}
