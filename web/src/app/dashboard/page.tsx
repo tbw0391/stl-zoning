@@ -70,7 +70,6 @@ export default async function DashboardPage() {
     ((delayRows ?? []) as (Delay & { project_id: number })[]).filter((d) => d.project_id === p.id))));
   const projectTimeline = new Map<number, Timeline>(filed.map((p, i) => [p.id, own[i]]));
 
-  const totalAcres = active.reduce((s, p) => s + (p.acreage ?? 0), 0);
   const openTasks = active.flatMap((p) => p.tasks.filter((t) => !t.done_at));
   const overdue = openTasks.filter((t) => t.due_date && t.due_date < today).length;
   const recent = log.filter((c) => !c.baseline && dateOf(c.changed_at) >= addDays(today, -RECENT_DAYS));
@@ -85,9 +84,6 @@ export default async function DashboardPage() {
       </p>
 
       <div className="stat-row">
-        <div className="card stat"><div className="stat-value">{active.length}</div><div className="stat-label">Active projects</div></div>
-        <div className="card stat"><div className="stat-value">{totalAcres ? Math.round(totalAcres).toLocaleString() : "—"}</div><div className="stat-label">Acres{active.some((p) => p.acreage == null) && <> · {active.filter((p) => p.acreage != null).length} of {active.length} entered</>}</div></div>
-        <div className="card stat"><div className="stat-value">{places.length}</div><div className="stat-label">Municipalities</div></div>
         <div className="card stat">
           <div className="stat-value">{openTasks.length}</div>
           <div className="stat-label">Open tasks{overdue > 0 && <> · <span className="tag due">{overdue} overdue</span></>}</div>
