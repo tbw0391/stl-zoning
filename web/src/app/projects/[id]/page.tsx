@@ -153,6 +153,8 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
                 {(jurisdictions ?? []).map((j) => <option key={j.id} value={j.id}>{j.name}</option>)}
               </select>
             </label>
+            <label>Diligence expires<input name="diligence_expires_on" type="date" defaultValue={p.diligence_expires_on ?? ""} /></label>
+            <label>Closing date<input name="closing_on" type="date" defaultValue={p.closing_on ?? ""} /></label>
             <label>Application filed (or planned)<input name="filed_on" type="date" defaultValue={p.filed_on ?? ""} /></label>
             <label>Address / location<input name="address" defaultValue={p.address ?? ""} /></label>
             <label>Parcel ID(s)<input name="parcel_ids" defaultValue={p.parcel_ids ?? ""} /></label>

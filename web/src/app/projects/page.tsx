@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import { CLOSED_STAGES, STAGE_LABEL, fmtDate, shortName, todayCentral } from "@/lib/format";
+import { CLOSED_STAGES, fmtDate, shortName, todayCentral } from "@/lib/format";
 import { createProject } from "./actions";
 import PageTitle from "@/components/PageTitle";
+import StageSelect from "./StageSelect";
 
 export const dynamic = "force-dynamic";
 
@@ -61,7 +62,7 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Pro
                   <tr key={p.id}>
                     <td><Link href={`/projects/${p.id}`}><strong>{p.name}</strong></Link>{p.address && <div className="small muted">{p.address}</div>}</td>
                     <td>{p.jurisdictions ? <Link href={`/jurisdictions/${p.jurisdiction_id}`}>{shortName(p.jurisdictions.name)}</Link> : <span className="muted">—</span>}</td>
-                    <td><span className={`tag stage-${p.stage}`}>{STAGE_LABEL[p.stage]}</span></td>
+                    <td><StageSelect key={`${p.id}-${p.stage}`} id={p.id} stage={p.stage} /></td>
                     <td>{p.checklist_items.length ? `${done} of ${p.checklist_items.length}` : <span className="muted">—</span>}</td>
                     <td>{open.length || <span className="muted">0</span>}</td>
                     <td>{next ? <span className={next < today ? "tag due" : undefined}>{fmtDate(next)}</span> : <span className="muted">—</span>}</td>

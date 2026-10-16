@@ -20,3 +20,13 @@ export async function setTodoDone(id: number, done: boolean) {
   if (error) throw new Error(error.message);
   revalidatePath("/todo");
 }
+
+// Suggestion #29: fix the wording of a suggestion.
+export async function updateTodo(id: number, formData: FormData) {
+  const body = String(formData.get("body") ?? "").trim();
+  if (!body) return;
+  const supabase = await createClient();
+  const { error } = await supabase.from("todos").update({ body }).eq("id", id);
+  if (error) throw new Error(error.message);
+  revalidatePath("/todo");
+}

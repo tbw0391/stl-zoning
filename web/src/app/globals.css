@@ -185,7 +185,7 @@ textarea { font: inherit; padding: 7px 10px; border: 1px solid var(--border); bo
 .tag.task { background: var(--accent-soft); color: var(--accent); }
 .tag[class*="stage-"] { background: var(--accent-soft); color: var(--accent); }
 .tag.stage-development { background: var(--ok-soft); color: var(--ok); }
-.tag.stage-closed, .tag.stage-prospect { background: var(--border); color: var(--muted); }
+.tag.stage-closed, .tag.stage-prospect, .tag.stage-oyl { background: var(--border); color: var(--muted); }
 
 .inline-form { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
 .inline-form .grow { flex: 1 1 260px; }
@@ -369,7 +369,7 @@ ul.roll { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wra
 .stat { padding: 12px 16px; }
 .stat-value { font-size: 1.6rem; font-weight: 750; line-height: 1.2; font-variant-numeric: tabular-nums; }
 .stat-label { font-size: .82rem; color: var(--muted); }
-.pipeline { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.pipeline { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; align-items: start; }
 .pipeline-col h2 { margin: 18px 0 8px; font-size: 1rem; display: flex; align-items: center; gap: 6px; }
 .pipeline-col .tag { font-size: .8rem; padding: 3px 10px; }
 .pipeline-empty { border: 1px dashed var(--border); border-radius: 12px; padding: 14px; text-align: center; }
@@ -399,3 +399,11 @@ ul.roll { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wra
 @media (max-width: 1132px) { .alert-banner { margin-left: 16px; margin-right: 16px; } }
 .timeline li.postponed strong, .timeline li.postponed .step-label { text-decoration: line-through; color: var(--muted); }
 .tag.postponed { background: var(--due-soft); color: var(--due); }
+
+.stage-select { font: inherit; font-size: .8rem; font-weight: 650; padding: 3px 8px; border-radius: 99px; border: 0; cursor: pointer; }
+.stage-select.stage-oyl, .stage-select.stage-prospect, .stage-select.stage-closed { background: var(--border); color: var(--muted); }
+.stage-select.stage-loi, .stage-select.stage-diligence { background: var(--accent-soft); color: var(--accent); }
+.stage-select.stage-development { background: var(--ok-soft); color: var(--ok); }
+.todo-edit { display: inline; }
+.todo-edit summary { cursor: pointer; display: inline; }
+.todo-edit form { margin-top: 6px; }

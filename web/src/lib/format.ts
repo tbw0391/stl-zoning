@@ -38,6 +38,7 @@ export const ROLE_LABEL: Record<string, string> = {
 };
 
 export const STAGE_LABEL: Record<string, string> = {
+  oyl: "OYL",
   prospect: "Prospect",
   loi: "LOI",
   diligence: "Diligence",

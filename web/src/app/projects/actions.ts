@@ -4,12 +4,12 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { geocode, placeName } from "@/lib/geocode";
-import { fmtDate } from "@/lib/format";
+import { STAGE_LABEL, fmtDate } from "@/lib/format";
 import { Delay, STEP_LABEL, currentStep, daysBetween, loadDelays, loadTimeline } from "@/lib/timeline";
 
 const text = (fd: FormData, key: string) => String(fd.get(key) ?? "").trim() || null;
 
-const PROJECT_FIELDS = ["name", "jurisdiction_id", "address", "parcel_ids", "current_zoning", "proposed_zoning", "stage", "description", "filed_on"];
+const PROJECT_FIELDS = ["name", "jurisdiction_id", "address", "parcel_ids", "current_zoning", "proposed_zoning", "stage", "description", "filed_on", "diligence_expires_on", "closing_on"];
 
 function projectFromForm(fd: FormData) {
   const row: Record<string, string | number | null> = {};
@@ -165,6 +165,15 @@ export async function addDelay(projectId: number, fd: FormData) {
 export async function deleteDelay(id: number) {
   const supabase = await createClient();
   const { error } = await supabase.from("project_delays").delete().eq("id", id);
+  if (error) throw new Error(error.message);
+  revalidatePath("/", "layout");
+}
+
+// Stage picked on the /projects list (suggestion #26).
+export async function setStage(id: number, stage: string) {
+  if (!(stage in STAGE_LABEL)) return;
+  const supabase = await createClient();
+  const { error } = await supabase.from("projects").update({ stage }).eq("id", id);
   if (error) throw new Error(error.message);
   revalidatePath("/", "layout");
 }

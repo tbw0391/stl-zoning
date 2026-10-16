@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import { setTodoDone } from "./actions";
+import { setTodoDone, updateTodo } from "./actions";
 import PageTitle from "@/components/PageTitle";
 
 export const dynamic = "force-dynamic";
@@ -21,6 +21,15 @@ export default async function TodoPage() {
         <div className="small muted">
           {t.created_by_email ?? "Unknown"} · {new Date(t.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "America/Chicago" })}
           {t.page && <> · <Link href={t.page}>{t.page}</Link></>}
+          {" · "}
+          <details className="todo-edit">
+            <summary className="link">Edit</summary>
+            {/* Keyed on the text so the box shows the saved wording after a save. */}
+            <form key={t.body} action={updateTodo.bind(null, t.id)} className="stack-form">
+              <textarea name="body" rows={3} required defaultValue={t.body} />
+              <div><button type="submit">Save</button></div>
+            </form>
+          </details>
         </div>
       </div>
     </li>

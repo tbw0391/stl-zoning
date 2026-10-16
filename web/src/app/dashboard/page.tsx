@@ -8,15 +8,18 @@ import { Delay, Timeline, daysBetween, loadTimeline } from "@/lib/timeline";
 export const dynamic = "force-dynamic";
 
 // Pipeline columns, left to right. Closed projects are counted, not shown.
-const PIPELINE = ["prospect", "loi", "diligence", "development"];
+const PIPELINE = ["oyl", "prospect", "loi", "diligence", "development"];
 // Upcoming meetings and deadlines listed for the project municipalities.
 const AHEAD_DAYS = 30;
 // Stage moves listed under "Recent moves".
 const RECENT_DAYS = 60;
+// Diligence expiring within this many days is flagged on the card.
+const DILIGENCE_WARN_DAYS = 30;
 
 type Project = {
   id: number; name: string; stage: string; jurisdiction_id: string | null; address: string | null;
   acreage: number | null; current_zoning: string | null; proposed_zoning: string | null; updated_at: string; filed_on: string | null;
+  diligence_expires_on: string | null; closing_on: string | null;
   jurisdictions: { name: string } | null;
   checklist_items: { done_at: string | null }[];
   tasks: { due_date: string | null; done_at: string | null }[];
@@ -35,7 +38,7 @@ export default async function DashboardPage() {
   const supabase = await createClient();
   const [{ data }, { data: changes }] = await Promise.all([
     supabase.from("projects")
-      .select("id, name, stage, jurisdiction_id, address, acreage, current_zoning, proposed_zoning, updated_at, filed_on, jurisdictions(name), checklist_items(done_at), tasks(due_date, done_at), project_notes(body, author, created_at)")
+      .select("id, name, stage, jurisdiction_id, address, acreage, current_zoning, proposed_zoning, updated_at, filed_on, diligence_expires_on, closing_on, jurisdictions(name), checklist_items(done_at), tasks(due_date, done_at), project_notes(body, author, created_at)")
       .order("updated_at", { ascending: false }),
     supabase.from("project_stage_changes").select("project_id, from_stage, to_stage, changed_at, baseline").order("changed_at", { ascending: false }),
   ]);
@@ -197,6 +200,22 @@ function ProjectCard({ p, today, change, timeline }: { p: Project; today: string
           {timeline?.best.finalDate && <>, council {shortDate(timeline.best.finalDate)}</>}
           {p.filed_on && timeline?.original !== undefined && <> <span className="tag postponed">delayed</span></>}
         </div>
+      )}
+
+      {(p.diligence_expires_on || p.closing_on) && (
+        <div className="small">
+          {p.diligence_expires_on && (
+            <span className={p.diligence_expires_on < addDays(today, DILIGENCE_WARN_DAYS) ? "tag due" : undefined}>
+              Diligence {p.diligence_expires_on < today ? "expired" : "expires"} {shortDate(p.diligence_expires_on)}
+            </span>
+          )}
+          {p.diligence_expires_on && p.closing_on && " · "}
+          {p.closing_on && <>Closing {shortDate(p.closing_on)}</>}
+        </div>
+      )}
+      {p.diligence_expires_on && p.diligence_expires_on >= today && timeline?.best.finalDate && p.stage !== "development"
+        && timeline.best.finalDate > p.diligence_expires_on && (
+        <div className="small"><span className="tag due">Council vote after diligence ends</span></div>
       )}
 
       {note && (
