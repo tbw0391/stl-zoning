@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { CLOSED_STAGES, STAGE_LABEL, addDays, diligenceLeft, fmtDate, shortName, todayCentral } from "@/lib/format";
 import { BODY_LABEL } from "@/components/MeetingSummary";
 import PageTitle from "@/components/PageTitle";
+import CardDate from "./CardDate";
 import { Delay, Timeline, daysBetween, loadTimeline } from "@/lib/timeline";
 
 export const dynamic = "force-dynamic";
@@ -77,7 +78,7 @@ export default async function DashboardPage() {
     <div className="dash-wide">
       <div className="dash-head">
         <PageTitle href="/dashboard">Dashboard</PageTitle>
-        <div className="card stat">
+        <div className="card stat dash-head-center">
           <div className="stat-value">{openTasks.length}</div>
           <div className="stat-label">Open tasks{overdue > 0 && <> · <span className="tag due">{overdue} overdue</span></>}</div>
         </div>
@@ -197,14 +198,10 @@ function ProjectCard({ p, today, change, timeline }: { p: Project; today: string
       )}
 
       <div className="small card-dates">
-        <div>
-          <span className="muted">Diligence:</span>{" "}
-          {dil ? <span className={dil.warn ? "tag due" : undefined}>{dil.text}</span> : <span className="muted">not set</span>}
-        </div>
-        <div>
-          <span className="muted">Projected close:</span>{" "}
-          {p.closing_on ? shortDate(p.closing_on) : <span className="muted">not set</span>}
-        </div>
+        <CardDate id={p.id} field="diligence_expires_on" label="Diligence end" value={p.diligence_expires_on}
+          display={dil && p.diligence_expires_on ? `${dil.text} (${shortDate(p.diligence_expires_on)})` : null} warn={dil?.warn} />
+        <CardDate id={p.id} field="closing_on" label="Projected close" value={p.closing_on}
+          display={p.closing_on ? shortDate(p.closing_on) : null} />
       </div>
       {p.diligence_expires_on && p.diligence_expires_on >= today && timeline?.best.finalDate && p.stage !== "development"
         && timeline.best.finalDate > p.diligence_expires_on && (

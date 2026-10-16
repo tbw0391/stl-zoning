@@ -206,3 +206,13 @@ export async function setStage(id: number, stage: string) {
   if (error) throw new Error(error.message);
   revalidatePath("/", "layout");
 }
+
+// Diligence expiration and projected close dates set from the dashboard cards.
+export async function setProjectDate(id: number, field: "diligence_expires_on" | "closing_on", value: string | null) {
+  if (field !== "diligence_expires_on" && field !== "closing_on") return;
+  if (value != null && !/^(19|20)\d\d-\d\d-\d\d$/.test(value)) return;
+  const supabase = await createClient();
+  const { error } = await supabase.from("projects").update({ [field]: value }).eq("id", id);
+  if (error) throw new Error(error.message);
+  revalidatePath("/", "layout");
+}

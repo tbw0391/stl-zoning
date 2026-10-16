@@ -53,7 +53,7 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Pro
         <div className="table-wrap">
           <table>
             <thead>
-              <tr><th>Project</th><th>Municipality</th><th>Stage</th><th>Diligence</th><th>Projected close</th><th>Checklist</th><th>Open tasks</th><th>Next follow-up</th></tr>
+              <tr><th>Project</th><th>Municipality</th><th>Stage</th><th>Diligence end</th><th>Projected close</th><th>Checklist</th><th>Open tasks</th><th>Next follow-up</th></tr>
             </thead>
             <tbody>
               {rows.map((p) => {

@@ -160,7 +160,7 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
                 {(jurisdictions ?? []).map((j) => <option key={j.id} value={j.id}>{j.name}</option>)}
               </select>
             </label>
-            <label>Diligence expires<input name="diligence_expires_on" type="date" defaultValue={p.diligence_expires_on ?? ""} /></label>
+            <label>Diligence end<input name="diligence_expires_on" type="date" defaultValue={p.diligence_expires_on ?? ""} /></label>
             <label>Projected close date<input name="closing_on" type="date" defaultValue={p.closing_on ?? ""} /></label>
             <label>City case number(s)<input name="case_numbers" defaultValue={p.case_numbers ?? ""} placeholder="e.g. P.Z. 13-26, comma-separated" /></label>
             <label>Application filed (or planned)<input name="filed_on" type="date" defaultValue={p.filed_on ?? ""} /></label>
