@@ -8,7 +8,7 @@ import { Delay, Timeline, daysBetween, loadTimeline } from "@/lib/timeline";
 export const dynamic = "force-dynamic";
 
 // Pipeline columns, left to right. Closed projects are counted, not shown.
-const PIPELINE = ["oyl", "prospect", "loi", "diligence", "development"];
+const PIPELINE = ["prospect", "loi", "diligence", "development", "oyl"];
 // Upcoming meetings and deadlines listed for the project municipalities.
 const AHEAD_DAYS = 30;
 // Stage moves listed under "Recent moves".
