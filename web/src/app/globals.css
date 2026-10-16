@@ -369,7 +369,12 @@ ul.roll { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wra
 .stat { padding: 12px 16px; }
 .stat-value { font-size: 1.6rem; font-weight: 750; line-height: 1.2; font-variant-numeric: tabular-nums; }
 .stat-label { font-size: .82rem; color: var(--muted); }
-.pipeline { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; align-items: start; }
+/* The dashboard uses more of a big screen than the 1100px pages; columns never get narrower than 280px:
+   wide screens fit all five, mid-size screens scroll the row sideways, phones stack one stage per row. */
+.dash-wide { width: min(1600px, calc(100vw - 48px)); position: relative; left: 50%; transform: translateX(-50%); }
+.pipeline { display: grid; grid-template-columns: repeat(5, minmax(280px, 1fr)); gap: 14px; align-items: start;
+  overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 6px; }
+.pipeline-col { scroll-snap-align: start; }
 .pipeline-col h2 { margin: 18px 0 8px; font-size: 1rem; display: flex; align-items: center; gap: 6px; }
 .pipeline-col .tag { font-size: .8rem; padding: 3px 10px; }
 .pipeline-empty { border: 1px dashed var(--border); border-radius: 12px; padding: 14px; text-align: center; }
@@ -382,12 +387,15 @@ ul.roll { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wra
 .dash-list li { padding: 4px 0; }
 .dash-list .tag { margin-left: 6px; }
 @media (max-width: 860px) {
-  .pipeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .dash-lower { grid-template-columns: 1fr; }
 }
-@media (max-width: 560px) {
+/* Phones: one stage per row, full-width cards; an empty stage is just its header. */
+@media (max-width: 640px) {
+  .dash-wide { width: auto; left: auto; transform: none; }
   .stat-row { grid-template-columns: repeat(2, 1fr); }
-  .pipeline { grid-template-columns: 1fr; }
+  .pipeline { grid-template-columns: 1fr; overflow-x: visible; }
+  .pipeline-col h2 { margin-top: 14px; }
+  .pipeline-empty { display: none; }
 }
 
 /* Project alerts (timeline delays): banner under the top bar until dismissed in this browser. */

@@ -77,7 +77,7 @@ export default async function DashboardPage() {
   const byId = new Map(all.map((p) => [p.id, p]));
 
   return (
-    <>
+    <div className="dash-wide">
       <PageTitle href="/dashboard">Dashboard</PageTitle>
       <p className="muted">
         Where each project stands. {closed > 0 && <><Link href="/projects?show=all">{closed} closed</Link> not shown. </>}
@@ -150,7 +150,7 @@ export default async function DashboardPage() {
           </div>
         </section>
       </div>
-    </>
+    </div>
   );
 }
 
