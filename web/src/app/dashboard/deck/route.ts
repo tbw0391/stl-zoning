@@ -63,14 +63,24 @@ export async function GET(req: Request) {
   pptx.title = `Entitlement pipeline ${today}`;
   pptx.company = "Lombardo Homes";
 
-  // Header band used on every content slide.
-  const frame = (slide: PptxGenJS.Slide, title: string, sub?: string) => {
-    slide.background = { color: "FFFFFF" };
-    slide.addShape(pptx.ShapeType.rect, { x: 0, y: 0, w: 13.33, h: 0.9, fill: { color: C.header } });
-    slide.addShape(pptx.ShapeType.rect, { x: 0, y: 0.9, w: 13.33, h: 0.06, fill: { color: C.brand } });
+  // Header band used on every content slide, as a slide master so the extra slides a long table runs onto
+  // (autoPage) get it too. The summary and meetings slides get their own master with the title built in.
+  const master = (name: string, title?: string, sub?: string) => pptx.defineSlideMaster({
+    title: name, background: { color: "FFFFFF" },
+    objects: [
+      { rect: { x: 0, y: 0, w: 13.33, h: 0.9, fill: { color: C.header } } },
+      { rect: { x: 0, y: 0.9, w: 13.33, h: 0.06, fill: { color: C.brand } } },
+      { text: { text: `Entitlement Tracker · ${fmtDate(today)}`, options: { x: 0.5, y: 7.05, w: 6, h: 0.3, fontFace: FONT, fontSize: 9, color: C.muted } } },
+      ...(title ? [{ text: { text: title, options: { x: 0.5, y: 0.12, w: 9.5, h: 0.66, fontFace: FONT, fontSize: 24, bold: true, color: "FFFFFF", valign: "middle" as const } } }] : []),
+      ...(sub ? [{ text: { text: sub, options: { x: 9.3, y: 0.12, w: 3.55, h: 0.66, fontFace: FONT, fontSize: 12, color: "D9E4E2", align: "right" as const, valign: "middle" as const } } }] : []),
+    ],
+  });
+  master("CONTENT");
+  const frame = (title: string, sub?: string) => {
+    const slide = pptx.addSlide({ masterName: "CONTENT" });
     slide.addText(title, { x: 0.5, y: 0.12, w: 9.5, h: 0.66, fontFace: FONT, fontSize: 24, bold: true, color: "FFFFFF", valign: "middle" });
     if (sub) slide.addText(sub, { x: 9.3, y: 0.12, w: 3.55, h: 0.66, fontFace: FONT, fontSize: 12, color: "D9E4E2", align: "right", valign: "middle" });
-    slide.addText(`Entitlement Tracker · ${fmtDate(today)}`, { x: 0.5, y: 7.05, w: 6, h: 0.3, fontFace: FONT, fontSize: 9, color: C.muted });
+    return slide;
   };
   const head = (t: string) => ({ text: t, options: { bold: true, color: "FFFFFF", fill: { color: C.accent } } });
 
@@ -89,8 +99,8 @@ export async function GET(req: Request) {
   title.addText(fmtDate(today), { x: 0.8, y: 5.5, w: 6, h: 0.5, fontFace: FONT, fontSize: 16, color: "D9E4E2" });
 
   // 2. Pipeline summary: a tile per stage, then a row per project.
-  const summary = pptx.addSlide();
-  frame(summary, "Pipeline summary", `${projects.length} active`);
+  master("SUMMARY", "Pipeline summary", `${projects.length} active`);
+  const summary = pptx.addSlide({ masterName: "SUMMARY" });
   const tileW = (12.33 - 0.2 * (ORDER.length - 1)) / ORDER.length;
   ORDER.forEach((stage, i) => {
     const list = projects.filter((p) => p.stage === stage);
@@ -123,8 +133,7 @@ export async function GET(req: Request) {
 
   // 3. One slide per project.
   for (const p of projects) {
-    const s = pptx.addSlide();
-    frame(s, p.name, `${STAGE_LABEL[p.stage] ?? p.stage}${p.jurisdictions ? ` · ${shortName(p.jurisdictions.name)}` : ""}`);
+    const s = frame(p.name, `${STAGE_LABEL[p.stage] ?? p.stage}${p.jurisdictions ? ` · ${shortName(p.jurisdictions.name)}` : ""}`);
     const zoning = p.current_zoning || p.proposed_zoning ? `${p.current_zoning ?? "?"} → ${p.proposed_zoning ?? "?"}` : "—";
     const fact = (k: string, v: string, warn = false) => [
       { text: k, options: { color: C.muted } }, { text: v, options: { bold: warn, color: warn ? C.due : C.text } }];
@@ -180,8 +189,8 @@ export async function GET(req: Request) {
   }
 
   // 4. Upcoming hearings in the project municipalities.
-  const up = pptx.addSlide();
-  frame(up, `Upcoming meetings · next ${AHEAD_DAYS} days`, "Project municipalities");
+  master("MEETINGS", `Upcoming meetings · next ${AHEAD_DAYS} days`, "Project municipalities");
+  const up = pptx.addSlide({ masterName: "MEETINGS" });
   const meetings = (ahead ?? []) as unknown as { jurisdiction_id: string; body: string; event_type: string; event_date: string; status: string; jurisdictions: { name: string } | null }[];
   if (meetings.length) {
     up.addTable([

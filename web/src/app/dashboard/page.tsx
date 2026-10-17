@@ -86,6 +86,7 @@ export default async function DashboardPage() {
           <div className="stat-value">{openTasks.length}</div>
           <div className="stat-label">Open tasks{overdue > 0 && <> · <span className="tag due">{overdue} overdue</span></>}</div>
         </div>
+        <a className="btn dash-deck" href="/dashboard/deck" download>Download deck</a>
       </div>
       <p className="muted">
         Where each project stands. {closed > 0 && <><Link href="/projects?show=all">{closed} closed</Link> not shown. </>}
