@@ -446,3 +446,8 @@ button[type=submit].feature-switch.on { background: var(--brand-soft); color: va
 .board-card.drop-before { box-shadow: 0 -3px 0 var(--accent); }
 .drop-end { height: 3px; border-radius: 2px; background: var(--accent); margin: -4px 0 8px; }
 .pipeline-col.drop-target { background: var(--accent-soft); border-radius: 12px; }
+
+.place-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 16px; }
+.place-button { display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: inherit; transition: border-color .15s, transform .15s; }
+.place-button:hover { border-color: var(--brand); transform: translateY(-1px); }
+.place-button strong { color: var(--accent); }

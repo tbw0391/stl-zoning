@@ -7,6 +7,13 @@ export type Feature = { key: string; title: string; description: string; added: 
 
 export const FEATURES: Feature[] = [
   {
+    key: "votes-by-location",
+    title: "Votes by municipality",
+    description: "The Votes page becomes a button for each municipality. Each one opens a page with that municipality's members and every vote read from its minutes, meeting by meeting.",
+    added: "2026-10-19",
+    page: "/votes",
+  },
+  {
     key: "card-date-no-cancel",
     title: "No Cancel link on dashboard dates",
     description: "The Diligence end and Projected close boxes on dashboard cards lose their Cancel link. Press Escape to close the box without saving. (Suggestion #30)",
