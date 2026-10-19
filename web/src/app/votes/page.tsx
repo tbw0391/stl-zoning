@@ -205,7 +205,7 @@ async function ByLocation({ sp, js, byJ, memberTable }: {
             return (
               <Link key={j.id} href={`/votes?j=${j.id}`} className="card place-button">
                 <strong>{shortName(j.name)}</strong>
-                <span className="small">{voteCount(ms)} vote{voteCount(ms) === 1 ? "" : "s"} · {people.length} member{people.length === 1 ? "" : "s"}</span>
+                <span className="small">{voteCount(ms)} vote{voteCount(ms) === 1 ? "" : "s"} · {people.length ? `${people.length} member${people.length === 1 ? "" : "s"}` : "no roll calls"}</span>
                 {ms[0] && <span className="small muted">Last {fmtDate(ms[0].event_date)}</span>}
               </Link>
             );
