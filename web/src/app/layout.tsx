@@ -4,12 +4,16 @@ import Link from "next/link";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-regular-svg-icons";
 import Nav from "@/components/Nav";
 import SuggestButton from "@/components/SuggestButton";
 import { createClient } from "@/lib/supabase/server";
 import { newAlertCount } from "@/lib/cases";
 import { unseenProjectAlerts } from "@/lib/projectAlerts";
 import { dismissProjectAlerts } from "@/app/alerts/actions";
+import { enabledFeatures, unseenFeatureCount } from "@/lib/features";
+import FeaturesProvider from "@/components/FeaturesProvider";
 import "./globals.css";
 
 config.autoAddCss = false;
@@ -23,9 +27,11 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
-  const [alerts, projectAlerts] = await Promise.all([
+  const [alerts, projectAlerts, featuresOn, newFeatures] = await Promise.all([
     newAlertCount(supabase).catch(() => 0),
     unseenProjectAlerts(supabase).catch(() => []),
+    enabledFeatures(),
+    unseenFeatureCount(),
   ]);
   return (
     <html lang="en" className={jakarta.className}>
@@ -36,7 +42,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <span className="brand-name">Entitlement Tracker</span>
           </Link>
           <Nav alerts={alerts + projectAlerts.length} />
-          <SuggestButton />
+          <div className="header-actions">
+            <Link href="/features" className="suggest-btn">
+              <FontAwesomeIcon icon={faStar} /> New features
+              {newFeatures > 0 && <span className="badge">{newFeatures}</span>}
+            </Link>
+            <SuggestButton />
+          </div>
         </header>
         {projectAlerts.length > 0 && (
           <div className="alert-banner" role="status">
@@ -54,7 +66,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             </div>
           </div>
         )}
-        <main>{children}</main>
+        <main><FeaturesProvider on={featuresOn}>{children}</FeaturesProvider></main>
       </body>
     </html>
   );

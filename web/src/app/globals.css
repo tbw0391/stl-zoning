@@ -167,7 +167,9 @@ ol.steps li { margin: 4px 0; }
   .topbar nav a { padding: 5px 8px; }
 }
 
-.suggest { position: relative; margin-left: auto; }
+.header-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+a.suggest-btn { text-decoration: none; }
+.suggest { position: relative; }
 .suggest + .signout { margin-left: 0; }
 .suggest-pop {
   position: absolute; right: 0; top: calc(100% + 10px); z-index: 10; width: min(340px, calc(100vw - 32px));
@@ -426,6 +428,9 @@ ul.roll { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wra
 .stage-select.stage-oyl, .stage-select.stage-prospect, .stage-select.stage-closed { background: var(--border); color: var(--muted); }
 .stage-select.stage-loi, .stage-select.stage-diligence { background: var(--accent-soft); color: var(--accent); }
 .stage-select.stage-development { background: var(--ok-soft); color: var(--ok); }
+.todo.feature { justify-content: space-between; align-items: flex-start; }
+button[type=submit].feature-switch { min-width: 52px; background: var(--surface); color: var(--muted); border: 1px solid var(--border); }
+button[type=submit].feature-switch.on { background: var(--brand-soft); color: var(--brand-ink); border-color: var(--brand); font-weight: 700; }
 .todo-edit { display: inline; }
 .todo-edit summary { cursor: pointer; display: inline; }
 .todo-edit form { margin-top: 6px; }

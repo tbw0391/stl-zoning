@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useTransition } from "react";
 import { setProjectDate } from "@/app/projects/actions";
+import { useFeature } from "@/components/FeaturesProvider";
 
 // A typed date is only complete once the year has four digits; until then the box reports years like 0002.
 const FULL_DATE = /^(19|20)\d\d-\d\d-\d\d$/;
@@ -11,6 +12,7 @@ const FULL_DATE = /^(19|20)\d\d-\d\d-\d\d$/;
 export default function CardDate({ id, field, label, value, display, warn }: {
   id: number; field: "diligence_expires_on" | "closing_on"; label: string; value: string | null; display: string | null; warn?: boolean;
 }) {
+  const noCancel = useFeature("card-date-no-cancel");
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(value ?? "");
   const [pending, start] = useTransition();
@@ -30,7 +32,7 @@ export default function CardDate({ id, field, label, value, display, warn }: {
           onChange={(e) => setDraft(e.target.value)}
           onKeyDown={(e) => e.key === "Escape" && setEditing(false)} />
         <button type="submit" className="small" disabled={!ok}>Save</button>
-        <button type="button" className="link small" onClick={() => setEditing(false)}>Cancel</button>
+        {!noCancel && <button type="button" className="link small" onClick={() => setEditing(false)}>Cancel</button>}
       </form>
     );
   }
