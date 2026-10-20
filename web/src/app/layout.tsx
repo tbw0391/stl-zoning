@@ -14,6 +14,7 @@ import { unseenProjectAlerts } from "@/lib/projectAlerts";
 import { dismissProjectAlerts } from "@/app/alerts/actions";
 import { enabledFeatures, unseenFeatureCount } from "@/lib/features";
 import FeaturesProvider from "@/components/FeaturesProvider";
+import HistoryAsk from "@/components/HistoryAsk";
 import "./globals.css";
 
 config.autoAddCss = false;
@@ -66,6 +67,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             </div>
           </div>
         )}
+        <HistoryAsk />
         <main><FeaturesProvider on={featuresOn}>{children}</FeaturesProvider></main>
       </body>
     </html>

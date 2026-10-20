@@ -25,6 +25,8 @@ export const FEATURES: Feature[] = [
 
 export const ON_COOKIE = "features_on";
 export const SEEN_COOKIE = "features_seen";
+// The history question banner (components/HistoryAsk), hidden once answered.
+export const ASK_COOKIE = "history_ask";
 
 export async function enabledFeatures(): Promise<string[]> {
   const raw = (await cookies()).get(ON_COOKIE)?.value ?? "";
