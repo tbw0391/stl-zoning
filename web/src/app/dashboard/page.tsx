@@ -4,6 +4,7 @@ import { CLOSED_STAGES, STAGE_LABEL, addDays, diligenceLeft, fmtDate, shortName,
 import { BODY_LABEL } from "@/components/MeetingSummary";
 import PageTitle from "@/components/PageTitle";
 import CardDate from "./CardDate";
+import { enabledFeatures } from "@/lib/features";
 import Board from "./Board";
 import { Delay, Timeline, daysBetween, loadTimeline } from "@/lib/timeline";
 
@@ -23,7 +24,7 @@ type Project = {
   jurisdictions: { name: string } | null;
   checklist_items: { done_at: string | null }[];
   tasks: { due_date: string | null; done_at: string | null }[];
-  project_notes: { body: string; author: string | null; created_at: string }[];
+  project_notes: { id: number; body: string; author: string | null; created_at: string }[];
 };
 type Change = { project_id: number; from_stage: string | null; to_stage: string; changed_at: string; baseline: boolean };
 
@@ -39,9 +40,10 @@ const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? "" : "s"}`;
 export default async function DashboardPage() {
   const today = todayCentral();
   const supabase = await createClient();
+  const noteEdit = (await enabledFeatures()).includes("note-edit");
   const [{ data }, { data: changes }] = await Promise.all([
     supabase.from("projects")
-      .select("id, name, stage, jurisdiction_id, address, acreage, current_zoning, proposed_zoning, updated_at, filed_on, board_order, diligence_expires_on, closing_on, jurisdictions(name), checklist_items(done_at), tasks(due_date, done_at), project_notes(body, author, created_at)")
+      .select("id, name, stage, jurisdiction_id, address, acreage, current_zoning, proposed_zoning, updated_at, filed_on, board_order, diligence_expires_on, closing_on, jurisdictions(name), checklist_items(done_at), tasks(due_date, done_at), project_notes(id, body, author, created_at)")
       .order("updated_at", { ascending: false }),
     supabase.from("project_stage_changes").select("project_id, from_stage, to_stage, changed_at, baseline").order("changed_at", { ascending: false }),
   ]);
@@ -99,7 +101,7 @@ export default async function DashboardPage() {
           stage,
           header: <h2><span className={`tag stage-${stage}`}>{STAGE_LABEL[stage]}</span> <span className="muted small">{list.length}</span></h2>,
           cards: list.map((p) => ({ id: p.id, node: (
-            <ProjectCard p={p} today={today} change={lastChange.get(p.id)}
+            <ProjectCard p={p} today={today} change={lastChange.get(p.id)} noteEdit={noteEdit}
               timeline={projectTimeline.get(p.id) ?? (p.jurisdiction_id ? timelineFor.get(p.jurisdiction_id) : undefined)} />
           ) })),
         };
@@ -149,7 +151,7 @@ export default async function DashboardPage() {
   );
 }
 
-function ProjectCard({ p, today, change, timeline }: { p: Project; today: string; change?: Change; timeline?: Timeline }) {
+function ProjectCard({ p, today, change, timeline, noteEdit }: { p: Project; today: string; change?: Change; timeline?: Timeline; noteEdit?: boolean }) {
   const done = p.checklist_items.filter((c) => c.done_at).length;
   const total = p.checklist_items.length;
   const open = p.tasks.filter((t) => !t.done_at);
@@ -213,6 +215,7 @@ function ProjectCard({ p, today, change, timeline }: { p: Project; today: string
         <div className="small project-card-note">
           <span className="muted">{shortDate(dateOf(note.created_at))}{note.author ? ` · ${note.author}` : ""}:</span>{" "}
           {note.body.length > 140 ? `${note.body.slice(0, 140)}…` : note.body}
+          {noteEdit && <> <Link href={`/projects/${p.id}#note-${note.id}`} className="small">Edit</Link></>}
         </div>
       )}
     </article>

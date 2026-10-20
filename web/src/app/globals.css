@@ -213,6 +213,8 @@ textarea { font: inherit; padding: 7px 10px; border: 1px solid var(--border); bo
 .checklist button.link { line-height: 1.3; }
 .note { padding: 12px 0; border-top: 1px solid var(--border); }
 .note-body { white-space: pre-wrap; }
+.note-edit-actions { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+button.link.danger { color: var(--due); }
 .stack-form + .note { margin-top: 12px; }
 ul.plain { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: .9rem; }
 

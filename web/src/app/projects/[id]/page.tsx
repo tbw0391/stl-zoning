@@ -9,6 +9,8 @@ import { RESULT_LABEL } from "@/lib/votes";
 import TimelineCard from "@/components/TimelineCard";
 import { STEP_LABEL, currentStep, loadDelays, loadTimeline } from "@/lib/timeline";
 import { createWatch } from "@/app/alerts/actions";
+import { enabledFeatures } from "@/lib/features";
+import NoteEdit from "@/components/NoteEdit";
 import { addChecklistItem, addDelay, addNote, applyTemplate, confirmPossibleDelay, deleteChecklistItem, deleteDelay, dismissPossibleDelay,
   setChecklistDone, updateProject } from "../actions";
 
@@ -28,6 +30,7 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
   const { start: startParam } = await searchParams;
   const start = startParam && /^\d{4}-\d{2}-\d{2}$/.test(startParam) && startParam >= today ? startParam : today;
   const supabase = await createClient();
+  const noteEdit = (await enabledFeatures()).includes("note-edit");
 
   const [{ data: p }, { data: notes }, { data: checklist }, { data: tasks }, { data: names }, { data: jurisdictions }, { data: activeDefaults }] = await Promise.all([
     supabase.from("projects").select("*, jurisdictions(name)").eq("id", id).maybeSingle(),
@@ -127,7 +130,7 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
           <TaskForm projectId={id} people={assignees(names)} />
           {(tasks ?? []).length > 0 ? <TaskList tasks={tasks as Task[]} showProject={false} /> : <div className="card empty">No tasks for this project.</div>}
 
-          <h2>Notes</h2>
+          <h2 id="notes">Notes</h2>
           <form action={addNote.bind(null, id)} className="card stack-form">
             <textarea name="body" rows={3} required placeholder="Call notes, meeting takeaways, anything worth keeping" />
             <div className="row-form">
@@ -137,8 +140,11 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
             </div>
           </form>
           {(notes ?? []).map((n) => (
-            <div key={n.id} className="note">
-              <div className="small muted">{n.author ?? "Unknown"} · {stamp(n.created_at)}</div>
+            <div key={n.id} className="note" id={`note-${n.id}`}>
+              <div className="small muted">
+                {n.author ?? "Unknown"} · {stamp(n.created_at)}
+                {noteEdit && <> · <NoteEdit id={n.id} body={n.body} /></>}
+              </div>
               <div className="note-body">{n.body}</div>
             </div>
           ))}

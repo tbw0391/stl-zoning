@@ -67,6 +67,23 @@ export async function addNote(projectId: number, fd: FormData) {
   revalidatePath("/", "layout");
 }
 
+// Suggestion #31: fix or remove a note.
+export async function updateNote(id: number, fd: FormData) {
+  const body = text(fd, "body");
+  if (!body) return;
+  const supabase = await createClient();
+  const { error } = await supabase.from("project_notes").update({ body }).eq("id", id);
+  if (error) throw new Error(error.message);
+  revalidatePath("/", "layout");
+}
+
+export async function deleteNote(id: number) {
+  const supabase = await createClient();
+  const { error } = await supabase.from("project_notes").delete().eq("id", id);
+  if (error) throw new Error(error.message);
+  revalidatePath("/", "layout");
+}
+
 export async function addChecklistItem(projectId: number, fd: FormData) {
   const body = text(fd, "body");
   if (!body) return;

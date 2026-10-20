@@ -6,6 +6,13 @@ import { cookies } from "next/headers";
 export type Feature = { key: string; title: string; description: string; added: string; page?: string };
 
 export const FEATURES: Feature[] = [
+  {
+    key: "note-edit",
+    title: "Edit or delete project notes",
+    description: "Each note on a project page gets an Edit link to reword it, with Delete inside. The latest note on a dashboard card gets an Edit link that jumps to it. (Suggestion #31)",
+    added: "2026-10-19",
+    page: "/dashboard",
+  },
 
   {
     key: "card-date-no-cancel",
