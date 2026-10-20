@@ -6,7 +6,6 @@ import { BODY_LABEL } from "@/components/MeetingSummary";
 import PageTitle from "@/components/PageTitle";
 import { ResultTag, VoteTag, VotesList } from "@/components/Votes";
 import { MeetingVotes, MemberVote, memberHref } from "@/lib/votes";
-import { enabledFeatures } from "@/lib/features";
 
 export const dynamic = "force-dynamic";
 
@@ -43,7 +42,6 @@ export default async function VotesPage({ searchParams }: { searchParams: Promis
   const [{ data }, { data: js }] = await Promise.all([q, supabase.from("jurisdictions").select("id, name").order("name")]);
   const rows = (data ?? []) as MemberVote[];
   const all = members(rows);
-  const byLocation = (await enabledFeatures()).includes("votes-by-location");
 
   // One member's record.
   if (sp.j && sp.m) {
@@ -85,7 +83,6 @@ export default async function VotesPage({ searchParams }: { searchParams: Promis
 
   const byJ = new Map<string, Member[]>();
   for (const m of all) byJ.set(m.jurisdiction_id, [...(byJ.get(m.jurisdiction_id) ?? []), m]);
-  const withVotes = (js ?? []).filter((j) => byJ.has(j.id) || j.id === sp.j);
   const memberTable = (list: Member[]) => (
     <div className="table-wrap">
       <table>
@@ -106,40 +103,12 @@ export default async function VotesPage({ searchParams }: { searchParams: Promis
     </div>
   );
 
-  if (byLocation) return <ByLocation sp={sp} js={js ?? []} byJ={byJ} memberTable={memberTable} />;
-
-  return (
-    <>
-      <PageTitle href="/votes">Votes</PageTitle>
-      <p className="muted">
-        How P&amp;Z and council members voted on land-use items, read from posted minutes of recent meetings. Only votes
-        where the minutes name who voted which way appear here; each meeting page has the full result.
-      </p>
-      <form className="filters" method="get">
-        <label>Municipality
-          <select name="j" defaultValue={sp.j ?? ""}>
-            <option value="">All</option>
-            {(js ?? []).filter((j) => byJ.has(j.id) || j.id === sp.j).map((j) => <option key={j.id} value={j.id}>{shortName(j.name)}</option>)}
-          </select>
-        </label>
-        <button type="submit">Apply</button>
-      </form>
-
-      {withVotes.length === 0 ? (
-        <div className="card empty">No named votes yet. Minutes are read hourly as cities post them.</div>
-      ) : withVotes.map((j) => (
-        <section key={j.id}>
-          <h2>{shortName(j.name)}</h2>
-          {memberTable(byJ.get(j.id) ?? [])}
-        </section>
-      ))}
-    </>
-  );
+  return <ByLocation sp={sp} js={js ?? []} byJ={byJ} memberTable={memberTable} />;
 }
 
 type Meeting = { id: number; jurisdiction_id: string; body: string; event_date: string; votes: MeetingVotes };
 
-// "votes-by-location" feature: /votes is a button per municipality; ?j= is that municipality's page with its members
+// /votes is a button per municipality; ?j= is that municipality's page with its members
 // and every vote read from its minutes, meeting by meeting (including votes where the minutes name no one).
 async function ByLocation({ sp, js, byJ, memberTable }: {
   sp: Record<string, string | undefined>; js: { id: string; name: string }[]; byJ: Map<string, Member[]>;
