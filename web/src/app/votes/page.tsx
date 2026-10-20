@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import { skipUnfollowed, unfollowedIds } from "@/lib/followed";
 import { fmtDate, shortName } from "@/lib/format";
 import { BODY_LABEL } from "@/components/MeetingSummary";
 import PageTitle from "@/components/PageTitle";
@@ -37,8 +36,9 @@ function members(rows: MemberVote[]) {
 export default async function VotesPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const sp = await searchParams;
   const supabase = await createClient();
+  // Every municipality with votes, followed or not: votes already read stay worth seeing.
   let q = supabase.from("member_votes").select("*").order("event_date", { ascending: false });
-  q = sp.j ? q.eq("jurisdiction_id", sp.j) : skipUnfollowed(q, await unfollowedIds(supabase));
+  if (sp.j) q = q.eq("jurisdiction_id", sp.j);
   const [{ data }, { data: js }] = await Promise.all([q, supabase.from("jurisdictions").select("id, name").order("name")]);
   const rows = (data ?? []) as MemberVote[];
   const all = members(rows);
@@ -117,7 +117,7 @@ async function ByLocation({ sp, js, byJ, memberTable }: {
   const supabase = await createClient();
   let q = supabase.from("meetings").select("id, jurisdiction_id, body, event_date, votes").not("votes", "is", null)
     .order("event_date", { ascending: false });
-  q = sp.j ? q.eq("jurisdiction_id", sp.j) : skipUnfollowed(q, await unfollowedIds(supabase));
+  if (sp.j) q = q.eq("jurisdiction_id", sp.j);
   const { data } = await q;
   const meetings = ((data ?? []) as Meeting[]).filter((m) => m.votes.votes?.length);
   const byMeetingJ = new Map<string, Meeting[]>();
