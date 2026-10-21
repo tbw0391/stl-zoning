@@ -84,6 +84,25 @@ export async function deleteNote(id: number) {
   revalidatePath("/", "layout");
 }
 
+// Suggestion #15: other municipalities the project also sits in (the lead one stays projects.jurisdiction_id).
+export async function addProjectPlace(projectId: number, fd: FormData) {
+  const jurisdictionId = text(fd, "jurisdiction_id");
+  if (!jurisdictionId) return;
+  const supabase = await createClient();
+  const { error } = await supabase.from("project_jurisdictions")
+    .upsert({ project_id: projectId, jurisdiction_id: jurisdictionId }, { ignoreDuplicates: true });
+  if (error) throw new Error(error.message);
+  await followProjectPlace(jurisdictionId);
+  revalidatePath("/", "layout");
+}
+
+export async function removeProjectPlace(projectId: number, jurisdictionId: string) {
+  const supabase = await createClient();
+  const { error } = await supabase.from("project_jurisdictions").delete().eq("project_id", projectId).eq("jurisdiction_id", jurisdictionId);
+  if (error) throw new Error(error.message);
+  revalidatePath("/", "layout");
+}
+
 export async function addChecklistItem(projectId: number, fd: FormData) {
   const body = text(fd, "body");
   if (!body) return;

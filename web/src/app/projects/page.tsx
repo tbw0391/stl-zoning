@@ -4,6 +4,7 @@ import { CLOSED_STAGES, diligenceLeft, fmtDate, shortName, todayCentral } from "
 import { createProject } from "./actions";
 import PageTitle from "@/components/PageTitle";
 import StageSelect from "./StageSelect";
+import { enabledFeatures } from "@/lib/features";
 
 export const dynamic = "force-dynamic";
 
@@ -17,6 +18,7 @@ type Row = {
   diligence_expires_on: string | null;
   closing_on: string | null;
   jurisdictions: { name: string } | null;
+  project_jurisdictions?: { jurisdiction_id: string }[];
   checklist_items: { done_at: string | null }[];
   tasks: { due_date: string | null; done_at: string | null }[];
 };
@@ -26,10 +28,11 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Pro
   const showClosed = sp.show === "all";
   const today = todayCentral();
   const supabase = await createClient();
+  const multiPlace = (await enabledFeatures()).includes("multi-place");
 
   const [{ data }, { data: jurisdictions }] = await Promise.all([
     supabase.from("projects")
-      .select("id, name, jurisdiction_id, address, stage, updated_at, diligence_expires_on, closing_on, jurisdictions(name), checklist_items(done_at), tasks(due_date, done_at)")
+      .select(`id, name, jurisdiction_id, address, stage, updated_at, diligence_expires_on, closing_on, jurisdictions(name), checklist_items(done_at), tasks(due_date, done_at)${multiPlace ? ", project_jurisdictions(jurisdiction_id)" : ""}`)
       .order("updated_at", { ascending: false }),
     supabase.from("jurisdictions").select("id, name").order("name"),
   ]);
@@ -64,7 +67,8 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Pro
                 return (
                   <tr key={p.id}>
                     <td><Link href={`/projects/${p.id}`}><strong>{p.name}</strong></Link>{p.address && <div className="small muted">{p.address}</div>}</td>
-                    <td>{p.jurisdictions ? <Link href={`/jurisdictions/${p.jurisdiction_id}`}>{shortName(p.jurisdictions.name)}</Link> : <span className="muted">—</span>}</td>
+                    <td>{p.jurisdictions ? <Link href={`/jurisdictions/${p.jurisdiction_id}`}>{shortName(p.jurisdictions.name)}</Link> : <span className="muted">—</span>}
+                      {(p.project_jurisdictions ?? []).map((x) => <span key={x.jurisdiction_id}> + <Link href={`/jurisdictions/${x.jurisdiction_id}`}>{shortName((jurisdictions ?? []).find((j) => j.id === x.jurisdiction_id)?.name ?? x.jurisdiction_id)}</Link></span>)}</td>
                     <td><StageSelect key={`${p.id}-${p.stage}`} id={p.id} stage={p.stage} /></td>
                     <td>{dil ? <span className={dil.warn ? "tag due" : undefined}>{dil.text}</span> : <span className="muted">—</span>}</td>
                     <td>{p.closing_on ? fmtDate(p.closing_on) : <span className="muted">—</span>}</td>

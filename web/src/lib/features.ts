@@ -7,6 +7,14 @@ export type Feature = { key: string; title: string; description: string; added: 
 
 export const FEATURES: Feature[] = [
   {
+    key: "multi-place",
+    title: "Projects in more than one municipality",
+    description: "Under Municipality in a project's Details, add the other municipalities the site is in. Each is followed, searched for the project's case numbers, and shows its upcoming meetings on the project page; the projects list shows them too. The first municipality still sets the expected timeline. (Suggestion #15)",
+    added: "2026-10-21",
+    page: "/projects",
+  },
+
+  {
     key: "note-edit",
     title: "Edit or delete project notes",
     description: "Each note on a project page gets an Edit link to reword it, with Delete inside. The latest note on a dashboard card gets an Edit link that jumps to it. (Suggestion #31)",

@@ -14,12 +14,17 @@ export default async function JurisdictionsPage() {
     supabase.from("rezoning_processes").select("jurisdiction_id"),
     supabase.from("meetings").select("jurisdiction_id, event_date").gte("event_date", today),
     supabase.from("people").select("jurisdiction_id").eq("active", true),
-    supabase.from("projects").select("jurisdiction_id, stage").not("jurisdiction_id", "is", null),
+    supabase.from("projects").select("jurisdiction_id, stage, project_jurisdictions(jurisdiction_id)"),
     supabase.from("site_flags").select("key").eq("key", "followed_reviewed").maybeSingle(),
   ]);
   // Open projects per municipality; those municipalities are ticked to start (suggestion #13).
   const projectCount: Record<string, number> = {};
-  for (const p of projects ?? []) if (!CLOSED_STAGES.includes(p.stage)) projectCount[p.jurisdiction_id!] = (projectCount[p.jurisdiction_id!] ?? 0) + 1;
+  // Includes the other municipalities a project is also in (suggestion #15).
+  for (const p of projects ?? []) {
+    if (CLOSED_STAGES.includes(p.stage)) continue;
+    const places = new Set([p.jurisdiction_id, ...p.project_jurisdictions.map((x) => x.jurisdiction_id)].filter((j): j is string => !!j));
+    for (const j of places) projectCount[j] = (projectCount[j] ?? 0) + 1;
+  }
 
   const hasProc = new Set((procs ?? []).map((p) => p.jurisdiction_id));
   const count = (rows: { jurisdiction_id: string }[] | null, id: string) => (rows ?? []).filter((r) => r.jurisdiction_id === id).length;

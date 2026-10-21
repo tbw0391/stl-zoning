@@ -11,8 +11,8 @@ import { STEP_LABEL, currentStep, loadDelays, loadTimeline } from "@/lib/timelin
 import { createWatch } from "@/app/alerts/actions";
 import { enabledFeatures } from "@/lib/features";
 import NoteEdit from "@/components/NoteEdit";
-import { addChecklistItem, addDelay, addNote, applyTemplate, confirmPossibleDelay, deleteChecklistItem, deleteDelay, dismissPossibleDelay,
-  setChecklistDone, updateProject } from "../actions";
+import { addChecklistItem, addDelay, addNote, addProjectPlace, applyTemplate, confirmPossibleDelay, deleteChecklistItem, deleteDelay, dismissPossibleDelay,
+  removeProjectPlace, setChecklistDone, updateProject } from "../actions";
 
 export const dynamic = "force-dynamic";
 
@@ -30,7 +30,9 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
   const { start: startParam } = await searchParams;
   const start = startParam && /^\d{4}-\d{2}-\d{2}$/.test(startParam) && startParam >= today ? startParam : today;
   const supabase = await createClient();
-  const noteEdit = (await enabledFeatures()).includes("note-edit");
+  const features = await enabledFeatures();
+  const noteEdit = features.includes("note-edit");
+  const multiPlace = features.includes("multi-place");
 
   const [{ data: p }, { data: notes }, { data: checklist }, { data: tasks }, { data: names }, { data: jurisdictions }, { data: activeDefaults }] = await Promise.all([
     supabase.from("projects").select("*, jurisdictions(name)").eq("id", id).maybeSingle(),
@@ -42,6 +44,16 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
     supabase.from("checklist_templates").select("id").eq("active", true),
   ]);
   if (!p) notFound();
+
+  // Other municipalities the site is also in (suggestion #15), each with its next few meetings.
+  const { data: extraRows } = multiPlace
+    ? await supabase.from("project_jurisdictions").select("jurisdiction_id").eq("project_id", id).order("created_at")
+    : { data: [] };
+  const extras = await Promise.all((extraRows ?? []).map(async (r) => {
+    const { data: upcoming } = await supabase.from("meetings").select("*").eq("jurisdiction_id", r.jurisdiction_id)
+      .gte("event_date", today).order("event_date").limit(6);
+    return { id: r.jurisdiction_id, name: (jurisdictions ?? []).find((j) => j.id === r.jurisdiction_id)?.name ?? r.jurisdiction_id, upcoming: upcoming ?? [] };
+  }));
 
   // Once a filing date is set the timeline is the project's own schedule, and postponements shift it.
   const filed = !!p.filed_on;
@@ -91,6 +103,7 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
       <p className="muted">
         <span className={`tag stage-${p.stage}`}>{STAGE_LABEL[p.stage]}</span>
         {p.jurisdictions && <> · <Link href={`/jurisdictions/${p.jurisdiction_id}`}>{p.jurisdictions.name}</Link></>}
+        {extras.map((j) => <span key={j.id}> + <Link href={`/jurisdictions/${j.id}`}>{j.name}</Link></span>)}
         {p.address && <> · {p.address}</>}
       </p>
 
@@ -178,6 +191,33 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
             <label>Description<textarea name="description" rows={3} defaultValue={p.description ?? ""} /></label>
             <div><button type="submit">Save</button></div>
           </form>
+          {multiPlace && (
+            <div className="card">
+              <strong className="small">Also in</strong>
+              {extras.length > 0 ? (
+                <ul className="plain small">
+                  {extras.map((j) => (
+                    <li key={j.id}>
+                      <Link href={`/jurisdictions/${j.id}`}>{j.name}</Link>{" "}
+                      <form action={removeProjectPlace.bind(null, id, j.id)} style={{ display: "inline" }}>
+                        <button type="submit" className="link small">Remove</button>
+                      </form>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="muted small" style={{ marginTop: 4 }}>Only {p.jurisdictions?.name ?? "the municipality above"}. Add another if the site crosses a line.</p>
+              )}
+              <form action={addProjectPlace.bind(null, id)} className="row-form">
+                <select name="jurisdiction_id" defaultValue="" required>
+                  <option value="" disabled>Add a municipality</option>
+                  {(jurisdictions ?? []).filter((j) => j.id !== p.jurisdiction_id && !extras.some((e) => e.id === j.id))
+                    .map((j) => <option key={j.id} value={j.id}>{j.name}</option>)}
+                </select>
+                <button type="submit">Add</button>
+              </form>
+            </div>
+          )}
 
           <h2>Nearby land-use cases</h2>
           <div className="card">
@@ -311,6 +351,27 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
               )}
             </>
           )}
+
+          {extras.map((j) => (
+            <div key={j.id}>
+              <h2>Upcoming in {shortName(j.name)}</h2>
+              <div className="card">
+                {j.upcoming.length === 0 ? (
+                  <p className="muted small" style={{ margin: 0 }}>No schedule loaded yet for this municipality.</p>
+                ) : (
+                  <ul className="plain">
+                    {j.upcoming.map((m) => (
+                      <li key={m.id}>
+                        <strong>{fmtDate(m.event_date)}</strong>{" "}
+                        {m.event_type === "submittal_deadline" ? "Submittal deadline" : m.body === "planning_zoning" ? "P&Z meeting" : "Council / Aldermen"}
+                        {m.event_time && <span className="muted"> · {fmtTime(m.event_time)}</span>}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+          ))}
         </aside>
       </div>
     </>
