@@ -221,8 +221,71 @@ async function legistar(client: string, year: number): Promise<Collected[]> {
   return [...rows.values()];
 }
 
+// ---- Granicus ViewPublisher (<client>.granicus.com/ViewPublisher.php?view_id=1): one page with upcoming events
+// (no links yet) and every past meeting by board and year, linking agenda, minutes and packet PDFs.
+// The ref is the subdomain, optionally with the view: "delawareohio" or "delawareohio/2".
+const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+
+async function granicus(ref: string, year: number): Promise<Collected[]> {
+  const [client, view = "1"] = ref.split("/");
+  const source = `https://${client}.granicus.com/ViewPublisher.php?view_id=${view}`;
+  const { text: page } = await fetchText(source);
+  const rows = new Map<string, Collected>();
+  for (const r of page.matchAll(/<tr class="listingRow">([\s\S]*?)<\/tr>/g)) {
+    const row = unescape(r[1]).replace(/\s+/g, " ");
+    const name = row.match(/headers="Name"[^>]*>([^<]*)</)?.[1].trim() ?? "";
+    const when = row.match(/headers="Date[^"]*">\s*([A-Z][a-z]{2})\s*(\d{1,2}),\s*(\d{4})(?:\s*-\s*(\d{1,2}:\d{2}\s*[AP]M))?/);
+    const body = bodyFor(name);
+    if (!body || !when || Number(when[3]) !== year || notHearing(name)) continue;
+    const date = `${when[3]}-${String(MONTHS.indexOf(when[1].toLowerCase()) + 1).padStart(2, "0")}-${when[2].padStart(2, "0")}`;
+    const link = (re: RegExp) => {
+      const href = row.match(re)?.[1];
+      return href ? (href.startsWith("//") ? "https:" + href : href) : null;
+    };
+    const c: Collected = {
+      body, event_date: date, event_time: clock(when[4] ?? null), location: null, title: name,
+      agenda_url: link(/href="([^"]*AgendaViewer\.php[^"]*)"/), packet_url: link(/href="([^"]+)"[^>]*>\s*Agenda Packet/),
+      minutes_url: link(/href="([^"]*MinutesViewer\.php[^"]*)"/), source_url: source, cancelled: CANCELLED.test(name),
+    };
+    // The same meeting can be listed under Upcoming Events (no links) and in the archive (links): merge them.
+    const prev = rows.get(`${body}|${date}`);
+    if (prev) {
+      prev.agenda_url ??= c.agenda_url; prev.packet_url ??= c.packet_url; prev.minutes_url ??= c.minutes_url; prev.event_time ??= c.event_time;
+    } else keep(rows, c);
+  }
+  return [...rows.values()];
+}
+
+// ---- CivicWeb (<client>.civicweb.net): a JSON meeting list, then each P&Z / council meeting's documents
+// (Type 1 = agenda, as HTML (DocumentType 1) and the PDF packet (DocumentType 4); Type 2 = minutes).
+async function civicWeb(client: string, year: number): Promise<Collected[]> {
+  const base = `https://${client}.civicweb.net`;
+  const { text } = await fetchText(`${base}/Services/MeetingsService.svc/meetings?from=${year}-01-01&to=${year}-12-31`, undefined, "application/json");
+  const rows = new Map<string, Collected>();
+  // deno-lint-ignore no-explicit-any
+  for (const m of JSON.parse(text) as any[]) {
+    const title = unescape(m.Name ?? "").trim();
+    const body = bodyFor(title.split(" - ")[0]);
+    if (!body || notHearing(title)) continue;
+    // deno-lint-ignore no-explicit-any
+    let docs: any[] = [];
+    if (m.Published) docs = JSON.parse((await fetchText(`${base}/Services/MeetingsService.svc/meetings/${m.Id}/meetingDocuments`, undefined, "application/json")).text);
+    const doc = (type: number, docType?: number) => {
+      const d = docs.find((x) => x.Type === type && (docType == null || x.DocumentType === docType));
+      return d ? `${base}/document/${d.Id}/` : null;
+    };
+    const time = String(m.MeetingDateTime ?? "").slice(11, 16);
+    keep(rows, {
+      body, event_date: m.MeetingDate, event_time: time && time !== "00:00" ? time : null, location: m.MeetingLocation || null, title,
+      agenda_url: doc(1, 1) ?? doc(1), packet_url: doc(1, 4), minutes_url: doc(2),
+      source_url: `${base}/Portal/MeetingInformation.aspx?Id=${m.Id}`, cancelled: CANCELLED.test(title),
+    });
+  }
+  return [...rows.values()];
+}
+
 const COLLECTORS: Record<string, (ref: string, year: number) => Promise<Collected[]>> = {
-  agendacenter: agendaCenter, civicclerk: civicClerk, municode: municodeMeetings, legistar,
+  agendacenter: agendaCenter, civicclerk: civicClerk, municode: municodeMeetings, legistar, granicus, civicweb: civicWeb,
 };
 
 Deno.serve(async (req) => {
