@@ -54,10 +54,12 @@ function bodyFor(name: string): Body | null {
   return null;
 }
 
-async function fetchText(url: string, form?: Record<string, string | number>) {
+async function fetchText(url: string, form?: Record<string, string | number>, accept?: string) {
+  // Form posts are AgendaCenter's year lists, which some sites (Etna Township OH) answer only for the page's own script.
   const res = await fetch(url, {
     method: form ? "POST" : "GET",
-    headers: form ? { ...UA, "Content-Type": "application/x-www-form-urlencoded" } : UA,
+    headers: form ? { ...UA, "Content-Type": "application/x-www-form-urlencoded", "X-Requested-With": "XMLHttpRequest" }
+      : accept ? { ...UA, Accept: accept } : UA,
     body: form ? new URLSearchParams(Object.entries(form).map(([k, v]) => [k, String(v)])) : undefined,
     redirect: "follow",
   });
@@ -194,7 +196,7 @@ const clock = (t: string | null) => {
 
 async function legistar(client: string, year: number): Promise<Collected[]> {
   const flt = `EventDate ge datetime'${year}-01-01' and EventDate lt datetime'${year + 1}-01-01'`;
-  const { text } = await fetchText(`https://webapi.legistar.com/v1/${client}/events?$filter=${encodeURIComponent(flt)}&$orderby=EventDate`);
+  const { text } = await fetchText(`https://webapi.legistar.com/v1/${client}/events?$filter=${encodeURIComponent(flt)}&$orderby=EventDate`, undefined, "application/json");
   const rows = new Map<string, Collected>();
   const zoningDates = new Set<string>();
   // deno-lint-ignore no-explicit-any

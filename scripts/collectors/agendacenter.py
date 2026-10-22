@@ -60,7 +60,8 @@ class Blocked(Exception):
 def fetch(url, data=None, final=False):
     """GET (or POST form data). With final=True also returns the URL after redirects."""
     body = urllib.parse.urlencode(data).encode() if data else None
-    req = urllib.request.Request(url, data=body, headers=UA)
+    # Form posts are AgendaCenter's year lists, which some sites (Etna Township OH) answer only for the page's own script.
+    req = urllib.request.Request(url, data=body, headers={**UA, "X-Requested-With": "XMLHttpRequest"} if data else UA)
     with urllib.request.urlopen(req, timeout=30, context=CTX) as r:
         text = r.read().decode("utf-8", "ignore")
         landed = r.geturl()
