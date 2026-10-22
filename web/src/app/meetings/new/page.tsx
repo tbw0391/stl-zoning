@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { currentState } from "@/lib/state";
 import { createMeeting } from "../actions";
 import { MeetingForm } from "../MeetingForm";
 
@@ -8,7 +9,7 @@ export const dynamic = "force-dynamic";
 export default async function NewMeetingPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const sp = await searchParams;
   const supabase = await createClient();
-  const { data: js } = await supabase.from("jurisdictions").select("id, name").order("name");
+  const { data: js } = await supabase.from("jurisdictions").select("id, name").eq("state", await currentState()).order("name");
 
   return (
     <>

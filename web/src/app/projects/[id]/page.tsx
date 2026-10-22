@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { currentState } from "@/lib/state";
 import { STAGE_LABEL, fmtDate, fmtTime, shortName, todayCentral } from "@/lib/format";
 import { TASK_SELECT, Task, TaskForm, TaskList, assignees } from "@/components/Tasks";
 import { distanceTo, loadCases, caseTypes, ZONING_TYPES } from "@/lib/cases";
@@ -40,7 +41,7 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
     supabase.from("checklist_items").select("*").eq("project_id", id).order("sort_order").order("id"),
     supabase.from("tasks").select(TASK_SELECT).eq("project_id", id).order("done_at", { nullsFirst: true }).order("due_date", { nullsFirst: false }),
     supabase.from("tasks").select("assigned_to"),
-    supabase.from("jurisdictions").select("id, name").order("name"),
+    supabase.from("jurisdictions").select("id, name").eq("state", await currentState()).order("name"),
     supabase.from("checklist_templates").select("id").eq("active", true),
   ]);
   if (!p) notFound();

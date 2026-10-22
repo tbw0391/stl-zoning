@@ -30,8 +30,8 @@ CTX.check_hostname = False
 CTX.verify_mode = ssl.CERT_NONE
 
 # Board name -> meetings.body. Order matters: "Board of Zoning Adjustment" must not count as P&Z.
-SKIP = re.compile(r"adjustment|appeals|BZA|architectur|historic|landmark|park|library|police|fire|pension|retire|"
-                  r"tif|tax increment|equalization|merit|ethics|youth|senior|arts|tree|beautif|cemetery|"
+SKIP = re.compile(r"adjustment|appeal|BZA|architectur|historic|landmark|park|library|police|fire|pension|retire|"
+                  r"tif|tax increment|incentive|equalization|merit|ethics|youth|senior|arts|tree|beautif|cemetery|"
                   r"traffic|personnel|audit|finance|budget|work ?session|special|port authority|road board|"
                   r"committee|advisory|task force|group|steering|notices|emergency", re.I)
 PZ = re.compile(r"planning|zoning|P\s*&\s*Z|plan commission", re.I)

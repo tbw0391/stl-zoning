@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { currentState } from "@/lib/state";
 import { fmtDate, shortName } from "@/lib/format";
 import { markReviewed } from "./actions";
 import { needsReview } from "./review";
@@ -17,8 +18,8 @@ const day = (ts: string) => fmtDate(new Intl.DateTimeFormat("en-CA", { timeZone:
 export default async function SourcesPage() {
   const supabase = await createClient();
   const { data } = await supabase.from("source_watches")
-    .select("id, jurisdiction_id, url, label, last_status, last_checked_at, last_changed_at, change_summary, reviewed_at, jurisdictions!inner(name)")
-    .eq("jurisdictions.followed", true).order("jurisdiction_id").order("id");
+    .select("id, jurisdiction_id, url, label, last_status, last_checked_at, last_changed_at, change_summary, reviewed_at, jurisdictions!inner(name, state)")
+    .eq("jurisdictions.followed", true).eq("jurisdictions.state", await currentState()).order("jurisdiction_id").order("id");
   const watches = (data ?? []) as unknown as Watch[];
   const review = watches.filter(needsReview);
   const lastRun = watches.map((w) => w.last_checked_at).filter(Boolean).sort().at(-1);

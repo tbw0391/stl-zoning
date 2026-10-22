@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { currentState } from "@/lib/state";
 import { fmtDate } from "@/lib/format";
 import { updateProgress } from "./actions";
 import PageTitle from "@/components/PageTitle";
@@ -25,10 +26,12 @@ type Row = { jurisdiction_id: string; task: string; status: string; note: string
 
 export default async function ProgressPage() {
   const supabase = await createClient();
+  const st = await currentState();
   const [{ data: js }, { data: rows }, { data: watches }] = await Promise.all([
-    supabase.from("jurisdictions").select("id, name, kind, county").eq("followed", true),
+    supabase.from("jurisdictions").select("id, name, kind, county").eq("followed", true).eq("state", st),
     supabase.from("jurisdiction_progress").select("jurisdiction_id, task, status, note, updated_on"),
-    supabase.from("source_watches").select("last_changed_at, reviewed_at, jurisdictions!inner(followed)").eq("jurisdictions.followed", true),
+    supabase.from("source_watches").select("last_changed_at, reviewed_at, jurisdictions!inner(followed, state)")
+      .eq("jurisdictions.followed", true).eq("jurisdictions.state", st),
   ]);
   const toReview = (watches ?? []).filter(needsReview).length;
 
@@ -43,7 +46,7 @@ export default async function ProgressPage() {
   // St. Charles first (current focus), then other counties alphabetically.
   const counties = [...new Set((js ?? []).map((j) => j.county))].sort((a, b) =>
     a === "St. Charles" ? -1 : b === "St. Charles" ? 1 : a.localeCompare(b));
-  const order = { county: 0, city: 1, town: 2, village: 3 } as Record<string, number>;
+  const order = { county: 0, city: 1, town: 2, village: 3, township: 4 } as Record<string, number>;
 
   return (
     <>

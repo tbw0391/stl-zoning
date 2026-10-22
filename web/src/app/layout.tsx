@@ -15,6 +15,8 @@ import { dismissProjectAlerts } from "@/app/alerts/actions";
 import { enabledFeatures, unseenFeatureCount } from "@/lib/features";
 import FeaturesProvider from "@/components/FeaturesProvider";
 import HistoryAsk from "@/components/HistoryAsk";
+import StatePicker from "@/components/StatePicker";
+import { STATES, currentState } from "@/lib/state";
 import "./globals.css";
 
 config.autoAddCss = false;
@@ -28,11 +30,12 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
-  const [alerts, projectAlerts, featuresOn, newFeatures] = await Promise.all([
+  const [alerts, projectAlerts, featuresOn, newFeatures, state] = await Promise.all([
     newAlertCount(supabase).catch(() => 0),
     unseenProjectAlerts(supabase).catch(() => []),
     enabledFeatures(),
     unseenFeatureCount(),
+    currentState(),
   ]);
   return (
     <html lang="en" className={jakarta.className}>
@@ -44,6 +47,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           </Link>
           <Nav alerts={alerts + projectAlerts.length} />
           <div className="header-actions">
+            {featuresOn.includes("state-picker") && <StatePicker states={STATES} current={state} />}
             <Link href="/features" className="suggest-btn">
               <FontAwesomeIcon icon={faStar} /> New features
               {newFeatures > 0 && <span className="badge">{newFeatures}</span>}

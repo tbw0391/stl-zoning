@@ -18,7 +18,7 @@ const MAX_PDF_BYTES = 23 * 1024 * 1024;
 const FRONT_PAGES = 40;
 const UA = { "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36" };
 
-const SYSTEM = `You read the minutes of municipal Planning & Zoning and city council / board of aldermen meetings in the St. Louis, Missouri area for a homebuilder's land-entitlement team.
+const SYSTEM = `You read the minutes of municipal Planning & Zoning and city council / board of aldermen meetings in the St. Louis, Missouri and Columbus, Ohio areas (Ohio townships: zoning commission and board of trustees) for a homebuilder's land-entitlement team.
 
 You are given the land-use items from that meeting's agenda. For each one the minutes act on, record the vote:
 - item: the item as the agenda list names it (copy it exactly when it matches one; otherwise as the minutes name it).

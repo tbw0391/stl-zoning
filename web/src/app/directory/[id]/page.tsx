@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { currentState } from "@/lib/state";
 import { fmtDate } from "@/lib/format";
 import { removePerson, updatePerson } from "../actions";
 import { PersonForm } from "../PersonForm";
@@ -13,7 +14,7 @@ export default async function EditPersonPage({ params }: { params: Promise<{ id:
   const supabase = await createClient();
   const [{ data: p }, { data: js }] = await Promise.all([
     supabase.from("people").select("*").eq("id", id).maybeSingle(),
-    supabase.from("jurisdictions").select("id, name").order("name"),
+    supabase.from("jurisdictions").select("id, name").eq("state", await currentState()).order("name"),
   ]);
   if (!p) notFound();
 

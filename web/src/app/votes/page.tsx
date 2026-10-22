@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { stateIds } from "@/lib/state";
 import { fmtDate, shortName } from "@/lib/format";
 import { BODY_LABEL } from "@/components/MeetingSummary";
 import PageTitle from "@/components/PageTitle";
@@ -38,7 +39,7 @@ export default async function VotesPage({ searchParams }: { searchParams: Promis
   const supabase = await createClient();
   // Every municipality with votes, followed or not: votes already read stay worth seeing.
   let q = supabase.from("member_votes").select("*").order("event_date", { ascending: false });
-  if (sp.j) q = q.eq("jurisdiction_id", sp.j);
+  q = sp.j ? q.eq("jurisdiction_id", sp.j) : q.in("jurisdiction_id", await stateIds(supabase));
   const [{ data }, { data: js }] = await Promise.all([q, supabase.from("jurisdictions").select("id, name").order("name")]);
   const rows = (data ?? []) as MemberVote[];
   const all = members(rows);

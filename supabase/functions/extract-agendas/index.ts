@@ -33,7 +33,7 @@ const FRONT_PAGES = 25;
 const SITE = (Deno.env.get("SITE_URL") ?? "https://stl-zoning.vercel.app").replace(/\/$/, "");
 const UA = { "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36" };
 
-const SYSTEM = `You read municipal Planning & Zoning and city council / board of aldermen agendas in the St. Louis, Missouri area for a homebuilder's land-entitlement team.
+const SYSTEM = `You read municipal Planning & Zoning and city council / board of aldermen agendas in the St. Louis, Missouri and Columbus, Ohio areas (Ohio townships: zoning commission and board of trustees) for a homebuilder's land-entitlement team.
 
 List every land-use item on the agenda: rezonings / zoning map amendments, planned unit developments, special or conditional use permits, preliminary and final plats, site plans, annexations, comprehensive plan amendments, zoning or subdivision code text amendments, variances, vacations of right-of-way or easements, and development agreements. Skip routine business (minutes, bills, appointments, proclamations, budgets, purchases, liquor licenses, general reports) unless it decides a land-use item.
 
@@ -80,14 +80,19 @@ const SCHEMA = {
 };
 
 // Street address → lat/lng (Census geocoder, then OpenStreetMap). Same rules as web/src/lib/geocode.ts:
-// only house-number addresses, and only points inside the St. Louis region.
-const inRegion = (lat: number, lng: number) => lat > 37.9 && lat < 39.4 && lng > -91.7 && lng < -89.7;
+// only house-number addresses, and only points inside the jurisdiction's metro area (St. Louis or Columbus).
+const REGIONS: Record<string, [number, number, number, number]> = { // south, north, west, east
+  MO: [37.9, 39.4, -91.7, -89.7],
+  OH: [39.4, 40.7, -83.7, -82.2],
+};
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-async function geocode(address: string, jurisdictionName: string): Promise<{ lat: number; lng: number; geo: string } | null> {
+async function geocode(address: string, jurisdictionName: string, state: string): Promise<{ lat: number; lng: number; geo: string } | null> {
+  const [s, n, w, e] = REGIONS[state] ?? REGIONS.MO;
+  const inRegion = (lat: number, lng: number) => lat > s && lat < n && lng > w && lng < e;
   const street = address.split(/\s+(?:and|&)\s+|;|\//i)[0].trim();
   if (!/^\d+\s+\S/.test(street)) return null;
   const place = /county/i.test(jurisdictionName) ? null : jurisdictionName.replace(/^(City|Town|Village) of /, "");
-  const q = [street, place, "MO"].filter(Boolean).join(", ");
+  const q = [street, place, state].filter(Boolean).join(", ");
   try {
     const r = await fetch("https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?" +
       new URLSearchParams({ address: q, benchmark: "Public_AR_Current", format: "json" }));
@@ -106,10 +111,10 @@ async function geocode(address: string, jurisdictionName: string): Promise<{ lat
 
 // Adds lat/lng (or geo: "none") to items that have an address and haven't been tried yet.
 // deno-lint-ignore no-explicit-any
-async function geocodeItems(items: any[], jurisdictionName: string) {
+async function geocodeItems(items: any[], jurisdictionName: string, state = "MO") {
   for (const it of items) {
     if (!it.address || it.geo) continue;
-    const p = await geocode(it.address, jurisdictionName);
+    const p = await geocode(it.address, jurisdictionName, state);
     Object.assign(it, p ?? { geo: "none" });
   }
   return items;
@@ -232,7 +237,7 @@ async function sendAlerts(db: any, toOverride?: string | null) {
 
   const [{ data: watches }, { data: projects }, { data: js }] = await Promise.all([
     db.from("watches").select("*"), db.from("projects").select("id, name, lat, lng"),
-    db.from("jurisdictions").select("id, name, county, governing_body, followed"),
+    db.from("jurisdictions").select("id, name, county, governing_body, followed, state"),
   ]);
   const pmap = new Map(((projects ?? []) as Row[]).map((p) => [p.id, p]));
   const jmap = new Map(((js ?? []) as Row[]).map((j) => [j.id, j]));
@@ -242,6 +247,8 @@ async function sendAlerts(db: any, toOverride?: string | null) {
   const sections: { m: Row; revised: boolean; hits: Hit[] }[] = [];
   for (const m of pending) {
     if (jmap.get(m.jurisdiction_id)?.followed === false) continue;
+    // Watches are Lombardo's, in Missouri, until they belong to accounts (Ohio has a "Franklin" county too).
+    if ((jmap.get(m.jurisdiction_id)?.state ?? "MO") !== "MO") continue;
     if (m.event_date < oldest) continue;
     const j = jmap.get(m.jurisdiction_id) ?? {};
     const items = (Array.isArray(m.agenda_items) ? m.agenda_items : []) as Row[];
@@ -331,7 +338,7 @@ Deno.serve(async (req) => {
 
   // ?geocode=1: locate addresses on items already read (no Claude calls).
   if (url.searchParams.get("geocode")) {
-    const { data: rows } = await db.from("meetings").select("id, agenda_items, jurisdictions(name)")
+    const { data: rows } = await db.from("meetings").select("id, agenda_items, jurisdictions(name, state)")
       .not("agenda_items", "is", null).not("agenda_read_at", "is", null);
     const started = Date.now();
     let located = 0, tried = 0, remaining = 0;
@@ -342,7 +349,7 @@ Deno.serve(async (req) => {
       if (Date.now() - started > 90_000) { remaining++; continue; } // stay under the function time limit; call again
       const before = items.filter((it) => it.geo).length;
       // deno-lint-ignore no-explicit-any
-      await geocodeItems(items, (r as any).jurisdictions?.name ?? "");
+      await geocodeItems(items, (r as any).jurisdictions?.name ?? "", (r as any).jurisdictions?.state);
       tried += items.filter((it) => it.geo).length - before;
       located += items.filter((it) => it.lat != null).length;
       await db.from("meetings").update({ agenda_items: items }).eq("id", r.id);
@@ -357,7 +364,7 @@ Deno.serve(async (req) => {
     .eq("agenda_request_status", "approved").not("agenda_checked_on", "is", null).is("agenda_request_notified_at", null).limit(20);
   for (const m of unsent ?? []) await notifyRequester(db, m, Array.isArray(m.agenda_items) ? m.agenda_items.length : null);
 
-  const FIELDS = "id, jurisdiction_id, body, event_date, agenda_url, agenda_items, agenda_hash, agenda_request_status, agenda_requested_by, agenda_request_notified_at, jurisdictions!inner(name)";
+  const FIELDS = "id, jurisdiction_id, body, event_date, agenda_url, agenda_items, agenda_hash, agenda_request_status, agenda_requested_by, agenda_request_notified_at, jurisdictions!inner(name, state)";
   const recheck = !!url.searchParams.get("recheck");
   const backfill = !!url.searchParams.get("backfill");
   let q = db.from("meetings").select(FIELDS).not("agenda_url", "is", null);
@@ -408,7 +415,7 @@ Deno.serve(async (req) => {
       const text = response.content.find((b) => b.type === "text");
       const items = JSON.parse(text && "text" in text ? text.text : "{}").items;
       if (!Array.isArray(items)) throw new Error("no items array in response");
-      if (!backfill) await geocodeItems(items, m.jurisdictions?.name ?? "");
+      if (!backfill) await geocodeItems(items, m.jurisdictions?.name ?? "", m.jurisdictions?.state);
       const now = new Date().toISOString();
       const asOf = backfill ? { agenda_read_at: `${m.event_date}T12:00:00Z`, agenda_alerted_at: `${m.event_date}T12:00:00Z` } : { agenda_read_at: now };
       const revised = Array.isArray(m.agenda_items);

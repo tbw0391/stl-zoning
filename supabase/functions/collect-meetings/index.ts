@@ -1,4 +1,4 @@
-// Daily meeting collection for jurisdictions with a `collector` set (AgendaCenter, CivicClerk or Municode Meetings).
+// Daily meeting collection for jurisdictions with a `collector` set (AgendaCenter, CivicClerk, Municode Meetings or Legistar).
 // TypeScript port of scripts/collectors/*.py; keep the board-matching rules in step with agendacenter.py.
 //
 // For each jurisdiction: inserts meetings we don't have, fills missing agenda / packet / minutes links, times and
@@ -18,8 +18,8 @@ const UA = {
 };
 
 const SKIP = new RegExp(
-  "adjustment|appeals|BZA|architectur|historic|landmark|park|library|police|fire|pension|retire|" +
-    "tif|tax increment|equalization|merit|ethics|youth|senior|arts|tree|beautif|cemetery|" +
+  "adjustment|appeal|BZA|architectur|historic|landmark|park|library|police|fire|pension|retire|" +
+    "tif|tax increment|incentive|equalization|merit|ethics|youth|senior|arts|tree|beautif|cemetery|" +
     "traffic|personnel|audit|finance|budget|work ?session|special|port authority|road board|" +
     "committee|advisory|task force|group|steering|notices|emergency", "i");
 const PZ = /planning|zoning|P\s*&\s*Z|plan commission/i;
@@ -181,8 +181,46 @@ async function municodeMeetings(site: string, year: number): Promise<Collected[]
   return [...rows.values()];
 }
 
+// ---- Legistar (webapi.legistar.com/v1/<client>): public API with the whole schedule, agenda and minutes PDFs.
+// Columbus votes on rezonings with City Council sitting as its Zoning Committee, the same evening as the regular
+// council meeting, so that committee counts as the governing body and wins the date.
+const ZONING_COMMITTEE = /^zoning committee$/i;
+const clock = (t: string | null) => {
+  const m = t?.match(/(\d{1,2}):(\d{2})\s*([AP])M/i);
+  if (!m) return null;
+  const h = (Number(m[1]) % 12) + (m[3].toUpperCase() === "P" ? 12 : 0);
+  return `${String(h).padStart(2, "0")}:${m[2]}`;
+};
+
+async function legistar(client: string, year: number): Promise<Collected[]> {
+  const flt = `EventDate ge datetime'${year}-01-01' and EventDate lt datetime'${year + 1}-01-01'`;
+  const { text } = await fetchText(`https://webapi.legistar.com/v1/${client}/events?$filter=${encodeURIComponent(flt)}&$orderby=EventDate`);
+  const rows = new Map<string, Collected>();
+  const zoningDates = new Set<string>();
+  // deno-lint-ignore no-explicit-any
+  for (const e of JSON.parse(text) as any[]) {
+    const name: string = (e.EventBodyName ?? "").trim();
+    const zc = ZONING_COMMITTEE.test(name);
+    const body = zc ? "governing_body" : bodyFor(name);
+    const title = [name, e.EventComment].filter(Boolean).join(" - ");
+    if (!body || notHearing(title)) continue;
+    const c: Collected = {
+      body, event_date: String(e.EventDate).slice(0, 10), event_time: clock(e.EventTime), location: e.EventLocation || null, title,
+      agenda_url: e.EventAgendaFile || null, packet_url: null, minutes_url: e.EventMinutesFile || null,
+      source_url: e.EventInSiteURL || `https://${client}.legistar.com/Calendar.aspx`,
+      cancelled: CANCELLED.test(`${title} ${e.EventAgendaStatusName ?? ""}`),
+    };
+    if (zc && !c.cancelled) {
+      rows.delete(`${body}|${c.event_date}`);
+      zoningDates.add(c.event_date);
+    } else if (!zc && zoningDates.has(c.event_date)) continue;
+    keep(rows, c);
+  }
+  return [...rows.values()];
+}
+
 const COLLECTORS: Record<string, (ref: string, year: number) => Promise<Collected[]>> = {
-  agendacenter: agendaCenter, civicclerk: civicClerk, municode: municodeMeetings,
+  agendacenter: agendaCenter, civicclerk: civicClerk, municode: municodeMeetings, legistar,
 };
 
 Deno.serve(async (req) => {

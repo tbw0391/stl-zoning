@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { currentState } from "@/lib/state";
 import { shortName } from "@/lib/format";
 import { ITEM_TYPE_LABEL } from "@/components/MeetingSummary";
 import { Place, Watch, ZONING_TYPES, distanceTo, isNew, loadCases, matches } from "@/lib/cases";
@@ -19,10 +20,11 @@ const TYPE_CHOICES = ["rezoning", "pud", "special_use", "annexation", "prelimina
 
 export default async function AlertsPage() {
   const supabase = await createClient();
+  const st = await currentState();
   const [{ data: watchRows }, { data: projects }, { data: jurisdictions }, cases] = await Promise.all([
     supabase.from("watches").select("*").order("created_at"),
     supabase.from("projects").select("id, name, lat, lng").order("name"),
-    supabase.from("jurisdictions").select("id, name, county").eq("followed", true).order("name"),
+    supabase.from("jurisdictions").select("id, name, county").eq("followed", true).eq("state", st).order("name"),
     loadCases(supabase),
   ]);
   const [{ data: projectAlerts }, unseen] = await Promise.all([

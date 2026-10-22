@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { currentState } from "@/lib/state";
 import { CLOSED_STAGES, STATUS_LABEL, todayCentral } from "@/lib/format";
 import PageTitle from "@/components/PageTitle";
 import FollowPicker from "./FollowPicker";
@@ -10,7 +11,7 @@ export default async function JurisdictionsPage() {
   const supabase = await createClient();
   const today = todayCentral();
   const [{ data: js }, { data: procs }, { data: meetings }, { data: people }, { data: projects }, { data: reviewed }] = await Promise.all([
-    supabase.from("jurisdictions").select("id, name, kind, county, governing_body, research_status, followed").order("name"),
+    supabase.from("jurisdictions").select("id, name, kind, county, governing_body, research_status, followed").eq("state", await currentState()).order("name"),
     supabase.from("rezoning_processes").select("jurisdiction_id"),
     supabase.from("meetings").select("jurisdiction_id, event_date").gte("event_date", today),
     supabase.from("people").select("jurisdiction_id").eq("active", true),
@@ -30,8 +31,8 @@ export default async function JurisdictionsPage() {
   const count = (rows: { jurisdiction_id: string }[] | null, id: string) => (rows ?? []).filter((r) => r.jurisdiction_id === id).length;
   const lastDate = (id: string) => (meetings ?? []).filter((m) => m.jurisdiction_id === id).map((m) => m.event_date).sort().at(-1);
 
-  // County first, then cities, then towns and villages.
-  const order = { county: 0, city: 1, town: 2, village: 3 } as Record<string, number>;
+  // County first, then cities, then towns, villages and townships.
+  const order = { county: 0, city: 1, town: 2, village: 3, township: 4 } as Record<string, number>;
   const sorted = [...(js ?? [])].sort((a, b) => order[a.kind] - order[b.kind] || a.name.localeCompare(b.name));
   const followed = sorted.filter((j) => j.followed);
   const off = sorted.filter((j) => !j.followed);

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { currentState } from "@/lib/state";
 import { skipUnfollowed, unfollowedIds } from "@/lib/followed";
 import { ROLE_LABEL, shortName } from "@/lib/format";
 import PageTitle from "@/components/PageTitle";
@@ -18,7 +19,7 @@ export default async function DirectoryPage({ searchParams }: { searchParams: Pr
   if (sp.q) q = q.or(`full_name.ilike.%${sp.q.replace(/[%,()]/g, "")}%,title.ilike.%${sp.q.replace(/[%,()]/g, "")}%`);
   const [{ data: people }, { data: js }, { data: voted }] = await Promise.all([
     q,
-    supabase.from("jurisdictions").select("id, name").order("name"),
+    supabase.from("jurisdictions").select("id, name").eq("state", await currentState()).order("name"),
     supabase.from("member_votes").select("person_id, member_key").not("person_id", "is", null),
   ]);
   const voteKey = new Map((voted ?? []).map((v) => [v.person_id, v.member_key]));

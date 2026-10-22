@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { currentState } from "@/lib/state";
 import { CLOSED_STAGES, diligenceLeft, fmtDate, shortName, todayCentral } from "@/lib/format";
 import { createProject } from "./actions";
 import PageTitle from "@/components/PageTitle";
@@ -34,7 +35,7 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Pro
     supabase.from("projects")
       .select(`id, name, jurisdiction_id, address, stage, updated_at, diligence_expires_on, closing_on, jurisdictions(name), checklist_items(done_at), tasks(due_date, done_at)${multiPlace ? ", project_jurisdictions(jurisdiction_id)" : ""}`)
       .order("updated_at", { ascending: false }),
-    supabase.from("jurisdictions").select("id, name").order("name"),
+    supabase.from("jurisdictions").select("id, name").eq("state", await currentState()).order("name"),
   ]);
   const all = (data ?? []) as unknown as Row[];
   const rows = showClosed ? all : all.filter((p) => !CLOSED_STAGES.includes(p.stage));

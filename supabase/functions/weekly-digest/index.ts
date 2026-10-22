@@ -63,16 +63,17 @@ Deno.serve(async (req) => {
   const weekAgo = new Date(Date.now() - 7 * 864e5).toISOString();
 
   const [{ data: js }, { data: meetings }, { data: tasks }, { data: changes }, { data: projects }, { data: sources }, { data: timeline }] = await Promise.all([
-    db.from("jurisdictions").select("id, name, governing_body, followed"),
-    db.from("meetings").select("*, jurisdictions!inner(followed)").eq("jurisdictions.followed", true).gte("event_date", today).lte("event_date", horizon).neq("status", "cancelled")
+    // The digest goes to Lombardo, so Missouri only (other states are collected for the public product).
+    db.from("jurisdictions").select("id, name, governing_body, followed, state"),
+    db.from("meetings").select("*, jurisdictions!inner(followed, state)").eq("jurisdictions.followed", true).eq("jurisdictions.state", "MO").gte("event_date", today).lte("event_date", horizon).neq("status", "cancelled")
       .order("event_date").order("event_time"),
     db.from("tasks").select("id, title, assigned_to, due_date, project_id").is("done_at", null)
       .not("due_date", "is", null).lte("due_date", horizon).order("due_date"),
     db.from("change_log").select("*").gte("at", weekAgo).order("at"),
     db.from("projects").select("id, name"),
     // Same rule as needsReview in web/src/app/sources/review.ts; check-sources runs an hour before this.
-    db.from("source_watches").select("jurisdiction_id, url, label, last_status, last_changed_at, change_summary, reviewed_at, jurisdictions!inner(followed)")
-      .eq("jurisdictions.followed", true).not("last_changed_at", "is", null).order("jurisdiction_id"),
+    db.from("source_watches").select("jurisdiction_id, url, label, last_status, last_changed_at, change_summary, reviewed_at, jurisdictions!inner(followed, state)")
+      .eq("jurisdictions.followed", true).eq("jurisdictions.state", "MO").not("last_changed_at", "is", null).order("jurisdiction_id"),
     // Logged delays and possible delays from agendas/minutes (each was also emailed when posted, by project-alerts).
     db.from("project_alerts").select("project_id, kind, title, body, created_at").gte("created_at", weekAgo).order("created_at"),
   ]);
@@ -106,7 +107,7 @@ Deno.serve(async (req) => {
     const when = fmtDate(new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(new Date(c.at)));
     if (c.table_name === "meetings") {
       const r = c.action === "delete" ? o : n;
-      if (jmap.get(r.jurisdiction_id)?.followed === false) continue;
+      if (jmap.get(r.jurisdiction_id)?.followed === false || (jmap.get(r.jurisdiction_id)?.state ?? "MO") !== "MO") continue;
       const what = r.event_type === "submittal_deadline" ? "submittal deadline" : r.body === "planning_zoning" ? "P&Z meeting" : gov(r.jurisdiction_id);
       if (c.action === "insert") { newDates.set(r.jurisdiction_id, (newDates.get(r.jurisdiction_id) ?? 0) + 1); continue; }
       if (c.action === "delete") { changeLines.push(li(when, `${pill("REMOVED", C.orange)} ${place(r.jurisdiction_id)} ${esc(what)} on ${fmtDate(r.event_date)}`)); continue; }

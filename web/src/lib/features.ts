@@ -7,6 +7,14 @@ export type Feature = { key: string; title: string; description: string; added: 
 
 export const FEATURES: Feature[] = [
   {
+    key: "state-picker",
+    title: "State picker (Ohio preview)",
+    description: "Adds a State menu to the header. Pick Ohio to see the Columbus-area cities and townships being collected for the public version of the site: their calendar, meetings, rezonings and votes. Missouri stays the default, and your follow list, digest and alerts don't change.",
+    added: "2026-10-22",
+    page: "/jurisdictions",
+  },
+
+  {
     key: "multi-place",
     title: "Projects in more than one municipality",
     description: "Under Municipality in a project's Details, add the other municipalities the site is in. Each is followed, searched for the project's case numbers, and shows its upcoming meetings on the project page; the projects list shows them too. The first municipality still sets the expected timeline. (Suggestion #15)",

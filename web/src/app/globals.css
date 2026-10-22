@@ -169,6 +169,7 @@ ol.steps li { margin: 4px 0; }
 
 .header-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
 a.suggest-btn { text-decoration: none; }
+.state-picker { font: inherit; font-weight: 650; font-size: .85rem; padding: 5px 10px; border-radius: 99px; border: 1px solid var(--brand); background: var(--brand-soft); color: var(--brand-ink); }
 .suggest { position: relative; }
 .suggest + .signout { margin-left: 0; }
 .suggest-pop {

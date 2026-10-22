@@ -12,7 +12,7 @@ export type FeedMeeting = {
   note: string | null;
   status: string;
   source_url: string | null;
-  jurisdictions: { name: string; governing_body: string | null } | null;
+  jurisdictions: { name: string; governing_body: string | null; time_zone?: string } | null;
 };
 
 export const CAL_NAME = "St. Charles Co. Entitlement Dates";
@@ -23,6 +23,13 @@ const VTIMEZONE = [
   "BEGIN:DAYLIGHT", "TZOFFSETFROM:-0600", "TZOFFSETTO:-0500", "TZNAME:CDT",
   "DTSTART:19700308T020000", "RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU", "END:DAYLIGHT",
   "BEGIN:STANDARD", "TZOFFSETFROM:-0500", "TZOFFSETTO:-0600", "TZNAME:CST",
+  "DTSTART:19701101T020000", "RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU", "END:STANDARD",
+  "END:VTIMEZONE",
+  // Ohio meetings are in Eastern time (jurisdictions.time_zone).
+  "BEGIN:VTIMEZONE", "TZID:America/New_York",
+  "BEGIN:DAYLIGHT", "TZOFFSETFROM:-0500", "TZOFFSETTO:-0400", "TZNAME:EDT",
+  "DTSTART:19700308T020000", "RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU", "END:DAYLIGHT",
+  "BEGIN:STANDARD", "TZOFFSETFROM:-0400", "TZOFFSETTO:-0500", "TZNAME:EST",
   "DTSTART:19701101T020000", "RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU", "END:STANDARD",
   "END:VTIMEZONE",
 ];
@@ -57,12 +64,12 @@ const fmtTime = (t: string) => {
   return `${h % 12 || 12}${m ? ":" + String(m).padStart(2, "0") : ""} ${h < 12 ? "AM" : "PM"}`;
 };
 
-export function buildIcs(meetings: FeedMeeting[]): string {
+export function buildIcs(meetings: FeedMeeting[], calName = CAL_NAME): string {
   const stamp = new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
   const lines = [
     "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//stl-zoning//Entitlement Tracker//EN",
     "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
-    `X-WR-CALNAME:${CAL_NAME}`, `NAME:${CAL_NAME}`, `X-WR-TIMEZONE:${TZ}`,
+    `X-WR-CALNAME:${calName}`, `NAME:${calName}`, `X-WR-TIMEZONE:${TZ}`,
     "REFRESH-INTERVAL;VALUE=DURATION:PT6H", "X-PUBLISHED-TTL:PT6H",
     ...VTIMEZONE,
   ];
@@ -88,8 +95,9 @@ export function buildIcs(meetings: FeedMeeting[]): string {
       ev.push(`DTSTART;VALUE=DATE:${ymd(m.event_date)}`, `DTEND;VALUE=DATE:${ymd(nextDay(m.event_date))}`, "TRANSP:TRANSPARENT");
     } else {
       const start = hms(m.event_time);
+      const tz = j?.time_zone ?? TZ;
       const endH = String(Math.min(23, Number(start.slice(0, 2)) + 2)).padStart(2, "0");
-      ev.push(`DTSTART;TZID=${TZ}:${ymd(m.event_date)}T${start}`, `DTEND;TZID=${TZ}:${ymd(m.event_date)}T${endH}${start.slice(2)}`);
+      ev.push(`DTSTART;TZID=${tz}:${ymd(m.event_date)}T${start}`, `DTEND;TZID=${tz}:${ymd(m.event_date)}T${endH}${start.slice(2)}`);
     }
     if (m.location) ev.push(`LOCATION:${esc(m.location)}`);
     const desc = [m.note, m.status === "projected" ? "Projected from the usual pattern; not yet published." : null,

@@ -58,11 +58,11 @@ Deno.serve(async (req) => {
   const db = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
   const since = new Date(Date.now() - LOOKBACK_DAYS * 864e5).toISOString().slice(0, 10);
   let q = db.from("meetings")
-    .select("id, jurisdiction_id, body, event_type, event_date, event_time, location, note, status, source_url, jurisdictions!inner(name, governing_body)")
+    .select("id, jurisdiction_id, body, event_type, event_date, event_time, location, note, status, source_url, jurisdictions!inner(name, governing_body, state)")
     .gte("event_date", since)
     .order("event_date");
   const only = url.searchParams.get("j");
-  q = only ? q.in("jurisdiction_id", only.split(",").map((s) => s.trim())) : q.eq("jurisdictions.followed", true);
+  q = only ? q.in("jurisdiction_id", only.split(",").map((s) => s.trim())) : q.eq("jurisdictions.followed", true).eq("jurisdictions.state", "MO");
   const { data, error } = await q;
   if (error) return new Response("Error loading meetings", { status: 500 });
 

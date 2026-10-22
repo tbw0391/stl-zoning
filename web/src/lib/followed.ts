@@ -1,9 +1,11 @@
-// Jurisdictions switched off on /jurisdictions (jurisdictions.followed = false). Lists across the site leave them
-// out; the jurisdiction's own page and /jurisdictions still show them so they can be switched back on.
+// Jurisdictions switched off on /jurisdictions (jurisdictions.followed = false), plus every jurisdiction outside the
+// state this browser is showing (lib/state). Lists across the site leave them out; the jurisdiction's own page and
+// /jurisdictions still show unfollowed ones so they can be switched back on.
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { currentState } from "@/lib/state";
 
 export async function unfollowedIds(supabase: SupabaseClient): Promise<string[]> {
-  const { data } = await supabase.from("jurisdictions").select("id").eq("followed", false);
+  const { data } = await supabase.from("jurisdictions").select("id").or(`followed.eq.false,state.neq.${await currentState()}`);
   return (data ?? []).map((j) => j.id);
 }
 

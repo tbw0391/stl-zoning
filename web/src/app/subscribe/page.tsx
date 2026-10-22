@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faApple, faGoogle, faMicrosoft } from "@fortawesome/free-brands-svg-icons";
 import { faRss } from "@fortawesome/free-solid-svg-icons";
 import { createClient } from "@/lib/supabase/server";
+import { currentState } from "@/lib/state";
 import { shortName, todayCentral } from "@/lib/format";
 import CopyField from "@/components/CopyField";
 
@@ -15,13 +16,14 @@ export default async function SubscribePage({ searchParams }: { searchParams: Pr
   const proto = h.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
 
   const supabase = await createClient();
+  const st = await currentState();
   const [{ data: js }, { data: covered }] = await Promise.all([
-    supabase.from("jurisdictions").select("id, name").eq("followed", true).order("name"),
+    supabase.from("jurisdictions").select("id, name").eq("followed", true).eq("state", st).order("name"),
     supabase.from("meetings").select("jurisdiction_id").gte("event_date", todayCentral()),
   ]);
   const coveredIds = new Set((covered ?? []).map((c) => c.jurisdiction_id));
 
-  const path = `${host}/calendar.ics${sp.j ? `?j=${encodeURIComponent(sp.j)}` : ""}`;
+  const path = `${host}/calendar.ics${sp.j ? `?j=${encodeURIComponent(sp.j)}` : st !== "MO" ? `?state=${st}` : ""}`;
   const httpsUrl = `${proto}://${path}`;
   const webcalUrl = `webcal://${path}`;
   const googleUrl = `https://calendar.google.com/calendar/r?cid=${encodeURIComponent(webcalUrl)}`;
