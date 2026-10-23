@@ -1,4 +1,5 @@
-// Daily meeting collection for jurisdictions with a `collector` set (AgendaCenter, CivicClerk, Municode Meetings or Legistar).
+// Daily meeting collection for jurisdictions with a `collector` set (AgendaCenter, CivicClerk, Municode Meetings, Legistar,
+// Granicus, CivicWeb, or a reader for a city's own meeting pages).
 // TypeScript port of scripts/collectors/*.py; keep the board-matching rules in step with agendacenter.py.
 //
 // For each jurisdiction: inserts meetings we don't have, fills missing agenda / packet / minutes links, times and
@@ -284,8 +285,130 @@ async function civicWeb(client: string, year: number): Promise<Collected[]> {
   return [...rows.values()];
 }
 
+// ---- Cities that post meetings on their own web pages. The ref names one page per board, with the board's usual
+// start time when the page doesn't give one: "pz=<url>#19:00 gov=<url>".
+const pages = (ref: string) =>
+  ref.split(/\s+/).filter(Boolean).map((p) => {
+    const [, k, url, time] = p.match(/^(\w+)=([^#]+)(?:#(\d{2}:\d{2}))?$/)!;
+    return { body: (k === "pz" ? "planning_zoning" : "governing_body") as Body, url, time: time ?? null };
+  });
+const MONTH_DAY = /\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+(\d{1,2})(?:st|nd|rd|th)?(?:,\s*(\d{3,4}))?/i;
+const ymdOf = (m: RegExpMatchArray, year: number) => {
+  // "February 26, 202" (a typo on the page) falls back to the page's year.
+  const y = m[3]?.length === 4 ? Number(m[3]) : year;
+  return `${y}-${String(MONTHS.indexOf(m[1].slice(0, 3).toLowerCase()) + 1).padStart(2, "0")}-${m[2].padStart(2, "0")}`;
+};
+// "7 p.m.", "6:30 p.m.", "3 PM" -> "19:00"
+const clockText = (s: string) => {
+  const m = s.match(/(\d{1,2})(?::(\d{2}))?\s*([ap])\.?\s*m\b/i);
+  if (!m) return null;
+  const h = (Number(m[1]) % 12) + (m[3].toLowerCase() === "p" ? 12 : 0);
+  return `${String(h).padStart(2, "0")}:${m[2] ?? "00"}`;
+};
+const linkTo = (html: string, label: RegExp, base: string) => {
+  for (const a of html.matchAll(/<a\s[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)) {
+    if (label.test(a[2].replace(/<[^>]+>/g, ""))) return new URL(unescape(a[1]), base).href;
+  }
+  return null;
+};
+const plain = (html: string) => unescape(html.replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
+const SIDE_EVENT = /workshop|interview|reception|retreat|training|joint/i;
+
+// Dublin (dublinohiousa.gov): an <h4> per date ("Monday, Oct. 26"), then a <p> per meeting ("Executive Session | 5:30 p.m.
+// Regular Meeting | 7 p.m. | Council Chamber Agenda | Watch | Action | Minutes"). Dates leave the year off unless it
+// differs from the page's ("2026 Meetings"). The council page's committee schedule (the <h3> after) is left out.
+async function dublin(ref: string, year: number): Promise<Collected[]> {
+  const rows = new Map<string, Collected>();
+  for (const { body, url } of pages(ref)) {
+    const { text } = await fetchText(url);
+    const h3 = [...text.matchAll(/<h3[^>]*>([\s\S]*?)<\/h3>/g)];
+    const pageYear = Number(plain(h3[0]?.[1] ?? "").match(/\d{4}/)?.[0] ?? year);
+    const end = h3.find((h) => /committee/i.test(plain(h[1])))?.index ?? text.length;
+    for (const b of text.slice(0, end).matchAll(/<h4[^>]*>([\s\S]*?)<\/h4>([\s\S]*?)(?=<h[1-4][\s>]|$)/g)) {
+      const when = plain(b[1]).match(new RegExp("^[A-Z][a-z]+day,\\s*" + MONTH_DAY.source.slice(2), "i"));
+      if (!when) continue;
+      const date = ymdOf(when, pageYear);
+      if (Number(date.slice(0, 4)) !== year) continue;
+      for (const seg of b[2].split(/<\/p>/)) {
+        const text = plain(seg);
+        // The meeting's own name is the last "<name> | <time>" in the segment ("Executive Session | 5:30 p.m. Regular Meeting | 7 p.m.").
+        const named = [...text.matchAll(/([A-Z][A-Za-z/&' ]*?)\s*\|\s*(\d{1,2}(?::\d{2})?\s*[ap]\.m\.|\[?Meeting Cancelled)/g)].pop();
+        if (!named) continue;
+        const title = named[1].trim();
+        const agenda = linkTo(seg, /agenda/i, url);
+        if (!/regular|special|organizational/i.test(title) || notHearing(title) || SIDE_EVENT.test(title) || /training/i.test(agenda ?? "")) continue;
+        keep(rows, {
+          body, event_date: date, event_time: clockText(named[2]), location: null, title,
+          agenda_url: agenda, packet_url: null, minutes_url: linkTo(seg, /minutes/i, url), source_url: url,
+          cancelled: CANCELLED.test(text),
+        });
+      }
+    }
+  }
+  return [...rows.values()];
+}
+
+// A table per board with a header row naming its columns (Date | Agenda | Minutes | Meeting Packet), one row per
+// meeting: "Monday, October 19, 2026" or "October 6, 2026 3 PM Executive Session". New Albany.
+async function pageTable(ref: string, year: number): Promise<Collected[]> {
+  const rows = new Map<string, Collected>();
+  for (const { body, url, time } of pages(ref)) {
+    const { text } = await fetchText(url);
+    for (const t of text.matchAll(/<table[\s\S]*?<\/table>/g)) {
+      const trs = [...t[0].matchAll(/<tr[\s\S]*?<\/tr>/g)].map((r) => [...r[0].matchAll(/<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/g)].map((c) => c[1]));
+      const head = trs[0]?.map(plain) ?? [];
+      const col = (re: RegExp) => head.findIndex((h) => re.test(h));
+      const [ai, mi, pi] = [col(/agenda/i), col(/minutes/i), col(/packet/i)];
+      if (ai < 0) continue;
+      for (const cells of trs.slice(1)) {
+        const first = plain(cells[0] ?? "");
+        const when = first.match(MONTH_DAY);
+        if (!when || when.index! > 12 || when[3]?.length !== 4 || Number(when[3]) !== year) continue;
+        const title = first.slice(when.index! + when[0].length).trim();
+        if (notHearing(title) || SIDE_EVENT.test(title)) continue;
+        const cell = (i: number) => (i >= 0 ? cells[i] ?? "" : "");
+        keep(rows, {
+          body, event_date: ymdOf(when, year), event_time: clockText(title) ?? time, location: null, title: title || first,
+          agenda_url: linkTo(cell(ai), /./, url), packet_url: linkTo(cell(pi), /packet/i, url),
+          minutes_url: linkTo(cell(mi), /minutes/i, url), source_url: url, cancelled: CANCELLED.test(plain(cell(ai)) + title),
+        });
+      }
+    }
+  }
+  return [...rows.values()];
+}
+
+// Delaware County Regional Planning Commission: the year's dates laid out in grids, one grid per kind of document
+// ("2026 Preliminary Agendas", "2026 Meeting Minutes", and the staff Technical Review Committee's, which is skipped).
+// Every date is a meeting; it's a link once that document is posted. Meetings are 6 p.m. at the Byxbe Building.
+async function dcrpc(url: string, year: number): Promise<Collected[]> {
+  const { text } = await fetchText(url);
+  const rows = new Map<string, Collected>();
+  for (const t of text.matchAll(/<table[\s\S]*?<\/table>/g)) {
+    const heading = plain(t[0].match(/<th[^>]*>([\s\S]*?)<\/th>/)?.[1] ?? "");
+    if (!heading.includes(String(year)) || /technical review/i.test(heading)) continue;
+    const kind = /minutes/i.test(heading) ? "minutes_url" : /agenda/i.test(heading) ? "agenda_url" : null;
+    if (!kind) continue;
+    for (const c of t[0].matchAll(/<td[^>]*>([\s\S]*?)<\/td>/g)) {
+      const when = plain(c[1]).match(MONTH_DAY);
+      if (!when) continue;
+      const date = ymdOf(when, year);
+      const href = c[1].match(/href="([^"]+\.pdf)"/i)?.[1] ?? null;
+      const row = rows.get(date) ?? {
+        body: "planning_zoning" as Body, event_date: date, event_time: "18:00", location: "Byxbe Building, 1610 State Route 521, Delaware",
+        title: "Regional Planning Commission", agenda_url: null, packet_url: null, minutes_url: null, source_url: url, cancelled: false,
+      };
+      // January's minutes link points at that month's agenda.
+      if (href !== row.agenda_url) row[kind] ??= href;
+      rows.set(date, row);
+    }
+  }
+  return [...rows.values()];
+}
+
 const COLLECTORS: Record<string, (ref: string, year: number) => Promise<Collected[]>> = {
   agendacenter: agendaCenter, civicclerk: civicClerk, municode: municodeMeetings, legistar, granicus, civicweb: civicWeb,
+  dublin, pagetable: pageTable, dcrpc,
 };
 
 Deno.serve(async (req) => {
