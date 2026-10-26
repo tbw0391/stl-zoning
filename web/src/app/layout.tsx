@@ -97,7 +97,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <Image src="/lombardo-logo.png" alt="Lombardo Homes" width={142} height={40} priority />
             <span className="brand-name">Entitlement Tracker</span>
           </Link>
-          <Nav alerts={alerts + projectAlerts.length} />
+          <Nav alerts={alerts + projectAlerts.length} features={featuresOn} />
           <div className="header-actions">
             {featuresOn.includes("state-picker") && <StatePicker states={STATES} current={state} />}
             <Link href="/features" className="suggest-btn">

@@ -8,6 +8,14 @@ export type Feature = { key: string; title: string; description: string; added: 
 
 export const FEATURES: Feature[] = [
   {
+    key: "oyl-lots",
+    title: "OYL lots page",
+    description: "Adds OYL lots to the menu: Chad's OYL Tracker spreadsheet as a page, with the working lots, the lot-count box (with dollars) and closed lots with days to flash and to customer purchase. Add and edit lots there; each lot is also a project, so it gets nearby-case alerts and satellite images. Loaded with the Oct 19 sheet.",
+    added: "2026-10-26",
+    page: "/oyl",
+  },
+
+  {
     key: "satellite",
     title: "Satellite images of sites",
     description: "Project pages (with a street address) and Parcel lookup results show the latest clear satellite image of the site, plus ones from about 3 months and a year earlier, so you can spot clearing or grading. Free imagery: about 10 m per pixel, new every few days when it isn't cloudy.",

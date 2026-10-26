@@ -512,3 +512,14 @@ main.public { flex: 1; width: 100%; }
   border: 2px solid #fff; box-shadow: 0 0 0 2px var(--brand), 0 0 6px rgba(0,0,0,.5);
 }
 .sat-grid figcaption { margin-top: 6px; font-size: .9rem; }
+
+/* OYL lots (/oyl) */
+.oyl-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0 8px; }
+.oyl-summary strong { font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+.oyl-table { font-size: .85rem; }
+.oyl-table th { white-space: nowrap; }
+.oyl-table .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.oyl-table .nowrap { white-space: nowrap; }
+.oyl-form { max-width: 760px; }
+.oyl-form fieldset { border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px 14px; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px 14px; }
+.oyl-form legend { font-size: .8rem; font-weight: 700; color: var(--muted); padding: 0 4px; }

@@ -48,6 +48,11 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
   ]);
   if (!p) notFound();
 
+  // The OYL lot behind this project, if any (feature "oyl-lots").
+  const { data: oylLot } = features.includes("oyl-lots")
+    ? await supabase.from("oyl_lots").select("id, lot_type, ownership, sales_status").eq("project_id", id).maybeSingle()
+    : { data: null };
+
   // Other municipalities the site is also in (suggestion #15), each with its next few meetings.
   const { data: extraRows } = multiPlace
     ? await supabase.from("project_jurisdictions").select("jurisdiction_id").eq("project_id", id).order("created_at")
@@ -167,6 +172,13 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
         </div>
 
         <aside>
+          {oylLot && (
+            <p className="card small" style={{ marginTop: 0 }}>
+              <strong>OYL lot</strong>
+              {[oylLot.lot_type, oylLot.ownership, oylLot.sales_status].filter(Boolean).map((v) => ` · ${v}`).join("")}
+              {" · "}<Link href={`/oyl/${oylLot.id}`}>Lot details and prices</Link>
+            </p>
+          )}
           <h2>Details</h2>
           {/* Keyed on updated_at: React resets the form after a save, and a <select> would otherwise snap back to the old stage (suggestion #18). */}
           <form key={p.updated_at} action={updateProject.bind(null, id)} className="card stack-form">

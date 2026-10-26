@@ -2,13 +2,15 @@ import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import {
   faCalendar, faChartBar, faFileLines, faFolderOpen, faSquareCheck, faUser, faComments, faMap, faFlag, faAddressBook, faLightbulb, faThumbsUp,
 } from "@fortawesome/free-regular-svg-icons";
-import { faLandmark } from "@fortawesome/free-solid-svg-icons";
+import { faLandmark, faHouseChimney } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-regular-svg-icons";
 
-export const NAV: { href: string; label: string; icon: IconDefinition }[] = [
+// `feature`: shown only when that opt-in feature is switched on (lib/features).
+export const NAV: { href: string; label: string; icon: IconDefinition; feature?: string }[] = [
   { href: "/", label: "Calendar", icon: faCalendar },
   { href: "/dashboard", label: "Dashboard", icon: faChartBar },
   { href: "/projects", label: "Projects", icon: faFolderOpen },
+  { href: "/oyl", label: "OYL lots", icon: faHouseChimney, feature: "oyl-lots" },
   { href: "/tasks", label: "Tasks", icon: faSquareCheck },
   { href: "/chad", label: "Chad's tasks", icon: faUser },
   { href: "/rezonings", label: "Rezonings", icon: faFileLines },
