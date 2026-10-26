@@ -1,0 +1,5 @@
+ok it is time to put the login code on the app and to secure github
+
+---
+
+also where are we building the ohio stuff?
