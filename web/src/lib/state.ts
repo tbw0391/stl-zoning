@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { enabledFeatures } from "@/lib/features";
+import { isDemo } from "@/lib/demo";
 
 // The site shows one state at a time. Missouri unless the "state-picker" feature is on and another state is picked
 // in the header; the choice is a cookie, so it's per browser until logins exist (then it comes from the account).
@@ -8,6 +9,7 @@ export const STATES: Record<string, string> = { MO: "Missouri", OH: "Ohio" };
 export const STATE_COOKIE = "state";
 
 export async function currentState(): Promise<string> {
+  if (await isDemo()) return "OH";
   if (!(await enabledFeatures()).includes("state-picker")) return "MO";
   const picked = (await cookies()).get(STATE_COOKIE)?.value ?? "";
   return picked in STATES ? picked : "MO";

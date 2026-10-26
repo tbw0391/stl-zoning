@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { currentState } from "@/lib/state";
+import { isDemo } from "@/lib/demo";
 import { CLOSED_STAGES, STATUS_LABEL, todayCentral } from "@/lib/format";
 import PageTitle from "@/components/PageTitle";
 import FollowPicker from "./FollowPicker";
@@ -10,8 +11,9 @@ export const dynamic = "force-dynamic";
 export default async function JurisdictionsPage() {
   const supabase = await createClient();
   const today = todayCentral();
+  const state = await currentState();
   const [{ data: js }, { data: procs }, { data: meetings }, { data: people }, { data: projects }, { data: reviewed }] = await Promise.all([
-    supabase.from("jurisdictions").select("id, name, kind, county, governing_body, research_status, followed").eq("state", await currentState()).order("name"),
+    supabase.from("jurisdictions").select("id, name, kind, county, governing_body, research_status, followed").eq("state", state).order("name"),
     supabase.from("rezoning_processes").select("jurisdiction_id"),
     supabase.from("meetings").select("jurisdiction_id, event_date").gte("event_date", today),
     supabase.from("people").select("jurisdiction_id").eq("active", true),
@@ -21,7 +23,8 @@ export default async function JurisdictionsPage() {
   // Open projects per municipality; those municipalities are ticked to start (suggestion #13).
   const projectCount: Record<string, number> = {};
   // Includes the other municipalities a project is also in (suggestion #15).
-  for (const p of projects ?? []) {
+  // Lombardo's projects stay out of the open demo.
+  for (const p of (await isDemo()) ? [] : projects ?? []) {
     if (CLOSED_STAGES.includes(p.stage)) continue;
     const places = new Set([p.jurisdiction_id, ...p.project_jurisdictions.map((x) => x.jurisdiction_id)].filter((j): j is string => !!j));
     for (const j of places) projectCount[j] = (projectCount[j] ?? 0) + 1;
@@ -68,7 +71,9 @@ export default async function JurisdictionsPage() {
   return (
     <>
       <PageTitle href="/jurisdictions">Municipalities</PageTitle>
-      <p className="muted">St. Charles County in depth, plus St. Louis, Jefferson and Franklin County cities whose meetings are collected automatically. Click one for its rezoning process, dates and contacts.</p>
+      <p className="muted">{state === "OH"
+        ? "Columbus-area cities, townships and planning commissions whose meetings are collected automatically. Click one for its dates and documents."
+        : "St. Charles County in depth, plus St. Louis, Jefferson and Franklin County cities whose meetings are collected automatically. Click one for its rezoning process, dates and contacts."}</p>
       <h2 id="follow">Which municipalities to follow</h2>
       <p className="small">
         Untick a municipality to leave it out of the calendar, meetings, rezonings, votes, alerts, directory, progress and the weekly email;

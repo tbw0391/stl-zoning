@@ -118,7 +118,7 @@ async function ByLocation({ sp, js, byJ, memberTable }: {
   const supabase = await createClient();
   let q = supabase.from("meetings").select("id, jurisdiction_id, body, event_date, votes").not("votes", "is", null)
     .order("event_date", { ascending: false });
-  if (sp.j) q = q.eq("jurisdiction_id", sp.j);
+  q = sp.j ? q.eq("jurisdiction_id", sp.j) : q.in("jurisdiction_id", await stateIds(supabase));
   const { data } = await q;
   const meetings = ((data ?? []) as Meeting[]).filter((m) => m.votes.votes?.length);
   const byMeetingJ = new Map<string, Meeting[]>();

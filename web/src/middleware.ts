@@ -1,9 +1,26 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { DEMO_COOKIE, demoAllows } from "@/lib/demoPaths";
 
 // Refreshes the Supabase session cookie. The site is open: no login required.
 export async function middleware(request: NextRequest) {
-  let response = NextResponse.next({ request });
+  const path = request.nextUrl.pathname;
+  // The open demo is read-only and skips Lombardo's own pages. Saving goes through server actions, so refuse those
+  // (except the sign-up form).
+  if (request.cookies.get(DEMO_COOKIE)?.value === "1") {
+    if (request.method === "POST" && request.headers.has("next-action") && path !== "/signup") {
+      return new NextResponse("The demo is read-only.", { status: 403 });
+    }
+    if (!demoAllows(path)) return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // The layout picks the Lombardo or public header from the path.
+  const next = () => {
+    const headers = new Headers(request.headers);
+    headers.set("x-pathname", path);
+    return NextResponse.next({ request: { headers } });
+  };
+  let response = next();
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
@@ -12,7 +29,7 @@ export async function middleware(request: NextRequest) {
         getAll: () => request.cookies.getAll(),
         setAll: (list) => {
           list.forEach(({ name, value }) => request.cookies.set(name, value));
-          response = NextResponse.next({ request });
+          response = next();
           list.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
         },
       },
@@ -21,7 +38,7 @@ export async function middleware(request: NextRequest) {
   await supabase.auth.getUser();
   // Remember the calendar view (list / month / week) someone last picked.
   const view = request.nextUrl.searchParams.get("view");
-  if (request.nextUrl.pathname === "/" && view && ["list", "month", "week"].includes(view)) {
+  if (path === "/" && view && ["list", "month", "week"].includes(view)) {
     response.cookies.set("cal_view", view, { path: "/", maxAge: 60 * 60 * 24 * 365, sameSite: "lax" });
   }
   return response;

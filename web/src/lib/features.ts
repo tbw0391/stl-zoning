@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { isDemo } from "@/lib/demo";
 
 // Opt-in features: the site stays as it is for each person until they switch a feature on at /features. Choices are
 // kept in a cookie, so they're per browser (there are no logins yet). Add new entries at the top with today's date;
@@ -45,6 +46,8 @@ export const SEEN_COOKIE = "features_seen";
 export const ASK_COOKIE = "history_ask";
 
 export async function enabledFeatures(): Promise<string[]> {
+  // The demo shows everything that's been built.
+  if (await isDemo()) return FEATURES.map((f) => f.key);
   const raw = (await cookies()).get(ON_COOKIE)?.value ?? "";
   return raw.split(",").filter((k) => FEATURES.some((f) => f.key === k));
 }

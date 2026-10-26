@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/server";
 import { skipUnfollowed, unfollowedIds } from "@/lib/followed";
 import { addDays, addMonths, fmtDate, fmtMonth, fmtTime, shortName, startOfWeek, todayCentral } from "@/lib/format";
 import PageTitle from "@/components/PageTitle";
+import { isDemo } from "@/lib/demo";
 
 export const dynamic = "force-dynamic";
 
@@ -58,7 +59,8 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
 
   const supabase = await createClient();
   const off = await unfollowedIds(supabase);
-  const showTasks = !sp.j && (!sp.type || sp.type === "tasks");
+  // Tasks are Lombardo's own; the demo leaves them out.
+  const showTasks = !sp.j && (!sp.type || sp.type === "tasks") && !(await isDemo());
   const showMeetings = sp.type !== "tasks";
   const [{ data: jurisdictions }, { data: meetings }, { data: tasks }] = await Promise.all([
     supabase.from("jurisdictions").select("id, name, governing_body, county").order("name"),
