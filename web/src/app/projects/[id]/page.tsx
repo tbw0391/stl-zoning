@@ -11,6 +11,8 @@ import TimelineCard from "@/components/TimelineCard";
 import { STEP_LABEL, currentStep, loadDelays, loadTimeline } from "@/lib/timeline";
 import { createWatch } from "@/app/alerts/actions";
 import { enabledFeatures } from "@/lib/features";
+import { Suspense } from "react";
+import SatelliteCard from "@/components/SatelliteCard";
 import NoteEdit from "@/components/NoteEdit";
 import { addChecklistItem, addDelay, addNote, addProjectPlace, applyTemplate, confirmPossibleDelay, deleteChecklistItem, deleteDelay, dismissPossibleDelay,
   removeProjectPlace, setChecklistDone, updateProject } from "../actions";
@@ -218,6 +220,15 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
                 <button type="submit">Add</button>
               </form>
             </div>
+          )}
+
+          {features.includes("satellite") && p.lat != null && p.lng != null && (
+            <>
+              <h2>Satellite</h2>
+              <Suspense fallback={<div className="card muted small">Finding clear satellite passes…</div>}>
+                <SatelliteCard lat={p.lat} lng={p.lng} />
+              </Suspense>
+            </>
           )}
 
           <h2>Nearby land-use cases</h2>

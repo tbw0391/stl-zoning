@@ -8,6 +8,14 @@ export type Feature = { key: string; title: string; description: string; added: 
 
 export const FEATURES: Feature[] = [
   {
+    key: "satellite",
+    title: "Satellite images of sites",
+    description: "Project pages (with a street address) and Parcel lookup results show the latest clear satellite image of the site, plus ones from about 3 months and a year earlier, so you can spot clearing or grading. Free imagery: about 10 m per pixel, new every few days when it isn't cloudy.",
+    added: "2026-10-26",
+    page: "/lookup",
+  },
+
+  {
     key: "state-picker",
     title: "State picker (Ohio preview)",
     description: "Adds a State menu to the header. Pick Ohio to see the Columbus-area cities and townships being collected for the public version of the site: their calendar, meetings, rezonings and votes. Missouri stays the default, and your follow list, digest and alerts don't change.",

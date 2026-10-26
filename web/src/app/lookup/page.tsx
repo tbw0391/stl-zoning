@@ -2,6 +2,9 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { MUNICIPALITY_TO_JURISDICTION, findParcels, hasZoningSource, matchDistrict, zoningFor, type Parcel, type Zoning } from "@/lib/parcels";
 import PageTitle from "@/components/PageTitle";
+import SatelliteCard from "@/components/SatelliteCard";
+import { enabledFeatures } from "@/lib/features";
+import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 
@@ -113,6 +116,15 @@ export default async function LookupPage({ searchParams }: { searchParams: Promi
               {zoning && <> Zoning: {zoning.source}. GIS layers can lag recent rezonings; confirm with the municipality before relying on it.</>}
             </p>
           </div>
+
+          {parcel.point && (await enabledFeatures()).includes("satellite") && (
+            <>
+              <h2>Satellite</h2>
+              <Suspense fallback={<div className="card muted small">Finding clear satellite passes…</div>}>
+                <SatelliteCard lat={parcel.point.y} lng={parcel.point.x} />
+              </Suspense>
+            </>
+          )}
 
           {zoning && (
             <>
