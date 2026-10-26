@@ -288,7 +288,7 @@ async function civicWeb(client: string, year: number): Promise<Collected[]> {
 // ---- Cities that post meetings on their own web pages. The ref names one page per board, with the board's usual
 // start time when the page doesn't give one: "pz=<url>#19:00 gov=<url>".
 const pages = (ref: string) =>
-  ref.split(/\s+/).filter(Boolean).map((p) => {
+  ref.split(/\s+/).filter((p) => p.includes("=")).map((p) => {
     const [, k, url, time] = p.match(/^(\w+)=([^#]+)(?:#(\d{2}:\d{2}))?$/)!;
     return { body: (k === "pz" ? "planning_zoning" : "governing_body") as Body, url, time: time ?? null };
   });
@@ -406,9 +406,78 @@ async function dcrpc(url: string, year: number): Promise<Collected[]> {
   return [...rows.values()];
 }
 
+// ---- CivicPlus Archive Center (<site>/Archive.aspx?AMID=<n>): one list per kind of document, each item titled with its
+// date ("October 6, 2026 Meeting Packet", "July 20, 2026 (Special)"). The ref is the site, then each board's lists:
+// "https://www.worthington.org pz=38,39 gov=44,45" (agendas, then minutes). Only posted documents are listed.
+async function archiveCenter(ref: string, year: number): Promise<Collected[]> {
+  const site = ref.split(/\s+/)[0].replace(/\/$/, "");
+  const rows = new Map<string, Collected>();
+  for (const { body, url: lists, time } of pages(ref)) {
+    const [agendas, minutes] = lists.split(",");
+    const docs = new Map<string, Collected>();
+    for (const [amid, kind] of [[agendas, "agenda_url"], [minutes, "minutes_url"]] as const) {
+      if (!amid) continue;
+      const source = `${site}/Archive.aspx?AMID=${amid}`;
+      const { text } = await fetchText(source);
+      for (const a of text.matchAll(/href="Archive\.aspx\?ADID=(\d+)"[^>]*>([\s\S]*?)<\/a>/g)) {
+        const title = plain(a[2]);
+        const when = title.match(MONTH_DAY);
+        if (!when || when[3]?.length !== 4 || Number(when[3]) !== year) continue;
+        const rest = title.slice(when.index! + when[0].length);
+        if (notHearing(rest) || SIDE_EVENT.test(rest)) continue;
+        const date = ymdOf(when, year);
+        // A regular and a special meeting the same day: the regular one's documents win.
+        const key = `${date}|${/special/i.test(rest) ? "s" : "r"}`;
+        const c = docs.get(key) ?? {
+          body, event_date: date, event_time: time, location: null, title: rest || title, agenda_url: null, packet_url: null,
+          minutes_url: null, source_url: `${site}/Archive.aspx?AMID=${agendas}`, cancelled: CANCELLED.test(rest),
+        };
+        c[kind] ??= `${site}/Archive.aspx?ADID=${a[1]}`;
+        docs.set(key, c);
+      }
+    }
+    for (const c of [...docs.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([, c]) => c)) keep(rows, c);
+  }
+  return [...rows.values()];
+}
+
+// ---- WP File Download (WordPress plugin; Newark): folders of PDFs titled "2026-10-13_AGENDA-PC", read through the
+// plugin's JSON. The ref is the site, then each board's folder ids: "https://www.newarkohio.gov pz=200,199,201"
+// (agendas, minutes, packets). Only posted documents are listed.
+async function wpfd(ref: string, year: number): Promise<Collected[]> {
+  const site = ref.split(/\s+/)[0].replace(/\/$/, "");
+  const rows = new Map<string, Collected>();
+  for (const { body, url: folders, time } of pages(ref)) {
+    const [agendas, minutes, packets] = folders.split(",");
+    const docs = new Map<string, Collected>();
+    for (const [id, kind] of [[agendas, "agenda_url"], [minutes, "minutes_url"], [packets, "packet_url"]] as const) {
+      if (!id) continue;
+      const api = `${site}/wp-admin/admin-ajax.php?juwpfisadmin=false&action=wpfd&task=files.display&view=files&id=${id}&rootcat=${id}&page_limit=200`;
+      // deno-lint-ignore no-explicit-any
+      const files: any[] = JSON.parse((await fetchText(api, undefined, "application/json")).text).files ?? [];
+      // Titles come newest first; oldest first puts a split packet's part 1 ahead of part 2.
+      for (const f of files.reverse()) {
+        const title = String(f.post_title ?? "");
+        const d = title.match(/^(\d{4})-(\d{2})-(\d{2})/);
+        if (!d || Number(d[1]) !== year || notHearing(title) || SIDE_EVENT.test(title)) continue;
+        const date = `${d[1]}-${d[2]}-${d[3]}`;
+        const key = `${date}|${/special/i.test(title) ? "s" : "r"}`;
+        const c = docs.get(key) ?? {
+          body, event_date: date, event_time: time, location: null, title, agenda_url: null, packet_url: null, minutes_url: null,
+          source_url: site + "/meeting-agendas/", cancelled: CANCELLED.test(title),
+        };
+        c[kind] ??= f.linkdownload || null;
+        docs.set(key, c);
+      }
+    }
+    for (const c of [...docs.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([, c]) => c)) keep(rows, c);
+  }
+  return [...rows.values()];
+}
+
 const COLLECTORS: Record<string, (ref: string, year: number) => Promise<Collected[]>> = {
   agendacenter: agendaCenter, civicclerk: civicClerk, municode: municodeMeetings, legistar, granicus, civicweb: civicWeb,
-  dublin, pagetable: pageTable, dcrpc,
+  dublin, pagetable: pageTable, dcrpc, archivecenter: archiveCenter, wpfd,
 };
 
 Deno.serve(async (req) => {
@@ -431,7 +500,8 @@ Deno.serve(async (req) => {
   if (error) return new Response(error.message, { status: 500 });
 
   const runOne = async (j: { id: string; collector: string; collector_ref: string }) => {
-    const fullSchedule = j.collector !== "agendacenter";
+    // Readers that only see posted documents (not the whole schedule).
+    const fullSchedule = !["agendacenter", "archivecenter", "wpfd"].includes(j.collector);
     try {
       const collected: Collected[] = [];
       for (const y of years) {
@@ -479,8 +549,8 @@ Deno.serve(async (req) => {
         const { error: ie } = await db.from("meetings").insert(inserts);
         if (ie) throw new Error(ie.message);
       }
-      // CivicClerk and Municode list the whole schedule, so anything they lack is suspect. AgendaCenter only
-      // lists posted agendas, so only past meetings (a few days' grace) count there.
+      // CivicClerk and Municode list the whole schedule, so anything they lack is suspect. AgendaCenter (and the other
+      // posted-documents-only readers) list posted agendas, so only past meetings (a few days' grace) count there.
       const cutoff = fullSchedule ? "9999-12-31" : new Date(Date.now() - 3 * 864e5).toISOString().slice(0, 10);
       const missing = collected.length
         ? (existing ?? []).filter((m) => m.status !== "cancelled" && m.event_date <= cutoff && !seen.has(`${m.body}|${m.event_date}`))
