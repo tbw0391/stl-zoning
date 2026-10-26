@@ -1,0 +1,32 @@
+{
+  "cli_version": "0.11.4",
+  "checkpoint_id": "01M5WTMAE276QYHBYNNPC3B1A5",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 3,
+  "files_touched": [
+    "supabase/migrations/20261026100000_oyl_lots.sql",
+    "web/src/app/oyl/LotForm.tsx",
+    "web/src/app/oyl/[id]/page.tsx",
+    "web/src/app/oyl/actions.ts",
+    "web/src/app/oyl/new/page.tsx",
+    "web/src/app/oyl/page.tsx",
+    "web/src/lib/oyl.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": "/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 60,
+    "cache_creation_tokens": 53764,
+    "cache_read_tokens": 6961024,
+    "output_tokens": 30797,
+    "api_call_count": 30
+  }
+}
