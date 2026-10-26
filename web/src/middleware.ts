@@ -1,13 +1,14 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
-import { DEMO_COOKIE, demoAllows } from "@/lib/demoPaths";
+import { DEMO_COOKIE, demoAllows, openWithoutSignIn } from "@/lib/demoPaths";
 
-// Refreshes the Supabase session cookie. The site is open: no login required.
+// Refreshes the Supabase session cookie, and sends people to /login when sign-in is required.
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
+  const demo = request.cookies.get(DEMO_COOKIE)?.value === "1";
   // The open demo is read-only and skips Lombardo's own pages. Saving goes through server actions, so refuse those
   // (except the sign-up form).
-  if (request.cookies.get(DEMO_COOKIE)?.value === "1") {
+  if (demo) {
     if (request.method === "POST" && request.headers.has("next-action") && path !== "/signup") {
       return new NextResponse("The demo is read-only.", { status: 403 });
     }
@@ -35,7 +36,15 @@ export async function middleware(request: NextRequest) {
       },
     },
   );
-  await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser();
+  // Sign-in required (Vercel env REQUIRE_SIGN_IN=1, switched on with supabase/pending/require_sign_in.sql): everyone
+  // else goes to /login and comes back here after.
+  if (process.env.REQUIRE_SIGN_IN === "1" && !user && !openWithoutSignIn(path, demo)) {
+    if (request.method !== "GET") return new NextResponse("Sign in first.", { status: 401 });
+    const login = new URL("/login", request.url);
+    login.search = new URLSearchParams({ next: path + request.nextUrl.search }).toString();
+    return NextResponse.redirect(login);
+  }
   // Remember the calendar view (list / month / week) someone last picked.
   const view = request.nextUrl.searchParams.get("view");
   if (path === "/" && view && ["list", "month", "week"].includes(view)) {

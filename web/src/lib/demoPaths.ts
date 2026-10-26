@@ -4,7 +4,7 @@ export const PRODUCT = "Project Hawkeye";
 export const DEMO_COOKIE = "demo";
 
 // Pages outside the Lombardo site: no Lombardo header, open to anyone.
-export const PUBLIC_PAGES = ["/welcome", "/signup"];
+export const PUBLIC_PAGES = ["/welcome", "/signup", "/login"];
 
 // What a demo visitor can open. Everything else is Lombardo's own work (projects, tasks, suggestions, alerts).
 const DEMO_PAGES = ["/rezonings", "/votes", "/meetings", "/jurisdictions", "/directory"];
@@ -21,3 +21,11 @@ export function demoAllows(path: string) {
 }
 
 export const DEMO_NAV = ["/", ...DEMO_PAGES];
+
+// Open without signing in once sign-in is required (REQUIRE_SIGN_IN): the front door, the sign-in flow, the calendar
+// feed (calendar apps can't sign in), and the demo's pages for a browser in the demo.
+export const openWithoutSignIn = (path: string, demo: boolean) =>
+  ALWAYS_OPEN.some((p) => under(path, p)) || (demo && demoAllows(path));
+
+// Where to go after signing in: same-site paths only, so a link can't bounce someone to another site.
+export const safeNext = (n: string | null | undefined) => (n && n.startsWith("/") && !n.startsWith("//") ? n : "/");

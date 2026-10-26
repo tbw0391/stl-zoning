@@ -523,3 +523,8 @@ main.public { flex: 1; width: 100%; }
 .oyl-form { max-width: 760px; }
 .oyl-form fieldset { border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px 14px; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px 14px; }
 .oyl-form legend { font-size: .8rem; font-weight: 700; color: var(--muted); padding: 0 4px; }
+
+/* Signed-in account in the header, sign-in code box */
+.account { display: flex; align-items: center; gap: 10px; padding-left: 10px; border-left: 1px solid var(--border); }
+.account a { color: var(--muted); font-weight: 600; }
+.code-input { font-size: 1.4rem; letter-spacing: .3em; text-align: center; font-variant-numeric: tabular-nums; }

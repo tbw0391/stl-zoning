@@ -40,6 +40,7 @@ function PublicShell({ children }: { children: React.ReactNode }) {
         <header className="public-top">
           <Link href="/welcome" className="public-brand"><HawkeyeMark /> {PRODUCT}</Link>
           <div className="public-top-actions">
+            <Link href="/login">Sign in</Link>
             <a href="/demo">See the demo</a>
             <Link href="/signup" className="btn">Sign up</Link>
           </div>
@@ -82,7 +83,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   if (isPublicPage((await headers()).get("x-pathname") ?? "")) return <PublicShell>{children}</PublicShell>;
   if (await isDemo()) return <DemoShell featuresOn={await enabledFeatures()}>{children}</DemoShell>;
   const supabase = await createClient();
-  const [alerts, projectAlerts, featuresOn, newFeatures, state] = await Promise.all([
+  const [{ data: { user } }, alerts, projectAlerts, featuresOn, newFeatures, state] = await Promise.all([
+    supabase.auth.getUser(),
     newAlertCount(supabase).catch(() => 0),
     unseenProjectAlerts(supabase).catch(() => []),
     enabledFeatures(),
@@ -105,6 +107,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               {newFeatures > 0 && <span className="badge">{newFeatures}</span>}
             </Link>
             <SuggestButton />
+            {user && (
+              <span className="account small">
+                <Link href="/team" title="Who can sign in">{user.email ?? user.phone}</Link>
+                <form action="/auth/signout" method="post"><button type="submit" className="link">Sign out</button></form>
+              </span>
+            )}
           </div>
         </header>
         {projectAlerts.length > 0 && (
