@@ -2,11 +2,12 @@ import { createClient } from "@/lib/supabase/server";
 import { currentState } from "@/lib/state";
 import { shortName } from "@/lib/format";
 import { ITEM_TYPE_LABEL } from "@/components/MeetingSummary";
-import { Place, Watch, ZONING_TYPES, distanceTo, isNew, loadCases, matches } from "@/lib/cases";
+import { Place, Watch, ZONING_TYPES, caseKey, distanceTo, isNew, loadCases, matches } from "@/lib/cases";
 import CaseRow from "@/components/CaseRow";
 import PageTitle from "@/components/PageTitle";
 import Link from "next/link";
-import { createWatch, deleteWatch, dismissProjectAlerts, markSeen } from "./actions";
+import { createWatch, deleteWatch, dismissProjectAlert, dismissProjectAlerts, markCaseSeen, markSeen } from "./actions";
+import { enabledFeatures } from "@/lib/features";
 import { unseenProjectAlerts } from "@/lib/projectAlerts";
 
 // Project timeline changes listed at the top of the page.
@@ -33,6 +34,7 @@ export default async function AlertsPage() {
     unseenProjectAlerts(supabase).catch(() => []),
   ]);
   const unseenIds = new Set(unseen.map((a) => a.id));
+  const eachSeen = (await enabledFeatures()).includes("alert-seen-each");
   const watches = (watchRows ?? []) as Watch[];
   const pmap = new Map((projects ?? []).map((p) => [p.id, p as Place & { name: string }]));
   const counties = [...new Set((jurisdictions ?? []).map((j) => j.county))].sort();
@@ -57,6 +59,9 @@ export default async function AlertsPage() {
               <li key={a.id}>
                 <strong><Link href={`/projects/${a.project_id}`}>{a.title}</Link></strong>
                 {unseenIds.has(a.id) && <span className="tag due">NEW</span>}
+                {unseenIds.has(a.id) && eachSeen && (
+                  <form action={dismissProjectAlert.bind(null, a.id)} className="inline"><button type="submit" className="link small">Mark seen</button></form>
+                )}
                 <span className="small muted"> · {stamp(a.created_at)}</span>
                 {a.body && <div className="small">{a.body}</div>}
               </li>
@@ -100,7 +105,10 @@ export default async function AlertsPage() {
               <p className="muted small" style={{ marginBottom: 0 }}>Nothing matching in the last 45 days or on upcoming agendas.</p>
             ) : (
               <ul className="case-list">
-                {hits.map((c) => <CaseRow key={`${c.meeting_id}-${c.idx}`} c={c} isNew={isNew(c, w)} miles={distanceTo(c, project)} />)}
+                {hits.map((c) => (
+                  <CaseRow key={caseKey(c)} c={c} isNew={isNew(c, w)} miles={distanceTo(c, project)}
+                    markSeen={eachSeen ? markCaseSeen.bind(null, caseKey(c)) : undefined} />
+                ))}
               </ul>
             )}
           </section>

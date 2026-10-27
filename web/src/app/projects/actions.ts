@@ -58,6 +58,16 @@ export async function updateProject(id: number, fd: FormData) {
   revalidatePath("/", "layout");
 }
 
+// Suggestion #36 (feature "project-delete"). Notes, checklist, tasks, watches, alerts, delays and the OYL lot go with it
+// (all cascade).
+export async function deleteProject(id: number) {
+  const supabase = await createClient();
+  const { error } = await supabase.from("projects").delete().eq("id", id);
+  if (error) throw new Error(error.message);
+  revalidatePath("/", "layout");
+  redirect("/projects");
+}
+
 export async function addNote(projectId: number, fd: FormData) {
   const body = text(fd, "body");
   if (!body) return;

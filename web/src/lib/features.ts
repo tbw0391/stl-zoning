@@ -8,6 +8,30 @@ export type Feature = { key: string; title: string; description: string; added: 
 
 export const FEATURES: Feature[] = [
   {
+    key: "project-delete",
+    title: "Delete a project",
+    description: "Adds \"Delete this project…\" under Details on each project page, with a confirm step. Its notes, checklist, tasks, watches, alerts and OYL lot details are deleted with it. (Suggestion #36)",
+    added: "2026-10-26",
+    page: "/projects",
+  },
+
+  {
+    key: "alert-seen-each",
+    title: "Mark alerts seen one at a time",
+    description: "Each NEW case on the Alerts page, and each project timeline change, gets its own Mark seen link, so you can clear them one by one instead of a whole watch at once. (Suggestion #40)",
+    added: "2026-10-26",
+    page: "/alerts",
+  },
+
+  {
+    key: "calendar-past",
+    title: "Past meetings on the calendar list",
+    description: "The calendar's Range menu (List view) gets Past month, Past 3 months and Past 6 months, newest first. Month and Week views could already go back with the arrows. (Suggestion #34)",
+    added: "2026-10-26",
+    page: "/",
+  },
+
+  {
     key: "oyl-lots",
     title: "OYL lots page",
     description: "Adds OYL lots to the menu: Chad's OYL Tracker spreadsheet as a page, with the working lots, the lot-count box (with dollars) and closed lots with days to flash and to customer purchase. Add and edit lots there; each lot is also a project, so it gets nearby-case alerts and satellite images. Loaded with the Oct 19 sheet.",

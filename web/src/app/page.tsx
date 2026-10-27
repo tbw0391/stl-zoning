@@ -7,6 +7,7 @@ import { skipUnfollowed, unfollowedIds } from "@/lib/followed";
 import { addDays, addMonths, fmtDate, fmtMonth, fmtTime, shortName, startOfWeek, todayCentral } from "@/lib/format";
 import PageTitle from "@/components/PageTitle";
 import { isDemo } from "@/lib/demo";
+import { enabledFeatures } from "@/lib/features";
 
 export const dynamic = "force-dynamic";
 
@@ -29,7 +30,8 @@ type CalTask = { id: number; title: string; assigned_to: string | null; due_date
 type Item = { kind: "meeting"; date: string; meeting: Meeting } | { kind: "task"; date: string; task: CalTask };
 type View = "list" | "month" | "week";
 
-const RANGES: Record<string, number> = { "90": 90, "180": 180, "365": 365 };
+// Negative ranges look back (feature "calendar-past", suggestion #34), newest first.
+const RANGES: Record<string, number> = { "90": 90, "180": 180, "365": 365, "-30": -30, "-90": -90, "-180": -180 };
 const VIEWS: { id: View; label: string; icon: typeof faList }[] = [
   { id: "list", label: "List", icon: faList },
   { id: "month", label: "Month", icon: faCalendarDays },
@@ -48,7 +50,8 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
   // Date window for the chosen view. Month and week grids start on Sunday.
   const month = /^\d{4}-\d{2}$/.test(sp.m ?? "") ? sp.m! : today.slice(0, 7);
   const weekStart = startOfWeek(/^\d{4}-\d{2}-\d{2}$/.test(sp.w ?? "") ? sp.w! : today);
-  let start = today, end = addDays(today, days);
+  const past = view === "list" && days < 0;
+  let start = past ? addDays(today, days) : today, end = past ? addDays(today, -1) : addDays(today, days);
   if (view === "month") {
     start = startOfWeek(month + "-01");
     end = addDays(startOfWeek(addDays(addMonths(month, 1) + "-01", -1)), 6);
@@ -60,7 +63,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
   const supabase = await createClient();
   const off = await unfollowedIds(supabase);
   // Tasks are Lombardo's own; the demo leaves them out.
-  const showTasks = !sp.j && (!sp.type || sp.type === "tasks") && !(await isDemo());
+  const showTasks = !sp.j && (!sp.type || sp.type === "tasks") && !past && !(await isDemo());
   const showMeetings = sp.type !== "tasks";
   const [{ data: jurisdictions }, { data: meetings }, { data: tasks }] = await Promise.all([
     supabase.from("jurisdictions").select("id, name, governing_body, county").order("name"),
@@ -109,7 +112,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
       .map((t): Item => ({ kind: "task", date: t.due_date < today ? today : t.due_date, task: t }))
       .filter((it) => it.date >= start),
     ...rows.map((m): Item => ({ kind: "meeting", date: m.event_date, meeting: m })),
-  ].sort((a, b) => a.date.localeCompare(b.date));
+  ].sort((a, b) => (past ? b.date.localeCompare(a.date) : a.date.localeCompare(b.date)));
 
   const byDay = new Map<string, Item[]>();
   for (const it of items) {
@@ -222,6 +225,13 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
               <option value="90">Next 3 months</option>
               <option value="180">Next 6 months</option>
               <option value="365">Next 12 months</option>
+              {(await enabledFeatures()).includes("calendar-past") && (
+                <>
+                  <option value="-30">Past month</option>
+                  <option value="-90">Past 3 months</option>
+                  <option value="-180">Past 6 months</option>
+                </>
+              )}
             </select>
           </label>
         )}

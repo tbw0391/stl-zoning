@@ -14,7 +14,7 @@ import { enabledFeatures } from "@/lib/features";
 import { Suspense } from "react";
 import SatelliteCard from "@/components/SatelliteCard";
 import NoteEdit from "@/components/NoteEdit";
-import { addChecklistItem, addDelay, addNote, addProjectPlace, applyTemplate, confirmPossibleDelay, deleteChecklistItem, deleteDelay, dismissPossibleDelay,
+import { addChecklistItem, addDelay, addNote, addProjectPlace, applyTemplate, confirmPossibleDelay, deleteChecklistItem, deleteDelay, deleteProject, dismissPossibleDelay,
   removeProjectPlace, setChecklistDone, updateProject } from "../actions";
 
 export const dynamic = "force-dynamic";
@@ -206,6 +206,13 @@ export default async function ProjectPage({ params, searchParams }: { params: Pr
             <label>Description<textarea name="description" rows={3} defaultValue={p.description ?? ""} /></label>
             <div><button type="submit">Save</button></div>
           </form>
+          {features.includes("project-delete") && (
+            <details className="card small delete-project">
+              <summary>Delete this project…</summary>
+              <p>Deletes the project with its notes, checklist, tasks, watches, alerts{oylLot ? " and OYL lot details" : ""}. This can&apos;t be undone.</p>
+              <form action={deleteProject.bind(null, id)}><button type="submit" className="danger-btn">Yes, delete {p.name}</button></form>
+            </details>
+          )}
           {multiPlace && (
             <div className="card">
               <strong className="small">Also in</strong>

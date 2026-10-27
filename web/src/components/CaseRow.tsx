@@ -3,7 +3,8 @@ import { fmtDate, shortName } from "@/lib/format";
 import { ITEM_TYPE_LABEL } from "@/components/MeetingSummary";
 import { Case, caseTypes } from "@/lib/cases";
 
-export default function CaseRow({ c, isNew, miles }: { c: Case; isNew: boolean; miles: number | null }) {
+// `markSeen`: a server action shown as a "Mark seen" link on a NEW case (alerts page, feature "alert-seen-each").
+export default function CaseRow({ c, isNew, miles, markSeen }: { c: Case; isNew: boolean; miles: number | null; markSeen?: () => Promise<void> }) {
   const t = caseTypes(c)[0];
   return (
     <li className={isNew ? "fresh" : undefined}>
@@ -12,6 +13,7 @@ export default function CaseRow({ c, isNew, miles }: { c: Case; isNew: boolean; 
         <span className={`tag case-${t}`}>{ITEM_TYPE_LABEL[t] ?? t}</span>
         <Link href={`/meetings/${c.meeting_id}`}><strong>{shortName(c.jurisdiction_name)}</strong></Link>
         <span className="small muted">{fmtDate(c.event_date)} · {c.body === "planning_zoning" ? "P&Z" : "Council"}{miles != null && ` · ${miles.toFixed(1)} mi away`}</span>
+        {isNew && markSeen && <form action={markSeen} className="inline"><button type="submit" className="link small">Mark seen</button></form>}
       </div>
       <div><strong>{c.item}</strong> <span className="muted">· {c.request}</span></div>
       {(c.applicant || c.acres != null || c.units != null) && (

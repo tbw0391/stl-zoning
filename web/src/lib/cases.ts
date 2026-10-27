@@ -15,6 +15,7 @@ export type Case = {
 export type Watch = {
   id: number; name: string; project_id: number | null; radius_miles: number;
   counties: string[] | null; jurisdiction_ids: string[] | null; types: string[] | null; last_seen_at: string;
+  seen_cases?: string[]; // marked seen one at a time (suggestion #40)
 };
 
 export type Place = { lat: number | null; lng: number | null };
@@ -51,7 +52,9 @@ export function matches(c: Case, w: Watch, project?: Place) {
   return true;
 }
 
-export const isNew = (c: Case, w: Watch) => !!c.agenda_read_at && c.agenda_read_at > w.last_seen_at;
+export const caseKey = (c: Case) => `${c.meeting_id}-${c.idx}`;
+export const isNew = (c: Case, w: Watch) =>
+  !!c.agenda_read_at && c.agenda_read_at > w.last_seen_at && !(w.seen_cases ?? []).includes(caseKey(c));
 
 // New matches across all watches (a case counts once), for the nav badge.
 export async function newAlertCount(supabase: SupabaseClient) {
