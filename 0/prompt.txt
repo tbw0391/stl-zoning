@@ -1,0 +1,9 @@
+how am i going to break out the stuff for chad?
+
+---
+
+ok now they are asking about moving this behind their firewall.  so to counter that I want to make sure this is secure so if they do an audit they cant get access to other data.  I almost wish we had complety seperate tennants like we did for boathouseOS
+
+---
+
+Put that stuff on the to-do list. Let’s see what suggestions were added today.
