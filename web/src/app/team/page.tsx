@@ -23,17 +23,17 @@ export default async function TeamPage() {
     <>
       <PageTitle href="/team" icon={faUsers}>Team</PageTitle>
       <p className="muted">
-        People who can sign in. They sign in at <code>/login</code> with a 6-digit code sent to their email, or by text if
-        a mobile number is on file. No passwords.
+        People who can sign in. They sign in at <code>/login</code> with a 6-digit code texted to their mobile number. No
+        passwords, no sign-in emails.
       </p>
       <div className="table-wrap">
         <table>
-          <thead><tr><th>Email</th><th>Mobile</th><th>Last signed in</th><th></th></tr></thead>
+          <thead><tr><th>Mobile</th><th>Email</th><th>Last signed in</th><th></th></tr></thead>
           <tbody>
             {members.map((m) => (
               <tr key={m.id}>
-                <td>{m.email ?? <span className="muted">—</span>}{m.id === out.me && <span className="muted small"> (you)</span>}</td>
-                <td>{m.phone ?? <span className="muted">—</span>}</td>
+                <td>{m.phone ?? <span className="error small">No number: can&apos;t sign in</span>}{m.id === out.me && <span className="muted small"> (you)</span>}</td>
+                <td>{m.email ?? <span className="muted">—</span>}</td>
                 <td>{m.last_sign_in_at ? fmtDate(m.last_sign_in_at.slice(0, 10)) : <span className="muted">Never</span>}</td>
                 <td>
                   {m.id !== out.me && (
@@ -50,7 +50,7 @@ export default async function TeamPage() {
       <h2>Add someone</h2>
       <div className="card">
         <AddMember />
-        <p className="source">Adding a mobile number to someone already listed: enter their email and the number.</p>
+        <p className="source">To add a number for someone already listed, enter their number and the email shown for them.</p>
       </div>
     </>
   );
