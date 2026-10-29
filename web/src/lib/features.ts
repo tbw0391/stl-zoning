@@ -66,8 +66,8 @@ export const FEATURES: Feature[] = [
 
   {
     key: "state-picker",
-    title: "State picker (Ohio preview)",
-    description: "Adds a State menu to the header. Pick Ohio to see the Columbus-area cities and townships being collected for the public version of the site: their calendar, meetings, rezonings and votes. Missouri stays the default, and your follow list, digest and alerts don't change.",
+    title: "Area picker: St. Louis or Columbus (Ohio preview)",
+    description: "Adds an area menu to the header (St. Louis area or Columbus area). Pick Columbus to see the Ohio cities and townships being collected for the public version of the site: their calendar, meetings, rezonings and votes. St. Louis stays the default, and your follow list, digest and alerts don't change.",
     added: "2026-10-22",
     page: "/jurisdictions",
   },

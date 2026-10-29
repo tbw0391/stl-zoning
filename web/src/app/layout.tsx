@@ -16,7 +16,7 @@ import { enabledFeatures, unseenFeatureCount } from "@/lib/features";
 import FeaturesProvider from "@/components/FeaturesProvider";
 import HistoryAsk from "@/components/HistoryAsk";
 import StatePicker from "@/components/StatePicker";
-import { STATES, currentState } from "@/lib/state";
+import { METROS, currentState } from "@/lib/state";
 import { headers } from "next/headers";
 import HawkeyeMark from "@/components/HawkeyeMark";
 import { isDemo } from "@/lib/demo";
@@ -118,7 +118,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           </Link>
           <Nav alerts={alerts + projectAlerts.length} features={featuresOn} />
           <div className="header-actions">
-            {featuresOn.includes("state-picker") && <StatePicker states={STATES} current={state} />}
+            {featuresOn.includes("state-picker") && <StatePicker states={METROS} current={state} />}
             <Link href="/features" className="suggest-btn">
               <FontAwesomeIcon icon={faStar} /> New features
               {newFeatures > 0 && <span className="badge">{newFeatures}</span>}
