@@ -10,7 +10,7 @@ import Nav from "@/components/Nav";
 import SuggestButton from "@/components/SuggestButton";
 import { createClient } from "@/lib/supabase/server";
 import { newAlertCount } from "@/lib/cases";
-import { unseenProjectAlerts } from "@/lib/projectAlerts";
+import { alertHref, unseenProjectAlerts } from "@/lib/projectAlerts";
 import { dismissProjectAlerts } from "@/app/alerts/actions";
 import { enabledFeatures, unseenFeatureCount } from "@/lib/features";
 import FeaturesProvider from "@/components/FeaturesProvider";
@@ -120,7 +120,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <ul className="plain">
               {projectAlerts.slice(0, 3).map((a) => (
                 <li key={a.id}>
-                  <strong><Link href={`/projects/${a.project_id}`}>{a.title}</Link></strong>
+                  <strong><Link href={alertHref(a)}>{a.title}</Link></strong>
                   {a.body && <span> · {a.body}</span>}
                 </li>
               ))}

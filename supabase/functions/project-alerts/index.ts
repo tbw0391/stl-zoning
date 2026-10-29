@@ -1,5 +1,5 @@
-// Emails project alerts (logged delays and possible delays found on agendas or in minutes) to the team as soon as
-// they're posted. Called by the project_alerts insert trigger and an hourly sweep (see the
+// Emails project alerts (logged delays, possible delays found on agendas or in minutes, and new agendas and minutes
+// for project municipalities) to the team as soon as they're posted. Called by the project_alerts insert trigger and an hourly sweep (see the
 // delay_detection_and_email migration); sends every alert not yet emailed in one message.
 //
 // Secrets: RESEND_API_KEY, DIGEST_FROM, DIGEST_TO (shared with weekly-digest); SITE_URL optional.
@@ -12,6 +12,9 @@ import { createClient } from "jsr:@supabase/supabase-js@2";
 const TZ = "America/Chicago";
 const SITE = (Deno.env.get("SITE_URL") ?? "https://stl-zoning.vercel.app").replace(/\/$/, "");
 const C = { teal: "#096764", amber: "#ffb549", orange: "#c4502a", warn: "#8a5a00", text: "#1d2a28", muted: "#5f6b67", border: "#e3e1da", bg: "#f6f5f1" };
+const KIND_PILL: Record<string, [string, string]> = {
+  delay: ["DELAY", C.orange], possible_delay: ["POSSIBLE DELAY", C.warn], agenda_posted: ["AGENDA", C.teal], minutes_posted: ["MINUTES", C.teal],
+};
 
 // deno-lint-ignore no-explicit-any
 type Row = Record<string, any>;
@@ -45,19 +48,19 @@ Deno.serve(async (req) => {
 
   const items = rows.map((a) => `
     <tr><td style="padding:12px 0;border-top:1px solid ${C.border};font-size:14px;color:${C.text}">
-      ${a.kind === "delay" ? pill("DELAY", C.orange) : pill("POSSIBLE DELAY", C.warn)}
-      <a href="${SITE}/projects${a.project_id ? `/${a.project_id}` : ""}" style="color:${C.teal};font-weight:700;text-decoration:none">${esc(a.title)}</a>
+      ${KIND_PILL[a.kind] ? pill(KIND_PILL[a.kind][0], KIND_PILL[a.kind][1]) : ""}
+      <a href="${SITE}${a.project_id ? `/projects/${a.project_id}` : a.meeting_id ? `/meetings/${a.meeting_id}` : "/projects"}" style="color:${C.teal};font-weight:700;text-decoration:none">${esc(a.title)}</a>
       ${a.body ? `<div style="margin-top:4px">${esc(a.body)}</div>` : ""}
       <div style="font-size:12px;color:${C.muted};margin-top:2px">${stamp(a.created_at)}</div>
     </td></tr>`).join("");
   const html = `<!doctype html><html><body style="margin:0;background:${C.bg};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.bg};padding:24px 12px"><tr><td align="center">
 <table role="presentation" width="640" cellpadding="0" cellspacing="0" style="max-width:640px;width:100%;background:#fff;border:1px solid ${C.border};border-radius:12px;overflow:hidden">
-<tr><td style="padding:18px 24px;border-bottom:3px solid ${C.amber};font-weight:700;font-size:15px;color:${C.text}">Entitlement Tracker · Project timeline</td></tr>
+<tr><td style="padding:18px 24px;border-bottom:3px solid ${C.amber};font-weight:700;font-size:15px;color:${C.text}">Entitlement Tracker · Project alerts</td></tr>
 <tr><td style="padding:8px 24px 4px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse">${items}</table></td></tr>
 <tr><td style="padding:20px 24px"><a href="${SITE}/alerts" style="color:${C.teal};font-size:13px">See all alerts</a></td></tr>
 </table>
-<p style="color:${C.muted};font-size:12px;margin:12px 0 0">Sent when a project's hearing or vote is postponed, or its case looks continued on an agenda or in minutes.</p>
+<p style="color:${C.muted};font-size:12px;margin:12px 0 0">Sent when a project's hearing or vote is postponed or its case looks continued, when an agenda is posted in a project's municipality, and when minutes are posted for a meeting that had a project's case.</p>
 </td></tr></table></body></html>`;
 
   if (url.searchParams.get("preview")) return new Response(html, { headers: { "Content-Type": "text/html; charset=utf-8" } });
@@ -68,7 +71,7 @@ Deno.serve(async (req) => {
   const missing = [!key && "RESEND_API_KEY", !from && "DIGEST_FROM", !to.length && "DIGEST_TO"].filter(Boolean);
   if (missing.length) return new Response(`Missing secret: ${missing.join(", ")}`, { status: 500 });
 
-  const subject = (sample ? "[Sample] " : "") + (rows.length === 1 ? rows[0].title : `${rows.length} project timeline alerts: ${rows[0].title}`);
+  const subject = (sample ? "[Sample] " : "") + (rows.length === 1 ? rows[0].title : `${rows.length} project alerts: ${rows[0].title}`);
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },

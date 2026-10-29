@@ -8,7 +8,7 @@ import PageTitle from "@/components/PageTitle";
 import Link from "next/link";
 import { createWatch, deleteWatch, dismissProjectAlert, dismissProjectAlerts, markCaseSeen, markSeen } from "./actions";
 import { enabledFeatures } from "@/lib/features";
-import { unseenProjectAlerts } from "@/lib/projectAlerts";
+import { alertHref, unseenProjectAlerts, visibleAlerts, type ProjectAlert } from "@/lib/projectAlerts";
 
 // Project timeline changes listed at the top of the page.
 const PROJECT_ALERT_DAYS = 60;
@@ -28,13 +28,15 @@ export default async function AlertsPage() {
     supabase.from("jurisdictions").select("id, name, county").eq("followed", true).eq("state", st).order("name"),
     loadCases(supabase),
   ]);
-  const [{ data: projectAlerts }, unseen] = await Promise.all([
+  const [{ data: alertRows }, unseen] = await Promise.all([
     supabase.from("project_alerts").select("*").gt("created_at", new Date(Date.now() - PROJECT_ALERT_DAYS * 86400000).toISOString())
       .order("created_at", { ascending: false }),
     unseenProjectAlerts(supabase).catch(() => []),
   ]);
+  const projectAlerts = await visibleAlerts((alertRows ?? []) as ProjectAlert[]);
   const unseenIds = new Set(unseen.map((a) => a.id));
-  const eachSeen = (await enabledFeatures()).includes("alert-seen-each");
+  const feats = await enabledFeatures();
+  const eachSeen = feats.includes("alert-seen-each");
   const watches = (watchRows ?? []) as Watch[];
   const pmap = new Map((projects ?? []).map((p) => [p.id, p as Place & { name: string }]));
   const counties = [...new Set((jurisdictions ?? []).map((j) => j.county))].sort();
@@ -48,16 +50,16 @@ export default async function AlertsPage() {
         Cases from the last 45 days and upcoming meetings are shown; <strong>NEW</strong> marks ones that arrived since you last marked a watch as seen.
       </p>
 
-      {(projectAlerts ?? []).length > 0 && (
+      {projectAlerts.length > 0 && (
         <section className="card watch">
           <div className="watch-head">
-            <h2>Project timeline changes {unseenIds.size > 0 && <span className="tag due">{unseenIds.size} NEW</span>}</h2>
+            <h2>{feats.includes("meeting-alerts") ? "Project alerts" : "Project timeline changes"} {unseenIds.size > 0 && <span className="tag due">{unseenIds.size} NEW</span>}</h2>
             {unseenIds.size > 0 && <form action={dismissProjectAlerts}><button type="submit" className="link">Mark seen</button></form>}
           </div>
           <ul className="plain">
-            {projectAlerts!.map((a) => (
+            {projectAlerts.map((a) => (
               <li key={a.id}>
-                <strong><Link href={`/projects/${a.project_id}`}>{a.title}</Link></strong>
+                <strong><Link href={alertHref(a)}>{a.title}</Link></strong>
                 {unseenIds.has(a.id) && <span className="tag due">NEW</span>}
                 {unseenIds.has(a.id) && eachSeen && (
                   <form action={dismissProjectAlert.bind(null, a.id)} className="inline"><button type="submit" className="link small">Mark seen</button></form>

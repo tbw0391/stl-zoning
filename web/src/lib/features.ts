@@ -8,6 +8,14 @@ export type Feature = { key: string; title: string; description: string; added: 
 
 export const FEATURES: Feature[] = [
   {
+    key: "meeting-alerts",
+    title: "Agenda and minutes alerts for project cities",
+    description: "Alerts (and the banner) also show when an agenda is posted for an upcoming meeting in a municipality where you have an open project, naming the projects there and any agenda item near one, and when minutes are posted for a meeting that had a project's case or an item at its site. (Suggestions #38 and #39)",
+    added: "2026-10-29",
+    page: "/alerts",
+  },
+
+  {
     key: "calendar-multi",
     title: "Pick several municipalities on the calendar",
     description: "The calendar's Municipality menu becomes a checklist: tick one, some or all of them, then Apply. Nothing ticked shows everything, as before. (Suggestion #37)",

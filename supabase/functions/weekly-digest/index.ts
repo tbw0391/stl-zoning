@@ -75,7 +75,8 @@ Deno.serve(async (req) => {
     db.from("source_watches").select("jurisdiction_id, url, label, last_status, last_changed_at, change_summary, reviewed_at, jurisdictions!inner(followed, state)")
       .eq("jurisdictions.followed", true).eq("jurisdictions.state", "MO").not("last_changed_at", "is", null).order("jurisdiction_id"),
     // Logged delays and possible delays from agendas/minutes (each was also emailed when posted, by project-alerts).
-    db.from("project_alerts").select("project_id, kind, title, body, created_at").gte("created_at", weekAgo).order("created_at"),
+    db.from("project_alerts").select("project_id, kind, title, body, created_at").in("kind", ["delay", "possible_delay"])
+      .gte("created_at", weekAgo).order("created_at"),
   ]);
   const jmap = new Map((js ?? []).map((j: Row) => [j.id, j]));
   const pmap = new Map((projects ?? []).map((p: Row) => [p.id, p.name]));
