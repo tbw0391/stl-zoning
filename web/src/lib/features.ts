@@ -8,6 +8,14 @@ export type Feature = { key: string; title: string; description: string; added: 
 
 export const FEATURES: Feature[] = [
   {
+    key: "calendar-multi",
+    title: "Pick several municipalities on the calendar",
+    description: "The calendar's Municipality menu becomes a checklist: tick one, some or all of them, then Apply. Nothing ticked shows everything, as before. (Suggestion #37)",
+    added: "2026-10-29",
+    page: "/",
+  },
+
+  {
     key: "project-delete",
     title: "Delete a project",
     description: "Adds \"Delete this project…\" under Details on each project page, with a confirm step. Its notes, checklist, tasks, watches, alerts and OYL lot details are deleted with it. (Suggestion #36)",

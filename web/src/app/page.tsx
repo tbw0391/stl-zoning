@@ -42,6 +42,11 @@ const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 export default async function CalendarPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const sp = await searchParams;
+  // Municipality filter: one id, a comma list, or a repeated j from the checklist (suggestion #37).
+  const rawJ = sp.j as string | string[] | undefined;
+  const pickedJ = (Array.isArray(rawJ) ? rawJ : (rawJ ?? "").split(",")).filter(Boolean);
+  const jParam = pickedJ.join(",") || undefined;
+  const feats = await enabledFeatures();
   // The last view someone picked is remembered in a cookie (set by middleware).
   const picked = sp.view ?? (await cookies()).get("cal_view")?.value;
   const view: View = picked === "month" || picked === "week" ? picked : "list";
@@ -64,13 +69,13 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
   const supabase = await createClient();
   const off = await unfollowedIds(supabase);
   // Tasks are Lombardo's own; the demo leaves them out.
-  const showTasks = !sp.j && (!sp.type || sp.type === "tasks") && !past && !(await isDemo());
+  const showTasks = !pickedJ.length && (!sp.type || sp.type === "tasks") && !past && !(await isDemo());
   const showMeetings = sp.type !== "tasks";
   const [{ data: jurisdictions }, { data: meetings }, { data: tasks }] = await Promise.all([
     supabase.from("jurisdictions").select("id, name, governing_body, county").eq("state", await currentState()).order("name"),
     (() => {
       let q = supabase.from("meetings").select("*").gte("event_date", start).lte("event_date", end).order("event_date").order("event_time");
-      q = sp.j ? q.eq("jurisdiction_id", sp.j) : skipUnfollowed(q, off);
+      q = pickedJ.length ? q.in("jurisdiction_id", pickedJ) : skipUnfollowed(q, off);
       if (sp.type === "deadlines") q = q.eq("event_type", "submittal_deadline");
       if (sp.type === "pz") q = q.eq("body", "planning_zoning").eq("event_type", "meeting");
       if (sp.type === "gov") q = q.eq("body", "governing_body");
@@ -124,7 +129,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
   // Query string for a link that keeps the current filters but changes some of them.
   const href = (change: Record<string, string | undefined>) => {
     const p = new URLSearchParams();
-    for (const [k, v] of Object.entries({ j: sp.j, type: sp.type, days: sp.days, view: sp.view, m: sp.m, w: sp.w, ...change })) {
+    for (const [k, v] of Object.entries({ j: jParam, type: sp.type, days: sp.days, view: sp.view, m: sp.m, w: sp.w, ...change })) {
       if (v) p.set(k, v);
     }
     const s = p.toString();
@@ -203,14 +208,29 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
         <input type="hidden" name="view" value={view} />
         {view === "month" && sp.m && <input type="hidden" name="m" value={sp.m} />}
         {view === "week" && sp.w && <input type="hidden" name="w" value={sp.w} />}
-        <label>Municipality
-          <select name="j" defaultValue={sp.j ?? ""}>
-            <option value="">All</option>
-            {(jurisdictions ?? []).filter((j) => coveredIds.includes(j.id)).map((j) => (
-              <option key={j.id} value={j.id}>{shortName(j.name)}</option>
-            ))}
-          </select>
-        </label>
+        {feats.includes("calendar-multi") ? (
+          <div className="multi-pick-wrap">
+            <span>Municipality</span>
+            <details className="multi-pick">
+              <summary>{pickedJ.length === 0 ? "All" : pickedJ.length === 1 ? shortName(jmap.get(pickedJ[0])?.name ?? pickedJ[0]) : `${pickedJ.length} selected`}</summary>
+              <div className="multi-pick-list">
+                <p className="muted small">Tick one or more, then Apply. None ticked shows all.</p>
+                {(jurisdictions ?? []).filter((j) => coveredIds.includes(j.id)).map((j) => (
+                  <label key={j.id}><input type="checkbox" name="j" value={j.id} defaultChecked={pickedJ.includes(j.id)} /> {shortName(j.name)}</label>
+                ))}
+              </div>
+            </details>
+          </div>
+        ) : (
+          <label>Municipality
+            <select name="j" defaultValue={pickedJ.length === 1 ? pickedJ[0] : ""}>
+              <option value="">All</option>
+              {(jurisdictions ?? []).filter((j) => coveredIds.includes(j.id)).map((j) => (
+                <option key={j.id} value={j.id}>{shortName(j.name)}</option>
+              ))}
+            </select>
+          </label>
+        )}
         <label>Show
           <select name="type" defaultValue={sp.type ?? ""}>
             <option value="">Everything</option>
@@ -226,7 +246,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
               <option value="90">Next 3 months</option>
               <option value="180">Next 6 months</option>
               <option value="365">Next 12 months</option>
-              {(await enabledFeatures()).includes("calendar-past") && (
+              {feats.includes("calendar-past") && (
                 <>
                   <option value="-30">Past month</option>
                   <option value="-90">Past 3 months</option>

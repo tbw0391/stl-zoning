@@ -93,6 +93,20 @@ button.link { background: none; border: 0; padding: 0; color: var(--accent); cur
 .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; box-shadow: var(--shadow); }
 .filters { display: flex; gap: 10px; flex-wrap: wrap; align-items: end; margin: 16px 0; }
 .filters label { display: flex; flex-direction: column; font-size: .8rem; color: var(--muted); gap: 4px; }
+.multi-pick-wrap { display: flex; flex-direction: column; font-size: .8rem; color: var(--muted); gap: 4px; position: relative; }
+.multi-pick summary {
+  list-style: none; cursor: pointer; font-size: 1rem; color: var(--text); padding: 7px 10px; min-width: 180px;
+  border: 1px solid var(--border); border-radius: 7px; background: var(--surface);
+}
+.multi-pick summary::-webkit-details-marker { display: none; }
+.multi-pick summary::after { content: "▾"; float: right; margin-left: 8px; color: var(--muted); }
+.multi-pick-list {
+  position: absolute; z-index: 20; top: 100%; margin-top: 4px; min-width: 240px; max-height: 340px; overflow-y: auto;
+  padding: 8px 12px; border: 1px solid var(--border); border-radius: 7px; background: var(--surface);
+  box-shadow: 0 6px 20px rgba(0,0,0,.12);
+}
+.multi-pick-list p { margin: 0 0 6px; }
+.filters .multi-pick-list label { flex-direction: row; align-items: center; gap: 8px; font-size: .95rem; color: var(--text); padding: 3px 0; }
 select, input[type=email], input[type=search], input[type=text], input:not([type]), input[type=date], input[type=number] {
   font: inherit; padding: 7px 10px; border: 1px solid var(--border); border-radius: 7px;
   background: var(--surface); color: var(--text); min-width: 180px;
