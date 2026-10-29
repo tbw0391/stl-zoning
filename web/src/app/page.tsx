@@ -8,6 +8,7 @@ import { addDays, addMonths, fmtDate, fmtMonth, fmtTime, shortName, startOfWeek,
 import PageTitle from "@/components/PageTitle";
 import { isDemo } from "@/lib/demo";
 import { enabledFeatures } from "@/lib/features";
+import { currentState } from "@/lib/state";
 
 export const dynamic = "force-dynamic";
 
@@ -66,7 +67,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
   const showTasks = !sp.j && (!sp.type || sp.type === "tasks") && !past && !(await isDemo());
   const showMeetings = sp.type !== "tasks";
   const [{ data: jurisdictions }, { data: meetings }, { data: tasks }] = await Promise.all([
-    supabase.from("jurisdictions").select("id, name, governing_body, county").order("name"),
+    supabase.from("jurisdictions").select("id, name, governing_body, county").eq("state", await currentState()).order("name"),
     (() => {
       let q = supabase.from("meetings").select("*").gte("event_date", start).lte("event_date", end).order("event_date").order("event_time");
       q = sp.j ? q.eq("jurisdiction_id", sp.j) : skipUnfollowed(q, off);

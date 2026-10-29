@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import { shortName } from "@/lib/format";
+import { currentState } from "@/lib/state";
 import { ASK_COOKIE } from "@/lib/features";
 import { answerHistoryAsk } from "@/app/history-ask/actions";
 
@@ -10,7 +11,7 @@ export default async function HistoryAsk() {
   if ((await cookies()).get(ASK_COOKIE)) return null;
   const supabase = await createClient();
   const { data: js } = await supabase.from("jurisdictions").select("id, name").not("collector", "is", null)
-    .not("id", "in", "(chesterfield,stcharles_county,wildwood)").order("name");
+    .eq("state", await currentState()).not("id", "in", "(chesterfield,stcharles_county,wildwood)").order("name");
   return (
     <form action={answerHistoryAsk} className="alert-banner ask-banner">
       <div>
