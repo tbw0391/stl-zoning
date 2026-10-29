@@ -20,6 +20,7 @@ import { STATES, currentState } from "@/lib/state";
 import { headers } from "next/headers";
 import HawkeyeMark from "@/components/HawkeyeMark";
 import { isDemo } from "@/lib/demo";
+import { SITE_MODE } from "@/lib/siteMode";
 import { DEMO_NAV, PRODUCT, isPublicPage } from "@/lib/demoPaths";
 import "./globals.css";
 
@@ -32,8 +33,24 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: "Entitlement Tracker", description: "St. Charles County rezoning processes, meeting calendar and contacts" };
 }
 
-// The public pages (/welcome, /signup) get their own plain header, with nothing of Lombardo's.
+// The public pages (/welcome, /signup) get their own plain header, with nothing of Lombardo's. On Lombardo's own
+// deployment only /login is left, under Lombardo's name.
 function PublicShell({ children }: { children: React.ReactNode }) {
+  if (SITE_MODE === "lombardo") {
+    return (
+      <html lang="en" className={jakarta.className}>
+        <body className="public-body">
+          <header className="public-top">
+            <span className="brand">
+              <Image src="/lombardo-logo.png" alt="Lombardo Homes" width={142} height={40} priority />
+              <span className="brand-name">Entitlement Tracker</span>
+            </span>
+          </header>
+          <main className="public">{children}</main>
+        </body>
+      </html>
+    );
+  }
   return (
     <html lang="en" className={jakarta.className}>
       <body className="public-body">
@@ -64,7 +81,7 @@ async function DemoShell({ children, featuresOn }: { children: React.ReactNode; 
           <Nav only={DEMO_NAV} />
           <div className="header-actions">
             <Link href="/signup" className="btn">Sign up</Link>
-            <a href="/demo/exit" className="small">Exit demo</a>
+            {SITE_MODE !== "hawkeye" && <a href="/demo/exit" className="small">Exit demo</a>}
           </div>
         </header>
         <div className="alert-banner demo-banner" role="status">

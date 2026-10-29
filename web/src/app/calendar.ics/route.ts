@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { addDays, todayCentral } from "@/lib/format";
 import { buildIcs, type FeedMeeting } from "@/lib/ics";
+import { SITE_MODE } from "@/lib/siteMode";
 
 export const dynamic = "force-dynamic";
 
@@ -14,8 +15,11 @@ export async function GET(request: Request) {
     .gte("event_date", addDays(todayCentral(), -60))
     .order("event_date");
   const only = url.searchParams.get("j");
-  const state = /^[A-Z]{2}$/.test(url.searchParams.get("state") ?? "") ? url.searchParams.get("state")! : "MO";
+  const asked = /^[A-Z]{2}$/.test(url.searchParams.get("state") ?? "") ? url.searchParams.get("state")! : null;
+  // Each deployment feeds its own state (lib/siteMode); the combined site takes ?state=.
+  const state = SITE_MODE === "lombardo" ? "MO" : SITE_MODE === "hawkeye" ? "OH" : asked ?? "MO";
   q = only ? q.in("jurisdiction_id", only.split(",").map((s) => s.trim())) : q.eq("jurisdictions.followed", true).eq("jurisdictions.state", state);
+  if (only && SITE_MODE !== "both") q = q.eq("jurisdictions.state", state);
   const { data, error } = await q;
   if (error) return new Response("Error loading meetings", { status: 500 });
 

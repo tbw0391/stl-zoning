@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { isDemo } from "@/lib/demo";
+import { SITE_MODE } from "@/lib/siteMode";
 
 // Opt-in features: the site stays as it is for each person until they switch a feature on at /features. Choices are
 // kept in a cookie, so they're per browser (there are no logins yet). Add new entries at the top with today's date;
@@ -96,6 +97,9 @@ export const FEATURES: Feature[] = [
   },
 ];
 
+// What this deployment offers: Lombardo's own site has no other states to pick.
+export const SITE_FEATURES = FEATURES.filter((f) => !(SITE_MODE === "lombardo" && f.key === "state-picker"));
+
 export const ON_COOKIE = "features_on";
 export const SEEN_COOKIE = "features_seen";
 // The history question banner (components/HistoryAsk), hidden once answered.
@@ -103,13 +107,13 @@ export const ASK_COOKIE = "history_ask";
 
 export async function enabledFeatures(): Promise<string[]> {
   // The demo shows everything that's been built.
-  if (await isDemo()) return FEATURES.map((f) => f.key);
+  if (await isDemo()) return SITE_FEATURES.map((f) => f.key);
   const raw = (await cookies()).get(ON_COOKIE)?.value ?? "";
-  return raw.split(",").filter((k) => FEATURES.some((f) => f.key === k));
+  return raw.split(",").filter((k) => SITE_FEATURES.some((f) => f.key === k));
 }
 
 // Features added after the person last opened the Features tab.
 export async function unseenFeatureCount(): Promise<number> {
   const seen = (await cookies()).get(SEEN_COOKIE)?.value ?? "";
-  return FEATURES.filter((f) => f.added > seen).length;
+  return SITE_FEATURES.filter((f) => f.added > seen).length;
 }

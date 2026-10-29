@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import PageTitle from "@/components/PageTitle";
-import { FEATURES, SEEN_COOKIE, enabledFeatures, unseenFeatureCount } from "@/lib/features";
+import { SITE_FEATURES as FEATURES, SEEN_COOKIE, enabledFeatures, unseenFeatureCount } from "@/lib/features";
 import { fmtDate } from "@/lib/format";
 import { cookies } from "next/headers";
 import { setFeature } from "./actions";
