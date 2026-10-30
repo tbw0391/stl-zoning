@@ -8,7 +8,7 @@ import PageTitle from "@/components/PageTitle";
 import Link from "next/link";
 import { createWatch, deleteWatch, dismissProjectAlert, dismissProjectAlerts, markCaseSeen, markSeen } from "./actions";
 import { enabledFeatures } from "@/lib/features";
-import { alertHref, unseenProjectAlerts, visibleAlerts, type ProjectAlert } from "@/lib/projectAlerts";
+import { alertHref, unseenProjectAlerts, type ProjectAlert } from "@/lib/projectAlerts";
 
 // Project timeline changes listed at the top of the page.
 const PROJECT_ALERT_DAYS = 60;
@@ -33,7 +33,7 @@ export default async function AlertsPage() {
       .order("created_at", { ascending: false }),
     unseenProjectAlerts(supabase).catch(() => []),
   ]);
-  const projectAlerts = await visibleAlerts((alertRows ?? []) as ProjectAlert[]);
+  const projectAlerts = (alertRows ?? []) as ProjectAlert[];
   const unseenIds = new Set(unseen.map((a) => a.id));
   const feats = await enabledFeatures();
   const eachSeen = feats.includes("alert-seen-each");
@@ -53,7 +53,7 @@ export default async function AlertsPage() {
       {projectAlerts.length > 0 && (
         <section className="card watch">
           <div className="watch-head">
-            <h2>{feats.includes("meeting-alerts") ? "Project alerts" : "Project timeline changes"} {unseenIds.size > 0 && <span className="tag due">{unseenIds.size} NEW</span>}</h2>
+            <h2>Project alerts {unseenIds.size > 0 && <span className="tag due">{unseenIds.size} NEW</span>}</h2>
             {unseenIds.size > 0 && <form action={dismissProjectAlerts}><button type="submit" className="link">Mark seen</button></form>}
           </div>
           <ul className="plain">
