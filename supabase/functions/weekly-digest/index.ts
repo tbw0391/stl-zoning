@@ -5,7 +5,7 @@
 //   RESEND_API_KEY  Resend API key
 //   DIGEST_TO       recipient(s), comma-separated, e.g. the company distribution list
 //   DIGEST_FROM     sender on a domain verified in Resend, e.g. "Entitlement Tracker <tracker@example.com>"
-//   SITE_URL        optional, defaults to https://stl-zoning.vercel.app
+//   SITE_URL        optional, defaults to https://app.rezonethis.com
 //
 // Requests need the x-digest-token header (value in public.app_settings). Add ?preview=1 to get the
 // HTML back without sending, or ?to=someone@example.com to send a test to one address instead of the list.
@@ -13,7 +13,7 @@
 import { createClient } from "jsr:@supabase/supabase-js@2";
 
 const TZ = "America/Chicago";
-const SITE = (Deno.env.get("SITE_URL") ?? "https://stl-zoning.vercel.app").replace(/\/$/, "");
+const SITE = (Deno.env.get("SITE_URL") ?? "https://app.rezonethis.com").replace(/\/$/, "");
 
 // deno-lint-ignore no-explicit-any
 type Row = Record<string, any>;

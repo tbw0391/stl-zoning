@@ -30,7 +30,7 @@ const LOOKBACK_DAYS = 45; // older agendas aren't worth reading on the first pas
 // into the agenda file; the agenda itself is at the front, so oversized files are cut to their first pages.
 const MAX_PDF_BYTES = 23 * 1024 * 1024;
 const FRONT_PAGES = 25;
-const SITE = (Deno.env.get("SITE_URL") ?? "https://stl-zoning.vercel.app").replace(/\/$/, "");
+const SITE = (Deno.env.get("SITE_URL") ?? "https://app.rezonethis.com").replace(/\/$/, "");
 const UA = { "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36" };
 
 const SYSTEM = `You read municipal Planning & Zoning and city council / board of aldermen agendas in the St. Louis, Missouri and Columbus, Ohio areas (Ohio townships: zoning commission and board of trustees) for a homebuilder's land-entitlement team.

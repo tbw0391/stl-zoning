@@ -10,7 +10,7 @@
 import { createClient } from "jsr:@supabase/supabase-js@2";
 
 const TZ = "America/Chicago";
-const SITE = (Deno.env.get("SITE_URL") ?? "https://stl-zoning.vercel.app").replace(/\/$/, "");
+const SITE = (Deno.env.get("SITE_URL") ?? "https://app.rezonethis.com").replace(/\/$/, "");
 const C = { teal: "#096764", amber: "#ffb549", orange: "#c4502a", warn: "#8a5a00", text: "#1d2a28", muted: "#5f6b67", border: "#e3e1da", bg: "#f6f5f1" };
 const KIND_PILL: Record<string, [string, string]> = {
   delay: ["DELAY", C.orange], possible_delay: ["POSSIBLE DELAY", C.warn], agenda_posted: ["AGENDA", C.teal], minutes_posted: ["MINUTES", C.teal],
