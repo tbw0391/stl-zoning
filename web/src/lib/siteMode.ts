@@ -16,3 +16,11 @@ export const offOnLombardo = (path: string) =>
 
 // Whether a request is in the demo, given its demo cookie.
 export const inDemo = (cookie: string | undefined) => SITE_MODE === "hawkeye" || (SITE_MODE === "both" && cookie === "1");
+
+// rezonethis.com is the advertising site: the front page (/welcome) and sign-up. Everything else there, including
+// signing in and the demo, goes to the software at app.rezonethis.com.
+export const APP_ORIGIN = "https://app.rezonethis.com";
+const MARKETING_HOSTS = ["rezonethis.com"];
+const MARKETING_PAGES = ["/welcome", "/signup"];
+export const isMarketingHost = (host: string | null) => MARKETING_HOSTS.includes((host ?? "").split(":")[0]);
+export const onMarketingSite = (path: string) => path === "/" || MARKETING_PAGES.includes(path);

@@ -1,11 +1,19 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { DEMO_COOKIE, demoAllows, openWithoutSignIn } from "@/lib/demoPaths";
-import { inDemo, offOnLombardo } from "@/lib/siteMode";
+import { APP_ORIGIN, inDemo, isMarketingHost, offOnLombardo, onMarketingSite } from "@/lib/siteMode";
 
 // Refreshes the Supabase session cookie, and sends people to /login when sign-in is required.
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
+  if (isMarketingHost(request.headers.get("host"))) {
+    if (!onMarketingSite(path)) return NextResponse.redirect(new URL(path + request.nextUrl.search, APP_ORIGIN));
+    const page = path === "/" ? "/welcome" : path;
+    const headers = new Headers(request.headers);
+    headers.set("x-pathname", page);
+    return path === "/" ? NextResponse.rewrite(new URL(page, request.url), { request: { headers } })
+      : NextResponse.next({ request: { headers } });
+  }
   // Lombardo's own deployment (SITE_MODE=lombardo) has no public front door or demo.
   if (offOnLombardo(path)) return NextResponse.redirect(new URL("/", request.url));
   const demo = inDemo(request.cookies.get(DEMO_COOKIE)?.value);

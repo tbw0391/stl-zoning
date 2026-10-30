@@ -1,6 +1,6 @@
 // The public front door and the open demo (no sign-up). Kept free of next/headers so middleware can use it.
-// "Project Hawkeye" is a working name for the public product until it gets a real one.
-export const PRODUCT = "Project Hawkeye";
+// The public product's name (rezonethis.com; working name was Project Hawkeye).
+export const PRODUCT = "Rezone This";
 export const DEMO_COOKIE = "demo";
 
 // Pages outside the Lombardo site: no Lombardo header, open to anyone.
