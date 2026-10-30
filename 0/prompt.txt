@@ -1,1 +1,9 @@
 anythign new?
+
+---
+
+ok enable the meeting alerts
+
+---
+
+do we have the phone auth enabled?
