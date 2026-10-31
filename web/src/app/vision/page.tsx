@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import { AREAS, findLand, landFilters } from "@/lib/land";
+import { AREAS, findLand, landFilters } from "@/modules/vision/land";
 import { fmtDate } from "@/lib/format";
 import PageTitle from "@/components/PageTitle";
 
@@ -23,11 +23,11 @@ export default async function LandPage({ searchParams }: { searchParams: Promise
     error = (e as Error).message;
   }
   const acres = rows.reduce((s, r) => s + r.acres, 0);
-  const csv = `/land/csv?${new URLSearchParams({ area: f.area, min: String(f.min), kind: f.kind, owner: f.owner, sort: f.sort })}`;
+  const csv = `/vision/csv?${new URLSearchParams({ area: f.area, min: String(f.min), kind: f.kind, owner: f.owner, sort: f.sort })}`;
 
   return (
     <>
-      <PageTitle href="/land">Project Vision</PageTitle>
+      <PageTitle href="/vision">Project Vision</PageTitle>
       <h2 className="lp-sub">Land finder</h2>
       <p className="muted">
         Large parcels from the county assessor records, with owner mailing addresses for outreach. Government, school, church,

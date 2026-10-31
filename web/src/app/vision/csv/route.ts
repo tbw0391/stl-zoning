@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
-import { findLand, landFilters } from "@/lib/land";
+import { findLand, landFilters } from "@/modules/vision/land";
 
 const cell = (v: unknown) => {
   const s = String(v ?? "");
@@ -16,6 +16,6 @@ export async function GET(request: Request) {
     r.mailing, r.address, r.use, r.zoning, r.sewerFeet, r.sewerProvider, r.landValue, r.buildingValue, r.lastSale, r.lastSalePrice, r.nearby,
     r.lat.toFixed(6), r.lng.toFixed(6)].map(cell).join(","));
   return new Response([head.join(","), ...lines].join("\r\n"), {
-    headers: { "Content-Type": "text/csv; charset=utf-8", "Content-Disposition": `attachment; filename="land-${f.area}-${f.min}ac.csv"` },
+    headers: { "Content-Type": "text/csv; charset=utf-8", "Content-Disposition": `attachment; filename="vision-land-${f.area}-${f.min}ac.csv"` },
   });
 }

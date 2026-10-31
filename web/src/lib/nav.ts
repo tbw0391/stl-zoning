@@ -18,7 +18,7 @@ export const NAV: { href: string; label: string; icon: IconDefinition; feature?:
   { href: "/alerts", label: "Alerts", icon: faBell },
   { href: "/meetings", label: "Meetings", icon: faComments },
   { href: "/lookup", label: "Parcel lookup", icon: faMap },
-  { href: "/land", label: "Project Vision", icon: faTreeCity, feature: "land-finder" },
+  { href: "/vision", label: "Project Vision", icon: faTreeCity, feature: "land-finder" },
   { href: "/jurisdictions", label: "Municipalities", icon: faLandmark },
   { href: "/progress", label: "Progress", icon: faFlag },
   { href: "/directory", label: "Directory", icon: faAddressBook },

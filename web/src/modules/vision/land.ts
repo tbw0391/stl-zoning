@@ -1,5 +1,6 @@
-// Land finder: large vacant, farm and lightly built parcels in an area, from the county assessor layers (the same
-// services as lib/parcels.ts), with zoning matched locally against each city's or the county's zoning polygons.
+// Project Vision's land finder (see README.md here): large vacant, farm and lightly built parcels in an area, from the
+// county assessor layers (the same services as lib/parcels.ts), with zoning matched locally against each city's or the
+// county's zoning polygons.
 // Government, school, church, park, utility and subdivision common-ground parcels are left out.
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { unstable_cache } from "next/cache";

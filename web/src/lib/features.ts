@@ -13,7 +13,7 @@ export const FEATURES: Feature[] = [
     title: "Project Vision: open land in Wildwood and Wentzville",
     description: "Adds a Project Vision tab with a land finder: vacant and farm parcels (or homes on big acreage) of 5 acres and up in Wildwood, Wentzville and the unincorporated land around Wentzville, with owner and mailing address, zoning, distance to sewer, appraised values, last sale and how many rezonings were filed within a mile in the last year. Filter by size and owner type, and download the list as a spreadsheet for outreach.",
     added: "2026-10-31",
-    page: "/land",
+    page: "/vision",
   },
 
   {
