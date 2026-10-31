@@ -1,7 +1,8 @@
 # Project Vision
 
 Finding land: large vacant, farm and lightly built parcels, with owner contact details, zoning, distance to sewer,
-values, last sale and nearby rezoning activity. Started Oct 31, 2026 for Lombardo (Wildwood, Wentzville).
+values, last sale and nearby rezoning activity. Started Oct 31, 2026 for Lombardo: Wildwood, then all of St. Charles
+County the same day (16 cities, and the unincorporated county in 7 areas by ZIP).
 
 It's kept separable so it can ship either as an add-on inside Rezone This or as its own app.
 
@@ -30,9 +31,10 @@ It stores nothing yet: every search reads the county services live (cached a day
 
 ## Adding an area
 
-Add an entry to `AREAS` and a loader in `land.ts`: the assessor layer and its "where" clause, the zoning source key in
-`ZONING_SOURCES`, and the sewer source (`SEWER_POINTS`). St. Louis County parcels use the `wildwood()` loader shape;
-St. Charles County parcels use `stCharles()`. Ohio would need the Franklin/Delaware county auditor layers.
+Add one entry to `AREAS` in `land.ts`: the county (`stl` or `scc`), the "where" clause on that county's assessor layer,
+and the `ZONING_SOURCES` key if the place has an online zoning map. If the sewer provider publishes its network, add it
+to `SEWER_POINTS` with the provider name exactly as the county's service-area map spells it (title case). A new county
+needs its own loader (`stLouis()` and `stCharles()` are the two shapes); Ohio would need the county auditor layers.
 
 ## Shipping it
 
@@ -49,7 +51,9 @@ read-only key or drop that column. Nothing else comes along.
 
 - Owners left out: government, school, church, park, utility, and subdivision trustees (owner ends TRUSTEES/TRS
   without "&" or H/W, or names a plat). St. Louis County owner names arrive run together from the source.
-- Sewer: MSD's full network (`MSD_Infrastructure_Complete/1`) in Wildwood; in Wentzville only the city's
-  GPS-located manholes (partial, about 1,300). St. Charles County's sewer service-area map gives the provider;
-  "No sewer district" means septic.
+- Sewer: published networks are MSD (all), O'Fallon MO (`Utility_Map/Sanitary/MapServer/2`), St. Charles city
+  (`STCH_SANITARY_STRUCTURES_View`) and part of Wentzville (GPS-located manholes only). St. Peters, Duckett Creek,
+  Water District #2 and the small towns publish none: their parcels show "Not mapped" rather than a misleading
+  distance. St. Charles County's sewer service-area map gives the provider; "No sewer district" means septic.
+  (The "O'Fallon" sewer layer on ArcGIS Online is O'Fallon, Illinois.)
 - Values are assessor appraisals, not market prices.

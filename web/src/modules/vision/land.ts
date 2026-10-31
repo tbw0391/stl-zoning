@@ -4,7 +4,7 @@
 // Government, school, church, park, utility and subdivision common-ground parcels are left out.
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { unstable_cache } from "next/cache";
-import { ZONING_SOURCES } from "@/lib/parcels";
+import { ZONING_SOURCES, layerUrl } from "@/lib/parcels";
 
 const SCC_PARCELS = "https://gis-dev.sccmo.org/scc_gis/rest/services/open_data/Tax_Information/MapServer/3";
 const STL_PARCELS = "https://maps.stlouisco.com/hosting/rest/services/Maps/AGS_Parcels/MapServer/0";
@@ -12,21 +12,55 @@ const STL_PARCELS = "https://maps.stlouisco.com/hosting/rest/services/Maps/AGS_P
 const FLOOR_ACRES = 5;
 
 export type LandKind = "vacant" | "home";
+// How far to trust the sewer distance: "full" = the provider publishes its whole network, "partial" = only part of it,
+// "none" = the provider publishes nothing (no distance shown).
+export type SewerMap = "full" | "partial" | "none";
 export type LandParcel = {
   id: string; county: "St. Charles" | "St. Louis"; municipality: string; address: string; owner: string; mailing: string;
   acres: number; use: string; kind: LandKind; company: boolean; zoning: string | null; landValue: number | null;
   buildingValue: number | null; lastSale: string | null; lastSalePrice: number | null; lat: number; lng: number;
-  // Feet from the parcel's edge to the nearest mapped sanitary sewer point (0 = one is on the parcel); null = none within 3 miles.
-  sewerFeet: number | null; sewerProvider: string | null;
+  // Feet from the parcel's edge to the nearest mapped sanitary sewer point (0 = one is on the parcel); null = none within
+  // 3 miles, or the provider's network isn't published.
+  sewerFeet: number | null; sewerProvider: string | null; sewerMap: SewerMap;
 };
 
-export const AREAS: Record<string, { label: string; note: string }> = {
-  wildwood: { label: "Wildwood", note: "City of Wildwood (St. Louis County)." },
-  wentzville: { label: "Wentzville", note: "City of Wentzville (St. Charles County)." },
-  wentzville_area: {
-    label: "Wentzville area (unincorporated)",
-    note: "Unincorporated St. Charles County parcels with a Wentzville (63385) address: land outside the city that it could annex.",
-  },
+// An area is a slice of one county's assessor layer. `zoning` is the ZONING_SOURCES key (none: no online zoning map).
+type Area = { label: string; group: string; county: "scc" | "stl"; where: string; zoning?: string; note?: string };
+
+const sccCity = (label: string, municipality: string, zoning?: string): Area =>
+  ({ label, group: "St. Charles County cities", county: "scc", where: `Municipality = '${municipality.replace(/'/g, "''")}'`, zoning });
+// Unincorporated St. Charles County is split by mailing ZIP (the town it's nearest), to keep each list a workable size.
+const sccRural = (label: string, zips: string[]): Area => ({
+  label, group: "Unincorporated St. Charles County", county: "scc", zoning: "Unincorporated County",
+  where: `Municipality = 'Unincorporated County' AND SitusZip IN (${zips.map((z) => `'${z}'`).join(", ")})`,
+  note: `Unincorporated land with a ${zips.join(" / ")} address: outside any city, so county zoning applies, and a city could annex it.`,
+});
+
+export const AREAS: Record<string, Area> = {
+  wildwood: { label: "Wildwood", group: "St. Louis County", county: "stl", where: "MUNICIPALITY = 'WILDWOOD'", zoning: "Wildwood" },
+  augusta: sccCity("Augusta", "City of Augusta"),
+  cottleville: sccCity("Cottleville", "City of Cottleville", "City of Cottleville"),
+  dardenne_prairie: sccCity("Dardenne Prairie", "Dardenne Prairie"),
+  flint_hill: sccCity("Flint Hill", "City of Flint Hill"),
+  foristell: sccCity("Foristell", "City of Foristell"),
+  josephville: sccCity("Josephville", "City of Josephville"),
+  lake_st_louis: sccCity("Lake Saint Louis", "City of Lake Saint Louis", "City of Lake Saint Louis"),
+  new_melle: sccCity("New Melle", "City of New Melle"),
+  ofallon: sccCity("O'Fallon", "City of O'Fallon", "City of O'Fallon"),
+  portage_des_sioux: sccCity("Portage des Sioux", "City of Portage Des Sioux"),
+  st_charles: sccCity("St. Charles", "City of St Charles", "City of St Charles"),
+  st_paul: sccCity("St. Paul", "City of St Paul"),
+  st_peters: sccCity("St. Peters", "City of St Peters", "City of St Peters"),
+  weldon_spring: sccCity("Weldon Spring", "Town of Weldon Spring"),
+  wentzville: sccCity("Wentzville", "City of Wentzville", "City of Wentzville"),
+  west_alton: sccCity("West Alton", "City of West Alton"),
+  wentzville_area: sccRural("Near Wentzville", ["63385"]),
+  ofallon_area: sccRural("Near O'Fallon", ["63366", "63367", "63368"]),
+  st_charles_area: sccRural("Near St. Charles and St. Peters", ["63301", "63303", "63304", "63376"]),
+  foristell_area: sccRural("Near Foristell and New Melle", ["63348", "63365"]),
+  defiance_area: sccRural("Near Defiance", ["63341"]),
+  augusta_area: sccRural("Near Augusta and Marthasville", ["63332", "63357"]),
+  portage_area: sccRural("Near Portage des Sioux and West Alton", ["63373", "63386"]),
 };
 
 // Owners whose land isn't for sale in the usual way.
@@ -90,12 +124,13 @@ function inRings(pt: [number, number], rings: number[][][]) {
 }
 
 // Zoning polygons covering the parcels' extent, then a point-in-polygon match for each parcel.
-async function matchZoning(parcels: LandParcel[], source: string) {
+async function matchZoning(parcels: LandParcel[], source?: string) {
+  if (!source) return;
   const src = ZONING_SOURCES[source];
   if (!src || !parcels.length) return;
   const xs = parcels.map((p) => p.lng), ys = parcels.map((p) => p.lat);
   const envelope = { xmin: Math.min(...xs), ymin: Math.min(...ys), xmax: Math.max(...xs), ymax: Math.max(...ys), spatialReference: { wkid: 4326 } };
-  const polys = await queryAll(src.url, {
+  const polys = await queryAll(await layerUrl(src), {
     where: "1=1", geometry: JSON.stringify(envelope), geometryType: "esriGeometryEnvelope", inSR: "4326",
     spatialRel: "esriSpatialRelIntersects", outFields: src.field, returnGeometry: "true", maxAllowableOffset: "0.00005",
   }, 1000);
@@ -105,12 +140,21 @@ async function matchZoning(parcels: LandParcel[], source: string) {
   }
 }
 
-// Sanitary sewer points (manholes and other network points). MSD's map covers its whole system; Wentzville publishes
-// only the manholes its crews have GPS-located, so a Wentzville parcel can be closer to sewer than this shows.
-const SEWER_POINTS = {
-  msd: "https://services2.arcgis.com/w657bnjzrjguNyOy/arcgis/rest/services/MSD_Infrastructure_Complete/FeatureServer/1",
-  wentzville: "https://services2.arcgis.com/PhrOBa64VhLxWQwF/arcgis/rest/services/Water_Wastewater_GPS_DUPLICATED/FeatureServer/6",
-};
+// Sanitary sewer points (manholes and other network structures), and the providers whose network each one covers (as
+// named on the county's service-area map). Not published anywhere found (Oct 2026): St. Peters, Duckett Creek Sewer
+// District, Public Water Supply District #2, Foristell and the smaller towns.
+const SEWER_POINTS: { url: string; idField: string; providers: string[]; map: SewerMap; county: "scc" | "stl" }[] = [
+  // MSD's whole network (St. Louis County GIS on ArcGIS Online).
+  { url: "https://services2.arcgis.com/w657bnjzrjguNyOy/arcgis/rest/services/MSD_Infrastructure_Complete/FeatureServer/1",
+    idField: "OBJECTID", providers: ["MSD"], map: "full", county: "stl" },
+  // Wentzville publishes only the manholes its crews have GPS-located (about 1,300).
+  { url: "https://services2.arcgis.com/PhrOBa64VhLxWQwF/arcgis/rest/services/Water_Wastewater_GPS_DUPLICATED/FeatureServer/6",
+    idField: "OBJECTID", providers: ["City of Wentzville"], map: "partial", county: "scc" },
+  { url: "https://gis.ofallonmo.gov/arcgis/rest/services/Utility_Map/Sanitary/MapServer/2",
+    idField: "OBJECTID", providers: ["City of O'Fallon"], map: "full", county: "scc" },
+  { url: "https://services.arcgis.com/p44fQSGBTnSRR4hh/arcgis/rest/services/STCH_SANITARY_STRUCTURES_View/FeatureServer/0",
+    idField: "ObjectId", providers: ["City of St. Charles"], map: "full", county: "scc" },
+];
 // St. Charles County's map of which district or city provides sewer service where.
 const SEWER_PROVIDERS = "https://gis-dev.sccmo.org/scc_gis/rest/services/open_data/Utilities/MapServer/5";
 const SEWER_SEARCH_MILES = 3;
@@ -124,16 +168,17 @@ function segFeet(p: [number, number], a: number[], b: number[], kx: number) {
   return Math.hypot(px - (ax + t * dx), py - (ay + t * dy));
 }
 
-async function matchSewer(parcels: LandParcel[], rings: Map<string, number[][][]>, source: keyof typeof SEWER_POINTS) {
+async function matchSewer(parcels: LandParcel[], rings: Map<string, number[][][]>, county: "scc" | "stl") {
   if (!parcels.length) return;
   const pad = SEWER_SEARCH_MILES / 60;
   const xs = parcels.map((p) => p.lng), ys = parcels.map((p) => p.lat);
   const envelope = { xmin: Math.min(...xs) - pad, ymin: Math.min(...ys) - pad, xmax: Math.max(...xs) + pad, ymax: Math.max(...ys) + pad, spatialReference: { wkid: 4326 } };
-  const pts = (await queryAll(SEWER_POINTS[source], {
+  const layers = await Promise.all(SEWER_POINTS.filter((src) => src.county === county).map((src) => queryAll(src.url, {
     where: "1=1", geometry: JSON.stringify(envelope), geometryType: "esriGeometryEnvelope", inSR: "4326",
-    spatialRel: "esriSpatialRelIntersects", outFields: "OBJECTID", returnGeometry: "true",
-  }, 2000)).map((f) => (f.geometry as { x?: number; y?: number } | undefined)).filter((g): g is { x: number; y: number } => g?.x != null)
-    .map((g) => [g.x, g.y] as [number, number]);
+    spatialRel: "esriSpatialRelIntersects", outFields: src.idField, returnGeometry: "true",
+  }, 1000)));
+  const pts = layers.flat().map((f) => (f.geometry as { x?: number; y?: number } | undefined))
+    .filter((g): g is { x: number; y: number } => g?.x != null).map((g) => [g.x, g.y] as [number, number]);
   // Grid of points by 0.01 degree, so each parcel looks only at nearby ones.
   const CELL = 0.01, grid = new Map<string, [number, number][]>();
   for (const pt of pts) {
@@ -161,6 +206,8 @@ async function matchSewer(parcels: LandParcel[], rings: Map<string, number[][][]
       if (best != null && best <= reach * 60 * 5280) break;
     }
     p.sewerFeet = best == null || best > SEWER_SEARCH_MILES * 5280 ? null : Math.round(best);
+    // Next to a provider that publishes nothing, the nearest mapped sewer could be anyone's; don't guess.
+    if (p.sewerMap === "none") p.sewerFeet = null;
   }
 }
 
@@ -171,6 +218,7 @@ async function matchSewerProvider(parcels: LandParcel[]) {
     p.sewerProvider = hit
       ? clean(hit.attributes.SEWER_DIST).toLowerCase().replace(/\b[a-z]/g, (c) => c.toUpperCase()).replace(/\bOf\b/g, "of").replace(/\bSt\b/g, "St.")
       : "No sewer district";
+    p.sewerMap = SEWER_POINTS.find((src) => src.providers.includes(p.sewerProvider!))?.map ?? (hit ? "none" : "partial");
   }
 }
 
@@ -178,9 +226,8 @@ const num = (v: unknown) => (typeof v === "number" ? v : null);
 const day = (v: unknown) => (typeof v === "number" && v > 0 ? new Date(v).toISOString().slice(0, 10) : null);
 const clean = (v: unknown) => String(v ?? "").replace(/\s+/g, " ").trim();
 
-async function stCharles(area: "wentzville" | "wentzville_area"): Promise<LandParcel[]> {
-  const where = (area === "wentzville" ? "Municipality = 'City of Wentzville'" : "Municipality = 'Unincorporated County' AND SitusZip = '63385'") +
-    ` AND Parcel_Acres >= ${FLOOR_ACRES} AND (PropType LIKE 'VACANT%' OR PropType LIKE 'FARM%' OR PropType LIKE 'SINGLE FAMILY%')`;
+async function stCharles(area: Area): Promise<LandParcel[]> {
+  const where = area.where + ` AND Parcel_Acres >= ${FLOOR_ACRES} AND (PropType LIKE 'VACANT%' OR PropType LIKE 'FARM%' OR PropType LIKE 'SINGLE FAMILY%')`;
   const fs = await queryAll(SCC_PARCELS, {
     where, returnGeometry: "true", maxAllowableOffset: "0.00005",
     outFields: "Parcel_ID,SiteAddress,Municipality,Owner,MailingAddress,Parcel_Acres,PropType,ResidentialLandValue,AgriculturalLandValue,CommercialLandValue,ResidentialImprovementValue,AgriculturalImprovementValue,CommercialImprovementValue,SaleDate1,SalePrice1",
@@ -200,19 +247,17 @@ async function stCharles(area: "wentzville" | "wentzville_area"): Promise<LandPa
       kind: /^SINGLE FAMILY/.test(use) ? "home" : "vacant", company: COMPANY.test(owner),
       zoning: null, landValue: sum("ResidentialLandValue", "AgriculturalLandValue", "CommercialLandValue"),
       buildingValue: sum("ResidentialImprovementValue", "AgriculturalImprovementValue", "CommercialImprovementValue"),
-      lastSale: day(a.SaleDate1), lastSalePrice: num(a.SalePrice1) || null, lat: c[1], lng: c[0], sewerFeet: null, sewerProvider: null,
+      lastSale: day(a.SaleDate1), lastSalePrice: num(a.SalePrice1) || null, lat: c[1], lng: c[0], sewerFeet: null, sewerProvider: null, sewerMap: "none",
     });
   }
-  await Promise.all([
-    matchZoning(out, area === "wentzville" ? "City of Wentzville" : "Unincorporated County"),
-    matchSewer(out, rings, "wentzville"), matchSewerProvider(out),
-  ]);
+  // The provider decides whether the sewer distance can be trusted, so it goes first.
+  await Promise.all([matchZoning(out, area.zoning), matchSewerProvider(out).then(() => matchSewer(out, rings, "scc"))]);
   return out;
 }
 
-async function wildwood(): Promise<LandParcel[]> {
+async function stLouis(area: Area): Promise<LandParcel[]> {
   const fs = await queryAll(STL_PARCELS, {
-    where: `MUNICIPALITY = 'WILDWOOD' AND ACRES >= ${FLOOR_ACRES} AND PROPCLASS <> 'X' AND LUCODE IN ('Vacant/Agriculture', 'Single Family', 'Duplex/Townhome')`,
+    where: `${area.where} AND ACRES >= ${FLOOR_ACRES} AND PROPCLASS <> 'X' AND LUCODE IN ('Vacant/Agriculture', 'Single Family', 'Duplex/Townhome')`,
     returnGeometry: "true", maxAllowableOffset: "0.00005",
     outFields: "LOCATOR,PROP_ADD,PROP_ZIP,OWNER_NAME,CAREOF,OWN_ADD,OWN_CITY,OWN_STATE,OWN_ZIP,ACRES,LUCODE,APPLANDVAL,APPIMPVAL,RECDATEDAILY",
   }, 1000);
@@ -226,24 +271,24 @@ async function wildwood(): Promise<LandParcel[]> {
     const use = clean(a.LUCODE);
     const zip = clean(a.OWN_ZIP);
     out.push({
-      id: clean(a.LOCATOR), county: "St. Louis", municipality: "Wildwood", address: [clean(a.PROP_ADD), clean(a.PROP_ZIP)].filter(Boolean).join(" "),
+      id: clean(a.LOCATOR), county: "St. Louis", municipality: area.label, address: [clean(a.PROP_ADD), clean(a.PROP_ZIP)].filter(Boolean).join(" "),
       owner, mailing: [clean(a.CAREOF), clean(a.OWN_ADD), [clean(a.OWN_CITY), clean(a.OWN_STATE), zip.length > 5 ? `${zip.slice(0, 5)}-${zip.slice(5)}` : zip].filter(Boolean).join(" ")].filter(Boolean).join(", "),
       acres: num(a.ACRES) ?? 0, use: use === "Vacant/Agriculture" ? "Vacant / agricultural" : use,
       kind: use === "Vacant/Agriculture" ? "vacant" : "home", company: COMPANY.test(owner),
       zoning: null, landValue: num(a.APPLANDVAL), buildingValue: num(a.APPIMPVAL),
       lastSale: /^\d{8}$/.test(clean(a.RECDATEDAILY)) ? `${clean(a.RECDATEDAILY).slice(0, 4)}-${clean(a.RECDATEDAILY).slice(4, 6)}-${clean(a.RECDATEDAILY).slice(6)}` : null,
-      lastSalePrice: null, lat: c[1], lng: c[0], sewerFeet: null, sewerProvider: "MSD",
+      lastSalePrice: null, lat: c[1], lng: c[0], sewerFeet: null, sewerProvider: "MSD", sewerMap: "full",
     });
   }
-  await Promise.all([matchZoning(out, "Wildwood"), matchSewer(out, rings, "msd")]);
+  await Promise.all([matchZoning(out, area.zoning), matchSewer(out, rings, "stl")]);
   return out;
 }
 
-const load = (area: string) => (area === "wildwood" ? wildwood() : stCharles(area as "wentzville" | "wentzville_area"));
+const load = (key: string) => (AREAS[key].county === "stl" ? stLouis(AREAS[key]) : stCharles(AREAS[key]));
 
 // Assessor data changes slowly; one fetch a day per area.
 export const landParcels = (area: string) =>
-  unstable_cache(() => load(area), ["land-finder-7", area], { revalidate: 24 * 3600 })();
+  unstable_cache(() => load(area), ["land-finder-8", area], { revalidate: 24 * 3600 })();
 
 export function milesBetween(a: { lat: number; lng: number }, b: { lat: number; lng: number }) {
   const rad = Math.PI / 180;

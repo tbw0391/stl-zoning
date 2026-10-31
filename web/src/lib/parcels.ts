@@ -247,7 +247,7 @@ export async function findParcels(input: string): Promise<Parcel[]> {
   return inCity.length ? inCity : parcels;
 }
 
-async function layerUrl(src: ZoningSource) {
+export async function layerUrl(src: ZoningSource) {
   if (!src.search) return src.url;
   try {
     const res = await fetch(`https://www.arcgis.com/sharing/rest/search?${new URLSearchParams({

@@ -10,8 +10,8 @@ export type Feature = { key: string; title: string; description: string; added: 
 export const FEATURES: Feature[] = [
   {
     key: "land-finder",
-    title: "Project Vision: open land in Wildwood and Wentzville",
-    description: "Adds a Project Vision tab with a land finder: vacant and farm parcels (or homes on big acreage) of 5 acres and up in Wildwood, Wentzville and the unincorporated land around Wentzville, with owner and mailing address, zoning, distance to sewer, appraised values, last sale and how many rezonings were filed within a mile in the last year. Filter by size and owner type, and download the list as a spreadsheet for outreach.",
+    title: "Project Vision: open land in Wildwood and St. Charles County",
+    description: "Adds a Project Vision tab with a land finder: vacant and farm parcels (or homes on big acreage) of 5 acres and up in Wildwood and every St. Charles County city, plus the unincorporated county by area, with owner and mailing address, zoning, distance to sewer, appraised values, last sale and how many rezonings were filed within a mile in the last year. Filter by size and owner type, and download the list as a spreadsheet for outreach.",
     added: "2026-10-31",
     page: "/vision",
   },

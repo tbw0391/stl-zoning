@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import { AREAS, findLand, landFilters } from "@/modules/vision/land";
+import { AREAS, findLand, landFilters, type SewerMap } from "@/modules/vision/land";
 import { fmtDate } from "@/lib/format";
 import PageTitle from "@/components/PageTitle";
 
@@ -8,7 +8,8 @@ export const dynamic = "force-dynamic";
 
 const money = (n: number | null) => (n ? `$${Math.round(n).toLocaleString("en-US")}` : "");
 const SHOWN = 300;
-const sewer = (ft: number | null) => (ft == null ? "Over 3 mi" : ft === 0 ? "On site" : ft < 5280 ? `${Math.round(ft / 10) * 10} ft` : `${(ft / 5280).toFixed(1)} mi`);
+const sewer = (ft: number | null, map: SewerMap) =>
+  map === "none" ? "Not mapped" : ft == null ? "Over 3 mi" : ft === 0 ? "On site" : ft < 5280 ? `${Math.round(ft / 10) * 10} ft` : `${(ft / 5280).toFixed(1)} mi`;
 
 // Project Vision's land finder: large vacant and farm parcels (or homes on big acreage) for acquisition, with owner contact details.
 export default async function LandPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
@@ -32,12 +33,17 @@ export default async function LandPage({ searchParams }: { searchParams: Promise
       <p className="muted">
         Large parcels from the county assessor records, with owner mailing addresses for outreach. Government, school, church,
         park, utility and subdivision common-ground land is left out. {AREAS[f.area].note}
+        {!AREAS[f.area].zoning && " This city has no online zoning map, so zoning is blank; check the city's map."}
       </p>
 
       <form className="filters" method="get">
         <label>Area
           <select name="area" defaultValue={f.area}>
-            {Object.entries(AREAS).map(([k, a]) => <option key={k} value={k}>{a.label}</option>)}
+            {[...new Set(Object.values(AREAS).map((a) => a.group))].map((g) => (
+              <optgroup key={g} label={g}>
+                {Object.entries(AREAS).filter(([, a]) => a.group === g).map(([k, a]) => <option key={k} value={k}>{a.label}</option>)}
+              </optgroup>
+            ))}
           </select>
         </label>
         <label>At least
@@ -97,7 +103,7 @@ export default async function LandPage({ searchParams }: { searchParams: Promise
                     <td>{r.owner}{r.company && <span className="tag pz">Company</span>}</td>
                     <td><Link href={`/lookup?q=${encodeURIComponent(r.id)}`}>{r.address || r.id}</Link></td>
                     <td>{r.zoning ?? <span className="muted">—</span>}</td>
-                    <td className="num">{sewer(r.sewerFeet)}{r.sewerProvider && <div className="muted small">{r.sewerProvider}</div>}</td>
+                    <td className="num">{sewer(r.sewerFeet, r.sewerMap)}{r.sewerMap === "partial" && r.sewerFeet != null && <span className="muted" title="Only part of this provider's sewer network is published, so sewer may be closer"> *</span>}{r.sewerProvider && <div className="muted small">{r.sewerProvider}</div>}</td>
                     <td className="num">{r.nearby || ""}</td>
                     <td className="num">{money(r.landValue)}</td>
                     <td className="num">{money(r.buildingValue)}</td>
@@ -112,9 +118,11 @@ export default async function LandPage({ searchParams }: { searchParams: Promise
           <p className="muted small">
             Values are the assessor&apos;s appraisal, not market price. Zoning is matched from the city&apos;s or county&apos;s
             zoning map at the middle of the parcel; check it on Parcel lookup (click the site) before relying on it.
-            Sewer is the distance from the parcel&apos;s edge to the nearest mapped sanitary sewer point: MSD&apos;s full map in
-            Wildwood, but in Wentzville only the manholes the city has GPS-located, so real sewer may be closer. In St. Charles
-            County the provider is the county&apos;s sewer service area map. Neither says whether a line has capacity.
+            Sewer is the distance from the parcel&apos;s edge to the nearest mapped sanitary sewer point. Published networks: MSD
+            (all of it), O&apos;Fallon and St. Charles city, and part of Wentzville&apos;s (marked *: sewer may be closer). St.
+            Peters, Duckett Creek, Water District #2 and the small towns publish none, so their parcels say &quot;Not mapped&quot;.
+            The provider comes from the county&apos;s sewer service-area map; &quot;No sewer district&quot; means septic today. None of
+            this says whether a line has capacity.
           </p>
         </>
       )}
