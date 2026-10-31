@@ -36,7 +36,18 @@ and the `ZONING_SOURCES` key if the place has an online zoning map. If the sewer
 to `SEWER_POINTS` with the provider name exactly as the county's service-area map spells it (title case). A new county
 needs its own loader (`stLouis()` and `stCharles()` are the two shapes); Ohio would need the county auditor layers.
 
-## Shipping it
+## Paid add-on (decided Oct 31, 2026)
+
+Vision is an extra-cost feature of Rezone This, on top of the base subscription. Until sign-in is required it's an
+opt-in feature anyone can switch on; when accounts are enforced:
+
+1. A `company_modules` table (company, module 'vision', started_on, ended_on, stripe_subscription_item) and a
+   `has_module('vision')` check like `is_team()`.
+2. The page, the CSV route and the menu entry check it; without it, `/vision` shows what Vision does and how to add it.
+3. Billing: a separate Stripe price for Vision (per company, possibly priced by county/area), added to the company's
+   subscription.
+4. Lombardo gets it as the first customer; the public demo can show a read-only sample area.
+
 
 **As an add-on in Rezone This (likely first).** Once there are company accounts, replace the `land-finder` opt-in
 with a per-company entitlement (a `modules` list on the company, later a Stripe price), check it in the page and the
