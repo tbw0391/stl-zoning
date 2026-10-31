@@ -559,6 +559,11 @@ main.public { flex: 1; width: 100%; }
 /* OYL lots (/oyl) */
 .oyl-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0 8px; }
 .oyl-summary strong { font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+.lp-sub { margin: -4px 0 6px; font-size: 1.1rem; color: var(--muted); }
+.land-table { font-size: .85rem; }
+.land-table th { white-space: nowrap; }
+.land-table .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.land-table .tag { margin-left: 6px; }
 .oyl-table { font-size: .85rem; }
 .oyl-table th { white-space: nowrap; }
 .oyl-table .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }

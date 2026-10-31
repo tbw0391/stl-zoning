@@ -9,6 +9,14 @@ export type Feature = { key: string; title: string; description: string; added: 
 
 export const FEATURES: Feature[] = [
   {
+    key: "land-finder",
+    title: "Project Vision: open land in Wildwood and Wentzville",
+    description: "Adds a Project Vision tab with a land finder: vacant and farm parcels (or homes on big acreage) of 5 acres and up in Wildwood, Wentzville and the unincorporated land around Wentzville, with owner and mailing address, zoning, distance to sewer, appraised values, last sale and how many rezonings were filed within a mile in the last year. Filter by size and owner type, and download the list as a spreadsheet for outreach.",
+    added: "2026-10-31",
+    page: "/land",
+  },
+
+  {
     key: "calendar-multi",
     title: "Pick several municipalities on the calendar",
     description: "The calendar's Municipality menu becomes a checklist: tick one, some or all of them, then Apply. Nothing ticked shows everything, as before. (Suggestion #37)",

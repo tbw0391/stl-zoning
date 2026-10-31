@@ -2,7 +2,7 @@ import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import {
   faCalendar, faChartBar, faFileLines, faFolderOpen, faSquareCheck, faUser, faComments, faMap, faFlag, faAddressBook, faLightbulb, faThumbsUp,
 } from "@fortawesome/free-regular-svg-icons";
-import { faLandmark, faHouseChimney } from "@fortawesome/free-solid-svg-icons";
+import { faLandmark, faHouseChimney, faTreeCity } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-regular-svg-icons";
 
 // `feature`: shown only when that opt-in feature is switched on (lib/features).
@@ -18,6 +18,7 @@ export const NAV: { href: string; label: string; icon: IconDefinition; feature?:
   { href: "/alerts", label: "Alerts", icon: faBell },
   { href: "/meetings", label: "Meetings", icon: faComments },
   { href: "/lookup", label: "Parcel lookup", icon: faMap },
+  { href: "/land", label: "Project Vision", icon: faTreeCity, feature: "land-finder" },
   { href: "/jurisdictions", label: "Municipalities", icon: faLandmark },
   { href: "/progress", label: "Progress", icon: faFlag },
   { href: "/directory", label: "Directory", icon: faAddressBook },
